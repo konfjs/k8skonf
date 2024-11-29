@@ -1,0 +1,47 @@
+{
+  "name": "@k8skonf/core",
+  "version": "0.1.1",
+  "author": {
+    "name": "konfjs",
+    "url": "https://github.com/konfjs"
+  },
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/konfjs/k8skonf",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/konfjs/k8skonf.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/konfjs/k8skonf/issues"
+  },
+  "keywords": [
+    "kubernetes",
+    "cdk8s",
+    "cdk",
+    "helm"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    }
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "prepack": "pnpm run build"
+  },
+  "files": [
+    "dist"
+  ]
+}
