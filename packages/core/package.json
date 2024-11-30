@@ -39,9 +39,14 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "prepack": "pnpm run build"
+    "prepack": "pnpm run build",
+    "gen": "openapi-generator-cli generate"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "2.15.3",
+    "typescript": "5.7.2"
+  }
 }
