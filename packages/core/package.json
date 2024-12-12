@@ -1,6 +1,6 @@
 {
   "name": "@k8skonf/core",
-  "version": "0.1.1",
+  "version": "0.0.1",
   "author": {
     "name": "konfjs",
     "url": "https://github.com/konfjs"
@@ -15,12 +15,7 @@
   "bugs": {
     "url": "https://github.com/konfjs/k8skonf/issues"
   },
-  "keywords": [
-    "kubernetes",
-    "cdk8s",
-    "cdk",
-    "helm"
-  ],
+  "keywords": ["konfjs", "k8skonf", "kubernetes", "cdk8s", "cdk", "helm"],
   "publishConfig": {
     "access": "public",
     "exports": {
@@ -38,15 +33,16 @@
     }
   },
   "scripts": {
+    "lint": "biome lint",
     "build": "rm -rf dist && tsc",
-    "prepack": "pnpm run build",
-    "gen": "openapi-generator-cli generate"
+    "prepack": "pnpm run build"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "2.15.3",
     "typescript": "5.7.2"
+  },
+  "dependencies": {
+    "picocolors": "1.1.1",
+    "yaml": "2.6.1"
   }
 }

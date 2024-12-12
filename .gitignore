@@ -132,3 +132,7 @@ dist
 *.cjs
 *.cts
 *.mjs
+
+
+packages/cli/files
+packages/cli/src/models

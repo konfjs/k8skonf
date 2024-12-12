@@ -1,0 +1,43 @@
+import { V1ObjectMeta } from './V1ObjectMeta.js';
+import { K8sApp } from '../K8sApp.js';
+import { ApiObject } from '../ApiObject.js';
+
+export interface V1alpha1VolumeAttributesClassArgs {
+  readonly driverName: string;
+  readonly metadata?: V1ObjectMeta;
+  readonly parameters?: { [key: string]: string };
+}
+
+/**
+ * VolumeAttributesClass represents a specification of mutable volume attributes defined by the CSI driver. The class can be specified during dynamic provisioning of PersistentVolumeClaims, and changed in the PersistentVolumeClaim spec after provisioning.
+ */
+export class V1alpha1VolumeAttributesClass extends ApiObject {
+  /**
+   * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+   */
+  readonly apiVersion = 'storage.k8s.io/v1alpha1';
+  /**
+   * Name of the CSI driver This field is immutable.
+   */
+  readonly driverName: string;
+  /**
+   * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+   */
+  readonly kind = 'VolumeAttributesClass';
+  /**
+   * Standard object\'s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+   */
+  readonly metadata: V1ObjectMeta;
+  /**
+   * parameters hold volume attributes defined by the CSI driver. These values are opaque to the Kubernetes and are passed directly to the CSI driver. The underlying storage provider supports changing these attributes on an existing volume, however the parameters field itself is immutable. To invoke a volume update, a new VolumeAttributesClass should be created with new parameters, and the PersistentVolumeClaim should be updated to reference the new VolumeAttributesClass.  This field is required and must contain at least one key/value pair. The keys cannot be empty, and the maximum number of parameters is 512, with a cumulative max size of 256K. If the CSI driver rejects invalid parameters, the target PersistentVolumeClaim will be set to an \"Infeasible\" state in the modifyVolumeStatus field.
+   */
+  readonly parameters?: { [key: string]: string };
+
+  constructor(app: K8sApp, name: string, args: V1alpha1VolumeAttributesClassArgs) {
+    super();
+    this.driverName = args.driverName;
+    this.metadata = args.metadata || { name };
+    this.parameters = args.parameters;
+    app.resources.push(this);
+  }
+}
