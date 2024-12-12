@@ -13,8 +13,15 @@ export class K8sApp {
 
     constructor(
         readonly outputName: string,
-        readonly outputType: 'singleFile' | 'filePerResource',
+        /**
+         * @default 'singleFile'
+         */
+        readonly outputType?: 'singleFile' | 'filePerResource',
     ) {}
+
+    addResource(resource: ApiObject) {
+        this.resources.push(resource);
+    }
 
     toYaml() {
         return `---\n${this.resources.map((resource) => yaml.stringify(resource)).join('---\n')}`;
