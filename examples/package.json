@@ -1,0 +1,8 @@
+{
+  "name": "@k8skonf/examples",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@k8skonf/core": "workspace:*"
+  }
+}
