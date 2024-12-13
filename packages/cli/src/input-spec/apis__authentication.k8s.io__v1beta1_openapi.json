@@ -1,7 +1,7 @@
 {
   "components": {
     "schemas": {
-      "v1UserInfo": {
+      "UserInfov1": {
         "description": "UserInfo holds the information about the user needed to implement the user.Info interface.",
         "properties": {
           "extra": {
@@ -35,7 +35,7 @@
         },
         "type": "object"
       },
-      "v1beta1SelfSubjectReview": {
+      "SelfSubjectReviewv1beta1": {
         "description": "SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request. When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.",
         "properties": {
           "apiVersion": {
@@ -49,7 +49,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -58,7 +58,7 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1beta1SelfSubjectReviewStatus"
+                "$ref": "#/components/schemas/SelfSubjectReviewStatusv1beta1"
               }
             ],
             "default": {},
@@ -74,13 +74,13 @@
           }
         ]
       },
-      "v1beta1SelfSubjectReviewStatus": {
+      "SelfSubjectReviewStatusv1beta1": {
         "description": "SelfSubjectReviewStatus is filled by the kube-apiserver and sent back to a user.",
         "properties": {
           "userInfo": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1UserInfo"
+                "$ref": "#/components/schemas/UserInfov1"
               }
             ],
             "default": {},
@@ -89,7 +89,7 @@
         },
         "type": "object"
       },
-      "v1APIResource": {
+      "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
           "categories": {
@@ -160,11 +160,11 @@
         ],
         "type": "object"
       },
-      "v1FieldsV1": {
+      "FieldsV1v1": {
         "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
         "type": "object"
       },
-      "v1ManagedFieldsEntry": {
+      "ManagedFieldsEntryv1": {
         "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
         "properties": {
           "apiVersion": {
@@ -178,7 +178,7 @@
           "fieldsV1": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1FieldsV1"
+                "$ref": "#/components/schemas/FieldsV1v1"
               }
             ],
             "description": "FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type."
@@ -198,7 +198,7 @@
           "time": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over."
@@ -206,7 +206,7 @@
         },
         "type": "object"
       },
-      "v1ObjectMeta": {
+      "ObjectMetav1": {
         "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
         "properties": {
           "annotations": {
@@ -220,7 +220,7 @@
           "creationTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.\n\nPopulated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -233,7 +233,7 @@
           "deletionTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested.\n\nPopulated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -270,7 +270,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1ManagedFieldsEntry"
+                  "$ref": "#/components/schemas/ManagedFieldsEntryv1"
                 }
               ],
               "default": {}
@@ -291,7 +291,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1OwnerReference"
+                  "$ref": "#/components/schemas/OwnerReferencev1"
                 }
               ],
               "default": {}
@@ -315,7 +315,7 @@
         },
         "type": "object"
       },
-      "v1OwnerReference": {
+      "OwnerReferencev1": {
         "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
         "properties": {
           "apiVersion": {
@@ -356,7 +356,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1Time": {
+      "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
         "format": "date-time",
         "type": "string"

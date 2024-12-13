@@ -1,40 +1,51 @@
+SHELL := /bin/bash
+.SHELLFLAGS += -euo pipefail
+.ONESHELL:
+
+
 k8sVersion := v1.31.4
 
+
+# Download Kubernetes OpenAPI schemas to packages/cli/files/kubernetes/api/openapi-spec/v3/*.json
 .PHONY: download-schema
 download-schema:
 	@echo "Downloading Kubernetes schema version $(k8sVersion)"
-	@cd packages/cli && \
-		rm -rf files/kubernetes && \
-		mkdir -p files/kubernetes && \
-		git clone --depth=1 --branch $(k8sVersion) --single-branch \
-			--filter=blob:none --sparse \
-		    https://github.com/kubernetes/kubernetes.git files/kubernetes && \
-		cd files/kubernetes && \
-		git sparse-checkout set api/openapi-spec/v3 && \
-        git sparse-checkout disable
+	@cd packages/cli
+	@mkdir -p files/kubernetes
+	@git clone --depth=1 --branch $(k8sVersion) --single-branch --filter=blob:none \
+			https://github.com/kubernetes/kubernetes.git files/kubernetes
 
 
+# Generate packages/cli/src/input-spec/*.json files
 .PHONY: prepare-schema
 prepare-schema:
 	@echo "Preparing Kubernetes schema"
-	@cd packages/cli && \
-		bun src/index.ts
+	@cd packages/cli
+	@bun src/index.ts
 
 
+# Generate packages/cli/files/gen/models/*.ts files
 .PHONY: models
-models:
+models: prepare-schema
 	@echo "Generating Kubernetes models"
-	@cd packages/cli && \
-		pnpm gen && \
-		rsync -a --delete ./files/gen/models/ src/models/
+	@cd packages/cli
+	@pnpm gen
+	@rsync -a --delete files/gen/models/ src/models/
 
 
+.PHONY: restore-models
+restore-models:
+	@echo "Restoring Kubernetes models"
+	@cd packages/cli
+	@rsync -a --delete files/gen/models/ src/models/
+
+
+# Generate packages/core/src/models/*.ts files
 .PHONY: core
-core:
+core: restore-models
 	@echo "Generating @k8skonf/core package"
-	@cd packages/cli && \
-		rsync -a --delete ./files/gen/models/ src/models/ && \
-		bun src/morph.ts && \
-		rsync -a --delete ./src/models/ ../core/src/models/ && \
-		cd ../core && \
-		pnpm lint
+	@cd packages/cli
+	@bun src/morph.ts
+	@rsync -a --delete src/models/ ../core/src/models/
+	@cd ../core
+	@pnpm lint

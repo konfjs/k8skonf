@@ -6,7 +6,7 @@ import { K8sOpenApiSpec, removeModelPrefixes } from './removeModelPrefixes.js';
 
 export interface GroupVersionKindMap {
     /**
-     * @example "v1Deployment"
+     * @example "Deploymentv1"
      */
     [schemaName: string]: {
         /**

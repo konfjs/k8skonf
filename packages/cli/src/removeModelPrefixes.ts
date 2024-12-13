@@ -39,7 +39,7 @@ export interface K8sOpenApiSpec {
 /**
  * io.k8s.api.admissionregistration.v1.ServiceReference
  * ->
- * V1ServiceReference
+ * ServiceReferencev1
  */
 export function removeModelPrefixes(
     spec: K8sOpenApiSpec,
@@ -50,11 +50,11 @@ export function removeModelPrefixes(
         for (const [schemaName, schemaBody] of Object.entries(spec.components.schemas)) {
             if (schemaName.startsWith('io.k8s') && !schemaName.endsWith('List')) {
                 const splits = schemaName.split('.');
-                const lastTwoElements = splits.slice(splits.length - 2);
-                if (!lastTwoElements[0].startsWith('v')) {
-                    lastTwoElements.shift();
+                const [version, kind] = splits.slice(splits.length - 2);
+                let newName = `${kind}${version}`;
+                if (!version.startsWith('v')) {
+                    newName = `${kind}`;
                 }
-                const newName = lastTwoElements.join('');
                 groupVersionKindMap[newName] = {
                     originalSchemaName: schemaName,
                 };
@@ -75,11 +75,12 @@ function updateRefs(obj: any): void {
     for (const [k, v] of Object.entries(obj)) {
         if (k === '$ref' && typeof v === 'string') {
             const refSplits = v.replace('#/components/schemas/', '').split('.');
-            const refLastTwoElements = refSplits.slice(refSplits.length - 2);
-            if (!refLastTwoElements[0].startsWith('v')) {
-                refLastTwoElements.shift();
+            const [version, kind] = refSplits.slice(refSplits.length - 2);
+            let newName = `${kind}${version}`;
+            if (!version.startsWith('v')) {
+                newName = `${kind}`;
             }
-            const newRef = `#/components/schemas/${refLastTwoElements.join('')}`;
+            const newRef = `#/components/schemas/${newName}`;
             obj[k] = newRef;
         } else if (typeof v === 'object' && !Array.isArray(v)) {
             updateRefs(v);

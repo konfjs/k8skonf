@@ -1,7 +1,7 @@
 {
   "components": {
     "schemas": {
-      "v1alpha1AuditAnnotation": {
+      "AuditAnnotationv1alpha1": {
         "description": "AuditAnnotation describes how to produce an audit annotation for an API request.",
         "properties": {
           "key": {
@@ -21,7 +21,7 @@
         ],
         "type": "object"
       },
-      "v1alpha1ExpressionWarning": {
+      "ExpressionWarningv1alpha1": {
         "description": "ExpressionWarning is a warning information that targets a specific expression.",
         "properties": {
           "fieldRef": {
@@ -41,7 +41,7 @@
         ],
         "type": "object"
       },
-      "v1alpha1MatchCondition": {
+      "MatchConditionv1alpha1": {
         "properties": {
           "expression": {
             "default": "",
@@ -60,7 +60,7 @@
         ],
         "type": "object"
       },
-      "v1alpha1MatchResources": {
+      "MatchResourcesv1alpha1": {
         "description": "MatchResources decides whether to run the admission control policy on an object based on whether it meets the match criteria. The exclude rules take precedence over include rules (if a resource matches both, it is excluded)",
         "properties": {
           "excludeResourceRules": {
@@ -68,7 +68,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1alpha1NamedRuleWithOperations"
+                  "$ref": "#/components/schemas/NamedRuleWithOperationsv1alpha1"
                 }
               ],
               "default": {}
@@ -83,7 +83,7 @@
           "namespaceSelector": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1LabelSelector"
+                "$ref": "#/components/schemas/LabelSelectorv1"
               }
             ],
             "description": "NamespaceSelector decides whether to run the admission control policy on an object based on whether the namespace for that object matches the selector. If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the policy.\n\nFor example, to run the webhook on any objects whose namespace is not associated with \"runlevel\" of \"0\" or \"1\";  you will set the selector as follows: \"namespaceSelector\": {\n  \"matchExpressions\": [\n    {\n      \"key\": \"runlevel\",\n      \"operator\": \"NotIn\",\n      \"values\": [\n        \"0\",\n        \"1\"\n      ]\n    }\n  ]\n}\n\nIf instead you want to only run the policy on any objects whose namespace is associated with the \"environment\" of \"prod\" or \"staging\"; you will set the selector as follows: \"namespaceSelector\": {\n  \"matchExpressions\": [\n    {\n      \"key\": \"environment\",\n      \"operator\": \"In\",\n      \"values\": [\n        \"prod\",\n        \"staging\"\n      ]\n    }\n  ]\n}\n\nSee https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors.\n\nDefault to the empty LabelSelector, which matches everything."
@@ -91,7 +91,7 @@
           "objectSelector": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1LabelSelector"
+                "$ref": "#/components/schemas/LabelSelectorv1"
               }
             ],
             "description": "ObjectSelector decides whether to run the validation based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the cel validation, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything."
@@ -101,7 +101,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1alpha1NamedRuleWithOperations"
+                  "$ref": "#/components/schemas/NamedRuleWithOperationsv1alpha1"
                 }
               ],
               "default": {}
@@ -113,7 +113,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1alpha1NamedRuleWithOperations": {
+      "NamedRuleWithOperationsv1alpha1": {
         "description": "NamedRuleWithOperations is a tuple of Operations and Resources with ResourceNames.",
         "properties": {
           "apiGroups": {
@@ -169,7 +169,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1alpha1ParamKind": {
+      "ParamKindv1alpha1": {
         "description": "ParamKind is a tuple of Group Kind and Version.",
         "properties": {
           "apiVersion": {
@@ -184,7 +184,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1alpha1ParamRef": {
+      "ParamRefv1alpha1": {
         "description": "ParamRef describes how to locate the params to be used as input to expressions of rules applied by a policy binding.",
         "properties": {
           "name": {
@@ -202,7 +202,7 @@
           "selector": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1LabelSelector"
+                "$ref": "#/components/schemas/LabelSelectorv1"
               }
             ],
             "description": "selector can be used to match multiple param objects based on their labels. Supply selector: {} to match all resources of the ParamKind.\n\nIf multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together.\n\nOne of `name` or `selector` must be set, but `name` and `selector` are mutually exclusive properties. If one is set, the other must be unset."
@@ -211,7 +211,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1alpha1TypeChecking": {
+      "TypeCheckingv1alpha1": {
         "description": "TypeChecking contains results of type checking the expressions in the ValidatingAdmissionPolicy",
         "properties": {
           "expressionWarnings": {
@@ -219,7 +219,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1alpha1ExpressionWarning"
+                  "$ref": "#/components/schemas/ExpressionWarningv1alpha1"
                 }
               ],
               "default": {}
@@ -230,7 +230,7 @@
         },
         "type": "object"
       },
-      "v1alpha1ValidatingAdmissionPolicy": {
+      "ValidatingAdmissionPolicyv1alpha1": {
         "description": "ValidatingAdmissionPolicy describes the definition of an admission validation policy that accepts or rejects an object without changing it.",
         "properties": {
           "apiVersion": {
@@ -244,7 +244,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -253,7 +253,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1alpha1ValidatingAdmissionPolicySpec"
+                "$ref": "#/components/schemas/ValidatingAdmissionPolicySpecv1alpha1"
               }
             ],
             "default": {},
@@ -262,7 +262,7 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1alpha1ValidatingAdmissionPolicyStatus"
+                "$ref": "#/components/schemas/ValidatingAdmissionPolicyStatusv1alpha1"
               }
             ],
             "default": {},
@@ -278,7 +278,7 @@
           }
         ]
       },
-      "v1alpha1ValidatingAdmissionPolicyBinding": {
+      "ValidatingAdmissionPolicyBindingv1alpha1": {
         "description": "ValidatingAdmissionPolicyBinding binds the ValidatingAdmissionPolicy with paramerized resources. ValidatingAdmissionPolicyBinding and parameter CRDs together define how cluster administrators configure policies for clusters.\n\nFor a given admission request, each binding will cause its policy to be evaluated N times, where N is 1 for policies/bindings that don't use params, otherwise N is the number of parameters selected by the binding.\n\nThe CEL expressions of a policy must have a computed CEL cost below the maximum CEL budget. Each evaluation of the policy is given an independent CEL cost budget. Adding/removing policies, bindings, or params can not affect whether a given (policy, binding, param) combination is within its own CEL budget.",
         "properties": {
           "apiVersion": {
@@ -292,7 +292,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -301,7 +301,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1alpha1ValidatingAdmissionPolicyBindingSpec"
+                "$ref": "#/components/schemas/ValidatingAdmissionPolicyBindingSpecv1alpha1"
               }
             ],
             "default": {},
@@ -317,13 +317,13 @@
           }
         ]
       },
-      "v1alpha1ValidatingAdmissionPolicyBindingSpec": {
+      "ValidatingAdmissionPolicyBindingSpecv1alpha1": {
         "description": "ValidatingAdmissionPolicyBindingSpec is the specification of the ValidatingAdmissionPolicyBinding.",
         "properties": {
           "matchResources": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1alpha1MatchResources"
+                "$ref": "#/components/schemas/MatchResourcesv1alpha1"
               }
             ],
             "description": "MatchResources declares what resources match this binding and will be validated by it. Note that this is intersected with the policy's matchConstraints, so only requests that are matched by the policy can be selected by this. If this is unset, all resources matched by the policy are validated by this binding When resourceRules is unset, it does not constrain resource matching. If a resource is matched by the other fields of this object, it will be validated. Note that this is differs from ValidatingAdmissionPolicy matchConstraints, where resourceRules are required."
@@ -331,7 +331,7 @@
           "paramRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1alpha1ParamRef"
+                "$ref": "#/components/schemas/ParamRefv1alpha1"
               }
             ],
             "description": "paramRef specifies the parameter resource used to configure the admission control policy. It should point to a resource of the type specified in ParamKind of the bound ValidatingAdmissionPolicy. If the policy specifies a ParamKind and the resource referred to by ParamRef does not exist, this binding is considered mis-configured and the FailurePolicy of the ValidatingAdmissionPolicy applied. If the policy does not specify a ParamKind then this field is ignored, and the rules are evaluated without a param."
@@ -352,7 +352,7 @@
         },
         "type": "object"
       },
-      "v1alpha1ValidatingAdmissionPolicySpec": {
+      "ValidatingAdmissionPolicySpecv1alpha1": {
         "description": "ValidatingAdmissionPolicySpec is the specification of the desired behavior of the AdmissionPolicy.",
         "properties": {
           "auditAnnotations": {
@@ -360,7 +360,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1alpha1AuditAnnotation"
+                  "$ref": "#/components/schemas/AuditAnnotationv1alpha1"
                 }
               ],
               "default": {}
@@ -377,7 +377,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1alpha1MatchCondition"
+                  "$ref": "#/components/schemas/MatchConditionv1alpha1"
                 }
               ],
               "default": {}
@@ -393,7 +393,7 @@
           "matchConstraints": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1alpha1MatchResources"
+                "$ref": "#/components/schemas/MatchResourcesv1alpha1"
               }
             ],
             "description": "MatchConstraints specifies what resources this policy is designed to validate. The AdmissionPolicy cares about a request if it matches _all_ Constraints. However, in order to prevent clusters from being put into an unstable state that cannot be recovered from via the API ValidatingAdmissionPolicy cannot match ValidatingAdmissionPolicy and ValidatingAdmissionPolicyBinding. Required."
@@ -401,7 +401,7 @@
           "paramKind": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1alpha1ParamKind"
+                "$ref": "#/components/schemas/ParamKindv1alpha1"
               }
             ],
             "description": "ParamKind specifies the kind of resources used to parameterize this policy. If absent, there are no parameters for this policy and the param CEL variable will not be provided to validation expressions. If ParamKind refers to a non-existent kind, this policy definition is mis-configured and the FailurePolicy is applied. If paramKind is specified but paramRef is unset in ValidatingAdmissionPolicyBinding, the params variable will be null."
@@ -411,7 +411,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1alpha1Validation"
+                  "$ref": "#/components/schemas/Validationv1alpha1"
                 }
               ],
               "default": {}
@@ -424,7 +424,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1alpha1Variable"
+                  "$ref": "#/components/schemas/Variablev1alpha1"
                 }
               ],
               "default": {}
@@ -440,7 +440,7 @@
         },
         "type": "object"
       },
-      "v1alpha1ValidatingAdmissionPolicyStatus": {
+      "ValidatingAdmissionPolicyStatusv1alpha1": {
         "description": "ValidatingAdmissionPolicyStatus represents the status of a ValidatingAdmissionPolicy.",
         "properties": {
           "conditions": {
@@ -448,7 +448,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1Condition"
+                  "$ref": "#/components/schemas/Conditionv1"
                 }
               ],
               "default": {}
@@ -467,7 +467,7 @@
           "typeChecking": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1alpha1TypeChecking"
+                "$ref": "#/components/schemas/TypeCheckingv1alpha1"
               }
             ],
             "description": "The results of type checking for each expression. Presence of this field indicates the completion of the type checking."
@@ -475,7 +475,7 @@
         },
         "type": "object"
       },
-      "v1alpha1Validation": {
+      "Validationv1alpha1": {
         "description": "Validation specifies the CEL expression which is used to apply the validation.",
         "properties": {
           "expression": {
@@ -501,7 +501,7 @@
         ],
         "type": "object"
       },
-      "v1alpha1Variable": {
+      "Variablev1alpha1": {
         "description": "Variable is the definition of a variable that is used for composition.",
         "properties": {
           "expression": {
@@ -521,7 +521,7 @@
         ],
         "type": "object"
       },
-      "v1APIResource": {
+      "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
           "categories": {
@@ -592,13 +592,13 @@
         ],
         "type": "object"
       },
-      "v1Condition": {
+      "Conditionv1": {
         "description": "Condition contains details for one aspect of the current state of this API Resource.",
         "properties": {
           "lastTransitionTime": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable."
@@ -638,7 +638,7 @@
         ],
         "type": "object"
       },
-      "v1DeleteOptions": {
+      "DeleteOptionsv1": {
         "description": "DeleteOptions may be provided when deleting an API object.",
         "properties": {
           "apiVersion": {
@@ -666,7 +666,7 @@
           "preconditions": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Preconditions"
+                "$ref": "#/components/schemas/Preconditionsv1"
               }
             ],
             "description": "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned."
@@ -980,11 +980,11 @@
           }
         ]
       },
-      "v1FieldsV1": {
+      "FieldsV1v1": {
         "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
         "type": "object"
       },
-      "v1LabelSelector": {
+      "LabelSelectorv1": {
         "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
         "properties": {
           "matchExpressions": {
@@ -992,7 +992,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1LabelSelectorRequirement"
+                  "$ref": "#/components/schemas/LabelSelectorRequirementv1"
                 }
               ],
               "default": {}
@@ -1012,7 +1012,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1LabelSelectorRequirement": {
+      "LabelSelectorRequirementv1": {
         "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
         "properties": {
           "key": {
@@ -1041,7 +1041,7 @@
         ],
         "type": "object"
       },
-      "v1ListMeta": {
+      "ListMetav1": {
         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
         "properties": {
           "continue": {
@@ -1060,7 +1060,7 @@
         },
         "type": "object"
       },
-      "v1ManagedFieldsEntry": {
+      "ManagedFieldsEntryv1": {
         "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
         "properties": {
           "apiVersion": {
@@ -1074,7 +1074,7 @@
           "fieldsV1": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1FieldsV1"
+                "$ref": "#/components/schemas/FieldsV1v1"
               }
             ],
             "description": "FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type."
@@ -1094,7 +1094,7 @@
           "time": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over."
@@ -1102,7 +1102,7 @@
         },
         "type": "object"
       },
-      "v1ObjectMeta": {
+      "ObjectMetav1": {
         "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
         "properties": {
           "annotations": {
@@ -1116,7 +1116,7 @@
           "creationTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.\n\nPopulated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -1129,7 +1129,7 @@
           "deletionTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested.\n\nPopulated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -1166,7 +1166,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1ManagedFieldsEntry"
+                  "$ref": "#/components/schemas/ManagedFieldsEntryv1"
                 }
               ],
               "default": {}
@@ -1187,7 +1187,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1OwnerReference"
+                  "$ref": "#/components/schemas/OwnerReferencev1"
                 }
               ],
               "default": {}
@@ -1211,7 +1211,7 @@
         },
         "type": "object"
       },
-      "v1OwnerReference": {
+      "OwnerReferencev1": {
         "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
         "properties": {
           "apiVersion": {
@@ -1252,11 +1252,11 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1Patch": {
+      "Patchv1": {
         "description": "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.",
         "type": "object"
       },
-      "v1Preconditions": {
+      "Preconditionsv1": {
         "description": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out.",
         "properties": {
           "resourceVersion": {
@@ -1270,7 +1270,7 @@
         },
         "type": "object"
       },
-      "v1Status": {
+      "Statusv1": {
         "description": "Status is a return value for calls that don't return other objects.",
         "properties": {
           "apiVersion": {
@@ -1285,7 +1285,7 @@
           "details": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1StatusDetails"
+                "$ref": "#/components/schemas/StatusDetailsv1"
               }
             ],
             "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
@@ -1302,7 +1302,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ListMeta"
+                "$ref": "#/components/schemas/ListMetav1"
               }
             ],
             "default": {},
@@ -1326,7 +1326,7 @@
           }
         ]
       },
-      "v1StatusCause": {
+      "StatusCausev1": {
         "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
         "properties": {
           "field": {
@@ -1344,7 +1344,7 @@
         },
         "type": "object"
       },
-      "v1StatusDetails": {
+      "StatusDetailsv1": {
         "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
         "properties": {
           "causes": {
@@ -1352,7 +1352,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1StatusCause"
+                  "$ref": "#/components/schemas/StatusCausev1"
                 }
               ],
               "default": {}
@@ -1384,12 +1384,12 @@
         },
         "type": "object"
       },
-      "v1Time": {
+      "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
         "format": "date-time",
         "type": "string"
       },
-      "v1WatchEvent": {
+      "WatchEventv1": {
         "description": "Event represents a single event to a watched resource.",
         "properties": {
           "object": {

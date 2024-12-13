@@ -1,4 +1,3 @@
-import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import {
@@ -14,10 +13,11 @@ import {
     StructureKind,
     SyntaxKind,
 } from 'ts-morph';
+import { formatCode, removeUnusedFiles } from './utils.js';
 
 interface GroupVersionKindMapOutput {
     /**
-     * @example "v1Deployment"
+     * @example "Deploymentv1"
      */
     [schemaName: string]: {
         /**
@@ -40,33 +40,17 @@ interface GroupVersionKindMapOutput {
     };
 }
 
-function lowerCaseFirstLetter(val: string) {
-    return val.charAt(0).toLowerCase() + val.slice(1);
-}
-
-function formatCode(modelsPath: string) {
-    execSync(`bunx biome format --write --indent-width=2 ${modelsPath}/`, { stdio: 'inherit' });
-}
-
-function removeUnusedFiles(modelsPath: string) {
-    const unusedFiles = new Set(['V1Event.ts']);
-    const keepStatusFiles = new Set(['V1IngressPortStatus.ts', 'V1PortStatus.ts']);
-    fs.readdirSync(modelsPath).forEach((file) => {
-        if ((file.endsWith('Status.ts') && !keepStatusFiles.has(file)) || unusedFiles.has(file)) {
-            fs.rmSync(path.join(modelsPath, file));
-        }
-    });
-}
-
 function removeUnusedThings(
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
     className: string,
+    groupVersionKindMap: GroupVersionKindMapOutput,
 ) {
+    const statusImport = `${groupVersionKindMap[className]?.gvk?.[0].kind}Status${groupVersionKindMap[className]?.gvk?.[0].version}`;
     sourceFile.getImportDeclaration('../http/http.js')?.remove();
-    sourceFile.getImportDeclaration(`../models/${className}Status.js`)?.remove();
-    sourceFile.getImportDeclaration('../models/V1SubjectAccessReviewStatus.js')?.remove();
-    sourceFile.getImportDeclaration('../models/V1SubjectRulesReviewStatus.js')?.remove();
+    sourceFile.getImportDeclaration(`../models/${statusImport}.js`)?.remove();
+    sourceFile.getImportDeclaration('../models/SubjectAccessReviewStatusv1.js')?.remove();
+    sourceFile.getImportDeclaration('../models/SubjectRulesReviewStatusv1.js')?.remove();
     sourceFile.getImportDeclaration('../models/Quantity.js')?.remove();
     sourceFile.getImportDeclaration('../models/IntOrString.js')?.remove();
     classDeclaration.getConstructors()[0]?.remove();
@@ -123,6 +107,7 @@ function morph() {
                 sourceFile.getBaseName() === 'IntOrString.ts' ||
                 sourceFile.getBaseName() === 'Quantity.ts'
             ) {
+                console.log(sourceFile.getFilePath());
                 replaceNumberStringTypes(sourceFile);
                 continue;
             }
@@ -132,21 +117,16 @@ function morph() {
             const className = classDeclaration?.getName();
 
             if (classDeclaration && className) {
-                removeUnusedThings(sourceFile, classDeclaration, className);
+                removeUnusedThings(sourceFile, classDeclaration, className, groupVersionKindMap);
                 /**
                  * If the groupVersionKindMap contains the "path" property, then it's a Kubernetes API resource.
                  * Everything else should be interfaces.
                  */
-                if (
-                    groupVersionKindMap[lowerCaseFirstLetter(className)] &&
-                    groupVersionKindMap[lowerCaseFirstLetter(className)].path
-                ) {
+                if (groupVersionKindMap[className]?.path) {
                     const apiVersionProperty = classDeclaration.getProperty('apiVersion');
                     if (apiVersionProperty) {
-                        const group =
-                            groupVersionKindMap[lowerCaseFirstLetter(className)].gvk?.[0].group;
-                        const version =
-                            groupVersionKindMap[lowerCaseFirstLetter(className)].gvk?.[0].version;
+                        const group = groupVersionKindMap[className].gvk?.[0].group;
+                        const version = groupVersionKindMap[className].gvk?.[0].version;
                         const groupVersion = group ? `${group}/${version}` : version;
                         apiVersionProperty.setInitializer(`'${groupVersion}'`);
                         apiVersionProperty.removeType();
@@ -157,7 +137,7 @@ function morph() {
                     const kindProperty = classDeclaration.getProperty('kind');
                     if (kindProperty) {
                         kindProperty.setInitializer(
-                            `'${groupVersionKindMap[lowerCaseFirstLetter(className)].gvk?.[0].kind}'`,
+                            `'${groupVersionKindMap[className].gvk?.[0].kind}'`,
                         );
                         kindProperty.removeType();
                         kindProperty.setIsReadonly(true);
@@ -214,16 +194,16 @@ function morph() {
                             interfaceProp.hasQuestionToken = true;
                             c.statements.push('this.metadata = args.metadata || { name };');
                             prop.setHasQuestionToken(false);
-                            if (groupVersionKindMap[lowerCaseFirstLetter(className)].namespaced) {
+                            if (groupVersionKindMap[className].namespaced) {
                                 classDeclaration.setExtends('NamespacedApiObject');
-                                prop.setType('V1NamespacedObjectMeta');
+                                prop.setType('NamespacedObjectMetav1');
                                 sourceFile.addImportDeclaration({
                                     moduleSpecifier: '../ApiObject.js',
-                                    namedImports: ['V1NamespacedObjectMeta', 'NamespacedApiObject'],
+                                    namedImports: ['NamespacedObjectMetav1', 'NamespacedApiObject'],
                                 });
-                                interfaceProp.type = 'V1NamespacedObjectMeta';
+                                interfaceProp.type = 'NamespacedObjectMetav1';
                                 sourceFile
-                                    .getImportDeclaration('../models/V1ObjectMeta.js')
+                                    .getImportDeclaration('../models/ObjectMetav1.js')
                                     ?.remove();
                             } else {
                                 classDeclaration.setExtends('ApiObject');
@@ -231,7 +211,7 @@ function morph() {
                                     moduleSpecifier: '../ApiObject.js',
                                     namedImports: ['ApiObject'],
                                 });
-                                interfaceProp.type = 'V1ObjectMeta';
+                                interfaceProp.type = 'ObjectMetav1';
                             }
                         } else {
                             c.statements.push(`this.${prop.getName()} = args.${prop.getName()};`);
@@ -242,7 +222,7 @@ function morph() {
                     c.statements.push('app.resources.push(this);');
                     classDeclaration.addConstructor(c);
                 } else {
-                    if (className === 'V1ObjectMeta') {
+                    if (className === 'ObjectMetav1') {
                         classDeclaration.getProperty('namespace')?.remove();
                         classDeclaration.getProperty('creationTimestamp')?.remove();
                         classDeclaration.getProperty('deletionGracePeriodSeconds')?.remove();

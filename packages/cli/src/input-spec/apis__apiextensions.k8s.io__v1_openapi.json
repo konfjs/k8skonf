@@ -1,7 +1,7 @@
 {
   "components": {
     "schemas": {
-      "v1CustomResourceColumnDefinition": {
+      "CustomResourceColumnDefinitionv1": {
         "description": "CustomResourceColumnDefinition specifies a column for server side printing.",
         "properties": {
           "description": {
@@ -40,7 +40,7 @@
         ],
         "type": "object"
       },
-      "v1CustomResourceConversion": {
+      "CustomResourceConversionv1": {
         "description": "CustomResourceConversion describes how to convert different versions of a CR.",
         "properties": {
           "strategy": {
@@ -51,7 +51,7 @@
           "webhook": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1WebhookConversion"
+                "$ref": "#/components/schemas/WebhookConversionv1"
               }
             ],
             "description": "webhook describes how to call the conversion webhook. Required when `strategy` is set to `\"Webhook\"`."
@@ -62,7 +62,7 @@
         ],
         "type": "object"
       },
-      "v1CustomResourceDefinition": {
+      "CustomResourceDefinitionv1": {
         "description": "CustomResourceDefinition represents a resource that should be exposed on the API server.  Its name MUST be in the format <.spec.name>.<.spec.group>.",
         "properties": {
           "apiVersion": {
@@ -76,7 +76,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -85,7 +85,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CustomResourceDefinitionSpec"
+                "$ref": "#/components/schemas/CustomResourceDefinitionSpecv1"
               }
             ],
             "default": {},
@@ -94,7 +94,7 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CustomResourceDefinitionStatus"
+                "$ref": "#/components/schemas/CustomResourceDefinitionStatusv1"
               }
             ],
             "default": {},
@@ -113,13 +113,13 @@
           }
         ]
       },
-      "v1CustomResourceDefinitionCondition": {
+      "CustomResourceDefinitionConditionv1": {
         "description": "CustomResourceDefinitionCondition contains details for the current condition of this pod.",
         "properties": {
           "lastTransitionTime": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "lastTransitionTime last time the condition transitioned from one status to another."
@@ -149,7 +149,7 @@
         ],
         "type": "object"
       },
-      "v1CustomResourceDefinitionNames": {
+      "CustomResourceDefinitionNamesv1": {
         "description": "CustomResourceDefinitionNames indicates the names to serve this CustomResourceDefinition",
         "properties": {
           "categories": {
@@ -195,13 +195,13 @@
         ],
         "type": "object"
       },
-      "v1CustomResourceDefinitionSpec": {
+      "CustomResourceDefinitionSpecv1": {
         "description": "CustomResourceDefinitionSpec describes how a user wants their resource to appear",
         "properties": {
           "conversion": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CustomResourceConversion"
+                "$ref": "#/components/schemas/CustomResourceConversionv1"
               }
             ],
             "description": "conversion defines conversion settings for the CRD."
@@ -214,7 +214,7 @@
           "names": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CustomResourceDefinitionNames"
+                "$ref": "#/components/schemas/CustomResourceDefinitionNamesv1"
               }
             ],
             "default": {},
@@ -234,7 +234,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1CustomResourceDefinitionVersion"
+                  "$ref": "#/components/schemas/CustomResourceDefinitionVersionv1"
                 }
               ],
               "default": {}
@@ -251,13 +251,13 @@
         ],
         "type": "object"
       },
-      "v1CustomResourceDefinitionStatus": {
+      "CustomResourceDefinitionStatusv1": {
         "description": "CustomResourceDefinitionStatus indicates the state of the CustomResourceDefinition",
         "properties": {
           "acceptedNames": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CustomResourceDefinitionNames"
+                "$ref": "#/components/schemas/CustomResourceDefinitionNamesv1"
               }
             ],
             "default": {},
@@ -268,7 +268,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1CustomResourceDefinitionCondition"
+                  "$ref": "#/components/schemas/CustomResourceDefinitionConditionv1"
                 }
               ],
               "default": {}
@@ -291,7 +291,7 @@
         },
         "type": "object"
       },
-      "v1CustomResourceDefinitionVersion": {
+      "CustomResourceDefinitionVersionv1": {
         "description": "CustomResourceDefinitionVersion describes a version for CRD.",
         "properties": {
           "additionalPrinterColumns": {
@@ -299,7 +299,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1CustomResourceColumnDefinition"
+                  "$ref": "#/components/schemas/CustomResourceColumnDefinitionv1"
                 }
               ],
               "default": {}
@@ -323,7 +323,7 @@
           "schema": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CustomResourceValidation"
+                "$ref": "#/components/schemas/CustomResourceValidationv1"
               }
             ],
             "description": "schema describes the schema used for validation, pruning, and defaulting of this version of the custom resource."
@@ -333,7 +333,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1SelectableField"
+                  "$ref": "#/components/schemas/SelectableFieldv1"
                 }
               ],
               "default": {}
@@ -354,7 +354,7 @@
           "subresources": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CustomResourceSubresources"
+                "$ref": "#/components/schemas/CustomResourceSubresourcesv1"
               }
             ],
             "description": "subresources specify what subresources this version of the defined custom resource have."
@@ -367,7 +367,7 @@
         ],
         "type": "object"
       },
-      "v1CustomResourceSubresourceScale": {
+      "CustomResourceSubresourceScalev1": {
         "description": "CustomResourceSubresourceScale defines how to serve the scale subresource for CustomResources.",
         "properties": {
           "labelSelectorPath": {
@@ -391,17 +391,17 @@
         ],
         "type": "object"
       },
-      "v1CustomResourceSubresourceStatus": {
+      "CustomResourceSubresourceStatusv1": {
         "description": "CustomResourceSubresourceStatus defines how to serve the status subresource for CustomResources. Status is represented by the `.status` JSON path inside of a CustomResource. When set, * exposes a /status subresource for the custom resource * PUT requests to the /status subresource take a custom resource object, and ignore changes to anything except the status stanza * PUT/POST/PATCH requests to the custom resource ignore changes to the status stanza",
         "type": "object"
       },
-      "v1CustomResourceSubresources": {
+      "CustomResourceSubresourcesv1": {
         "description": "CustomResourceSubresources defines the status and scale subresources for CustomResources.",
         "properties": {
           "scale": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CustomResourceSubresourceScale"
+                "$ref": "#/components/schemas/CustomResourceSubresourceScalev1"
               }
             ],
             "description": "scale indicates the custom resource should serve a `/scale` subresource that returns an `autoscaling/v1` Scale object."
@@ -409,7 +409,7 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CustomResourceSubresourceStatus"
+                "$ref": "#/components/schemas/CustomResourceSubresourceStatusv1"
               }
             ],
             "description": "status indicates the custom resource should serve a `/status` subresource. When enabled: 1. requests to the custom resource primary endpoint ignore changes to the `status` stanza of the object. 2. requests to the custom resource `/status` subresource ignore changes to anything other than the `status` stanza of the object."
@@ -417,13 +417,13 @@
         },
         "type": "object"
       },
-      "v1CustomResourceValidation": {
+      "CustomResourceValidationv1": {
         "description": "CustomResourceValidation is a list of validation methods for CustomResources.",
         "properties": {
           "openAPIV3Schema": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1JSONSchemaProps"
+                "$ref": "#/components/schemas/JSONSchemaPropsv1"
               }
             ],
             "description": "openAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning."
@@ -431,7 +431,7 @@
         },
         "type": "object"
       },
-      "v1ExternalDocumentation": {
+      "ExternalDocumentationv1": {
         "description": "ExternalDocumentation allows referencing an external resource for extended documentation.",
         "properties": {
           "description": {
@@ -443,10 +443,10 @@
         },
         "type": "object"
       },
-      "v1JSON": {
+      "JSONv1": {
         "description": "JSON represents any valid JSON value. These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil."
       },
-      "v1JSONSchemaProps": {
+      "JSONSchemaPropsv1": {
         "description": "JSONSchemaProps is a JSON-Schema following Specification Draft 4 (http://json-schema.org/).",
         "properties": {
           "$ref": {
@@ -456,16 +456,16 @@
             "type": "string"
           },
           "additionalItems": {
-            "$ref": "#/components/schemas/v1JSONSchemaPropsOrBool"
+            "$ref": "#/components/schemas/JSONSchemaPropsOrBoolv1"
           },
           "additionalProperties": {
-            "$ref": "#/components/schemas/v1JSONSchemaPropsOrBool"
+            "$ref": "#/components/schemas/JSONSchemaPropsOrBoolv1"
           },
           "allOf": {
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1JSONSchemaProps"
+                  "$ref": "#/components/schemas/JSONSchemaPropsv1"
                 }
               ],
               "default": {}
@@ -477,7 +477,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1JSONSchemaProps"
+                  "$ref": "#/components/schemas/JSONSchemaPropsv1"
                 }
               ],
               "default": {}
@@ -488,7 +488,7 @@
           "default": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1JSON"
+                "$ref": "#/components/schemas/JSONv1"
               }
             ],
             "description": "default is a default value for undefined object fields. Defaulting is a beta feature under the CustomResourceDefaulting feature gate. Defaulting requires spec.preserveUnknownFields to be false."
@@ -497,7 +497,7 @@
             "additionalProperties": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1JSONSchemaProps"
+                  "$ref": "#/components/schemas/JSONSchemaPropsv1"
                 }
               ],
               "default": {}
@@ -506,7 +506,7 @@
           },
           "dependencies": {
             "additionalProperties": {
-              "$ref": "#/components/schemas/v1JSONSchemaPropsOrStringArray"
+              "$ref": "#/components/schemas/JSONSchemaPropsOrStringArrayv1"
             },
             "type": "object"
           },
@@ -515,13 +515,13 @@
           },
           "enum": {
             "items": {
-              "$ref": "#/components/schemas/v1JSON"
+              "$ref": "#/components/schemas/JSONv1"
             },
             "type": "array",
             "x-kubernetes-list-type": "atomic"
           },
           "example": {
-            "$ref": "#/components/schemas/v1JSON"
+            "$ref": "#/components/schemas/JSONv1"
           },
           "exclusiveMaximum": {
             "type": "boolean"
@@ -530,7 +530,7 @@
             "type": "boolean"
           },
           "externalDocs": {
-            "$ref": "#/components/schemas/v1ExternalDocumentation"
+            "$ref": "#/components/schemas/ExternalDocumentationv1"
           },
           "format": {
             "description": "format is an OpenAPI v3 format string. Unknown formats are ignored. The following formats are validated:\n\n- bsonobjectid: a bson object ID, i.e. a 24 characters hex string - uri: an URI as parsed by Golang net/url.ParseRequestURI - email: an email address as parsed by Golang net/mail.ParseAddress - hostname: a valid representation for an Internet host name, as defined by RFC 1034, section 3.1 [RFC1034]. - ipv4: an IPv4 IP as parsed by Golang net.ParseIP - ipv6: an IPv6 IP as parsed by Golang net.ParseIP - cidr: a CIDR as parsed by Golang net.ParseCIDR - mac: a MAC address as parsed by Golang net.ParseMAC - uuid: an UUID that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid3: an UUID3 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?3[0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid4: an UUID4 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?4[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - uuid5: an UUID5 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?5[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - isbn: an ISBN10 or ISBN13 number string like \"0321751043\" or \"978-0321751041\" - isbn10: an ISBN10 number string like \"0321751043\" - isbn13: an ISBN13 number string like \"978-0321751041\" - creditcard: a credit card number defined by the regex ^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})$ with any non digit characters mixed in - ssn: a U.S. social security number following the regex ^\\d{3}[- ]?\\d{2}[- ]?\\d{4}$ - hexcolor: an hexadecimal color code like \"#FFFFFF: following the regex ^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$ - rgbcolor: an RGB color code like rgb like \"rgb(255,255,2559\" - byte: base64 encoded binary data - password: any kind of string - date: a date string like \"2006-01-02\" as defined by full-date in RFC3339 - duration: a duration string like \"22 ns\" as parsed by Golang time.ParseDuration or compatible with Scala duration format - datetime: a date time string like \"2014-12-15T19:30:20.000Z\" as defined by date-time in RFC3339.",
@@ -540,7 +540,7 @@
             "type": "string"
           },
           "items": {
-            "$ref": "#/components/schemas/v1JSONSchemaPropsOrArray"
+            "$ref": "#/components/schemas/JSONSchemaPropsOrArrayv1"
           },
           "maxItems": {
             "format": "int64",
@@ -579,7 +579,7 @@
             "type": "number"
           },
           "not": {
-            "$ref": "#/components/schemas/v1JSONSchemaProps"
+            "$ref": "#/components/schemas/JSONSchemaPropsv1"
           },
           "nullable": {
             "type": "boolean"
@@ -588,7 +588,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1JSONSchemaProps"
+                  "$ref": "#/components/schemas/JSONSchemaPropsv1"
                 }
               ],
               "default": {}
@@ -603,7 +603,7 @@
             "additionalProperties": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1JSONSchemaProps"
+                  "$ref": "#/components/schemas/JSONSchemaPropsv1"
                 }
               ],
               "default": {}
@@ -614,7 +614,7 @@
             "additionalProperties": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1JSONSchemaProps"
+                  "$ref": "#/components/schemas/JSONSchemaPropsv1"
                 }
               ],
               "default": {}
@@ -672,7 +672,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1ValidationRule"
+                  "$ref": "#/components/schemas/ValidationRulev1"
                 }
               ],
               "default": {}
@@ -688,16 +688,16 @@
         },
         "type": "object"
       },
-      "v1JSONSchemaPropsOrArray": {
+      "JSONSchemaPropsOrArrayv1": {
         "description": "JSONSchemaPropsOrArray represents a value that can either be a JSONSchemaProps or an array of JSONSchemaProps. Mainly here for serialization purposes."
       },
-      "v1JSONSchemaPropsOrBool": {
+      "JSONSchemaPropsOrBoolv1": {
         "description": "JSONSchemaPropsOrBool represents JSONSchemaProps or a boolean value. Defaults to true for the boolean property."
       },
-      "v1JSONSchemaPropsOrStringArray": {
+      "JSONSchemaPropsOrStringArrayv1": {
         "description": "JSONSchemaPropsOrStringArray represents a JSONSchemaProps or a string array."
       },
-      "v1SelectableField": {
+      "SelectableFieldv1": {
         "description": "SelectableField specifies the JSON path of a field that may be used with field selectors.",
         "properties": {
           "jsonPath": {
@@ -711,7 +711,7 @@
         ],
         "type": "object"
       },
-      "v1ServiceReference": {
+      "ServiceReferencev1": {
         "description": "ServiceReference holds a reference to Service.legacy.k8s.io",
         "properties": {
           "name": {
@@ -740,7 +740,7 @@
         ],
         "type": "object"
       },
-      "v1ValidationRule": {
+      "ValidationRulev1": {
         "description": "ValidationRule describes a validation rule written in the CEL expression language.",
         "properties": {
           "fieldPath": {
@@ -774,7 +774,7 @@
         ],
         "type": "object"
       },
-      "v1WebhookClientConfig": {
+      "WebhookClientConfigv1": {
         "description": "WebhookClientConfig contains the information to make a TLS connection with the webhook.",
         "properties": {
           "caBundle": {
@@ -785,7 +785,7 @@
           "service": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ServiceReference"
+                "$ref": "#/components/schemas/ServiceReferencev1"
               }
             ],
             "description": "service is a reference to the service for this webhook. Either service or url must be specified.\n\nIf the webhook is running within the cluster, then you should use `service`."
@@ -797,13 +797,13 @@
         },
         "type": "object"
       },
-      "v1WebhookConversion": {
+      "WebhookConversionv1": {
         "description": "WebhookConversion describes how to call a conversion webhook",
         "properties": {
           "clientConfig": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1WebhookClientConfig"
+                "$ref": "#/components/schemas/WebhookClientConfigv1"
               }
             ],
             "description": "clientConfig is the instructions for how to call the webhook if strategy is `Webhook`."
@@ -823,7 +823,7 @@
         ],
         "type": "object"
       },
-      "v1APIResource": {
+      "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
           "categories": {
@@ -894,7 +894,7 @@
         ],
         "type": "object"
       },
-      "v1DeleteOptions": {
+      "DeleteOptionsv1": {
         "description": "DeleteOptions may be provided when deleting an API object.",
         "properties": {
           "apiVersion": {
@@ -922,7 +922,7 @@
           "preconditions": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Preconditions"
+                "$ref": "#/components/schemas/Preconditionsv1"
               }
             ],
             "description": "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned."
@@ -1236,11 +1236,11 @@
           }
         ]
       },
-      "v1FieldsV1": {
+      "FieldsV1v1": {
         "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
         "type": "object"
       },
-      "v1ListMeta": {
+      "ListMetav1": {
         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
         "properties": {
           "continue": {
@@ -1259,7 +1259,7 @@
         },
         "type": "object"
       },
-      "v1ManagedFieldsEntry": {
+      "ManagedFieldsEntryv1": {
         "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
         "properties": {
           "apiVersion": {
@@ -1273,7 +1273,7 @@
           "fieldsV1": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1FieldsV1"
+                "$ref": "#/components/schemas/FieldsV1v1"
               }
             ],
             "description": "FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type."
@@ -1293,7 +1293,7 @@
           "time": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over."
@@ -1301,7 +1301,7 @@
         },
         "type": "object"
       },
-      "v1ObjectMeta": {
+      "ObjectMetav1": {
         "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
         "properties": {
           "annotations": {
@@ -1315,7 +1315,7 @@
           "creationTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.\n\nPopulated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -1328,7 +1328,7 @@
           "deletionTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested.\n\nPopulated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -1365,7 +1365,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1ManagedFieldsEntry"
+                  "$ref": "#/components/schemas/ManagedFieldsEntryv1"
                 }
               ],
               "default": {}
@@ -1386,7 +1386,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1OwnerReference"
+                  "$ref": "#/components/schemas/OwnerReferencev1"
                 }
               ],
               "default": {}
@@ -1410,7 +1410,7 @@
         },
         "type": "object"
       },
-      "v1OwnerReference": {
+      "OwnerReferencev1": {
         "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
         "properties": {
           "apiVersion": {
@@ -1451,11 +1451,11 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1Patch": {
+      "Patchv1": {
         "description": "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.",
         "type": "object"
       },
-      "v1Preconditions": {
+      "Preconditionsv1": {
         "description": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out.",
         "properties": {
           "resourceVersion": {
@@ -1469,7 +1469,7 @@
         },
         "type": "object"
       },
-      "v1Status": {
+      "Statusv1": {
         "description": "Status is a return value for calls that don't return other objects.",
         "properties": {
           "apiVersion": {
@@ -1484,7 +1484,7 @@
           "details": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1StatusDetails"
+                "$ref": "#/components/schemas/StatusDetailsv1"
               }
             ],
             "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
@@ -1501,7 +1501,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ListMeta"
+                "$ref": "#/components/schemas/ListMetav1"
               }
             ],
             "default": {},
@@ -1525,7 +1525,7 @@
           }
         ]
       },
-      "v1StatusCause": {
+      "StatusCausev1": {
         "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
         "properties": {
           "field": {
@@ -1543,7 +1543,7 @@
         },
         "type": "object"
       },
-      "v1StatusDetails": {
+      "StatusDetailsv1": {
         "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
         "properties": {
           "causes": {
@@ -1551,7 +1551,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1StatusCause"
+                  "$ref": "#/components/schemas/StatusCausev1"
                 }
               ],
               "default": {}
@@ -1583,12 +1583,12 @@
         },
         "type": "object"
       },
-      "v1Time": {
+      "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
         "format": "date-time",
         "type": "string"
       },
-      "v1WatchEvent": {
+      "WatchEventv1": {
         "description": "Event represents a single event to a watched resource.",
         "properties": {
           "object": {

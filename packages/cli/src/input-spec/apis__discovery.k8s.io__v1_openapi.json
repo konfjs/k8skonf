@@ -1,7 +1,7 @@
 {
   "components": {
     "schemas": {
-      "v1ObjectReference": {
+      "ObjectReferencev1": {
         "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
         "properties": {
           "apiVersion": {
@@ -36,7 +36,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1Endpoint": {
+      "Endpointv1": {
         "description": "Endpoint represents a single logical \"backend\" implementing a service.",
         "properties": {
           "addresses": {
@@ -51,7 +51,7 @@
           "conditions": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1EndpointConditions"
+                "$ref": "#/components/schemas/EndpointConditionsv1"
               }
             ],
             "default": {},
@@ -68,7 +68,7 @@
           "hints": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1EndpointHints"
+                "$ref": "#/components/schemas/EndpointHintsv1"
               }
             ],
             "description": "hints contains information associated with how an endpoint should be consumed."
@@ -84,7 +84,7 @@
           "targetRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectReference"
+                "$ref": "#/components/schemas/ObjectReferencev1"
               }
             ],
             "description": "targetRef is a reference to a Kubernetes object that represents this endpoint."
@@ -99,7 +99,7 @@
         ],
         "type": "object"
       },
-      "v1EndpointConditions": {
+      "EndpointConditionsv1": {
         "description": "EndpointConditions represents the current condition of an endpoint.",
         "properties": {
           "ready": {
@@ -117,7 +117,7 @@
         },
         "type": "object"
       },
-      "v1EndpointHints": {
+      "EndpointHintsv1": {
         "description": "EndpointHints provides hints describing how an endpoint should be consumed.",
         "properties": {
           "forZones": {
@@ -125,7 +125,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1ForZone"
+                  "$ref": "#/components/schemas/ForZonev1"
                 }
               ],
               "default": {}
@@ -136,7 +136,7 @@
         },
         "type": "object"
       },
-      "v1EndpointPort": {
+      "EndpointPortv1": {
         "description": "EndpointPort represents a Port used by an EndpointSlice",
         "properties": {
           "appProtocol": {
@@ -160,7 +160,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1EndpointSlice": {
+      "EndpointSlicev1": {
         "description": "EndpointSlice represents a subset of the endpoints that implement a service. For a given service there may be multiple EndpointSlice objects, selected by labels, which must be joined to produce the full set of endpoints.",
         "properties": {
           "addressType": {
@@ -177,7 +177,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1Endpoint"
+                  "$ref": "#/components/schemas/Endpointv1"
                 }
               ],
               "default": {}
@@ -192,7 +192,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -203,7 +203,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1EndpointPort"
+                  "$ref": "#/components/schemas/EndpointPortv1"
                 }
               ],
               "default": {}
@@ -225,7 +225,7 @@
           }
         ]
       },
-      "v1ForZone": {
+      "ForZonev1": {
         "description": "ForZone provides information about which zones should consume this endpoint.",
         "properties": {
           "name": {
@@ -239,7 +239,7 @@
         ],
         "type": "object"
       },
-      "v1APIResource": {
+      "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
           "categories": {
@@ -310,7 +310,7 @@
         ],
         "type": "object"
       },
-      "v1DeleteOptions": {
+      "DeleteOptionsv1": {
         "description": "DeleteOptions may be provided when deleting an API object.",
         "properties": {
           "apiVersion": {
@@ -338,7 +338,7 @@
           "preconditions": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Preconditions"
+                "$ref": "#/components/schemas/Preconditionsv1"
               }
             ],
             "description": "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned."
@@ -652,11 +652,11 @@
           }
         ]
       },
-      "v1FieldsV1": {
+      "FieldsV1v1": {
         "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
         "type": "object"
       },
-      "v1ListMeta": {
+      "ListMetav1": {
         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
         "properties": {
           "continue": {
@@ -675,7 +675,7 @@
         },
         "type": "object"
       },
-      "v1ManagedFieldsEntry": {
+      "ManagedFieldsEntryv1": {
         "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
         "properties": {
           "apiVersion": {
@@ -689,7 +689,7 @@
           "fieldsV1": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1FieldsV1"
+                "$ref": "#/components/schemas/FieldsV1v1"
               }
             ],
             "description": "FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type."
@@ -709,7 +709,7 @@
           "time": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over."
@@ -717,7 +717,7 @@
         },
         "type": "object"
       },
-      "v1ObjectMeta": {
+      "ObjectMetav1": {
         "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
         "properties": {
           "annotations": {
@@ -731,7 +731,7 @@
           "creationTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.\n\nPopulated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -744,7 +744,7 @@
           "deletionTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested.\n\nPopulated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -781,7 +781,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1ManagedFieldsEntry"
+                  "$ref": "#/components/schemas/ManagedFieldsEntryv1"
                 }
               ],
               "default": {}
@@ -802,7 +802,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1OwnerReference"
+                  "$ref": "#/components/schemas/OwnerReferencev1"
                 }
               ],
               "default": {}
@@ -826,7 +826,7 @@
         },
         "type": "object"
       },
-      "v1OwnerReference": {
+      "OwnerReferencev1": {
         "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
         "properties": {
           "apiVersion": {
@@ -867,11 +867,11 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1Patch": {
+      "Patchv1": {
         "description": "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.",
         "type": "object"
       },
-      "v1Preconditions": {
+      "Preconditionsv1": {
         "description": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out.",
         "properties": {
           "resourceVersion": {
@@ -885,7 +885,7 @@
         },
         "type": "object"
       },
-      "v1Status": {
+      "Statusv1": {
         "description": "Status is a return value for calls that don't return other objects.",
         "properties": {
           "apiVersion": {
@@ -900,7 +900,7 @@
           "details": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1StatusDetails"
+                "$ref": "#/components/schemas/StatusDetailsv1"
               }
             ],
             "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
@@ -917,7 +917,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ListMeta"
+                "$ref": "#/components/schemas/ListMetav1"
               }
             ],
             "default": {},
@@ -941,7 +941,7 @@
           }
         ]
       },
-      "v1StatusCause": {
+      "StatusCausev1": {
         "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
         "properties": {
           "field": {
@@ -959,7 +959,7 @@
         },
         "type": "object"
       },
-      "v1StatusDetails": {
+      "StatusDetailsv1": {
         "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
         "properties": {
           "causes": {
@@ -967,7 +967,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1StatusCause"
+                  "$ref": "#/components/schemas/StatusCausev1"
                 }
               ],
               "default": {}
@@ -999,12 +999,12 @@
         },
         "type": "object"
       },
-      "v1Time": {
+      "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
         "format": "date-time",
         "type": "string"
       },
-      "v1WatchEvent": {
+      "WatchEventv1": {
         "description": "Event represents a single event to a watched resource.",
         "properties": {
           "object": {

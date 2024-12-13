@@ -1,7 +1,7 @@
 {
   "components": {
     "schemas": {
-      "v1APIVersions": {
+      "APIVersionsv1": {
         "description": "APIVersions lists the versions that are available, to allow clients to discover the API at /api, which is the root path of the legacy v1 API.",
         "properties": {
           "apiVersion": {
@@ -17,7 +17,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1ServerAddressByClientCIDR"
+                  "$ref": "#/components/schemas/ServerAddressByClientCIDRv1"
                 }
               ],
               "default": {}
@@ -48,7 +48,7 @@
           }
         ]
       },
-      "v1ServerAddressByClientCIDR": {
+      "ServerAddressByClientCIDRv1": {
         "description": "ServerAddressByClientCIDR helps the client to determine the server address that they should use, depending on the clientCIDR that they match.",
         "properties": {
           "clientCIDR": {
