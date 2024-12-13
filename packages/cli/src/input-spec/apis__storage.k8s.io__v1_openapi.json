@@ -1,7 +1,7 @@
 {
   "components": {
     "schemas": {
-      "v1AWSElasticBlockStoreVolumeSource": {
+      "AWSElasticBlockStoreVolumeSourcev1": {
         "description": "Represents a Persistent Disk resource in AWS.\n\nAn AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as read/write once. AWS EBS volumes support ownership management and SELinux relabeling.",
         "properties": {
           "fsType": {
@@ -28,7 +28,7 @@
         ],
         "type": "object"
       },
-      "v1AzureDiskVolumeSource": {
+      "AzureDiskVolumeSourcev1": {
         "description": "AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
         "properties": {
           "cachingMode": {
@@ -68,7 +68,7 @@
         ],
         "type": "object"
       },
-      "v1AzureFilePersistentVolumeSource": {
+      "AzureFilePersistentVolumeSourcev1": {
         "description": "AzureFile represents an Azure File Service mount on the host and bind mount to the pod.",
         "properties": {
           "readOnly": {
@@ -96,13 +96,13 @@
         ],
         "type": "object"
       },
-      "v1CSIPersistentVolumeSource": {
+      "CSIPersistentVolumeSourcev1": {
         "description": "Represents storage that is managed by an external CSI volume driver (Beta feature)",
         "properties": {
           "controllerExpandSecretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "controllerExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerExpandVolume call. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed."
@@ -110,7 +110,7 @@
           "controllerPublishSecretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "controllerPublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerPublishVolume and ControllerUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed."
@@ -127,7 +127,7 @@
           "nodeExpandSecretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "nodeExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeExpandVolume call. This field is optional, may be omitted if no secret is required. If the secret object contains more than one secret, all secrets are passed."
@@ -135,7 +135,7 @@
           "nodePublishSecretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed."
@@ -143,7 +143,7 @@
           "nodeStageSecretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "nodeStageSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeStageVolume and NodeStageVolume and NodeUnstageVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed."
@@ -172,7 +172,7 @@
         ],
         "type": "object"
       },
-      "v1CephFSPersistentVolumeSource": {
+      "CephFSPersistentVolumeSourcev1": {
         "description": "Represents a Ceph Filesystem mount that lasts the lifetime of a pod Cephfs volumes do not support ownership management or SELinux relabeling.",
         "properties": {
           "monitors": {
@@ -199,7 +199,7 @@
           "secretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it"
@@ -214,7 +214,7 @@
         ],
         "type": "object"
       },
-      "v1CinderPersistentVolumeSource": {
+      "CinderPersistentVolumeSourcev1": {
         "description": "Represents a cinder volume resource in Openstack. A Cinder volume must exist before mounting to a container. The volume must also be in the same region as the kubelet. Cinder volumes support ownership management and SELinux relabeling.",
         "properties": {
           "fsType": {
@@ -228,7 +228,7 @@
           "secretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "secretRef is Optional: points to a secret object containing parameters used to connect to OpenStack."
@@ -244,7 +244,7 @@
         ],
         "type": "object"
       },
-      "v1FCVolumeSource": {
+      "FCVolumeSourcev1": {
         "description": "Represents a Fibre Channel volume. Fibre Channel volumes can only be mounted as read/write once. Fibre Channel volumes support ownership management and SELinux relabeling.",
         "properties": {
           "fsType": {
@@ -281,7 +281,7 @@
         },
         "type": "object"
       },
-      "v1FlexPersistentVolumeSource": {
+      "FlexPersistentVolumeSourcev1": {
         "description": "FlexPersistentVolumeSource represents a generic persistent volume resource that is provisioned/attached using an exec based plugin.",
         "properties": {
           "driver": {
@@ -308,7 +308,7 @@
           "secretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "secretRef is Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts."
@@ -319,7 +319,7 @@
         ],
         "type": "object"
       },
-      "v1FlockerVolumeSource": {
+      "FlockerVolumeSourcev1": {
         "description": "Represents a Flocker volume mounted by the Flocker agent. One and only one of datasetName and datasetUUID should be set. Flocker volumes do not support ownership management or SELinux relabeling.",
         "properties": {
           "datasetName": {
@@ -333,7 +333,7 @@
         },
         "type": "object"
       },
-      "v1GCEPersistentDiskVolumeSource": {
+      "GCEPersistentDiskVolumeSourcev1": {
         "description": "Represents a Persistent Disk resource in Google Compute Engine.\n\nA GCE PD must exist before mounting to a container. The disk must also be in the same GCE project and zone as the kubelet. A GCE PD can only be mounted as read/write once or read-only many times. GCE PDs support ownership management and SELinux relabeling.",
         "properties": {
           "fsType": {
@@ -360,7 +360,7 @@
         ],
         "type": "object"
       },
-      "v1GlusterfsPersistentVolumeSource": {
+      "GlusterfsPersistentVolumeSourcev1": {
         "description": "Represents a Glusterfs mount that lasts the lifetime of a pod. Glusterfs volumes do not support ownership management or SELinux relabeling.",
         "properties": {
           "endpoints": {
@@ -388,7 +388,7 @@
         ],
         "type": "object"
       },
-      "v1HostPathVolumeSource": {
+      "HostPathVolumeSourcev1": {
         "description": "Represents a host path mapped into a pod. Host path volumes do not support ownership management or SELinux relabeling.",
         "properties": {
           "path": {
@@ -406,7 +406,7 @@
         ],
         "type": "object"
       },
-      "v1ISCSIPersistentVolumeSource": {
+      "ISCSIPersistentVolumeSourcev1": {
         "description": "ISCSIPersistentVolumeSource represents an ISCSI disk. ISCSI volumes can only be mounted as read/write once. ISCSI volumes support ownership management and SELinux relabeling.",
         "properties": {
           "chapAuthDiscovery": {
@@ -457,7 +457,7 @@
           "secretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "secretRef is the CHAP Secret for iSCSI target and initiator authentication"
@@ -475,7 +475,7 @@
         ],
         "type": "object"
       },
-      "v1LocalVolumeSource": {
+      "LocalVolumeSourcev1": {
         "description": "Local represents directly-attached storage with node affinity (Beta feature)",
         "properties": {
           "fsType": {
@@ -493,7 +493,7 @@
         ],
         "type": "object"
       },
-      "v1NFSVolumeSource": {
+      "NFSVolumeSourcev1": {
         "description": "Represents an NFS mount that lasts the lifetime of a pod. NFS volumes do not support ownership management or SELinux relabeling.",
         "properties": {
           "path": {
@@ -517,7 +517,7 @@
         ],
         "type": "object"
       },
-      "v1NodeSelector": {
+      "NodeSelectorv1": {
         "description": "A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms.",
         "properties": {
           "nodeSelectorTerms": {
@@ -525,7 +525,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1NodeSelectorTerm"
+                  "$ref": "#/components/schemas/NodeSelectorTermv1"
                 }
               ],
               "default": {}
@@ -540,7 +540,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1NodeSelectorRequirement": {
+      "NodeSelectorRequirementv1": {
         "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
         "properties": {
           "key": {
@@ -569,7 +569,7 @@
         ],
         "type": "object"
       },
-      "v1NodeSelectorTerm": {
+      "NodeSelectorTermv1": {
         "description": "A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.",
         "properties": {
           "matchExpressions": {
@@ -577,7 +577,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1NodeSelectorRequirement"
+                  "$ref": "#/components/schemas/NodeSelectorRequirementv1"
                 }
               ],
               "default": {}
@@ -590,7 +590,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1NodeSelectorRequirement"
+                  "$ref": "#/components/schemas/NodeSelectorRequirementv1"
                 }
               ],
               "default": {}
@@ -602,7 +602,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1ObjectReference": {
+      "ObjectReferencev1": {
         "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
         "properties": {
           "apiVersion": {
@@ -637,7 +637,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1PersistentVolumeSpec": {
+      "PersistentVolumeSpecv1": {
         "description": "PersistentVolumeSpec is the specification of a persistent volume.",
         "properties": {
           "accessModes": {
@@ -652,7 +652,7 @@
           "awsElasticBlockStore": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1AWSElasticBlockStoreVolumeSource"
+                "$ref": "#/components/schemas/AWSElasticBlockStoreVolumeSourcev1"
               }
             ],
             "description": "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore"
@@ -660,7 +660,7 @@
           "azureDisk": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1AzureDiskVolumeSource"
+                "$ref": "#/components/schemas/AzureDiskVolumeSourcev1"
               }
             ],
             "description": "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod."
@@ -668,7 +668,7 @@
           "azureFile": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1AzureFilePersistentVolumeSource"
+                "$ref": "#/components/schemas/AzureFilePersistentVolumeSourcev1"
               }
             ],
             "description": "azureFile represents an Azure File Service mount on the host and bind mount to the pod."
@@ -683,7 +683,7 @@
           "cephfs": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CephFSPersistentVolumeSource"
+                "$ref": "#/components/schemas/CephFSPersistentVolumeSourcev1"
               }
             ],
             "description": "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime"
@@ -691,7 +691,7 @@
           "cinder": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CinderPersistentVolumeSource"
+                "$ref": "#/components/schemas/CinderPersistentVolumeSourcev1"
               }
             ],
             "description": "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md"
@@ -699,7 +699,7 @@
           "claimRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectReference"
+                "$ref": "#/components/schemas/ObjectReferencev1"
               }
             ],
             "description": "claimRef is part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound. claim.VolumeName is the authoritative bind between PV and PVC. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding",
@@ -708,7 +708,7 @@
           "csi": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CSIPersistentVolumeSource"
+                "$ref": "#/components/schemas/CSIPersistentVolumeSourcev1"
               }
             ],
             "description": "csi represents storage that is handled by an external CSI driver (Beta feature)."
@@ -716,7 +716,7 @@
           "fc": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1FCVolumeSource"
+                "$ref": "#/components/schemas/FCVolumeSourcev1"
               }
             ],
             "description": "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod."
@@ -724,7 +724,7 @@
           "flexVolume": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1FlexPersistentVolumeSource"
+                "$ref": "#/components/schemas/FlexPersistentVolumeSourcev1"
               }
             ],
             "description": "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin."
@@ -732,7 +732,7 @@
           "flocker": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1FlockerVolumeSource"
+                "$ref": "#/components/schemas/FlockerVolumeSourcev1"
               }
             ],
             "description": "flocker represents a Flocker volume attached to a kubelet's host machine and exposed to the pod for its usage. This depends on the Flocker control service being running"
@@ -740,7 +740,7 @@
           "gcePersistentDisk": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1GCEPersistentDiskVolumeSource"
+                "$ref": "#/components/schemas/GCEPersistentDiskVolumeSourcev1"
               }
             ],
             "description": "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk"
@@ -748,7 +748,7 @@
           "glusterfs": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1GlusterfsPersistentVolumeSource"
+                "$ref": "#/components/schemas/GlusterfsPersistentVolumeSourcev1"
               }
             ],
             "description": "glusterfs represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. More info: https://examples.k8s.io/volumes/glusterfs/README.md"
@@ -756,7 +756,7 @@
           "hostPath": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1HostPathVolumeSource"
+                "$ref": "#/components/schemas/HostPathVolumeSourcev1"
               }
             ],
             "description": "hostPath represents a directory on the host. Provisioned by a developer or tester. This is useful for single-node development and testing only! On-host storage is not supported in any way and WILL NOT WORK in a multi-node cluster. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath"
@@ -764,7 +764,7 @@
           "iscsi": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ISCSIPersistentVolumeSource"
+                "$ref": "#/components/schemas/ISCSIPersistentVolumeSourcev1"
               }
             ],
             "description": "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin."
@@ -772,7 +772,7 @@
           "local": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1LocalVolumeSource"
+                "$ref": "#/components/schemas/LocalVolumeSourcev1"
               }
             ],
             "description": "local represents directly-attached storage with node affinity"
@@ -789,7 +789,7 @@
           "nfs": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1NFSVolumeSource"
+                "$ref": "#/components/schemas/NFSVolumeSourcev1"
               }
             ],
             "description": "nfs represents an NFS mount on the host. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs"
@@ -797,7 +797,7 @@
           "nodeAffinity": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1VolumeNodeAffinity"
+                "$ref": "#/components/schemas/VolumeNodeAffinityv1"
               }
             ],
             "description": "nodeAffinity defines constraints that limit what nodes this volume can be accessed from. This field influences the scheduling of pods that use this volume."
@@ -809,7 +809,7 @@
           "photonPersistentDisk": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1PhotonPersistentDiskVolumeSource"
+                "$ref": "#/components/schemas/PhotonPersistentDiskVolumeSourcev1"
               }
             ],
             "description": "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine"
@@ -817,7 +817,7 @@
           "portworxVolume": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1PortworxVolumeSource"
+                "$ref": "#/components/schemas/PortworxVolumeSourcev1"
               }
             ],
             "description": "portworxVolume represents a portworx volume attached and mounted on kubelets host machine"
@@ -825,7 +825,7 @@
           "quobyte": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1QuobyteVolumeSource"
+                "$ref": "#/components/schemas/QuobyteVolumeSourcev1"
               }
             ],
             "description": "quobyte represents a Quobyte mount on the host that shares a pod's lifetime"
@@ -833,7 +833,7 @@
           "rbd": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1RBDPersistentVolumeSource"
+                "$ref": "#/components/schemas/RBDPersistentVolumeSourcev1"
               }
             ],
             "description": "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md"
@@ -841,7 +841,7 @@
           "scaleIO": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ScaleIOPersistentVolumeSource"
+                "$ref": "#/components/schemas/ScaleIOPersistentVolumeSourcev1"
               }
             ],
             "description": "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes."
@@ -853,7 +853,7 @@
           "storageos": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1StorageOSPersistentVolumeSource"
+                "$ref": "#/components/schemas/StorageOSPersistentVolumeSourcev1"
               }
             ],
             "description": "storageOS represents a StorageOS volume that is attached to the kubelet's host machine and mounted into the pod More info: https://examples.k8s.io/volumes/storageos/README.md"
@@ -869,7 +869,7 @@
           "vsphereVolume": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1VsphereVirtualDiskVolumeSource"
+                "$ref": "#/components/schemas/VsphereVirtualDiskVolumeSourcev1"
               }
             ],
             "description": "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine"
@@ -877,7 +877,7 @@
         },
         "type": "object"
       },
-      "v1PhotonPersistentDiskVolumeSource": {
+      "PhotonPersistentDiskVolumeSourcev1": {
         "description": "Represents a Photon Controller persistent disk resource.",
         "properties": {
           "fsType": {
@@ -895,7 +895,7 @@
         ],
         "type": "object"
       },
-      "v1PortworxVolumeSource": {
+      "PortworxVolumeSourcev1": {
         "description": "PortworxVolumeSource represents a Portworx volume resource.",
         "properties": {
           "fsType": {
@@ -917,7 +917,7 @@
         ],
         "type": "object"
       },
-      "v1QuobyteVolumeSource": {
+      "QuobyteVolumeSourcev1": {
         "description": "Represents a Quobyte mount that lasts the lifetime of a pod. Quobyte volumes do not support ownership management or SELinux relabeling.",
         "properties": {
           "group": {
@@ -953,7 +953,7 @@
         ],
         "type": "object"
       },
-      "v1RBDPersistentVolumeSource": {
+      "RBDPersistentVolumeSourcev1": {
         "description": "Represents a Rados Block Device mount that lasts the lifetime of a pod. RBD volumes support ownership management and SELinux relabeling.",
         "properties": {
           "fsType": {
@@ -991,7 +991,7 @@
           "secretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it"
@@ -1008,7 +1008,7 @@
         ],
         "type": "object"
       },
-      "v1ScaleIOPersistentVolumeSource": {
+      "ScaleIOPersistentVolumeSourcev1": {
         "description": "ScaleIOPersistentVolumeSource represents a persistent ScaleIO volume",
         "properties": {
           "fsType": {
@@ -1032,7 +1032,7 @@
           "secretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1SecretReference"
+                "$ref": "#/components/schemas/SecretReferencev1"
               }
             ],
             "description": "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail."
@@ -1067,7 +1067,7 @@
         ],
         "type": "object"
       },
-      "v1SecretReference": {
+      "SecretReferencev1": {
         "description": "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
         "properties": {
           "name": {
@@ -1082,7 +1082,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1StorageOSPersistentVolumeSource": {
+      "StorageOSPersistentVolumeSourcev1": {
         "description": "Represents a StorageOS persistent volume resource.",
         "properties": {
           "fsType": {
@@ -1096,7 +1096,7 @@
           "secretRef": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectReference"
+                "$ref": "#/components/schemas/ObjectReferencev1"
               }
             ],
             "description": "secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted."
@@ -1112,7 +1112,7 @@
         },
         "type": "object"
       },
-      "v1TopologySelectorLabelRequirement": {
+      "TopologySelectorLabelRequirementv1": {
         "description": "A topology selector requirement is a selector that matches given label. This is an alpha feature and may change in the future.",
         "properties": {
           "key": {
@@ -1136,7 +1136,7 @@
         ],
         "type": "object"
       },
-      "v1TopologySelectorTerm": {
+      "TopologySelectorTermv1": {
         "description": "A topology selector term represents the result of label queries. A null or empty topology selector term matches no objects. The requirements of them are ANDed. It provides a subset of functionality as NodeSelectorTerm. This is an alpha feature and may change in the future.",
         "properties": {
           "matchLabelExpressions": {
@@ -1144,7 +1144,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1TopologySelectorLabelRequirement"
+                  "$ref": "#/components/schemas/TopologySelectorLabelRequirementv1"
                 }
               ],
               "default": {}
@@ -1156,13 +1156,13 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1VolumeNodeAffinity": {
+      "VolumeNodeAffinityv1": {
         "description": "VolumeNodeAffinity defines constraints that limit what nodes this volume can be accessed from.",
         "properties": {
           "required": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1NodeSelector"
+                "$ref": "#/components/schemas/NodeSelectorv1"
               }
             ],
             "description": "required specifies hard node constraints that must be met."
@@ -1170,7 +1170,7 @@
         },
         "type": "object"
       },
-      "v1VsphereVirtualDiskVolumeSource": {
+      "VsphereVirtualDiskVolumeSourcev1": {
         "description": "Represents a vSphere volume resource.",
         "properties": {
           "fsType": {
@@ -1196,7 +1196,7 @@
         ],
         "type": "object"
       },
-      "v1CSIDriver": {
+      "CSIDriverv1": {
         "description": "CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced.",
         "properties": {
           "apiVersion": {
@@ -1210,7 +1210,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -1219,7 +1219,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CSIDriverSpec"
+                "$ref": "#/components/schemas/CSIDriverSpecv1"
               }
             ],
             "default": {},
@@ -1238,7 +1238,7 @@
           }
         ]
       },
-      "v1CSIDriverSpec": {
+      "CSIDriverSpecv1": {
         "description": "CSIDriverSpec is the specification of a CSIDriver.",
         "properties": {
           "attachRequired": {
@@ -1270,7 +1270,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1TokenRequest"
+                  "$ref": "#/components/schemas/TokenRequestv1"
                 }
               ],
               "default": {}
@@ -1290,7 +1290,7 @@
         },
         "type": "object"
       },
-      "v1CSINode": {
+      "CSINodev1": {
         "description": "CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.",
         "properties": {
           "apiVersion": {
@@ -1304,7 +1304,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -1313,7 +1313,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1CSINodeSpec"
+                "$ref": "#/components/schemas/CSINodeSpecv1"
               }
             ],
             "default": {},
@@ -1332,13 +1332,13 @@
           }
         ]
       },
-      "v1CSINodeDriver": {
+      "CSINodeDriverv1": {
         "description": "CSINodeDriver holds information about the specification of one CSI driver installed on a node",
         "properties": {
           "allocatable": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1VolumeNodeResources"
+                "$ref": "#/components/schemas/VolumeNodeResourcesv1"
               }
             ],
             "description": "allocatable represents the volume resources of a node that are available for scheduling. This field is beta."
@@ -1369,7 +1369,7 @@
         ],
         "type": "object"
       },
-      "v1CSINodeSpec": {
+      "CSINodeSpecv1": {
         "description": "CSINodeSpec holds information about the specification of all CSI drivers installed on a node",
         "properties": {
           "drivers": {
@@ -1377,7 +1377,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1CSINodeDriver"
+                  "$ref": "#/components/schemas/CSINodeDriverv1"
                 }
               ],
               "default": {}
@@ -1396,7 +1396,7 @@
         ],
         "type": "object"
       },
-      "v1CSIStorageCapacity": {
+      "CSIStorageCapacityv1": {
         "description": "CSIStorageCapacity stores the result of one CSI GetCapacity call. For a given StorageClass, this describes the available capacity in a particular topology segment.  This can be used when considering where to instantiate new PersistentVolumes.\n\nFor example this can express things like: - StorageClass \"standard\" has \"1234 GiB\" available in \"topology.kubernetes.io/zone=us-east1\" - StorageClass \"localssd\" has \"10 GiB\" available in \"kubernetes.io/hostname=knode-abc123\"\n\nThe following three cases all imply that no capacity is available for a certain combination: - no object exists with suitable topology and storage class name - such an object exists, but the capacity is unset - such an object exists, but the capacity is zero\n\nThe producer of these objects can decide which approach is more suitable.\n\nThey are consumed by the kube-scheduler when a CSI driver opts into capacity-aware scheduling with CSIDriverSpec.StorageCapacity. The scheduler compares the MaximumVolumeSize against the requested size of pending volumes to filter out unsuitable nodes. If MaximumVolumeSize is unset, it falls back to a comparison against the less precise Capacity. If that is also unset, the scheduler assumes that capacity is insufficient and tries some other node.",
         "properties": {
           "apiVersion": {
@@ -1426,7 +1426,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -1435,7 +1435,7 @@
           "nodeTopology": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1LabelSelector"
+                "$ref": "#/components/schemas/LabelSelectorv1"
               }
             ],
             "description": "nodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable."
@@ -1458,7 +1458,7 @@
           }
         ]
       },
-      "v1StorageClass": {
+      "StorageClassv1": {
         "description": "StorageClass describes the parameters for a class of storage for which PersistentVolumes can be dynamically provisioned.\n\nStorageClasses are non-namespaced; the name of the storage class according to etcd is in ObjectMeta.Name.",
         "properties": {
           "allowVolumeExpansion": {
@@ -1470,7 +1470,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1TopologySelectorTerm"
+                  "$ref": "#/components/schemas/TopologySelectorTermv1"
                 }
               ],
               "default": {}
@@ -1489,7 +1489,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -1538,7 +1538,7 @@
           }
         ]
       },
-      "v1TokenRequest": {
+      "TokenRequestv1": {
         "description": "TokenRequest contains parameters of a service account token.",
         "properties": {
           "audience": {
@@ -1557,7 +1557,7 @@
         ],
         "type": "object"
       },
-      "v1VolumeAttachment": {
+      "VolumeAttachmentv1": {
         "description": "VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node.\n\nVolumeAttachment objects are non-namespaced.",
         "properties": {
           "apiVersion": {
@@ -1571,7 +1571,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ObjectMeta"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
@@ -1580,7 +1580,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1VolumeAttachmentSpec"
+                "$ref": "#/components/schemas/VolumeAttachmentSpecv1"
               }
             ],
             "default": {},
@@ -1589,7 +1589,7 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1VolumeAttachmentStatus"
+                "$ref": "#/components/schemas/VolumeAttachmentStatusv1"
               }
             ],
             "default": {},
@@ -1608,13 +1608,13 @@
           }
         ]
       },
-      "v1VolumeAttachmentSource": {
+      "VolumeAttachmentSourcev1": {
         "description": "VolumeAttachmentSource represents a volume that should be attached. Right now only PersistenVolumes can be attached via external attacher, in future we may allow also inline volumes in pods. Exactly one member can be set.",
         "properties": {
           "inlineVolumeSpec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1PersistentVolumeSpec"
+                "$ref": "#/components/schemas/PersistentVolumeSpecv1"
               }
             ],
             "description": "inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod's inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod's inline VolumeSource to a PersistentVolumeSpec. This field is beta-level and is only honored by servers that enabled the CSIMigration feature."
@@ -1626,7 +1626,7 @@
         },
         "type": "object"
       },
-      "v1VolumeAttachmentSpec": {
+      "VolumeAttachmentSpecv1": {
         "description": "VolumeAttachmentSpec is the specification of a VolumeAttachment request.",
         "properties": {
           "attacher": {
@@ -1642,7 +1642,7 @@
           "source": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1VolumeAttachmentSource"
+                "$ref": "#/components/schemas/VolumeAttachmentSourcev1"
               }
             ],
             "default": {},
@@ -1656,13 +1656,13 @@
         ],
         "type": "object"
       },
-      "v1VolumeAttachmentStatus": {
+      "VolumeAttachmentStatusv1": {
         "description": "VolumeAttachmentStatus is the status of a VolumeAttachment request.",
         "properties": {
           "attachError": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1VolumeError"
+                "$ref": "#/components/schemas/VolumeErrorv1"
               }
             ],
             "description": "attachError represents the last error encountered during attach operation, if any. This field must only be set by the entity completing the attach operation, i.e. the external-attacher."
@@ -1683,7 +1683,7 @@
           "detachError": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1VolumeError"
+                "$ref": "#/components/schemas/VolumeErrorv1"
               }
             ],
             "description": "detachError represents the last error encountered during detach operation, if any. This field must only be set by the entity completing the detach operation, i.e. the external-attacher."
@@ -1694,7 +1694,7 @@
         ],
         "type": "object"
       },
-      "v1VolumeError": {
+      "VolumeErrorv1": {
         "description": "VolumeError captures an error encountered during a volume operation.",
         "properties": {
           "message": {
@@ -1704,7 +1704,7 @@
           "time": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "time represents the time the error was encountered."
@@ -1712,7 +1712,7 @@
         },
         "type": "object"
       },
-      "v1VolumeNodeResources": {
+      "VolumeNodeResourcesv1": {
         "description": "VolumeNodeResources is a set of resource limits for scheduling of volumes.",
         "properties": {
           "count": {
@@ -1734,7 +1734,7 @@
           }
         ]
       },
-      "v1APIResource": {
+      "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
           "categories": {
@@ -1805,7 +1805,7 @@
         ],
         "type": "object"
       },
-      "v1DeleteOptions": {
+      "DeleteOptionsv1": {
         "description": "DeleteOptions may be provided when deleting an API object.",
         "properties": {
           "apiVersion": {
@@ -1833,7 +1833,7 @@
           "preconditions": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Preconditions"
+                "$ref": "#/components/schemas/Preconditionsv1"
               }
             ],
             "description": "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned."
@@ -2147,11 +2147,11 @@
           }
         ]
       },
-      "v1FieldsV1": {
+      "FieldsV1v1": {
         "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
         "type": "object"
       },
-      "v1LabelSelector": {
+      "LabelSelectorv1": {
         "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
         "properties": {
           "matchExpressions": {
@@ -2159,7 +2159,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1LabelSelectorRequirement"
+                  "$ref": "#/components/schemas/LabelSelectorRequirementv1"
                 }
               ],
               "default": {}
@@ -2179,7 +2179,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1LabelSelectorRequirement": {
+      "LabelSelectorRequirementv1": {
         "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
         "properties": {
           "key": {
@@ -2208,7 +2208,7 @@
         ],
         "type": "object"
       },
-      "v1ListMeta": {
+      "ListMetav1": {
         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
         "properties": {
           "continue": {
@@ -2227,7 +2227,7 @@
         },
         "type": "object"
       },
-      "v1ManagedFieldsEntry": {
+      "ManagedFieldsEntryv1": {
         "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
         "properties": {
           "apiVersion": {
@@ -2241,7 +2241,7 @@
           "fieldsV1": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1FieldsV1"
+                "$ref": "#/components/schemas/FieldsV1v1"
               }
             ],
             "description": "FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type."
@@ -2261,7 +2261,7 @@
           "time": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over."
@@ -2269,7 +2269,7 @@
         },
         "type": "object"
       },
-      "v1ObjectMeta": {
+      "ObjectMetav1": {
         "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
         "properties": {
           "annotations": {
@@ -2283,7 +2283,7 @@
           "creationTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.\n\nPopulated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -2296,7 +2296,7 @@
           "deletionTimestamp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1Time"
+                "$ref": "#/components/schemas/Timev1"
               }
             ],
             "description": "DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested.\n\nPopulated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
@@ -2333,7 +2333,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1ManagedFieldsEntry"
+                  "$ref": "#/components/schemas/ManagedFieldsEntryv1"
                 }
               ],
               "default": {}
@@ -2354,7 +2354,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1OwnerReference"
+                  "$ref": "#/components/schemas/OwnerReferencev1"
                 }
               ],
               "default": {}
@@ -2378,7 +2378,7 @@
         },
         "type": "object"
       },
-      "v1OwnerReference": {
+      "OwnerReferencev1": {
         "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
         "properties": {
           "apiVersion": {
@@ -2419,11 +2419,11 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "v1Patch": {
+      "Patchv1": {
         "description": "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.",
         "type": "object"
       },
-      "v1Preconditions": {
+      "Preconditionsv1": {
         "description": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out.",
         "properties": {
           "resourceVersion": {
@@ -2437,7 +2437,7 @@
         },
         "type": "object"
       },
-      "v1Status": {
+      "Statusv1": {
         "description": "Status is a return value for calls that don't return other objects.",
         "properties": {
           "apiVersion": {
@@ -2452,7 +2452,7 @@
           "details": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1StatusDetails"
+                "$ref": "#/components/schemas/StatusDetailsv1"
               }
             ],
             "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
@@ -2469,7 +2469,7 @@
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1ListMeta"
+                "$ref": "#/components/schemas/ListMetav1"
               }
             ],
             "default": {},
@@ -2493,7 +2493,7 @@
           }
         ]
       },
-      "v1StatusCause": {
+      "StatusCausev1": {
         "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
         "properties": {
           "field": {
@@ -2511,7 +2511,7 @@
         },
         "type": "object"
       },
-      "v1StatusDetails": {
+      "StatusDetailsv1": {
         "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
         "properties": {
           "causes": {
@@ -2519,7 +2519,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1StatusCause"
+                  "$ref": "#/components/schemas/StatusCausev1"
                 }
               ],
               "default": {}
@@ -2551,12 +2551,12 @@
         },
         "type": "object"
       },
-      "v1Time": {
+      "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
         "format": "date-time",
         "type": "string"
       },
-      "v1WatchEvent": {
+      "WatchEventv1": {
         "description": "Event represents a single event to a watched resource.",
         "properties": {
           "object": {

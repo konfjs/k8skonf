@@ -33,6 +33,7 @@
     }
   },
   "scripts": {
+    "lint": "biome lint",
     "build": "rm -rf dist && tsc",
     "prepack": "pnpm run build",
     "gen": "rm -rf ./files/gen && openapi-generator-cli generate"

@@ -1,6 +1,6 @@
-import { V1ObjectMeta } from './models/V1ObjectMeta.js';
+import { ObjectMetav1 } from './models/ObjectMetav1.js';
 
-export interface V1NamespacedObjectMeta extends V1ObjectMeta {
+export interface NamespacedObjectMetav1 extends ObjectMetav1 {
     /**
      * Namespace defines the space within which each name must be unique.
      * An empty namespace is equivalent to the "default" namespace,
@@ -14,7 +14,7 @@ export interface V1NamespacedObjectMeta extends V1ObjectMeta {
  * ApiObject is the base class for all Kubernetes API objects.
  */
 export abstract class ApiObject {
-    abstract readonly metadata: V1ObjectMeta;
+    abstract readonly metadata: ObjectMetav1;
 }
 
 /**
@@ -22,5 +22,5 @@ export abstract class ApiObject {
  * objects that are scoped to a namespace.
  */
 export abstract class NamespacedApiObject extends ApiObject {
-    abstract readonly metadata: V1NamespacedObjectMeta;
+    abstract readonly metadata: NamespacedObjectMetav1;
 }

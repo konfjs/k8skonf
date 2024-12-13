@@ -1,7 +1,7 @@
 {
   "components": {
     "schemas": {
-      "v1APIGroup": {
+      "APIGroupv1": {
         "description": "APIGroup contains the name, the supported versions, and the preferred version of a group.",
         "properties": {
           "apiVersion": {
@@ -20,7 +20,7 @@
           "preferredVersion": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/v1GroupVersionForDiscovery"
+                "$ref": "#/components/schemas/GroupVersionForDiscoveryv1"
               }
             ],
             "default": {},
@@ -31,7 +31,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1ServerAddressByClientCIDR"
+                  "$ref": "#/components/schemas/ServerAddressByClientCIDRv1"
                 }
               ],
               "default": {}
@@ -44,7 +44,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/v1GroupVersionForDiscovery"
+                  "$ref": "#/components/schemas/GroupVersionForDiscoveryv1"
                 }
               ],
               "default": {}
@@ -66,7 +66,7 @@
           }
         ]
       },
-      "v1GroupVersionForDiscovery": {
+      "GroupVersionForDiscoveryv1": {
         "description": "GroupVersion contains the \"group/version\" and \"version\" string of a version. It is made a struct to keep extensibility.",
         "properties": {
           "groupVersion": {
@@ -86,7 +86,7 @@
         ],
         "type": "object"
       },
-      "v1ServerAddressByClientCIDR": {
+      "ServerAddressByClientCIDRv1": {
         "description": "ServerAddressByClientCIDR helps the client to determine the server address that they should use, depending on the clientCIDR that they match.",
         "properties": {
           "clientCIDR": {
