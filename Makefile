@@ -30,14 +30,13 @@ models: prepare-schema
 	@echo "Generating Kubernetes models"
 	@cd packages/cli
 	@pnpm gen
-	@rsync -a --delete files/gen/models/ src/models/
+	@rsync -a --delete files/gen/models/ ../core/src/models/
 
 
 .PHONY: restore-models
 restore-models:
 	@echo "Restoring Kubernetes models"
-	@cd packages/cli
-	@rsync -a --delete files/gen/models/ src/models/
+	@rsync -a --delete packages/cli/files/gen/models/ packages/core/src/models/
 
 
 # Generate packages/core/src/models/*.ts files
@@ -46,6 +45,6 @@ core: restore-models
 	@echo "Generating @k8skonf/core package"
 	@cd packages/cli
 	@bun src/morph.ts
-	@rsync -a --delete src/models/ ../core/src/models/
 	@cd ../core
 	@pnpm lint
+	@pnpm tsc --noEmit

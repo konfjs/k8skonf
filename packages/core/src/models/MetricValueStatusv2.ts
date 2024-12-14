@@ -9,9 +9,9 @@ export interface MetricValueStatusv2 {
   /**
    * averageValue is the current value of the average of the metric across all relevant pods (as a quantity)
    */
-  averageValue?: Quantity;
+  averageValue?: number | string;
   /**
    * value is the current value of the metric (as a quantity).
    */
-  value?: Quantity;
+  value?: number | string;
 }

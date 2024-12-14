@@ -5,5 +5,5 @@ export interface Overheadv1 {
   /**
    * podFixed represents the fixed resource overhead associated with running a pod.
    */
-  podFixed?: { [key: string]: Quantity };
+  podFixed?: { [key: string]: number | string };
 }

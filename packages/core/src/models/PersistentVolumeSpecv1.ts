@@ -46,7 +46,7 @@ export interface PersistentVolumeSpecv1 {
   /**
    * capacity is the description of the persistent volume\'s resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
    */
-  capacity?: { [key: string]: Quantity };
+  capacity?: { [key: string]: number | string };
   /**
    * cephFS represents a Ceph FS mount on the host that shares a pod\'s lifetime
    */

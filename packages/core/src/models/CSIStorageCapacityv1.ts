@@ -3,8 +3,8 @@ import { K8sApp } from '../K8sApp.js';
 import { NamespacedObjectMetav1, NamespacedApiObject } from '../ApiObject.js';
 
 export interface CSIStorageCapacityv1Args {
-  readonly capacity?: Quantity;
-  readonly maximumVolumeSize?: Quantity;
+  readonly capacity?: number | string;
+  readonly maximumVolumeSize?: number | string;
   readonly metadata?: NamespacedObjectMetav1;
   readonly nodeTopology?: LabelSelectorv1;
   readonly storageClassName: string;
@@ -21,7 +21,7 @@ export class CSIStorageCapacityv1 extends NamespacedApiObject {
   /**
    * capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.  The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
    */
-  readonly capacity?: Quantity;
+  readonly capacity?: number | string;
   /**
    * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
    */
@@ -29,7 +29,7 @@ export class CSIStorageCapacityv1 extends NamespacedApiObject {
   /**
    * maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.  This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
    */
-  readonly maximumVolumeSize?: Quantity;
+  readonly maximumVolumeSize?: number | string;
   /**
    * Standard object\'s metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-<uuid>, a generated name, or a reverse-domain name which ends with the unique CSI driver name.  Objects are namespaced.  More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
    */
