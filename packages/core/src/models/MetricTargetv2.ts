@@ -9,7 +9,7 @@ export interface MetricTargetv2 {
   /**
    * averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
    */
-  averageValue?: Quantity;
+  averageValue?: number | string;
   /**
    * type represents whether the metric type is Utilization, Value, or AverageValue
    */
@@ -17,5 +17,5 @@ export interface MetricTargetv2 {
   /**
    * value is the target value of the metric (as a quantity).
    */
-  value?: Quantity;
+  value?: number | string;
 }

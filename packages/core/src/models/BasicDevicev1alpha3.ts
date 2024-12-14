@@ -11,5 +11,5 @@ export interface BasicDevicev1alpha3 {
   /**
    * Capacity defines the set of capacities for this device. The name of each capacity must be unique in that set.  The maximum number of attributes and capacities combined is 32.
    */
-  capacity?: { [key: string]: Quantity };
+  capacity?: { [key: string]: number | string };
 }

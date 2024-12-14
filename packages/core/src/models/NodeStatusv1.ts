@@ -19,11 +19,11 @@ export interface NodeStatusv1 {
   /**
    * Allocatable represents the resources of a node that are available for scheduling. Defaults to Capacity.
    */
-  allocatable?: { [key: string]: Quantity };
+  allocatable?: { [key: string]: number | string };
   /**
    * Capacity represents the total resources of a node. More info: https://kubernetes.io/docs/reference/node/node-status/#capacity
    */
-  capacity?: { [key: string]: Quantity };
+  capacity?: { [key: string]: number | string };
   /**
    * Conditions is an array of current observed node conditions. More info: https://kubernetes.io/docs/concepts/nodes/node/#condition
    */
