@@ -1,8 +1,8 @@
 import { K8sApp } from '@k8skonf/core';
-import { V1Deployment } from '@k8skonf/core/V1Deployment';
+import { Deploymentv1 } from '@k8skonf/core/Deploymentv1';
 
 function deployment(app: K8sApp) {
-    return new V1Deployment(app, 'my-deployment', {
+    return new Deploymentv1(app, 'my-deployment', {
         spec: {
             selector: {
                 matchLabels: {
