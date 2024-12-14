@@ -50,7 +50,7 @@
     "typescript": "5.7.2"
   },
   "dependencies": {
-    "picocolors": "1.1.1",
-    "yaml": "2.6.1"
+    "picocolors": "^1.1.1",
+    "yaml": "^2.6.1"
   }
 }
