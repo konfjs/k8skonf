@@ -240,7 +240,6 @@ function morph() {
                         classDeclaration.getProperty('generation')?.remove();
                         classDeclaration.getProperty('resourceVersion')?.remove();
                         classDeclaration.getProperty('uid')?.remove();
-                        classDeclaration.getProperty('name')?.setHasQuestionToken(false);
                     }
                     const i: InterfaceDeclarationStructure = {
                         kind: StructureKind.Interface,
