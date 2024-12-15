@@ -25,7 +25,8 @@
         "useImportType": "off"
       },
       "complexity": {
-        "noForEach": "off"
+        "noForEach": "off",
+        "noBannedTypes": "off"
       }
     }
   },

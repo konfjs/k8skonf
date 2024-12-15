@@ -1,111 +1,163 @@
+#!/usr/bin/env tsx
+import * as crypto from 'node:crypto';
 import * as fs from 'node:fs';
+import * as os from 'node:os';
 import * as path from 'node:path';
+import { compile } from 'json-schema-to-typescript';
+import { ClassDeclarationStructure, Project, StructureKind } from 'ts-morph';
+import * as yaml from 'yaml';
+import { formatCode } from './utils.js';
+import { Command } from 'commander';
+import { log } from 'node:console';
 import pc from 'picocolors';
-import { removeDeprecatedProps } from './removeDeprecatedProps.js';
-import { K8sOpenApiSpec, removeModelPrefixes } from './removeModelPrefixes.js';
 
-export interface GroupVersionKindMap {
-    /**
-     * @example "Deploymentv1"
-     */
-    [schemaName: string]: {
-        /**
-         * @example "io.k8s.api.apps.v1.Deployment"
-         */
-        originalSchemaName: string;
-        /**
-         * @example '[{"group":"apps", "kind":"Deployment", "version":"v1"}]'
-         */
-        gvk?: Set<string>;
-        /**
-         * @example "/apis/apps/v1/namespaces/{namespace}/deployments"
-         */
-        path?: string;
-        namespaced?: boolean;
+interface CRD {
+    apiVersion: string;
+    kind: string;
+    metadata: {
+        name: string;
+    };
+    spec: {
+        group: string;
+        versions: {
+            name: string;
+            schema?: {
+                openAPIV3Schema?: any;
+            };
+        }[];
+        names: {
+            categories?: string[];
+            kind: string;
+            listKind?: string;
+            plural: string;
+            shortNames?: string[];
+            singular?: string;
+        };
+        scope: 'Namespaced' | 'Cluster';
     };
 }
 
-function main() {
-    const v3Path = path.join(import.meta.dirname, '../files/kubernetes/api/openapi-spec/v3');
-    const inputSpecPath = path.join(import.meta.dirname, 'input-spec');
+async function main() {
+    const version = JSON.parse(
+        fs.readFileSync(path.join(import.meta.dirname, '..', 'package.json'), 'utf-8'),
+    ).version;
+    const program = new Command();
+    program
+        .name('@k8skonf/cli')
+        .argument('<crd-path-or-url>', 'CRD path or URL')
+        .version(version)
+        .parse();
 
-    const skipList = [
-        '.well-known__openid-configuration_openapi.json',
-        'openid__v1__jwks_openapi.json',
-        'logs_openapi.json',
-        'version_openapi.json',
-    ];
+    const crdPathOrUrl = program.args[0];
+    const cacheHome = path.join(os.homedir(), '.cache', 'k8skonf');
+    const cacheId = crypto.createHash('sha256').update(crdPathOrUrl).digest('hex');
+    const cacheDir = path.join(cacheHome, cacheId);
+    fs.existsSync(cacheDir) || fs.mkdirSync(cacheDir, { recursive: true });
+    const yamlSavePath = path.join(cacheDir, path.basename(crdPathOrUrl));
 
-    fs.rmSync(inputSpecPath, { recursive: true, force: true });
-    fs.mkdirSync(inputSpecPath, { recursive: true });
-
-    const groupVersionKindMap: GroupVersionKindMap = {};
-
-    for (const file of fs.readdirSync(v3Path, { withFileTypes: true })) {
-        if (skipList.includes(file.name)) {
-            continue;
-        }
-
-        const spec: K8sOpenApiSpec = JSON.parse(fs.readFileSync(`${v3Path}/${file.name}`, 'utf-8'));
-
-        removeDeprecatedProps(spec);
-        removeModelPrefixes(spec, groupVersionKindMap);
-
-        if (spec.components.schemas) {
-            for (const [schemaName, schemaBody] of Object.entries(spec.components.schemas)) {
-                /**
-                 * If the schema has 'x-kubernetes-group-version-kind' property,
-                 * then it means it's a Kubernetes API resource.
-                 */
-                if (schemaBody['x-kubernetes-group-version-kind']) {
-                    groupVersionKindMap[schemaName].gvk = new Set();
-                    for (const item of schemaBody['x-kubernetes-group-version-kind']) {
-                        groupVersionKindMap[schemaName].gvk.add(
-                            JSON.stringify(item, Object.keys(item).sort()),
-                        );
-                    }
-
-                    for (const [pathName, pathBody] of Object.entries(spec.paths)) {
-                        /**
-                         * If the path has "post" method, then it means it's a create operation.
-                         */
-                        if (pathBody.post?.['x-kubernetes-group-version-kind']) {
-                            const pathGvk = JSON.stringify(
-                                pathBody.post['x-kubernetes-group-version-kind'],
-                                Object.keys(
-                                    pathBody.post['x-kubernetes-group-version-kind'],
-                                ).sort(),
-                            );
-                            if (groupVersionKindMap[schemaName].gvk.has(pathGvk)) {
-                                groupVersionKindMap[schemaName].path = pathName;
-                                groupVersionKindMap[schemaName].namespaced =
-                                    pathName.includes('{namespace}');
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        console.log(`Writing spec file ${pc.blueBright(file.name)}`);
-        spec.paths = {};
-        fs.writeFileSync(`${inputSpecPath}/${file.name}`, JSON.stringify(spec, null, 2));
+    if (!fs.existsSync(yamlSavePath)) {
+        const req = await fetch(crdPathOrUrl);
+        const data = await req.text();
+        fs.writeFileSync(yamlSavePath, data);
     }
 
-    fs.writeFileSync(
-        './group-version-kind-map.json',
-        JSON.stringify(
-            groupVersionKindMap,
-            (key, value) => {
-                if (value instanceof Set) {
-                    return Array.from(value).map((item) => JSON.parse(item));
-                }
-                return value;
-            },
-            2,
-        ),
-    );
-}
+    const project = new Project();
+    const crds = yaml.parseAllDocuments(fs.readFileSync(yamlSavePath, 'utf-8'));
+    for (const c of crds) {
+        const crd: CRD = c.toJS();
+        for (const version of crd.spec.versions) {
+            if (version.schema?.openAPIV3Schema) {
+                const className = `${crd.spec.names.kind}${version.name}`;
+                const i = await compile(version.schema.openAPIV3Schema, `${className}Args`, {
+                    bannerComment: '',
+                    additionalProperties: false,
+                    format: false,
+                });
+                const sourceFile = project.createSourceFile(
+                    path.join('crds', `${className}.ts`),
+                    i,
+                    {
+                        overwrite: true,
+                    },
+                );
+                const isNamespaced = crd.spec.scope === 'Namespaced';
 
+                const interfaceDecleration = sourceFile.getInterfaces()[0];
+                interfaceDecleration.getProperty('apiVersion')?.remove();
+                interfaceDecleration.getProperty('kind')?.remove();
+                interfaceDecleration.getProperty('status')?.remove();
+                const metadata = interfaceDecleration.getProperty('metadata');
+                metadata?.setIsReadonly(true);
+                metadata?.setHasQuestionToken(true);
+                const spec = interfaceDecleration.getProperty('spec');
+                spec?.setIsReadonly(true);
+                sourceFile.addImportDeclaration({
+                    moduleSpecifier: '@k8skonf/core',
+                    namedImports: ['K8sApp'],
+                });
+                if (isNamespaced) {
+                    metadata?.setType('NamespacedObjectMetav1');
+                    sourceFile.addImportDeclaration({
+                        moduleSpecifier: '@k8skonf/core',
+                        namedImports: ['NamespacedApiObject', 'NamespacedObjectMetav1'],
+                    });
+                } else {
+                    metadata?.setType('ObjectMetav1');
+                    sourceFile.addImportDeclaration({
+                        moduleSpecifier: '@k8skonf/core',
+                        namedImports: ['ApiObject', 'ObjectMetav1'],
+                    });
+                }
+
+                const classDecleration: ClassDeclarationStructure = {
+                    kind: StructureKind.Class,
+                    name: interfaceDecleration.getName().replace('Args', ''),
+                    extends: isNamespaced ? 'NamespacedApiObject' : 'ApiObject',
+                    isExported: true,
+                    properties: [
+                        {
+                            name: 'metadata',
+                            type: isNamespaced ? 'NamespacedObjectMetav1' : 'ObjectMetav1',
+                            isReadonly: true,
+                        },
+                        {
+                            name: 'spec',
+                            type: `${interfaceDecleration.getName()}['spec']`,
+                            isReadonly: true,
+                        },
+                    ],
+                    ctors: [
+                        {
+                            parameters: [
+                                {
+                                    name: 'app',
+                                    type: 'K8sApp',
+                                },
+                                {
+                                    name: 'name',
+                                    type: 'string',
+                                },
+                                {
+                                    name: 'args',
+                                    type: interfaceDecleration.getName(),
+                                },
+                            ],
+                            statements: [
+                                'super();',
+                                'this.metadata = args.metadata || { name };',
+                                'this.spec = args.spec;',
+                                'app.resources.push(this);',
+                            ],
+                        },
+                    ],
+                };
+                sourceFile.addClass(classDecleration);
+            }
+        }
+    }
+
+    log(`Saving generated files to the ${pc.yellowBright('crds')} directory`);
+    project.saveSync();
+    formatCode(path.resolve('crds'));
+}
 main();

@@ -21,7 +21,7 @@ download-schema:
 prepare-schema:
 	@echo "Preparing Kubernetes schema"
 	@cd packages/cli
-	@bun src/index.ts
+	@bun src/generateBaseModels.ts
 
 
 # Generate packages/cli/files/gen/models/*.ts files
@@ -44,7 +44,7 @@ restore-models:
 core: restore-models
 	@echo "Generating @k8skonf/core package"
 	@cd packages/cli
-	@bun src/morph.ts
+	@bun src/generateCore.ts
 	@cd ../core
 	@pnpm lint
 	@pnpm tsc --noEmit

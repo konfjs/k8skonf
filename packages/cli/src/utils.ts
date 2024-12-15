@@ -1,6 +1,8 @@
 import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import pc from 'picocolors';
+import resolvePackage from 'resolve-pkg';
 
 export function upperCaseFirstLetter(val: string) {
     return val.charAt(0).toUpperCase() + val.slice(1);
@@ -11,7 +13,17 @@ export function lowerCaseFirstLetter(val: string) {
 }
 
 export function formatCode(modelsPath: string) {
-    execSync(`npx biome format --write --indent-width=2 ${modelsPath}/`, { stdio: 'inherit' });
+    if (resolvePackage('@biomejs/biome')) {
+        console.log(`Formatting code in ${modelsPath} using ${pc.yellowBright('Biome')}`);
+        execSync(`npx biome format --write --indent-width=2 ${modelsPath}/`, { stdio: 'inherit' });
+    } else if (resolvePackage('prettier')) {
+        console.log(`Formatting code in ${modelsPath} using ${pc.yellowBright('Prettier')}`);
+        execSync(`npx prettier --write ${modelsPath}/`, { stdio: 'inherit' });
+    } else {
+        console.log(
+            pc.red("Couldn't find Prettier or Biome. The generated code was not formatted."),
+        );
+    }
 }
 
 export function removeUnusedFiles(modelsPath: string) {
