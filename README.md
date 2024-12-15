@@ -70,3 +70,11 @@ spec:
             - containerPort: 80
               name: http
 ```
+
+## CRDs
+
+Usage:
+
+```sh
+npx @k8skonf/cli "https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/v2.13.2/manifests/crds/appproject-crd.yaml"
+```
