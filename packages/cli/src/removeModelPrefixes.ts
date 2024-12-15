@@ -1,5 +1,5 @@
 import pc from 'picocolors';
-import { GroupVersionKindMap } from './index.js';
+import { GroupVersionKindMap } from './generateBaseModels.js';
 
 export interface K8sOpenApiSpec {
     components: {

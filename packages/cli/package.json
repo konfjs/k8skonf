@@ -1,6 +1,6 @@
 {
   "name": "@k8skonf/cli",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": {
     "name": "konfjs",
     "url": "https://github.com/konfjs"
@@ -32,19 +32,27 @@
       "types": "./src/index.ts"
     }
   },
+  "bin": {
+    "@k8skonf/cli": "./dist/index.js"
+  },
   "scripts": {
     "lint": "biome lint",
-    "build": "rm -rf dist && tsc",
-    "prepack": "pnpm run build",
-    "gen": "rm -rf ./files/gen && openapi-generator-cli generate"
+    "gen": "rm -rf ./files/gen && openapi-generator-cli generate",
+    "add_shebang": "perl -i -pe 's,#!/usr/bin/env tsx,#!/usr/bin/env node,g' dist/index.js",
+    "build": "rm -rf dist && tsc && pnpm run add_shebang && chmod +x dist/index.js",
+    "prepack": "pnpm run build"
   },
   "files": ["dist"],
   "devDependencies": {
+    "@k8skonf/core": "workspace:*",
     "@openapitools/openapi-generator-cli": "2.15.3",
     "typescript": "5.7.2"
   },
   "dependencies": {
+    "commander": "^12.1.0",
+    "json-schema-to-typescript": "^15.0.3",
     "picocolors": "^1.1.1",
+    "resolve-pkg": "^2.0.0",
     "ts-morph": "^24.0.0",
     "yaml": "^2.6.1"
   }
