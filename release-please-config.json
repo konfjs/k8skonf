@@ -17,6 +17,11 @@
       "type": "chore",
       "hidden": false,
       "section": "Chores"
+    },
+    {
+      "type": "ci",
+      "hidden": false,
+      "section": "Chores"
     }
   ],
   "packages": {
