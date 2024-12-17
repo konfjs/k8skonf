@@ -25,7 +25,6 @@
   ],
   "publishConfig": {
     "access": "public",
-    "provenance": true,
     "exports": {
       ".": {
         "import": "./dist/index.js",
