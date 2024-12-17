@@ -13,7 +13,7 @@ permissions:
 jobs:
   release:
     outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
+      releases_created: ${{ steps.release.outputs.releases_created }}
       paths_released: ${{ steps.release.outputs.paths_released }}
     runs-on: ubuntu-24.04
     steps:
@@ -22,10 +22,15 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Print release outputs
+        run: |
+          echo "Release created: ${{ steps.release.outputs.releases_created }}"
+          echo "Paths released: ${{ steps.release.outputs.paths_released }}"
+
   publish:
     runs-on: ubuntu-24.04
     needs: release
-    if: needs.release.outputs.release_created
+    if: needs.release.outputs.releases_created
     strategy:
       matrix:
         package: ${{ needs.release.outputs.paths_released }}
