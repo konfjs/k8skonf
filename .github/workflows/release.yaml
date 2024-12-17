@@ -64,3 +64,4 @@ jobs:
         run: pnpm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
