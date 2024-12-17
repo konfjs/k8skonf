@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.3](https://github.com/konfjs/k8skonf/compare/core-v1.32.2...core-v1.32.3) (2024-12-17)
+
+
+### Bug Fixes
+
+* **core:** use yaml 1.1 schema to render ([#44](https://github.com/konfjs/k8skonf/issues/44)) ([6a8d79a](https://github.com/konfjs/k8skonf/commit/6a8d79ab8bea6e015e1448788befae94545b290f))
+
 ## [1.32.2](https://github.com/konfjs/k8skonf/compare/core-v1.32.1...core-v1.32.2) (2024-12-17)
 
 
