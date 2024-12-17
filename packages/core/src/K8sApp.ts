@@ -32,7 +32,7 @@ export class K8sApp {
             if (fs.existsSync(this.outputName)) {
                 fs.rmSync(this.outputName, { recursive: true });
             }
-            fs.mkdirSync(this.outputName);
+            fs.mkdirSync(this.outputName, { recursive: true });
             for (const r of this.resources) {
                 console.log(
                     pc.blueBright(
