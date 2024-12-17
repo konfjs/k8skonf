@@ -30,7 +30,7 @@ jobs:
   publish:
     runs-on: ubuntu-24.04
     needs: release
-    if: needs.release.outputs.releases_created
+    if: needs.release.outputs.releases_created == 'true'
     strategy:
       matrix:
         package: ${{ needs.release.outputs.paths_released }}
