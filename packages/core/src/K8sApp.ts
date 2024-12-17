@@ -36,11 +36,11 @@ export class K8sApp {
             for (const r of this.resources) {
                 console.log(
                     pc.blueBright(
-                        `Saving to ${path.join(this.outputName, `${r.metadata.name}.yaml`)}`,
+                        `Saving to ${path.join(this.outputName, `${r.kind}.${r.metadata.name}.yaml`)}`,
                     ),
                 );
                 fs.writeFileSync(
-                    path.join(this.outputName, `${r.metadata.name}.yaml`),
+                    path.join(this.outputName, `${r.kind}.${r.metadata.name}.yaml`),
                     yaml.stringify(r),
                 );
             }

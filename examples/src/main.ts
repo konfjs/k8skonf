@@ -1,7 +1,7 @@
 import { Helm, K8sApp } from '@k8skonf/core';
 import { Deploymentv1 } from '@k8skonf/core/Deploymentv1';
 
-const app = new K8sApp('my-k8s-app');
+const app = new K8sApp('my-k8s-app', 'filePerResource');
 
 const chart = new Helm(app, 'ingress-nginx', {
     chart: 'ingress-nginx',
