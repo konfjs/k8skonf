@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.31.0](https://github.com/konfjs/k8skonf/compare/core-v0.2.0...core-v1.31.0) (2024-12-17)
+
+
+### Chores
+
+* release core as v1.31.0 ([#28](https://github.com/konfjs/k8skonf/issues/28)) ([eda20c2](https://github.com/konfjs/k8skonf/commit/eda20c23bab76ed2844161e49aa14de869f451b7))
+
 ## 0.2.0 (2024-12-17)
 
 
