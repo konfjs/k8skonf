@@ -24,7 +24,7 @@ export class K8sApp {
     }
 
     toYaml() {
-        return `---\n${this.resources.map((resource) => yaml.stringify(resource)).join('---\n')}`;
+        return `---\n${this.resources.map((resource) => yaml.stringify(resource, { schema: 'yaml-1.1' })).join('---\n')}`;
     }
 
     save() {
@@ -41,7 +41,7 @@ export class K8sApp {
                 );
                 fs.writeFileSync(
                     path.join(this.outputName, `${r.kind}.${r.metadata.name}.yaml`),
-                    yaml.stringify(r),
+                    yaml.stringify(r, { schema: 'yaml-1.1' }),
                 );
             }
         } else {

@@ -71,7 +71,7 @@ export class Helm {
             let tmpValuesDir = '';
             if (args.valuesObject) {
                 try {
-                    const content = yaml.stringify(args.valuesObject);
+                    const content = yaml.stringify(args.valuesObject, { schema: 'yaml-1.1' });
                     tmpValuesDir = fs.mkdtempSync(path.join(os.tmpdir(), 'k8skonf-helm-values-'), {
                         encoding: 'utf-8',
                     });
