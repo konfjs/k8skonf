@@ -27,10 +27,13 @@ export function formatCode(modelsPath: string) {
 }
 
 export function removeUnusedFiles(modelsPath: string) {
-    const unusedFiles = new Set(['V1Event.ts']);
-    const keepStatusFiles = new Set(['V1IngressPortStatus.ts', 'V1PortStatus.ts']);
+    const unusedFiles = new Set([
+        'V1Event.ts',
+        'LoadBalancerIngressv1.ts',
+        'IngressLoadBalancerIngressv1.ts',
+    ]);
     fs.readdirSync(modelsPath).forEach((file) => {
-        if ((file.endsWith('Status.ts') && !keepStatusFiles.has(file)) || unusedFiles.has(file)) {
+        if (file.endsWith('Status.ts') || unusedFiles.has(file)) {
             fs.rmSync(path.join(modelsPath, file));
         }
     });
