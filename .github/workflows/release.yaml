@@ -22,7 +22,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-  provenance:
+  publish:
     runs-on: ubuntu-24.04
     needs: release
     if: needs.release.outputs.release_created
@@ -30,31 +30,32 @@ jobs:
       matrix:
         package: ${{ needs.release.outputs.paths_released }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
           cache-dependency-path: ./pnpm-lock.yaml
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.package }}
+        run: pnpm install
 
       - name: Build package
         working-directory: ${{ matrix.package }}
         run: pnpm build
 
-      - name: Generate provenance statement with package as attestation subject
+      - name: Publish package
         working-directory: ${{ matrix.package }}
-        run: npx @npmcli/provenance-cli generate *.tgz -o provenance-statement.json
-
-      - name: Sign provenance statement
-        working-directory: ${{ matrix.package }}
-        run: npx @sigstore/cli attest ./provenance-statement.json -o provenance.sigstore.json
-
-      - name: Verify provenance statement
-        working-directory: ${{ matrix.package }}
-        run: npx @sigstore/cli verify provenance.sigstore.json
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: provenance-sigstore.json
-          path: ${{ matrix.package }}/provenance.sigstore.json
+        run: pnpm publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
