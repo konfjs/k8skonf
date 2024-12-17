@@ -25,7 +25,7 @@ jobs:
   provenance:
     runs-on: ubuntu-24.04
     needs: release
-    if: needs.release.outputs.release_created == 'true'
+    if: needs.release.outputs.release_created
     strategy:
       matrix:
         package: ${{ needs.release.outputs.paths_released }}

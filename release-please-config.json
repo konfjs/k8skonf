@@ -25,7 +25,11 @@
     }
   ],
   "packages": {
-    "packages/cli": {},
-    "packages/core": {}
+    "packages/cli": {
+      "package-name": "@k8skonf/cli"
+    },
+    "packages/core": {
+      "package-name": "@k8skonf/core"
+    }
   }
 }
