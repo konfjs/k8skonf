@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/konfjs/k8skonf/compare/cli-v0.3.0...cli-v0.3.1) (2024-12-17)
+
+
+### Chores
+
+* add provenance as env ([#37](https://github.com/konfjs/k8skonf/issues/37)) ([b248750](https://github.com/konfjs/k8skonf/commit/b24875095595e727911041225872d49a5a86a7f9))
+
 ## [0.3.0](https://github.com/konfjs/k8skonf/compare/cli-v0.2.0...cli-v0.3.0) (2024-12-17)
 
 

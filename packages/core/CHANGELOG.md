@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.32.1](https://github.com/konfjs/k8skonf/compare/core-v1.32.0...core-v1.32.1) (2024-12-17)
+
+
+### Chores
+
+* add provenance as env ([#37](https://github.com/konfjs/k8skonf/issues/37)) ([b248750](https://github.com/konfjs/k8skonf/commit/b24875095595e727911041225872d49a5a86a7f9))
+* **core:** use `Kind.name.yaml` syntax to save [#38](https://github.com/konfjs/k8skonf/issues/38) ([7243ab5](https://github.com/konfjs/k8skonf/commit/7243ab55226ad1ecf84a038fe39016a1d629957f))
+
 ## [1.32.0](https://github.com/konfjs/k8skonf/compare/core-v1.31.0...core-v1.32.0) (2024-12-17)
 
 
