@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.32.0](https://github.com/konfjs/k8skonf/compare/core-v1.31.0...core-v1.32.0) (2024-12-17)
+
+
+### Features
+
+* **core:** add k8s v1.32.0 ([#30](https://github.com/konfjs/k8skonf/issues/30)) ([d2e3efe](https://github.com/konfjs/k8skonf/commit/d2e3efe58828002e2806d2f97d26cf3b06eecf9f))
+
+
+### Chores
+
+* enable provenance config ([#33](https://github.com/konfjs/k8skonf/issues/33)) ([6f50318](https://github.com/konfjs/k8skonf/commit/6f50318bf646250f0dd57630812a2592aaa01265))
+
 ## [1.31.0](https://github.com/konfjs/k8skonf/compare/core-v0.2.0...core-v1.31.0) (2024-12-17)
 
 
