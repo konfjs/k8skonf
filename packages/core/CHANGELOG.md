@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.2](https://github.com/konfjs/k8skonf/compare/core-v1.32.1...core-v1.32.2) (2024-12-17)
+
+
+### Bug Fixes
+
+* recursively try to create a dir ([#41](https://github.com/konfjs/k8skonf/issues/41)) ([59d41e5](https://github.com/konfjs/k8skonf/commit/59d41e53d38fdf28a4b20d7bb3ae132730b55b9d))
+
 ## [1.32.1](https://github.com/konfjs/k8skonf/compare/core-v1.32.0...core-v1.32.1) (2024-12-17)
 
 
