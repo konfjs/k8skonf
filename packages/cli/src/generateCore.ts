@@ -129,6 +129,14 @@ function morph() {
             if (classDeclaration && className) {
                 removeUnusedThings(sourceFile, classDeclaration, className, groupVersionKindMap);
                 /**
+                 * Remove all the Status classes.
+                 */
+                const isStatus = /^[A-Za-z]+Statusv\d/;
+                if (sourceFile.getBaseNameWithoutExtension().match(isStatus)) {
+                    sourceFile.delete();
+                    continue;
+                }
+                /**
                  * If the groupVersionKindMap contains the "path" property, then it's a Kubernetes API resource.
                  * Everything else should be interfaces.
                  */
