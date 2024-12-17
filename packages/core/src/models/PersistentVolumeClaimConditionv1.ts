@@ -19,7 +19,7 @@ export interface PersistentVolumeClaimConditionv1 {
    */
   reason?: string;
   /**
-   *
+   * Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about
    */
   type: string;
 }

@@ -3,7 +3,7 @@ SHELL := /bin/bash
 .ONESHELL:
 
 
-k8sVersion := v1.31.0
+k8sVersion := v1.32.0
 
 
 # Download Kubernetes OpenAPI schemas to packages/cli/files/kubernetes/api/openapi-spec/v3/*.json
@@ -11,9 +11,14 @@ k8sVersion := v1.31.0
 download-schema:
 	@echo "Downloading Kubernetes schema version $(k8sVersion)"
 	@cd packages/cli
-	@mkdir -p files/kubernetes
-	@git clone --depth=1 --branch $(k8sVersion) --single-branch --filter=blob:none \
-			https://github.com/kubernetes/kubernetes.git files/kubernetes
+	@if [ -d "files/kubernetes" ]; then \
+		echo "kubernetes directory already exists"; \
+		echo "Updating to version $(k8sVersion)"; \
+		cd files/kubernetes && git fetch --tags && git checkout $(k8sVersion); \
+	else \
+		git clone --depth=1 --branch $(k8sVersion) --single-branch --filter=blob:none \
+			https://github.com/kubernetes/kubernetes.git files/kubernetes; \
+	fi
 
 
 # Generate packages/cli/src/input-spec/*.json files

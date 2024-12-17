@@ -6,7 +6,7 @@ import { ResourceClaimSpecv1alpha3 } from './ResourceClaimSpecv1alpha3.js';
  */
 export interface ResourceClaimTemplateSpecv1alpha3 {
   /**
-   * ObjectMeta may contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
+   * ObjectMeta may contain labels and annotations that will be copied into the ResourceClaim when creating it. No other fields are allowed and will be rejected during validation.
    */
   metadata?: ObjectMetav1;
   /**

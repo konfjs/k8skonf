@@ -97,7 +97,7 @@
         "type": "object"
       },
       "CSIPersistentVolumeSourcev1": {
-        "description": "Represents storage that is managed by an external CSI volume driver (Beta feature)",
+        "description": "Represents storage that is managed by an external CSI volume driver",
         "properties": {
           "controllerExpandSecretRef": {
             "allOf": [
@@ -476,7 +476,7 @@
         "type": "object"
       },
       "LocalVolumeSourcev1": {
-        "description": "Local represents directly-attached storage with node affinity (Beta feature)",
+        "description": "Local represents directly-attached storage with node affinity",
         "properties": {
           "fsType": {
             "description": "fsType is the filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. \"ext4\", \"xfs\", \"ntfs\". The default value is to auto-select a filesystem if unspecified.",
@@ -649,52 +649,12 @@
             "type": "array",
             "x-kubernetes-list-type": "atomic"
           },
-          "awsElasticBlockStore": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AWSElasticBlockStoreVolumeSourcev1"
-              }
-            ],
-            "description": "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore"
-          },
-          "azureDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AzureDiskVolumeSourcev1"
-              }
-            ],
-            "description": "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod."
-          },
-          "azureFile": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AzureFilePersistentVolumeSourcev1"
-              }
-            ],
-            "description": "azureFile represents an Azure File Service mount on the host and bind mount to the pod."
-          },
           "capacity": {
             "additionalProperties": {
               "$ref": "#/components/schemas/Quantity"
             },
             "description": "capacity is the description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity",
             "type": "object"
-          },
-          "cephfs": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CephFSPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime"
-          },
-          "cinder": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CinderPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md"
           },
           "claimRef": {
             "allOf": [
@@ -711,7 +671,7 @@
                 "$ref": "#/components/schemas/CSIPersistentVolumeSourcev1"
               }
             ],
-            "description": "csi represents storage that is handled by an external CSI driver (Beta feature)."
+            "description": "csi represents storage that is handled by an external CSI driver."
           },
           "fc": {
             "allOf": [
@@ -720,38 +680,6 @@
               }
             ],
             "description": "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod."
-          },
-          "flexVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FlexPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin."
-          },
-          "flocker": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FlockerVolumeSourcev1"
-              }
-            ],
-            "description": "flocker represents a Flocker volume attached to a kubelet's host machine and exposed to the pod for its usage. This depends on the Flocker control service being running"
-          },
-          "gcePersistentDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GCEPersistentDiskVolumeSourcev1"
-              }
-            ],
-            "description": "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk"
-          },
-          "glusterfs": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GlusterfsPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "glusterfs represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. More info: https://examples.k8s.io/volumes/glusterfs/README.md"
           },
           "hostPath": {
             "allOf": [
@@ -806,57 +734,9 @@
             "description": "persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming",
             "type": "string"
           },
-          "photonPersistentDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhotonPersistentDiskVolumeSourcev1"
-              }
-            ],
-            "description": "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine"
-          },
-          "portworxVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PortworxVolumeSourcev1"
-              }
-            ],
-            "description": "portworxVolume represents a portworx volume attached and mounted on kubelets host machine"
-          },
-          "quobyte": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/QuobyteVolumeSourcev1"
-              }
-            ],
-            "description": "quobyte represents a Quobyte mount on the host that shares a pod's lifetime"
-          },
-          "rbd": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RBDPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md"
-          },
-          "scaleIO": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ScaleIOPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes."
-          },
           "storageClassName": {
             "description": "storageClassName is the name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.",
             "type": "string"
-          },
-          "storageos": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageOSPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "storageOS represents a StorageOS volume that is attached to the kubelet's host machine and mounted into the pod More info: https://examples.k8s.io/volumes/storageos/README.md"
           },
           "volumeAttributesClassName": {
             "description": "Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
@@ -865,14 +745,6 @@
           "volumeMode": {
             "description": "volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.",
             "type": "string"
-          },
-          "vsphereVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/VsphereVirtualDiskVolumeSourcev1"
-              }
-            ],
-            "description": "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine"
           }
         },
         "type": "object"
@@ -1609,7 +1481,7 @@
         ]
       },
       "VolumeAttachmentSourcev1": {
-        "description": "VolumeAttachmentSource represents a volume that should be attached. Right now only PersistenVolumes can be attached via external attacher, in future we may allow also inline volumes in pods. Exactly one member can be set.",
+        "description": "VolumeAttachmentSource represents a volume that should be attached. Right now only PersistentVolumes can be attached via external attacher, in the future we may allow also inline volumes in pods. Exactly one member can be set.",
         "properties": {
           "inlineVolumeSpec": {
             "allOf": [
@@ -1826,6 +1698,10 @@
             "format": "int64",
             "type": "integer"
           },
+          "ignoreStoreReadErrorWithClusterBreakingPotential": {
+            "description": "if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it",
+            "type": "boolean"
+          },
           "kind": {
             "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
             "type": "string"
@@ -1988,7 +1864,7 @@
           {
             "group": "coordination.k8s.io",
             "kind": "DeleteOptions",
-            "version": "v1alpha1"
+            "version": "v1alpha2"
           },
           {
             "group": "coordination.k8s.io",
@@ -2109,6 +1985,11 @@
             "group": "resource.k8s.io",
             "kind": "DeleteOptions",
             "version": "v1alpha3"
+          },
+          {
+            "group": "resource.k8s.io",
+            "kind": "DeleteOptions",
+            "version": "v1beta1"
           },
           {
             "group": "scheduling.k8s.io",
@@ -2721,7 +2602,7 @@
           {
             "group": "coordination.k8s.io",
             "kind": "WatchEvent",
-            "version": "v1alpha1"
+            "version": "v1alpha2"
           },
           {
             "group": "coordination.k8s.io",
@@ -2842,6 +2723,11 @@
             "group": "resource.k8s.io",
             "kind": "WatchEvent",
             "version": "v1alpha3"
+          },
+          {
+            "group": "resource.k8s.io",
+            "kind": "WatchEvent",
+            "version": "v1beta1"
           },
           {
             "group": "scheduling.k8s.io",

@@ -1,5 +1,5 @@
 /**
- *
+ * TypedObjectReference contains enough information to let you locate the typed referenced object
  */
 export interface TypedObjectReferencev1 {
   /**

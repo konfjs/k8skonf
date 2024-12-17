@@ -7,7 +7,7 @@ export interface OpaqueDeviceConfigurationv1alpha3 {
    */
   driver: string;
   /**
-   * Parameters can contain arbitrary data. It is the responsibility of the driver developer to handle validation and versioning. Typically this includes self-identification and a version (\"kind\" + \"apiVersion\" for Kubernetes types), with conversion between different versions.
+   * Parameters can contain arbitrary data. It is the responsibility of the driver developer to handle validation and versioning. Typically this includes self-identification and a version (\"kind\" + \"apiVersion\" for Kubernetes types), with conversion between different versions.  The length of the raw data must be smaller or equal to 10 Ki.
    */
   parameters: any;
 }

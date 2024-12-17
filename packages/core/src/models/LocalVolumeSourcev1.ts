@@ -1,5 +1,5 @@
 /**
- * Local represents directly-attached storage with node affinity (Beta feature)
+ * Local represents directly-attached storage with node affinity
  */
 export interface LocalVolumeSourcev1 {
   /**
