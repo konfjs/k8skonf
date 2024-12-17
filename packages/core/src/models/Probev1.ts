@@ -8,7 +8,7 @@ import { TCPSocketActionv1 } from './TCPSocketActionv1.js';
  */
 export interface Probev1 {
   /**
-   * Exec specifies the action to take.
+   * Exec specifies a command to execute in the container.
    */
   exec?: ExecActionv1;
   /**
@@ -16,11 +16,11 @@ export interface Probev1 {
    */
   failureThreshold?: number;
   /**
-   * GRPC specifies an action involving a GRPC port.
+   * GRPC specifies a GRPC HealthCheckRequest.
    */
   grpc?: GRPCActionv1;
   /**
-   * HTTPGet specifies the http request to perform.
+   * HTTPGet specifies an HTTP GET request to perform.
    */
   httpGet?: HTTPGetActionv1;
   /**
@@ -36,7 +36,7 @@ export interface Probev1 {
    */
   successThreshold?: number;
   /**
-   * TCPSocket specifies an action involving a TCP port.
+   * TCPSocket specifies a connection to a TCP port.
    */
   tcpSocket?: TCPSocketActionv1;
   /**

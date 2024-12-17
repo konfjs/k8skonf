@@ -8,19 +8,19 @@ import { TCPSocketActionv1 } from './TCPSocketActionv1.js';
  */
 export interface LifecycleHandlerv1 {
   /**
-   * Exec specifies the action to take.
+   * Exec specifies a command to execute in the container.
    */
   exec?: ExecActionv1;
   /**
-   * HTTPGet specifies the http request to perform.
+   * HTTPGet specifies an HTTP GET request to perform.
    */
   httpGet?: HTTPGetActionv1;
   /**
-   * Sleep represents the duration that the container should sleep before being terminated.
+   * Sleep represents a duration that the container should sleep.
    */
   sleep?: SleepActionv1;
   /**
-   * Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.
+   * Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.
    */
   tcpSocket?: TCPSocketActionv1;
 }

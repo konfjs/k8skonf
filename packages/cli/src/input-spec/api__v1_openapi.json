@@ -402,7 +402,7 @@
         "type": "object"
       },
       "Bindingv1": {
-        "description": "Binding ties one object to another; for example, a pod is bound to a node by a scheduler. Deprecated in 1.7, please use the bindings subresource of pods instead.",
+        "description": "Binding ties one object to another; for example, a pod is bound to a node by a scheduler.",
         "properties": {
           "apiVersion": {
             "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -444,7 +444,7 @@
         ]
       },
       "CSIPersistentVolumeSourcev1": {
-        "description": "Represents storage that is managed by an external CSI volume driver (Beta feature)",
+        "description": "Represents storage that is managed by an external CSI volume driver",
         "properties": {
           "controllerExpandSecretRef": {
             "allOf": [
@@ -2471,6 +2471,7 @@
         "type": "object"
       },
       "GRPCActionv1": {
+        "description": "GRPCAction specifies an action involving a GRPC service.",
         "properties": {
           "port": {
             "default": 0,
@@ -2888,7 +2889,7 @@
                 "$ref": "#/components/schemas/ExecActionv1"
               }
             ],
-            "description": "Exec specifies the action to take."
+            "description": "Exec specifies a command to execute in the container."
           },
           "httpGet": {
             "allOf": [
@@ -2896,7 +2897,7 @@
                 "$ref": "#/components/schemas/HTTPGetActionv1"
               }
             ],
-            "description": "HTTPGet specifies the http request to perform."
+            "description": "HTTPGet specifies an HTTP GET request to perform."
           },
           "sleep": {
             "allOf": [
@@ -2904,7 +2905,7 @@
                 "$ref": "#/components/schemas/SleepActionv1"
               }
             ],
-            "description": "Sleep represents the duration that the container should sleep before being terminated."
+            "description": "Sleep represents a duration that the container should sleep."
           },
           "tcpSocket": {
             "allOf": [
@@ -2912,7 +2913,7 @@
                 "$ref": "#/components/schemas/TCPSocketActionv1"
               }
             ],
-            "description": "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified."
+            "description": "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified."
           }
         },
         "type": "object"
@@ -3122,7 +3123,7 @@
         "x-kubernetes-map-type": "atomic"
       },
       "LocalVolumeSourcev1": {
-        "description": "Local represents directly-attached storage with node affinity (Beta feature)",
+        "description": "Local represents directly-attached storage with node affinity",
         "properties": {
           "fsType": {
             "description": "fsType is the filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. \"ext4\", \"xfs\", \"ntfs\". The default value is to auto-select a filesystem if unspecified.",
@@ -3233,12 +3234,19 @@
         "description": "NamespaceCondition contains details about state of namespace.",
         "properties": {
           "lastTransitionTime": {
-            "$ref": "#/components/schemas/Timev1"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Timev1"
+              }
+            ],
+            "description": "Last time the condition transitioned from one status to another."
           },
           "message": {
+            "description": "Human-readable message indicating details about last transition.",
             "type": "string"
           },
           "reason": {
+            "description": "Unique, one-word, CamelCase reason for the condition's last transition.",
             "type": "string"
           },
           "status": {
@@ -3680,7 +3688,7 @@
         "description": "NodeStatus is information about the current status of a node.",
         "properties": {
           "addresses": {
-            "description": "List of addresses reachable to the node. Queried from cloud provider, if available. More info: https://kubernetes.io/docs/concepts/nodes/node/#addresses Note: This field is declared as mergeable, but the merge key is not sufficiently unique, which can cause data corruption when it is merged. Callers should instead use a full-replacement patch. See https://pr.k8s.io/79391 for an example. Consumers should assume that addresses can change during the lifetime of a Node. However, there are some exceptions where this may not be possible, such as Pods that inherit a Node's address in its own status or consumers of the downward API (status.hostIP).",
+            "description": "List of addresses reachable to the node. Queried from cloud provider, if available. More info: https://kubernetes.io/docs/reference/node/node-status/#addresses Note: This field is declared as mergeable, but the merge key is not sufficiently unique, which can cause data corruption when it is merged. Callers should instead use a full-replacement patch. See https://pr.k8s.io/79391 for an example. Consumers should assume that addresses can change during the lifetime of a Node. However, there are some exceptions where this may not be possible, such as Pods that inherit a Node's address in its own status or consumers of the downward API (status.hostIP).",
             "items": {
               "allOf": [
                 {
@@ -3712,7 +3720,7 @@
             "type": "object"
           },
           "conditions": {
-            "description": "Conditions is an array of current observed node conditions. More info: https://kubernetes.io/docs/concepts/nodes/node/#condition",
+            "description": "Conditions is an array of current observed node conditions. More info: https://kubernetes.io/docs/reference/node/node-status/#condition",
             "items": {
               "allOf": [
                 {
@@ -3774,7 +3782,7 @@
               }
             ],
             "default": {},
-            "description": "Set of ids/uuids to uniquely identify the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#info"
+            "description": "Set of ids/uuids to uniquely identify the node. More info: https://kubernetes.io/docs/reference/node/node-status/#info"
           },
           "phase": {
             "description": "NodePhase is the recently observed lifecycle phase of the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#phase The field is never populated, and now is deprecated.",
@@ -4060,10 +4068,12 @@
           },
           "status": {
             "default": "",
+            "description": "Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required",
             "type": "string"
           },
           "type": {
             "default": "",
+            "description": "Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about",
             "type": "string"
           }
         },
@@ -4266,52 +4276,12 @@
             "type": "array",
             "x-kubernetes-list-type": "atomic"
           },
-          "awsElasticBlockStore": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AWSElasticBlockStoreVolumeSourcev1"
-              }
-            ],
-            "description": "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore"
-          },
-          "azureDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AzureDiskVolumeSourcev1"
-              }
-            ],
-            "description": "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod."
-          },
-          "azureFile": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AzureFilePersistentVolumeSourcev1"
-              }
-            ],
-            "description": "azureFile represents an Azure File Service mount on the host and bind mount to the pod."
-          },
           "capacity": {
             "additionalProperties": {
               "$ref": "#/components/schemas/Quantity"
             },
             "description": "capacity is the description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity",
             "type": "object"
-          },
-          "cephfs": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CephFSPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime"
-          },
-          "cinder": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CinderPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md"
           },
           "claimRef": {
             "allOf": [
@@ -4328,7 +4298,7 @@
                 "$ref": "#/components/schemas/CSIPersistentVolumeSourcev1"
               }
             ],
-            "description": "csi represents storage that is handled by an external CSI driver (Beta feature)."
+            "description": "csi represents storage that is handled by an external CSI driver."
           },
           "fc": {
             "allOf": [
@@ -4337,38 +4307,6 @@
               }
             ],
             "description": "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod."
-          },
-          "flexVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FlexPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin."
-          },
-          "flocker": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FlockerVolumeSourcev1"
-              }
-            ],
-            "description": "flocker represents a Flocker volume attached to a kubelet's host machine and exposed to the pod for its usage. This depends on the Flocker control service being running"
-          },
-          "gcePersistentDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GCEPersistentDiskVolumeSourcev1"
-              }
-            ],
-            "description": "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk"
-          },
-          "glusterfs": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GlusterfsPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "glusterfs represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. More info: https://examples.k8s.io/volumes/glusterfs/README.md"
           },
           "hostPath": {
             "allOf": [
@@ -4423,57 +4361,9 @@
             "description": "persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming",
             "type": "string"
           },
-          "photonPersistentDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhotonPersistentDiskVolumeSourcev1"
-              }
-            ],
-            "description": "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine"
-          },
-          "portworxVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PortworxVolumeSourcev1"
-              }
-            ],
-            "description": "portworxVolume represents a portworx volume attached and mounted on kubelets host machine"
-          },
-          "quobyte": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/QuobyteVolumeSourcev1"
-              }
-            ],
-            "description": "quobyte represents a Quobyte mount on the host that shares a pod's lifetime"
-          },
-          "rbd": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RBDPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md"
-          },
-          "scaleIO": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ScaleIOPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes."
-          },
           "storageClassName": {
             "description": "storageClassName is the name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.",
             "type": "string"
-          },
-          "storageos": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageOSPersistentVolumeSourcev1"
-              }
-            ],
-            "description": "storageOS represents a StorageOS volume that is attached to the kubelet's host machine and mounted into the pod More info: https://examples.k8s.io/volumes/storageos/README.md"
           },
           "volumeAttributesClassName": {
             "description": "Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
@@ -4482,14 +4372,6 @@
           "volumeMode": {
             "description": "volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.",
             "type": "string"
-          },
-          "vsphereVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/VsphereVirtualDiskVolumeSourcev1"
-              }
-            ],
-            "description": "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine"
           }
         },
         "type": "object"
@@ -4792,10 +4674,11 @@
         "description": "PodDNSConfigOption defines DNS resolver options of a pod.",
         "properties": {
           "name": {
-            "description": "Required.",
+            "description": "Name is this DNS resolver option's name. Required.",
             "type": "string"
           },
           "value": {
+            "description": "Value is this DNS resolver option's value.",
             "type": "string"
           }
         },
@@ -4930,6 +4813,10 @@
             "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
             "format": "int64",
             "type": "integer"
+          },
+          "seLinuxChangePolicy": {
+            "description": "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are \"MountOption\" and \"Recursive\".\n\n\"Recursive\" means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node.\n\n\"MountOption\" mounts all eligible Pod volumes with `-o context` mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. \"MountOption\" value is allowed only when SELinuxMount feature gate is enabled.\n\nIf not specified and SELinuxMount feature gate is enabled, \"MountOption\" is used. If not specified and SELinuxMount feature gate is disabled, \"MountOption\" is used for ReadWriteOncePod volumes and \"Recursive\" for all other volumes.\n\nThis field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers.\n\nAll Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+            "type": "string"
           },
           "seLinuxOptions": {
             "allOf": [
@@ -5203,6 +5090,14 @@
             "x-kubernetes-patch-merge-key": "name",
             "x-kubernetes-patch-strategy": "merge,retainKeys"
           },
+          "resources": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRequirementsv1"
+              }
+            ],
+            "description": "Resources is the total amount of CPU and Memory resources required by all containers in the pod. It supports specifying Requests and Limits for \"cpu\" and \"memory\" resource names only. ResourceClaims are not supported.\n\nThis field enables fine-grained control over resource allocation for the entire pod, allowing resource sharing among containers in a pod.\n\nThis is an alpha field and requires enabling the PodLevelResources feature gate."
+          },
           "restartPolicy": {
             "description": "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
             "type": "string"
@@ -5246,7 +5141,7 @@
             "type": "string"
           },
           "setHostnameAsFQDN": {
-            "description": "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
+            "description": "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\Services\\\\Tcpip\\\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
             "type": "boolean"
           },
           "shareProcessNamespace": {
@@ -5340,7 +5235,7 @@
             "x-kubernetes-patch-strategy": "merge"
           },
           "containerStatuses": {
-            "description": "The list has one entry per container in the manifest. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status",
+            "description": "Statuses of containers in this pod. Each container in the pod should have at most one status in this list, and all statuses should be for containers in the pod. However this is not enforced. If a status for a non-existent container is present in the list, or the list has duplicate names, the behavior of various Kubernetes components is not defined and those statuses might be ignored. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status",
             "items": {
               "allOf": [
                 {
@@ -5353,7 +5248,7 @@
             "x-kubernetes-list-type": "atomic"
           },
           "ephemeralContainerStatuses": {
-            "description": "Status for any ephemeral containers that have run in this pod.",
+            "description": "Statuses for any ephemeral containers that have run in this pod. Each ephemeral container in the pod should have at most one status in this list, and all statuses should be for containers in the pod. However this is not enforced. If a status for a non-existent container is present in the list, or the list has duplicate names, the behavior of various Kubernetes components is not defined and those statuses might be ignored. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status",
             "items": {
               "allOf": [
                 {
@@ -5385,7 +5280,7 @@
             "x-kubernetes-patch-strategy": "merge"
           },
           "initContainerStatuses": {
-            "description": "The list has one entry per init container in the manifest. The most recent successful init container will have ready = true, the most recently started container will have startTime set. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status",
+            "description": "Statuses of init containers in this pod. The most recent successful non-restartable init container will have ready = true, the most recently started container will have startTime set. Each init container in the pod should have at most one status in this list, and all statuses should be for containers in the pod. However this is not enforced. If a status for a non-existent container is present in the list, or the list has duplicate names, the behavior of various Kubernetes components is not defined and those statuses might be ignored. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-and-container-status",
             "items": {
               "allOf": [
                 {
@@ -5536,6 +5431,7 @@
         "type": "object"
       },
       "PortStatusv1": {
+        "description": "PortStatus represents the error condition of a service port",
         "properties": {
           "error": {
             "description": "Error is to record the problem with the service port The format of the error shall comply with the following rules: - built-in error values shall be specified in this file and those shall use\n  CamelCase names\n- cloud provider specific error values must have names that comply with the\n  format foo.example.com/CamelCase.",
@@ -5615,7 +5511,7 @@
                 "$ref": "#/components/schemas/ExecActionv1"
               }
             ],
-            "description": "Exec specifies the action to take."
+            "description": "Exec specifies a command to execute in the container."
           },
           "failureThreshold": {
             "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
@@ -5628,7 +5524,7 @@
                 "$ref": "#/components/schemas/GRPCActionv1"
               }
             ],
-            "description": "GRPC specifies an action involving a GRPC port."
+            "description": "GRPC specifies a GRPC HealthCheckRequest."
           },
           "httpGet": {
             "allOf": [
@@ -5636,7 +5532,7 @@
                 "$ref": "#/components/schemas/HTTPGetActionv1"
               }
             ],
-            "description": "HTTPGet specifies the http request to perform."
+            "description": "HTTPGet specifies an HTTP GET request to perform."
           },
           "initialDelaySeconds": {
             "description": "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
@@ -5659,7 +5555,7 @@
                 "$ref": "#/components/schemas/TCPSocketActionv1"
               }
             ],
-            "description": "TCPSocket specifies an action involving a TCP port."
+            "description": "TCPSocket specifies a connection to a TCP port."
           },
           "terminationGracePeriodSeconds": {
             "description": "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
@@ -6060,7 +5956,7 @@
         "x-kubernetes-map-type": "atomic"
       },
       "ResourceHealthv1": {
-        "description": "ResourceHealth represents the health of a resource. It has the latest device health information. This is a part of KEP https://kep.k8s.io/4680 and historical health changes are planned to be added in future iterations of a KEP.",
+        "description": "ResourceHealth represents the health of a resource. It has the latest device health information. This is a part of KEP https://kep.k8s.io/4680.",
         "properties": {
           "health": {
             "description": "Health of the resource. can be one of:\n - Healthy: operates as normal\n - Unhealthy: reported unhealthy. We consider this a temporary health issue\n              since we do not have a mechanism today to distinguish\n              temporary and permanent issues.\n - Unknown: The status cannot be determined.\n            For example, Device Plugin got unregistered and hasn't been re-registered since.\n\nIn future we may want to introduce the PermanentlyUnhealthy Status.",
@@ -6212,14 +6108,15 @@
         "type": "object"
       },
       "ResourceStatusv1": {
+        "description": "ResourceStatus represents the status of a single resource allocated to a Pod.",
         "properties": {
           "name": {
             "default": "",
-            "description": "Name of the resource. Must be unique within the pod and match one of the resources from the pod spec.",
+            "description": "Name of the resource. Must be unique within the pod and in case of non-DRA resource, match one of the resources from the pod spec. For DRA resources, the value must be \"claim:<claim_name>/<request>\". When this status is reported about a container, the \"claim_name\" and \"request\" must match one of the claims of this container.",
             "type": "string"
           },
           "resources": {
-            "description": "List of unique Resources health. Each element in the list contains an unique resource ID and resource health. At a minimum, ResourceID must uniquely identify the Resource allocated to the Pod on the Node for the lifetime of a Pod. See ResourceID type for it's definition.",
+            "description": "List of unique resources health. Each element in the list contains an unique resource ID and its health. At a minimum, for the lifetime of a Pod, resource ID must uniquely identify the resource allocated to the Pod on the Node. If other Pod on the same Node reports the status with the same resource ID, it must be the same resource they share. See ResourceID type definition for a specific format it has in various use cases.",
             "items": {
               "allOf": [
                 {
@@ -6785,7 +6682,7 @@
             "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
           },
           "secrets": {
-            "description": "Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a \"kubernetes.io/enforce-mountable-secrets\" annotation set to \"true\". This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret",
+            "description": "Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a \"kubernetes.io/enforce-mountable-secrets\" annotation set to \"true\". The \"kubernetes.io/enforce-mountable-secrets\" annotation is deprecated since v1.32. Prefer separate namespaces to isolate access to mounted secrets. This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret",
             "items": {
               "allOf": [
                 {
@@ -6993,7 +6890,7 @@
             "description": "sessionAffinityConfig contains the configurations of session affinity."
           },
           "trafficDistribution": {
-            "description": "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to \"PreferClose\", implementations should prioritize endpoints that are topologically close (e.g., same zone). This is an alpha field and requires enabling ServiceTrafficDistribution feature.",
+            "description": "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to \"PreferClose\", implementations should prioritize endpoints that are topologically close (e.g., same zone). This is a beta field and requires enabling ServiceTrafficDistribution feature.",
             "type": "string"
           },
           "type": {
@@ -7308,6 +7205,7 @@
         "x-kubernetes-map-type": "atomic"
       },
       "TypedObjectReferencev1": {
+        "description": "TypedObjectReference contains enough information to let you locate the typed referenced object",
         "properties": {
           "apiGroup": {
             "description": "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -7337,46 +7235,6 @@
       "Volumev1": {
         "description": "Volume represents a named volume in a pod that may be accessed by any container in the pod.",
         "properties": {
-          "awsElasticBlockStore": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AWSElasticBlockStoreVolumeSourcev1"
-              }
-            ],
-            "description": "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore"
-          },
-          "azureDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AzureDiskVolumeSourcev1"
-              }
-            ],
-            "description": "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod."
-          },
-          "azureFile": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AzureFileVolumeSourcev1"
-              }
-            ],
-            "description": "azureFile represents an Azure File Service mount on the host and bind mount to the pod."
-          },
-          "cephfs": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CephFSVolumeSourcev1"
-              }
-            ],
-            "description": "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime"
-          },
-          "cinder": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CinderVolumeSourcev1"
-              }
-            ],
-            "description": "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md"
-          },
           "configMap": {
             "allOf": [
               {
@@ -7391,7 +7249,7 @@
                 "$ref": "#/components/schemas/CSIVolumeSourcev1"
               }
             ],
-            "description": "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature)."
+            "description": "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers."
           },
           "downwardAPI": {
             "allOf": [
@@ -7424,46 +7282,6 @@
               }
             ],
             "description": "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod."
-          },
-          "flexVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FlexVolumeSourcev1"
-              }
-            ],
-            "description": "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin."
-          },
-          "flocker": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FlockerVolumeSourcev1"
-              }
-            ],
-            "description": "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running"
-          },
-          "gcePersistentDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GCEPersistentDiskVolumeSourcev1"
-              }
-            ],
-            "description": "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk"
-          },
-          "gitRepo": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GitRepoVolumeSourcev1"
-              }
-            ],
-            "description": "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container."
-          },
-          "glusterfs": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GlusterfsVolumeSourcev1"
-              }
-            ],
-            "description": "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md"
           },
           "hostPath": {
             "allOf": [
@@ -7510,22 +7328,6 @@
             ],
             "description": "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims"
           },
-          "photonPersistentDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhotonPersistentDiskVolumeSourcev1"
-              }
-            ],
-            "description": "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine"
-          },
-          "portworxVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PortworxVolumeSourcev1"
-              }
-            ],
-            "description": "portworxVolume represents a portworx volume attached and mounted on kubelets host machine"
-          },
           "projected": {
             "allOf": [
               {
@@ -7534,30 +7336,6 @@
             ],
             "description": "projected items for all in one resources secrets, configmaps, and downward API"
           },
-          "quobyte": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/QuobyteVolumeSourcev1"
-              }
-            ],
-            "description": "quobyte represents a Quobyte mount on the host that shares a pod's lifetime"
-          },
-          "rbd": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RBDVolumeSourcev1"
-              }
-            ],
-            "description": "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md"
-          },
-          "scaleIO": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ScaleIOVolumeSourcev1"
-              }
-            ],
-            "description": "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes."
-          },
           "secret": {
             "allOf": [
               {
@@ -7565,22 +7343,6 @@
               }
             ],
             "description": "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret"
-          },
-          "storageos": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageOSVolumeSourcev1"
-              }
-            ],
-            "description": "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes."
-          },
-          "vsphereVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/VsphereVirtualDiskVolumeSourcev1"
-              }
-            ],
-            "description": "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine"
           }
         },
         "required": [
@@ -8016,6 +7778,10 @@
             "format": "int64",
             "type": "integer"
           },
+          "ignoreStoreReadErrorWithClusterBreakingPotential": {
+            "description": "if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it",
+            "type": "boolean"
+          },
           "kind": {
             "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
             "type": "string"
@@ -8178,7 +7944,7 @@
           {
             "group": "coordination.k8s.io",
             "kind": "DeleteOptions",
-            "version": "v1alpha1"
+            "version": "v1alpha2"
           },
           {
             "group": "coordination.k8s.io",
@@ -8299,6 +8065,11 @@
             "group": "resource.k8s.io",
             "kind": "DeleteOptions",
             "version": "v1alpha3"
+          },
+          {
+            "group": "resource.k8s.io",
+            "kind": "DeleteOptions",
+            "version": "v1beta1"
           },
           {
             "group": "scheduling.k8s.io",
@@ -8916,7 +8687,7 @@
           {
             "group": "coordination.k8s.io",
             "kind": "WatchEvent",
-            "version": "v1alpha1"
+            "version": "v1alpha2"
           },
           {
             "group": "coordination.k8s.io",
@@ -9037,6 +8808,11 @@
             "group": "resource.k8s.io",
             "kind": "WatchEvent",
             "version": "v1alpha3"
+          },
+          {
+            "group": "resource.k8s.io",
+            "kind": "WatchEvent",
+            "version": "v1beta1"
           },
           {
             "group": "scheduling.k8s.io",

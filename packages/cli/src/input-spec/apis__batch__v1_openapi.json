@@ -255,7 +255,7 @@
             "type": "integer"
           },
           "managedBy": {
-            "description": "ManagedBy field indicates the controller that manages a Job. The k8s Job controller reconciles jobs which don't have this field at all or the field value is the reserved string `kubernetes.io/job-controller`, but skips reconciling Jobs with a custom value for this field. The value must be a valid domain-prefixed path (e.g. acme.io/foo) - all characters before the first \"/\" must be a valid subdomain as defined by RFC 1123. All characters trailing the first \"/\" must be valid HTTP Path characters as defined by RFC 3986. The value cannot exceed 63 characters. This field is immutable.\n\nThis field is alpha-level. The job controller accepts setting the field when the feature gate JobManagedBy is enabled (disabled by default).",
+            "description": "ManagedBy field indicates the controller that manages a Job. The k8s Job controller reconciles jobs which don't have this field at all or the field value is the reserved string `kubernetes.io/job-controller`, but skips reconciling Jobs with a custom value for this field. The value must be a valid domain-prefixed path (e.g. acme.io/foo) - all characters before the first \"/\" must be a valid subdomain as defined by RFC 1123. All characters trailing the first \"/\" must be valid HTTP Path characters as defined by RFC 3986. The value cannot exceed 63 characters. This field is immutable.\n\nThis field is beta-level. The job controller accepts setting the field when the feature gate JobManagedBy is enabled (enabled by default).",
             "type": "string"
           },
           "manualSelector": {
@@ -1829,6 +1829,7 @@
         "type": "object"
       },
       "GRPCActionv1": {
+        "description": "GRPCAction specifies an action involving a GRPC service.",
         "properties": {
           "port": {
             "default": 0,
@@ -2135,7 +2136,7 @@
                 "$ref": "#/components/schemas/ExecActionv1"
               }
             ],
-            "description": "Exec specifies the action to take."
+            "description": "Exec specifies a command to execute in the container."
           },
           "httpGet": {
             "allOf": [
@@ -2143,7 +2144,7 @@
                 "$ref": "#/components/schemas/HTTPGetActionv1"
               }
             ],
-            "description": "HTTPGet specifies the http request to perform."
+            "description": "HTTPGet specifies an HTTP GET request to perform."
           },
           "sleep": {
             "allOf": [
@@ -2151,7 +2152,7 @@
                 "$ref": "#/components/schemas/SleepActionv1"
               }
             ],
-            "description": "Sleep represents the duration that the container should sleep before being terminated."
+            "description": "Sleep represents a duration that the container should sleep."
           },
           "tcpSocket": {
             "allOf": [
@@ -2159,7 +2160,7 @@
                 "$ref": "#/components/schemas/TCPSocketActionv1"
               }
             ],
-            "description": "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified."
+            "description": "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified."
           }
         },
         "type": "object"
@@ -2655,10 +2656,11 @@
         "description": "PodDNSConfigOption defines DNS resolver options of a pod.",
         "properties": {
           "name": {
-            "description": "Required.",
+            "description": "Name is this DNS resolver option's name. Required.",
             "type": "string"
           },
           "value": {
+            "description": "Value is this DNS resolver option's value.",
             "type": "string"
           }
         },
@@ -2761,6 +2763,10 @@
             "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
             "format": "int64",
             "type": "integer"
+          },
+          "seLinuxChangePolicy": {
+            "description": "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are \"MountOption\" and \"Recursive\".\n\n\"Recursive\" means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node.\n\n\"MountOption\" mounts all eligible Pod volumes with `-o context` mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. \"MountOption\" value is allowed only when SELinuxMount feature gate is enabled.\n\nIf not specified and SELinuxMount feature gate is enabled, \"MountOption\" is used. If not specified and SELinuxMount feature gate is disabled, \"MountOption\" is used for ReadWriteOncePod volumes and \"Recursive\" for all other volumes.\n\nThis field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers.\n\nAll Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+            "type": "string"
           },
           "seLinuxOptions": {
             "allOf": [
@@ -3034,6 +3040,14 @@
             "x-kubernetes-patch-merge-key": "name",
             "x-kubernetes-patch-strategy": "merge,retainKeys"
           },
+          "resources": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRequirementsv1"
+              }
+            ],
+            "description": "Resources is the total amount of CPU and Memory resources required by all containers in the pod. It supports specifying Requests and Limits for \"cpu\" and \"memory\" resource names only. ResourceClaims are not supported.\n\nThis field enables fine-grained control over resource allocation for the entire pod, allowing resource sharing among containers in a pod.\n\nThis is an alpha field and requires enabling the PodLevelResources feature gate."
+          },
           "restartPolicy": {
             "description": "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
             "type": "string"
@@ -3077,7 +3091,7 @@
             "type": "string"
           },
           "setHostnameAsFQDN": {
-            "description": "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
+            "description": "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\Services\\\\Tcpip\\\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
             "type": "boolean"
           },
           "shareProcessNamespace": {
@@ -3229,7 +3243,7 @@
                 "$ref": "#/components/schemas/ExecActionv1"
               }
             ],
-            "description": "Exec specifies the action to take."
+            "description": "Exec specifies a command to execute in the container."
           },
           "failureThreshold": {
             "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
@@ -3242,7 +3256,7 @@
                 "$ref": "#/components/schemas/GRPCActionv1"
               }
             ],
-            "description": "GRPC specifies an action involving a GRPC port."
+            "description": "GRPC specifies a GRPC HealthCheckRequest."
           },
           "httpGet": {
             "allOf": [
@@ -3250,7 +3264,7 @@
                 "$ref": "#/components/schemas/HTTPGetActionv1"
               }
             ],
-            "description": "HTTPGet specifies the http request to perform."
+            "description": "HTTPGet specifies an HTTP GET request to perform."
           },
           "initialDelaySeconds": {
             "description": "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
@@ -3273,7 +3287,7 @@
                 "$ref": "#/components/schemas/TCPSocketActionv1"
               }
             ],
-            "description": "TCPSocket specifies an action involving a TCP port."
+            "description": "TCPSocket specifies a connection to a TCP port."
           },
           "terminationGracePeriodSeconds": {
             "description": "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
@@ -3985,6 +3999,7 @@
         "x-kubernetes-map-type": "atomic"
       },
       "TypedObjectReferencev1": {
+        "description": "TypedObjectReference contains enough information to let you locate the typed referenced object",
         "properties": {
           "apiGroup": {
             "description": "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -4014,46 +4029,6 @@
       "Volumev1": {
         "description": "Volume represents a named volume in a pod that may be accessed by any container in the pod.",
         "properties": {
-          "awsElasticBlockStore": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AWSElasticBlockStoreVolumeSourcev1"
-              }
-            ],
-            "description": "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore"
-          },
-          "azureDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AzureDiskVolumeSourcev1"
-              }
-            ],
-            "description": "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod."
-          },
-          "azureFile": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AzureFileVolumeSourcev1"
-              }
-            ],
-            "description": "azureFile represents an Azure File Service mount on the host and bind mount to the pod."
-          },
-          "cephfs": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CephFSVolumeSourcev1"
-              }
-            ],
-            "description": "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime"
-          },
-          "cinder": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CinderVolumeSourcev1"
-              }
-            ],
-            "description": "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md"
-          },
           "configMap": {
             "allOf": [
               {
@@ -4068,7 +4043,7 @@
                 "$ref": "#/components/schemas/CSIVolumeSourcev1"
               }
             ],
-            "description": "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature)."
+            "description": "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers."
           },
           "downwardAPI": {
             "allOf": [
@@ -4101,46 +4076,6 @@
               }
             ],
             "description": "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod."
-          },
-          "flexVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FlexVolumeSourcev1"
-              }
-            ],
-            "description": "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin."
-          },
-          "flocker": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FlockerVolumeSourcev1"
-              }
-            ],
-            "description": "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running"
-          },
-          "gcePersistentDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GCEPersistentDiskVolumeSourcev1"
-              }
-            ],
-            "description": "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk"
-          },
-          "gitRepo": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GitRepoVolumeSourcev1"
-              }
-            ],
-            "description": "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container."
-          },
-          "glusterfs": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GlusterfsVolumeSourcev1"
-              }
-            ],
-            "description": "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md"
           },
           "hostPath": {
             "allOf": [
@@ -4187,22 +4122,6 @@
             ],
             "description": "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims"
           },
-          "photonPersistentDisk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhotonPersistentDiskVolumeSourcev1"
-              }
-            ],
-            "description": "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine"
-          },
-          "portworxVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PortworxVolumeSourcev1"
-              }
-            ],
-            "description": "portworxVolume represents a portworx volume attached and mounted on kubelets host machine"
-          },
           "projected": {
             "allOf": [
               {
@@ -4211,30 +4130,6 @@
             ],
             "description": "projected items for all in one resources secrets, configmaps, and downward API"
           },
-          "quobyte": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/QuobyteVolumeSourcev1"
-              }
-            ],
-            "description": "quobyte represents a Quobyte mount on the host that shares a pod's lifetime"
-          },
-          "rbd": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RBDVolumeSourcev1"
-              }
-            ],
-            "description": "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md"
-          },
-          "scaleIO": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ScaleIOVolumeSourcev1"
-              }
-            ],
-            "description": "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes."
-          },
           "secret": {
             "allOf": [
               {
@@ -4242,22 +4137,6 @@
               }
             ],
             "description": "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret"
-          },
-          "storageos": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageOSVolumeSourcev1"
-              }
-            ],
-            "description": "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes."
-          },
-          "vsphereVolume": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/VsphereVirtualDiskVolumeSourcev1"
-              }
-            ],
-            "description": "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine"
           }
         },
         "required": [
@@ -4567,6 +4446,10 @@
             "format": "int64",
             "type": "integer"
           },
+          "ignoreStoreReadErrorWithClusterBreakingPotential": {
+            "description": "if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it",
+            "type": "boolean"
+          },
           "kind": {
             "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
             "type": "string"
@@ -4729,7 +4612,7 @@
           {
             "group": "coordination.k8s.io",
             "kind": "DeleteOptions",
-            "version": "v1alpha1"
+            "version": "v1alpha2"
           },
           {
             "group": "coordination.k8s.io",
@@ -4850,6 +4733,11 @@
             "group": "resource.k8s.io",
             "kind": "DeleteOptions",
             "version": "v1alpha3"
+          },
+          {
+            "group": "resource.k8s.io",
+            "kind": "DeleteOptions",
+            "version": "v1beta1"
           },
           {
             "group": "scheduling.k8s.io",
@@ -5462,7 +5350,7 @@
           {
             "group": "coordination.k8s.io",
             "kind": "WatchEvent",
-            "version": "v1alpha1"
+            "version": "v1alpha2"
           },
           {
             "group": "coordination.k8s.io",
@@ -5583,6 +5471,11 @@
             "group": "resource.k8s.io",
             "kind": "WatchEvent",
             "version": "v1alpha3"
+          },
+          {
+            "group": "resource.k8s.io",
+            "kind": "WatchEvent",
+            "version": "v1beta1"
           },
           {
             "group": "scheduling.k8s.io",

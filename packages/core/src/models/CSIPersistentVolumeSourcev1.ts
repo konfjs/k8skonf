@@ -1,7 +1,7 @@
 import { SecretReferencev1 } from './SecretReferencev1.js';
 
 /**
- * Represents storage that is managed by an external CSI volume driver (Beta feature)
+ * Represents storage that is managed by an external CSI volume driver
  */
 export interface CSIPersistentVolumeSourcev1 {
   /**

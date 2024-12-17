@@ -172,7 +172,7 @@
       {
         "group": "coordination.k8s.io",
         "kind": "DeleteOptions",
-        "version": "v1alpha1"
+        "version": "v1alpha2"
       },
       {
         "group": "coordination.k8s.io",
@@ -293,6 +293,11 @@
         "group": "resource.k8s.io",
         "kind": "DeleteOptions",
         "version": "v1alpha3"
+      },
+      {
+        "group": "resource.k8s.io",
+        "kind": "DeleteOptions",
+        "version": "v1beta1"
       },
       {
         "group": "scheduling.k8s.io",
@@ -517,7 +522,7 @@
       {
         "group": "coordination.k8s.io",
         "kind": "WatchEvent",
-        "version": "v1alpha1"
+        "version": "v1alpha2"
       },
       {
         "group": "coordination.k8s.io",
@@ -640,6 +645,11 @@
         "version": "v1alpha3"
       },
       {
+        "group": "resource.k8s.io",
+        "kind": "WatchEvent",
+        "version": "v1beta1"
+      },
+      {
         "group": "scheduling.k8s.io",
         "kind": "WatchEvent",
         "version": "v1"
@@ -712,24 +722,6 @@
     "path": "/apis/scheduling.k8s.io/v1/priorityclasses",
     "namespaced": false
   },
-  "LeaseCandidatev1alpha1": {
-    "originalSchemaName": "io.k8s.api.coordination.v1alpha1.LeaseCandidate",
-    "gvk": [
-      {
-        "group": "coordination.k8s.io",
-        "kind": "LeaseCandidate",
-        "version": "v1alpha1"
-      }
-    ],
-    "path": "/apis/coordination.k8s.io/v1alpha1/namespaces/{namespace}/leasecandidates",
-    "namespaced": true
-  },
-  "LeaseCandidateSpecv1alpha1": {
-    "originalSchemaName": "io.k8s.api.coordination.v1alpha1.LeaseCandidateSpec"
-  },
-  "MicroTimev1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
-  },
   "APIGroupv1": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.APIGroup",
     "gvk": [
@@ -754,6 +746,9 @@
   },
   "NodeSelectorTermv1": {
     "originalSchemaName": "io.k8s.api.core.v1.NodeSelectorTerm"
+  },
+  "AllocatedDeviceStatusv1alpha3": {
+    "originalSchemaName": "io.k8s.api.resource.v1alpha3.AllocatedDeviceStatus"
   },
   "AllocationResultv1alpha3": {
     "originalSchemaName": "io.k8s.api.resource.v1alpha3.AllocationResult"
@@ -812,26 +807,11 @@
   "DeviceSelectorv1alpha3": {
     "originalSchemaName": "io.k8s.api.resource.v1alpha3.DeviceSelector"
   },
+  "NetworkDeviceDatav1alpha3": {
+    "originalSchemaName": "io.k8s.api.resource.v1alpha3.NetworkDeviceData"
+  },
   "OpaqueDeviceConfigurationv1alpha3": {
     "originalSchemaName": "io.k8s.api.resource.v1alpha3.OpaqueDeviceConfiguration"
-  },
-  "PodSchedulingContextv1alpha3": {
-    "originalSchemaName": "io.k8s.api.resource.v1alpha3.PodSchedulingContext",
-    "gvk": [
-      {
-        "group": "resource.k8s.io",
-        "kind": "PodSchedulingContext",
-        "version": "v1alpha3"
-      }
-    ],
-    "path": "/apis/resource.k8s.io/v1alpha3/namespaces/{namespace}/podschedulingcontexts",
-    "namespaced": true
-  },
-  "PodSchedulingContextSpecv1alpha3": {
-    "originalSchemaName": "io.k8s.api.resource.v1alpha3.PodSchedulingContextSpec"
-  },
-  "PodSchedulingContextStatusv1alpha3": {
-    "originalSchemaName": "io.k8s.api.resource.v1alpha3.PodSchedulingContextStatus"
   },
   "ResourceClaimv1alpha3": {
     "originalSchemaName": "io.k8s.api.resource.v1alpha3.ResourceClaim",
@@ -847,9 +827,6 @@
   },
   "ResourceClaimConsumerReferencev1alpha3": {
     "originalSchemaName": "io.k8s.api.resource.v1alpha3.ResourceClaimConsumerReference"
-  },
-  "ResourceClaimSchedulingStatusv1alpha3": {
-    "originalSchemaName": "io.k8s.api.resource.v1alpha3.ResourceClaimSchedulingStatus"
   },
   "ResourceClaimSpecv1alpha3": {
     "originalSchemaName": "io.k8s.api.resource.v1alpha3.ResourceClaimSpec"
@@ -889,6 +866,9 @@
   },
   "ResourceSliceSpecv1alpha3": {
     "originalSchemaName": "io.k8s.api.resource.v1alpha3.ResourceSliceSpec"
+  },
+  "Conditionv1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.Condition"
   },
   "ExemptPriorityLevelConfigurationv1": {
     "originalSchemaName": "io.k8s.api.flowcontrol.v1.ExemptPriorityLevelConfiguration"
@@ -986,104 +966,8 @@
   "LeaseSpecv1": {
     "originalSchemaName": "io.k8s.api.coordination.v1.LeaseSpec"
   },
-  "UserInfov1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.UserInfo"
-  },
-  "SelfSubjectReviewv1alpha1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1alpha1.SelfSubjectReview",
-    "gvk": [
-      {
-        "group": "authentication.k8s.io",
-        "kind": "SelfSubjectReview",
-        "version": "v1alpha1"
-      }
-    ],
-    "path": "/apis/authentication.k8s.io/v1alpha1/selfsubjectreviews",
-    "namespaced": false
-  },
-  "SelfSubjectReviewStatusv1alpha1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1alpha1.SelfSubjectReviewStatus"
-  },
-  "ExemptPriorityLevelConfigurationv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.ExemptPriorityLevelConfiguration"
-  },
-  "FlowDistinguisherMethodv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.FlowDistinguisherMethod"
-  },
-  "FlowSchemav1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.FlowSchema",
-    "gvk": [
-      {
-        "group": "flowcontrol.apiserver.k8s.io",
-        "kind": "FlowSchema",
-        "version": "v1beta3"
-      }
-    ],
-    "path": "/apis/flowcontrol.apiserver.k8s.io/v1beta3/flowschemas",
-    "namespaced": false
-  },
-  "FlowSchemaConditionv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.FlowSchemaCondition"
-  },
-  "FlowSchemaSpecv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.FlowSchemaSpec"
-  },
-  "FlowSchemaStatusv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.FlowSchemaStatus"
-  },
-  "GroupSubjectv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.GroupSubject"
-  },
-  "LimitResponsev1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.LimitResponse"
-  },
-  "LimitedPriorityLevelConfigurationv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.LimitedPriorityLevelConfiguration"
-  },
-  "NonResourcePolicyRulev1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.NonResourcePolicyRule"
-  },
-  "PolicyRulesWithSubjectsv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.PolicyRulesWithSubjects"
-  },
-  "PriorityLevelConfigurationv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration",
-    "gvk": [
-      {
-        "group": "flowcontrol.apiserver.k8s.io",
-        "kind": "PriorityLevelConfiguration",
-        "version": "v1beta3"
-      }
-    ],
-    "path": "/apis/flowcontrol.apiserver.k8s.io/v1beta3/prioritylevelconfigurations",
-    "namespaced": false
-  },
-  "PriorityLevelConfigurationConditionv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationCondition"
-  },
-  "PriorityLevelConfigurationReferencev1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationReference"
-  },
-  "PriorityLevelConfigurationSpecv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationSpec"
-  },
-  "PriorityLevelConfigurationStatusv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationStatus"
-  },
-  "QueuingConfigurationv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.QueuingConfiguration"
-  },
-  "ResourcePolicyRulev1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.ResourcePolicyRule"
-  },
-  "ServiceAccountSubjectv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.ServiceAccountSubject"
-  },
-  "Subjectv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.Subject"
-  },
-  "UserSubjectv1beta3": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1beta3.UserSubject"
+  "MicroTimev1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
   },
   "VolumeAttributesClassv1beta1": {
     "originalSchemaName": "io.k8s.api.storage.v1beta1.VolumeAttributesClass",
@@ -1096,6 +980,132 @@
     ],
     "path": "/apis/storage.k8s.io/v1beta1/volumeattributesclasses",
     "namespaced": false
+  },
+  "AllocatedDeviceStatusv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.AllocatedDeviceStatus"
+  },
+  "AllocationResultv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.AllocationResult"
+  },
+  "BasicDevicev1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.BasicDevice"
+  },
+  "CELDeviceSelectorv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.CELDeviceSelector"
+  },
+  "Devicev1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.Device"
+  },
+  "DeviceAllocationConfigurationv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceAllocationConfiguration"
+  },
+  "DeviceAllocationResultv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceAllocationResult"
+  },
+  "DeviceAttributev1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceAttribute"
+  },
+  "DeviceCapacityv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceCapacity"
+  },
+  "DeviceClaimv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceClaim"
+  },
+  "DeviceClaimConfigurationv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceClaimConfiguration"
+  },
+  "DeviceClassv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceClass",
+    "gvk": [
+      {
+        "group": "resource.k8s.io",
+        "kind": "DeviceClass",
+        "version": "v1beta1"
+      }
+    ],
+    "path": "/apis/resource.k8s.io/v1beta1/deviceclasses",
+    "namespaced": false
+  },
+  "DeviceClassConfigurationv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceClassConfiguration"
+  },
+  "DeviceClassSpecv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceClassSpec"
+  },
+  "DeviceConstraintv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceConstraint"
+  },
+  "DeviceRequestv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceRequest"
+  },
+  "DeviceRequestAllocationResultv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceRequestAllocationResult"
+  },
+  "DeviceSelectorv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.DeviceSelector"
+  },
+  "NetworkDeviceDatav1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.NetworkDeviceData"
+  },
+  "OpaqueDeviceConfigurationv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration"
+  },
+  "ResourceClaimv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourceClaim",
+    "gvk": [
+      {
+        "group": "resource.k8s.io",
+        "kind": "ResourceClaim",
+        "version": "v1beta1"
+      }
+    ],
+    "path": "/apis/resource.k8s.io/v1beta1/namespaces/{namespace}/resourceclaims",
+    "namespaced": true
+  },
+  "ResourceClaimConsumerReferencev1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourceClaimConsumerReference"
+  },
+  "ResourceClaimSpecv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourceClaimSpec"
+  },
+  "ResourceClaimStatusv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourceClaimStatus"
+  },
+  "ResourceClaimTemplatev1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourceClaimTemplate",
+    "gvk": [
+      {
+        "group": "resource.k8s.io",
+        "kind": "ResourceClaimTemplate",
+        "version": "v1beta1"
+      }
+    ],
+    "path": "/apis/resource.k8s.io/v1beta1/namespaces/{namespace}/resourceclaimtemplates",
+    "namespaced": true
+  },
+  "ResourceClaimTemplateSpecv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourceClaimTemplateSpec"
+  },
+  "ResourcePoolv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourcePool"
+  },
+  "ResourceSlicev1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourceSlice",
+    "gvk": [
+      {
+        "group": "resource.k8s.io",
+        "kind": "ResourceSlice",
+        "version": "v1beta1"
+      }
+    ],
+    "path": "/apis/resource.k8s.io/v1beta1/resourceslices",
+    "namespaced": false
+  },
+  "ResourceSliceSpecv1beta1": {
+    "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourceSliceSpec"
+  },
+  "UserInfov1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.UserInfo"
   },
   "SelfSubjectReviewv1beta1": {
     "originalSchemaName": "io.k8s.api.authentication.v1beta1.SelfSubjectReview",
@@ -1234,9 +1244,6 @@
   },
   "WebhookClientConfigv1": {
     "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.WebhookClientConfig"
-  },
-  "Conditionv1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.Condition"
   },
   "LabelSelectorv1": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector"
@@ -2142,17 +2149,50 @@
   "ResourceMetricStatusv2": {
     "originalSchemaName": "io.k8s.api.autoscaling.v2.ResourceMetricStatus"
   },
-  "AuditAnnotationv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.AuditAnnotation"
+  "ApplyConfigurationv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ApplyConfiguration"
   },
-  "ExpressionWarningv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ExpressionWarning"
+  "JSONPatchv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.JSONPatch"
   },
   "MatchConditionv1alpha1": {
     "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MatchCondition"
   },
   "MatchResourcesv1alpha1": {
     "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MatchResources"
+  },
+  "MutatingAdmissionPolicyv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicy",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "MutatingAdmissionPolicy",
+        "version": "v1alpha1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1alpha1/mutatingadmissionpolicies",
+    "namespaced": false
+  },
+  "MutatingAdmissionPolicyBindingv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicyBinding",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "MutatingAdmissionPolicyBinding",
+        "version": "v1alpha1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1alpha1/mutatingadmissionpolicybindings",
+    "namespaced": false
+  },
+  "MutatingAdmissionPolicyBindingSpecv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicyBindingSpec"
+  },
+  "MutatingAdmissionPolicySpecv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicySpec"
+  },
+  "Mutationv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.Mutation"
   },
   "NamedRuleWithOperationsv1alpha1": {
     "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations"
@@ -2163,47 +2203,23 @@
   "ParamRefv1alpha1": {
     "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ParamRef"
   },
-  "TypeCheckingv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.TypeChecking"
-  },
-  "ValidatingAdmissionPolicyv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicy",
-    "gvk": [
-      {
-        "group": "admissionregistration.k8s.io",
-        "kind": "ValidatingAdmissionPolicy",
-        "version": "v1alpha1"
-      }
-    ],
-    "path": "/apis/admissionregistration.k8s.io/v1alpha1/validatingadmissionpolicies",
-    "namespaced": false
-  },
-  "ValidatingAdmissionPolicyBindingv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBinding",
-    "gvk": [
-      {
-        "group": "admissionregistration.k8s.io",
-        "kind": "ValidatingAdmissionPolicyBinding",
-        "version": "v1alpha1"
-      }
-    ],
-    "path": "/apis/admissionregistration.k8s.io/v1alpha1/validatingadmissionpolicybindings",
-    "namespaced": false
-  },
-  "ValidatingAdmissionPolicyBindingSpecv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingSpec"
-  },
-  "ValidatingAdmissionPolicySpecv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec"
-  },
-  "ValidatingAdmissionPolicyStatusv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyStatus"
-  },
-  "Validationv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.Validation"
-  },
   "Variablev1alpha1": {
     "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.Variable"
+  },
+  "LeaseCandidatev1alpha2": {
+    "originalSchemaName": "io.k8s.api.coordination.v1alpha2.LeaseCandidate",
+    "gvk": [
+      {
+        "group": "coordination.k8s.io",
+        "kind": "LeaseCandidate",
+        "version": "v1alpha2"
+      }
+    ],
+    "path": "/apis/coordination.k8s.io/v1alpha2/namespaces/{namespace}/leasecandidates",
+    "namespaced": true
+  },
+  "LeaseCandidateSpecv1alpha2": {
+    "originalSchemaName": "io.k8s.api.coordination.v1alpha2.LeaseCandidateSpec"
   },
   "HTTPIngressPathv1": {
     "originalSchemaName": "io.k8s.api.networking.v1.HTTPIngressPath"

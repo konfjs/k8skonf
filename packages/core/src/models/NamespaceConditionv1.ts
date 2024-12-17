@@ -3,15 +3,15 @@
  */
 export interface NamespaceConditionv1 {
   /**
-   * Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.
+   * Last time the condition transitioned from one status to another.
    */
   lastTransitionTime?: Date;
   /**
-   *
+   * Human-readable message indicating details about last transition.
    */
   message?: string;
   /**
-   *
+   * Unique, one-word, CamelCase reason for the condition\'s last transition.
    */
   reason?: string;
   /**

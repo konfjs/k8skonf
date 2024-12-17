@@ -1,5 +1,5 @@
 /**
- *
+ * GRPCAction specifies an action involving a GRPC service.
  */
 export interface GRPCActionv1 {
   /**

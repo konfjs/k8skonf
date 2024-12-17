@@ -9,6 +9,7 @@ import { PodReadinessGatev1 } from './PodReadinessGatev1.js';
 import { PodResourceClaimv1 } from './PodResourceClaimv1.js';
 import { PodSchedulingGatev1 } from './PodSchedulingGatev1.js';
 import { PodSecurityContextv1 } from './PodSecurityContextv1.js';
+import { ResourceRequirementsv1 } from './ResourceRequirementsv1.js';
 import { Tolerationv1 } from './Tolerationv1.js';
 import { TopologySpreadConstraintv1 } from './TopologySpreadConstraintv1.js';
 import { Volumev1 } from './Volumev1.js';
@@ -118,6 +119,10 @@ export interface PodSpecv1 {
    */
   resourceClaims?: Array<PodResourceClaimv1>;
   /**
+   * Resources is the total amount of CPU and Memory resources required by all containers in the pod. It supports specifying Requests and Limits for \"cpu\" and \"memory\" resource names only. ResourceClaims are not supported.  This field enables fine-grained control over resource allocation for the entire pod, allowing resource sharing among containers in a pod.  This is an alpha field and requires enabling the PodLevelResources feature gate.
+   */
+  resources?: ResourceRequirementsv1;
+  /**
    * Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
    */
   restartPolicy?: string;
@@ -142,7 +147,7 @@ export interface PodSpecv1 {
    */
   serviceAccountName?: string;
   /**
-   * If true the pod\'s hostname will be configured as the pod\'s FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
+   * If true the pod\'s hostname will be configured as the pod\'s FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\Services\\\\Tcpip\\\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
    */
   setHostnameAsFQDN?: boolean;
   /**
