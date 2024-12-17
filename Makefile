@@ -3,7 +3,7 @@ SHELL := /bin/bash
 .ONESHELL:
 
 
-k8sVersion := v1.31.4
+k8sVersion := v1.31.0
 
 
 # Download Kubernetes OpenAPI schemas to packages/cli/files/kubernetes/api/openapi-spec/v3/*.json
