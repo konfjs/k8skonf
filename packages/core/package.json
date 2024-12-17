@@ -1,6 +1,6 @@
 {
   "name": "@k8skonf/core",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": {
     "name": "konfjs",
     "url": "https://github.com/konfjs"
@@ -15,7 +15,14 @@
   "bugs": {
     "url": "https://github.com/konfjs/k8skonf/issues"
   },
-  "keywords": ["konfjs", "k8skonf", "kubernetes", "cdk8s", "cdk", "helm"],
+  "keywords": [
+    "konfjs",
+    "k8skonf",
+    "kubernetes",
+    "cdk8s",
+    "cdk",
+    "helm"
+  ],
   "publishConfig": {
     "access": "public",
     "exports": {
@@ -45,7 +52,9 @@
     "build": "rm -rf dist && tsc",
     "prepack": "pnpm run build"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "typescript": "5.7.2"
   },
