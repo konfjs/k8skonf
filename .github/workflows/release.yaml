@@ -8,11 +8,53 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  id-token: write
 
 jobs:
   release:
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      paths_released: ${{ steps.release.outputs.paths_released }}
     runs-on: ubuntu-24.04
     steps:
       - uses: googleapis/release-please-action@v4
+        id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  provenance:
+    runs-on: ubuntu-24.04
+    needs: release
+    if: needs.release.outputs.release_created == 'true'
+    strategy:
+      matrix:
+        package: ${{ needs.release.outputs.paths_released }}
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: ./pnpm-lock.yaml
+
+      - name: Build package
+        working-directory: ${{ matrix.package }}
+        run: pnpm build
+
+      - name: Generate provenance statement with package as attestation subject
+        working-directory: ${{ matrix.package }}
+        run: npx @npmcli/provenance-cli generate *.tgz -o provenance-statement.json
+
+      - name: Sign provenance statement
+        working-directory: ${{ matrix.package }}
+        run: npx @sigstore/cli attest ./provenance-statement.json -o provenance.sigstore.json
+
+      - name: Verify provenance statement
+        working-directory: ${{ matrix.package }}
+        run: npx @sigstore/cli verify provenance.sigstore.json
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: provenance-sigstore.json
+          path: ${{ matrix.package }}/provenance.sigstore.json
