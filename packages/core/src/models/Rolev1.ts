@@ -31,6 +31,7 @@ export class Rolev1 extends NamespacedApiObject {
   constructor(app: K8sApp, name: string, args: Rolev1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.rules = args.rules;
     app.resources.push(this);
   }

@@ -44,6 +44,7 @@ export class EndpointSlicev1 extends NamespacedApiObject {
     this.addressType = args.addressType;
     this.endpoints = args.endpoints;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.ports = args.ports;
     app.resources.push(this);
   }

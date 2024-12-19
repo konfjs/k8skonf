@@ -31,6 +31,7 @@ export class ReplicaSetv1 extends NamespacedApiObject {
   constructor(app: K8sApp, name: string, args: ReplicaSetv1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.spec = args.spec;
     app.resources.push(this);
   }

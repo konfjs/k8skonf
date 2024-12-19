@@ -64,6 +64,7 @@ export class StorageClassv1 extends ApiObject {
     this.allowVolumeExpansion = args.allowVolumeExpansion;
     this.allowedTopologies = args.allowedTopologies;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.mountOptions = args.mountOptions;
     this.parameters = args.parameters;
     this.provisioner = args.provisioner;

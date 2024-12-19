@@ -31,6 +31,7 @@ export class Endpointsv1 extends NamespacedApiObject {
   constructor(app: K8sApp, name: string, args: Endpointsv1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.subsets = args.subsets;
     app.resources.push(this);
   }

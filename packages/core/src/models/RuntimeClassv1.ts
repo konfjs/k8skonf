@@ -44,6 +44,7 @@ export class RuntimeClassv1 extends ApiObject {
     super();
     this.handler = args.handler;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.overhead = args.overhead;
     this.scheduling = args.scheduling;
     app.resources.push(this);

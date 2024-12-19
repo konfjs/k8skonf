@@ -105,6 +105,7 @@ export class CoreEventv1 extends NamespacedApiObject {
     this.lastTimestamp = args.lastTimestamp;
     this.message = args.message;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.reason = args.reason;
     this.related = args.related;
     this.reportingComponent = args.reportingComponent;

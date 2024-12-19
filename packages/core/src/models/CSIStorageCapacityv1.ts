@@ -48,6 +48,7 @@ export class CSIStorageCapacityv1 extends NamespacedApiObject {
     this.capacity = args.capacity;
     this.maximumVolumeSize = args.maximumVolumeSize;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.nodeTopology = args.nodeTopology;
     this.storageClassName = args.storageClassName;
     app.resources.push(this);

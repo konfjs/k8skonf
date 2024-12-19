@@ -39,6 +39,7 @@ export class ClusterRolev1 extends ApiObject {
     super();
     this.aggregationRule = args.aggregationRule;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.rules = args.rules;
     app.resources.push(this);
   }

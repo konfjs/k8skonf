@@ -31,6 +31,7 @@ export class ResourceQuotav1 extends NamespacedApiObject {
   constructor(app: K8sApp, name: string, args: ResourceQuotav1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.spec = args.spec;
     app.resources.push(this);
   }

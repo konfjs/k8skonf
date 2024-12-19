@@ -31,6 +31,7 @@ export class Bindingv1 extends NamespacedApiObject {
   constructor(app: K8sApp, name: string, args: Bindingv1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.target = args.target;
     app.resources.push(this);
   }

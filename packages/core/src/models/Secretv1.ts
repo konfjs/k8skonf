@@ -47,6 +47,7 @@ export class Secretv1 extends NamespacedApiObject {
     this.data = args.data;
     this.immutable = args.immutable;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.stringData = args.stringData;
     this.type = args.type;
     app.resources.push(this);
