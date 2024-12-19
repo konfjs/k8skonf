@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.2](https://github.com/konfjs/k8skonf/compare/cli-v0.3.1...cli-v0.3.2) (2024-12-19)
+
+
+### Bug Fixes
+
+* **core:** always set metadata.name ([#49](https://github.com/konfjs/k8skonf/issues/49)) ([4ec20ab](https://github.com/konfjs/k8skonf/commit/4ec20ab247a78acbd906b4cfc7b6ea6e64c443d9))
+* handle resource conflicts ([#48](https://github.com/konfjs/k8skonf/issues/48)) ([a510c6a](https://github.com/konfjs/k8skonf/commit/a510c6a5b3ba690240a409f04de7bfb711b92e5f))
+
+
+### Chores
+
+* **cli:** sort group-version-kind-map json keys ([#46](https://github.com/konfjs/k8skonf/issues/46)) ([a3a0677](https://github.com/konfjs/k8skonf/commit/a3a0677f386ca8c61dd329275685e0b4fe2bc1ab))
+
 ## [0.3.1](https://github.com/konfjs/k8skonf/compare/cli-v0.3.0...cli-v0.3.1) (2024-12-17)
 
 
