@@ -18,6 +18,7 @@ download-schema:
 	else \
 		git clone --depth=1 --branch $(k8sVersion) --single-branch --filter=blob:none \
 			https://github.com/kubernetes/kubernetes.git files/kubernetes; \
+		cd files/kubernetes && git fetch --tags && git checkout $(k8sVersion); \
 	fi
 
 

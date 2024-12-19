@@ -1,30 +1,780 @@
 {
-  "Tolerationv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Toleration"
+  "BoundObjectReferencev1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.BoundObjectReference"
   },
-  "Overheadv1": {
-    "originalSchemaName": "io.k8s.api.node.v1.Overhead"
+  "TokenRequestv1": {
+    "originalSchemaName": "io.k8s.api.storage.v1.TokenRequest"
   },
-  "RuntimeClassv1": {
-    "originalSchemaName": "io.k8s.api.node.v1.RuntimeClass",
+  "TokenRequestSpecv1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.TokenRequestSpec"
+  },
+  "TokenRequestStatusv1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.TokenRequestStatus"
+  },
+  "Scalev1": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v1.Scale",
     "gvk": [
       {
-        "group": "node.k8s.io",
-        "kind": "RuntimeClass",
+        "group": "autoscaling",
+        "kind": "Scale",
+        "version": "v1"
+      }
+    ]
+  },
+  "ScaleSpecv1": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v1.ScaleSpec"
+  },
+  "ScaleStatusv1": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v1.ScaleStatus"
+  },
+  "AWSElasticBlockStoreVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.AWSElasticBlockStoreVolumeSource"
+  },
+  "Affinityv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Affinity"
+  },
+  "AppArmorProfilev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.AppArmorProfile"
+  },
+  "AttachedVolumev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.AttachedVolume"
+  },
+  "AzureDiskVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.AzureDiskVolumeSource"
+  },
+  "AzureFilePersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.AzureFilePersistentVolumeSource"
+  },
+  "AzureFileVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.AzureFileVolumeSource"
+  },
+  "Bindingv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Binding",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "Binding",
         "version": "v1"
       }
     ],
-    "path": "/apis/node.k8s.io/v1/runtimeclasses",
+    "path": "/api/v1/namespaces/{namespace}/bindings",
+    "namespaced": true
+  },
+  "CSIPersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.CSIPersistentVolumeSource"
+  },
+  "CSIVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.CSIVolumeSource"
+  },
+  "Capabilitiesv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Capabilities"
+  },
+  "CephFSPersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.CephFSPersistentVolumeSource"
+  },
+  "CephFSVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.CephFSVolumeSource"
+  },
+  "CinderPersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.CinderPersistentVolumeSource"
+  },
+  "CinderVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.CinderVolumeSource"
+  },
+  "ClientIPConfigv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ClientIPConfig"
+  },
+  "ClusterTrustBundleProjectionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ClusterTrustBundleProjection"
+  },
+  "ComponentConditionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ComponentCondition"
+  },
+  "ComponentStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ComponentStatus",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "ComponentStatus",
+        "version": "v1"
+      }
+    ]
+  },
+  "ConfigMapv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ConfigMap",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "ConfigMap",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/configmaps",
+    "namespaced": true
+  },
+  "ConfigMapEnvSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapEnvSource"
+  },
+  "ConfigMapKeySelectorv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapKeySelector"
+  },
+  "ConfigMapNodeConfigSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapNodeConfigSource"
+  },
+  "ConfigMapProjectionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapProjection"
+  },
+  "ConfigMapVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapVolumeSource"
+  },
+  "Containerv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Container"
+  },
+  "ContainerImagev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ContainerImage"
+  },
+  "ContainerPortv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ContainerPort"
+  },
+  "ContainerResizePolicyv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ContainerResizePolicy"
+  },
+  "ContainerStatev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ContainerState"
+  },
+  "ContainerStateRunningv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ContainerStateRunning"
+  },
+  "ContainerStateTerminatedv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ContainerStateTerminated"
+  },
+  "ContainerStateWaitingv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ContainerStateWaiting"
+  },
+  "ContainerStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ContainerStatus"
+  },
+  "ContainerUserv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ContainerUser"
+  },
+  "DaemonEndpointv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.DaemonEndpoint"
+  },
+  "DownwardAPIProjectionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.DownwardAPIProjection"
+  },
+  "DownwardAPIVolumeFilev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.DownwardAPIVolumeFile"
+  },
+  "DownwardAPIVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.DownwardAPIVolumeSource"
+  },
+  "EmptyDirVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.EmptyDirVolumeSource"
+  },
+  "EndpointAddressv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.EndpointAddress"
+  },
+  "EndpointPortv1": {
+    "originalSchemaName": "io.k8s.api.discovery.v1.EndpointPort"
+  },
+  "EndpointSubsetv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.EndpointSubset"
+  },
+  "Endpointsv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Endpoints",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "Endpoints",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/endpoints",
+    "namespaced": true
+  },
+  "EnvFromSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.EnvFromSource"
+  },
+  "EnvVarv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.EnvVar"
+  },
+  "EnvVarSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.EnvVarSource"
+  },
+  "EphemeralContainerv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.EphemeralContainer"
+  },
+  "EphemeralVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.EphemeralVolumeSource"
+  },
+  "Eventv1": {
+    "originalSchemaName": "io.k8s.api.events.v1.Event",
+    "gvk": [
+      {
+        "group": "events.k8s.io",
+        "kind": "Event",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/events.k8s.io/v1/namespaces/{namespace}/events",
+    "namespaced": true
+  },
+  "EventSeriesv1": {
+    "originalSchemaName": "io.k8s.api.events.v1.EventSeries"
+  },
+  "EventSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.EventSource"
+  },
+  "ExecActionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ExecAction"
+  },
+  "FCVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.FCVolumeSource"
+  },
+  "FlexPersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.FlexPersistentVolumeSource"
+  },
+  "FlexVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.FlexVolumeSource"
+  },
+  "FlockerVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.FlockerVolumeSource"
+  },
+  "GCEPersistentDiskVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.GCEPersistentDiskVolumeSource"
+  },
+  "GRPCActionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.GRPCAction"
+  },
+  "GitRepoVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.GitRepoVolumeSource"
+  },
+  "GlusterfsPersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.GlusterfsPersistentVolumeSource"
+  },
+  "GlusterfsVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.GlusterfsVolumeSource"
+  },
+  "HTTPGetActionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.HTTPGetAction"
+  },
+  "HTTPHeaderv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.HTTPHeader"
+  },
+  "HostAliasv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.HostAlias"
+  },
+  "HostIPv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.HostIP"
+  },
+  "HostPathVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.HostPathVolumeSource"
+  },
+  "ISCSIPersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ISCSIPersistentVolumeSource"
+  },
+  "ISCSIVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ISCSIVolumeSource"
+  },
+  "ImageVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ImageVolumeSource"
+  },
+  "KeyToPathv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.KeyToPath"
+  },
+  "Lifecyclev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Lifecycle"
+  },
+  "LifecycleHandlerv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.LifecycleHandler"
+  },
+  "LimitRangev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.LimitRange",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "LimitRange",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/limitranges",
+    "namespaced": true
+  },
+  "LimitRangeItemv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.LimitRangeItem"
+  },
+  "LimitRangeSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.LimitRangeSpec"
+  },
+  "LinuxContainerUserv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.LinuxContainerUser"
+  },
+  "LoadBalancerIngressv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.LoadBalancerIngress"
+  },
+  "LoadBalancerStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.LoadBalancerStatus"
+  },
+  "LocalObjectReferencev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.LocalObjectReference"
+  },
+  "LocalVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.LocalVolumeSource"
+  },
+  "ModifyVolumeStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ModifyVolumeStatus"
+  },
+  "NFSVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NFSVolumeSource"
+  },
+  "Namespacev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Namespace",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "Namespace",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces",
     "namespaced": false
   },
-  "Schedulingv1": {
-    "originalSchemaName": "io.k8s.api.node.v1.Scheduling"
+  "NamespaceConditionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NamespaceCondition"
+  },
+  "NamespaceSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NamespaceSpec"
+  },
+  "NamespaceStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NamespaceStatus"
+  },
+  "Nodev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Node",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "Node",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/nodes",
+    "namespaced": false
+  },
+  "NodeAddressv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeAddress"
+  },
+  "NodeAffinityv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeAffinity"
+  },
+  "NodeConditionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeCondition"
+  },
+  "NodeConfigSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeConfigSource"
+  },
+  "NodeConfigStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeConfigStatus"
+  },
+  "NodeDaemonEndpointsv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeDaemonEndpoints"
+  },
+  "NodeFeaturesv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeFeatures"
+  },
+  "NodeRuntimeHandlerv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeRuntimeHandler"
+  },
+  "NodeRuntimeHandlerFeaturesv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeRuntimeHandlerFeatures"
+  },
+  "NodeSelectorv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeSelector"
+  },
+  "NodeSelectorRequirementv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeSelectorRequirement"
+  },
+  "NodeSelectorTermv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeSelectorTerm"
+  },
+  "NodeSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeSpec"
+  },
+  "NodeStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeStatus"
+  },
+  "NodeSystemInfov1": {
+    "originalSchemaName": "io.k8s.api.core.v1.NodeSystemInfo"
+  },
+  "ObjectFieldSelectorv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ObjectFieldSelector"
+  },
+  "ObjectReferencev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ObjectReference"
+  },
+  "PersistentVolumev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolume",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "PersistentVolume",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/persistentvolumes",
+    "namespaced": false
+  },
+  "PersistentVolumeClaimv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaim",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "PersistentVolumeClaim",
+        "version": "v1"
+      }
+    ]
+  },
+  "PersistentVolumeClaimConditionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimCondition"
+  },
+  "PersistentVolumeClaimSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimSpec"
+  },
+  "PersistentVolumeClaimStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimStatus"
+  },
+  "PersistentVolumeClaimTemplatev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimTemplate"
+  },
+  "PersistentVolumeClaimVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimVolumeSource"
+  },
+  "PersistentVolumeSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeSpec"
+  },
+  "PersistentVolumeStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeStatus"
+  },
+  "PhotonPersistentDiskVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PhotonPersistentDiskVolumeSource"
+  },
+  "Podv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Pod",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "Pod",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/pods",
+    "namespaced": true
+  },
+  "PodAffinityv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodAffinity"
+  },
+  "PodAffinityTermv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodAffinityTerm"
+  },
+  "PodAntiAffinityv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodAntiAffinity"
+  },
+  "PodConditionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodCondition"
+  },
+  "PodDNSConfigv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodDNSConfig"
+  },
+  "PodDNSConfigOptionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodDNSConfigOption"
+  },
+  "PodIPv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodIP"
+  },
+  "PodOSv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodOS"
+  },
+  "PodReadinessGatev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodReadinessGate"
+  },
+  "PodResourceClaimv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodResourceClaim"
+  },
+  "PodResourceClaimStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodResourceClaimStatus"
+  },
+  "PodSchedulingGatev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodSchedulingGate"
+  },
+  "PodSecurityContextv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodSecurityContext"
+  },
+  "PodSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodSpec"
+  },
+  "PodStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodStatus"
+  },
+  "PodTemplatev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodTemplate",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "PodTemplate",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/podtemplates",
+    "namespaced": true
+  },
+  "PodTemplateSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PodTemplateSpec"
+  },
+  "PortStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PortStatus"
+  },
+  "PortworxVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PortworxVolumeSource"
+  },
+  "PreferredSchedulingTermv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.PreferredSchedulingTerm"
+  },
+  "Probev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Probe"
+  },
+  "ProjectedVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ProjectedVolumeSource"
+  },
+  "QuobyteVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.QuobyteVolumeSource"
+  },
+  "RBDPersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.RBDPersistentVolumeSource"
+  },
+  "RBDVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.RBDVolumeSource"
+  },
+  "ReplicationControllerv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ReplicationController",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "ReplicationController",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/replicationcontrollers",
+    "namespaced": true
+  },
+  "ReplicationControllerConditionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ReplicationControllerCondition"
+  },
+  "ReplicationControllerSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ReplicationControllerSpec"
+  },
+  "ReplicationControllerStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ReplicationControllerStatus"
+  },
+  "ResourceClaimv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ResourceClaim"
+  },
+  "ResourceFieldSelectorv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ResourceFieldSelector"
+  },
+  "ResourceHealthv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ResourceHealth"
+  },
+  "ResourceQuotav1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ResourceQuota",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "ResourceQuota",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/resourcequotas",
+    "namespaced": true
+  },
+  "ResourceQuotaSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ResourceQuotaSpec"
+  },
+  "ResourceQuotaStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ResourceQuotaStatus"
+  },
+  "ResourceRequirementsv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ResourceRequirements"
+  },
+  "ResourceStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ResourceStatus"
+  },
+  "SELinuxOptionsv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SELinuxOptions"
+  },
+  "ScaleIOPersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ScaleIOPersistentVolumeSource"
+  },
+  "ScaleIOVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ScaleIOVolumeSource"
+  },
+  "ScopeSelectorv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ScopeSelector"
+  },
+  "ScopedResourceSelectorRequirementv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ScopedResourceSelectorRequirement"
+  },
+  "SeccompProfilev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SeccompProfile"
+  },
+  "Secretv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Secret",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "Secret",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/secrets",
+    "namespaced": true
+  },
+  "SecretEnvSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SecretEnvSource"
+  },
+  "SecretKeySelectorv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SecretKeySelector"
+  },
+  "SecretProjectionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SecretProjection"
+  },
+  "SecretReferencev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SecretReference"
+  },
+  "SecretVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SecretVolumeSource"
+  },
+  "SecurityContextv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SecurityContext"
+  },
+  "Servicev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Service",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "Service",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/services",
+    "namespaced": true
+  },
+  "ServiceAccountv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ServiceAccount",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "ServiceAccount",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/serviceaccounts",
+    "namespaced": true
+  },
+  "ServiceAccountTokenProjectionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ServiceAccountTokenProjection"
+  },
+  "ServicePortv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ServicePort"
+  },
+  "ServiceSpecv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ServiceSpec"
+  },
+  "ServiceStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.ServiceStatus"
+  },
+  "SessionAffinityConfigv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SessionAffinityConfig"
+  },
+  "SleepActionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.SleepAction"
+  },
+  "StorageOSPersistentVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.StorageOSPersistentVolumeSource"
+  },
+  "StorageOSVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.StorageOSVolumeSource"
+  },
+  "Sysctlv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Sysctl"
+  },
+  "TCPSocketActionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.TCPSocketAction"
+  },
+  "Taintv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Taint"
+  },
+  "Tolerationv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Toleration"
+  },
+  "TopologySpreadConstraintv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.TopologySpreadConstraint"
+  },
+  "TypedLocalObjectReferencev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.TypedLocalObjectReference"
+  },
+  "TypedObjectReferencev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.TypedObjectReference"
+  },
+  "Volumev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.Volume"
+  },
+  "VolumeDevicev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.VolumeDevice"
+  },
+  "VolumeMountv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.VolumeMount"
+  },
+  "VolumeMountStatusv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.VolumeMountStatus"
+  },
+  "VolumeNodeAffinityv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.VolumeNodeAffinity"
+  },
+  "VolumeProjectionv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.VolumeProjection"
+  },
+  "VolumeResourceRequirementsv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.VolumeResourceRequirements"
+  },
+  "VsphereVirtualDiskVolumeSourcev1": {
+    "originalSchemaName": "io.k8s.api.core.v1.VsphereVirtualDiskVolumeSource"
+  },
+  "WeightedPodAffinityTermv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.WeightedPodAffinityTerm"
+  },
+  "WindowsSecurityContextOptionsv1": {
+    "originalSchemaName": "io.k8s.api.core.v1.WindowsSecurityContextOptions"
+  },
+  "Evictionv1": {
+    "originalSchemaName": "io.k8s.api.policy.v1.Eviction",
+    "gvk": [
+      {
+        "group": "policy",
+        "kind": "Eviction",
+        "version": "v1"
+      }
+    ],
+    "path": "/api/v1/namespaces/{namespace}/pods/{name}/eviction",
+    "namespaced": true
   },
   "Quantity": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.api.resource.Quantity"
   },
   "APIResourcev1": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.APIResource"
+  },
+  "Conditionv1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.Condition"
   },
   "DeleteOptionsv1": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions",
@@ -339,11 +1089,20 @@
   "FieldsV1v1": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.FieldsV1"
   },
+  "LabelSelectorv1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector"
+  },
+  "LabelSelectorRequirementv1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement"
+  },
   "ListMetav1": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"
   },
   "ManagedFieldsEntryv1": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.ManagedFieldsEntry"
+  },
+  "MicroTimev1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
   },
   "ObjectMetav1": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
@@ -689,6 +1448,767 @@
   "RawExtension": {
     "originalSchemaName": "io.k8s.apimachinery.pkg.runtime.RawExtension"
   },
+  "IntOrString": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+  },
+  "APIVersionsv1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.APIVersions",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "APIVersions",
+        "version": "v1"
+      }
+    ]
+  },
+  "ServerAddressByClientCIDRv1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.ServerAddressByClientCIDR"
+  },
+  "AuditAnnotationv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.AuditAnnotation"
+  },
+  "ExpressionWarningv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ExpressionWarning"
+  },
+  "MatchConditionv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.MatchCondition"
+  },
+  "MatchResourcesv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.MatchResources"
+  },
+  "MutatingWebhookv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.MutatingWebhook"
+  },
+  "MutatingWebhookConfigurationv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.MutatingWebhookConfiguration",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "MutatingWebhookConfiguration",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations",
+    "namespaced": false
+  },
+  "NamedRuleWithOperationsv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.NamedRuleWithOperations"
+  },
+  "ParamKindv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ParamKind"
+  },
+  "ParamRefv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ParamRef"
+  },
+  "RuleWithOperationsv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.RuleWithOperations"
+  },
+  "ServiceReferencev1": {
+    "originalSchemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.ServiceReference"
+  },
+  "TypeCheckingv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.TypeChecking"
+  },
+  "ValidatingAdmissionPolicyv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicy",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "ValidatingAdmissionPolicy",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies",
+    "namespaced": false
+  },
+  "ValidatingAdmissionPolicyBindingv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicyBinding",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "ValidatingAdmissionPolicyBinding",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicybindings",
+    "namespaced": false
+  },
+  "ValidatingAdmissionPolicyBindingSpecv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicyBindingSpec"
+  },
+  "ValidatingAdmissionPolicySpecv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicySpec"
+  },
+  "ValidatingAdmissionPolicyStatusv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicyStatus"
+  },
+  "ValidatingWebhookv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingWebhook"
+  },
+  "ValidatingWebhookConfigurationv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingWebhookConfiguration",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "ValidatingWebhookConfiguration",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations",
+    "namespaced": false
+  },
+  "Validationv1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.Validation"
+  },
+  "Variablev1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1.Variable"
+  },
+  "WebhookClientConfigv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.WebhookClientConfig"
+  },
+  "ApplyConfigurationv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ApplyConfiguration"
+  },
+  "JSONPatchv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.JSONPatch"
+  },
+  "MatchConditionv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MatchCondition"
+  },
+  "MatchResourcesv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MatchResources"
+  },
+  "MutatingAdmissionPolicyv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicy",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "MutatingAdmissionPolicy",
+        "version": "v1alpha1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1alpha1/mutatingadmissionpolicies",
+    "namespaced": false
+  },
+  "MutatingAdmissionPolicyBindingv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicyBinding",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "MutatingAdmissionPolicyBinding",
+        "version": "v1alpha1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1alpha1/mutatingadmissionpolicybindings",
+    "namespaced": false
+  },
+  "MutatingAdmissionPolicyBindingSpecv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicyBindingSpec"
+  },
+  "MutatingAdmissionPolicySpecv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicySpec"
+  },
+  "Mutationv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.Mutation"
+  },
+  "NamedRuleWithOperationsv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations"
+  },
+  "ParamKindv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ParamKind"
+  },
+  "ParamRefv1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ParamRef"
+  },
+  "Variablev1alpha1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.Variable"
+  },
+  "AuditAnnotationv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.AuditAnnotation"
+  },
+  "ExpressionWarningv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ExpressionWarning"
+  },
+  "MatchConditionv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.MatchCondition"
+  },
+  "MatchResourcesv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.MatchResources"
+  },
+  "NamedRuleWithOperationsv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations"
+  },
+  "ParamKindv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ParamKind"
+  },
+  "ParamRefv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ParamRef"
+  },
+  "TypeCheckingv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.TypeChecking"
+  },
+  "ValidatingAdmissionPolicyv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicy",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "ValidatingAdmissionPolicy",
+        "version": "v1beta1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies",
+    "namespaced": false
+  },
+  "ValidatingAdmissionPolicyBindingv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBinding",
+    "gvk": [
+      {
+        "group": "admissionregistration.k8s.io",
+        "kind": "ValidatingAdmissionPolicyBinding",
+        "version": "v1beta1"
+      }
+    ],
+    "path": "/apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicybindings",
+    "namespaced": false
+  },
+  "ValidatingAdmissionPolicyBindingSpecv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingSpec"
+  },
+  "ValidatingAdmissionPolicySpecv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec"
+  },
+  "ValidatingAdmissionPolicyStatusv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyStatus"
+  },
+  "Validationv1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.Validation"
+  },
+  "Variablev1beta1": {
+    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.Variable"
+  },
+  "APIGroupv1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.APIGroup",
+    "gvk": [
+      {
+        "group": "",
+        "kind": "APIGroup",
+        "version": "v1"
+      }
+    ]
+  },
+  "GroupVersionForDiscoveryv1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.GroupVersionForDiscovery"
+  },
+  "CustomResourceColumnDefinitionv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceColumnDefinition"
+  },
+  "CustomResourceConversionv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceConversion"
+  },
+  "CustomResourceDefinitionv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinition",
+    "gvk": [
+      {
+        "group": "apiextensions.k8s.io",
+        "kind": "CustomResourceDefinition",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/apiextensions.k8s.io/v1/customresourcedefinitions",
+    "namespaced": false
+  },
+  "CustomResourceDefinitionConditionv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionCondition"
+  },
+  "CustomResourceDefinitionNamesv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionNames"
+  },
+  "CustomResourceDefinitionSpecv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionSpec"
+  },
+  "CustomResourceDefinitionStatusv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionStatus"
+  },
+  "CustomResourceDefinitionVersionv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionVersion"
+  },
+  "CustomResourceSubresourceScalev1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceSubresourceScale"
+  },
+  "CustomResourceSubresourceStatusv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceSubresourceStatus"
+  },
+  "CustomResourceSubresourcesv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceSubresources"
+  },
+  "CustomResourceValidationv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceValidation"
+  },
+  "ExternalDocumentationv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ExternalDocumentation"
+  },
+  "JSONv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSON"
+  },
+  "JSONSchemaPropsv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSONSchemaProps"
+  },
+  "JSONSchemaPropsOrArrayv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSONSchemaPropsOrArray"
+  },
+  "JSONSchemaPropsOrBoolv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSONSchemaPropsOrBool"
+  },
+  "JSONSchemaPropsOrStringArrayv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSONSchemaPropsOrStringArray"
+  },
+  "SelectableFieldv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.SelectableField"
+  },
+  "ValidationRulev1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ValidationRule"
+  },
+  "WebhookConversionv1": {
+    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.WebhookConversion"
+  },
+  "APIServicev1": {
+    "originalSchemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIService",
+    "gvk": [
+      {
+        "group": "apiregistration.k8s.io",
+        "kind": "APIService",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/apiregistration.k8s.io/v1/apiservices",
+    "namespaced": false
+  },
+  "APIServiceConditionv1": {
+    "originalSchemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIServiceCondition"
+  },
+  "APIServiceSpecv1": {
+    "originalSchemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIServiceSpec"
+  },
+  "APIServiceStatusv1": {
+    "originalSchemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIServiceStatus"
+  },
+  "ControllerRevisionv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.ControllerRevision",
+    "gvk": [
+      {
+        "group": "apps",
+        "kind": "ControllerRevision",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/apps/v1/namespaces/{namespace}/controllerrevisions",
+    "namespaced": true
+  },
+  "DaemonSetv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSet",
+    "gvk": [
+      {
+        "group": "apps",
+        "kind": "DaemonSet",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/apps/v1/namespaces/{namespace}/daemonsets",
+    "namespaced": true
+  },
+  "DaemonSetConditionv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSetCondition"
+  },
+  "DaemonSetSpecv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSetSpec"
+  },
+  "DaemonSetStatusv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSetStatus"
+  },
+  "DaemonSetUpdateStrategyv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSetUpdateStrategy"
+  },
+  "Deploymentv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.Deployment",
+    "gvk": [
+      {
+        "group": "apps",
+        "kind": "Deployment",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/apps/v1/namespaces/{namespace}/deployments",
+    "namespaced": true
+  },
+  "DeploymentConditionv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.DeploymentCondition"
+  },
+  "DeploymentSpecv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.DeploymentSpec"
+  },
+  "DeploymentStatusv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.DeploymentStatus"
+  },
+  "DeploymentStrategyv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.DeploymentStrategy"
+  },
+  "ReplicaSetv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.ReplicaSet",
+    "gvk": [
+      {
+        "group": "apps",
+        "kind": "ReplicaSet",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/apps/v1/namespaces/{namespace}/replicasets",
+    "namespaced": true
+  },
+  "ReplicaSetConditionv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.ReplicaSetCondition"
+  },
+  "ReplicaSetSpecv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.ReplicaSetSpec"
+  },
+  "ReplicaSetStatusv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.ReplicaSetStatus"
+  },
+  "RollingUpdateDaemonSetv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.RollingUpdateDaemonSet"
+  },
+  "RollingUpdateDeploymentv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.RollingUpdateDeployment"
+  },
+  "RollingUpdateStatefulSetStrategyv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.RollingUpdateStatefulSetStrategy"
+  },
+  "StatefulSetv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSet",
+    "gvk": [
+      {
+        "group": "apps",
+        "kind": "StatefulSet",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/apps/v1/namespaces/{namespace}/statefulsets",
+    "namespaced": true
+  },
+  "StatefulSetConditionv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetCondition"
+  },
+  "StatefulSetOrdinalsv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetOrdinals"
+  },
+  "StatefulSetPersistentVolumeClaimRetentionPolicyv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetPersistentVolumeClaimRetentionPolicy"
+  },
+  "StatefulSetSpecv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetSpec"
+  },
+  "StatefulSetStatusv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetStatus"
+  },
+  "StatefulSetUpdateStrategyv1": {
+    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetUpdateStrategy"
+  },
+  "SelfSubjectReviewv1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.SelfSubjectReview",
+    "gvk": [
+      {
+        "group": "authentication.k8s.io",
+        "kind": "SelfSubjectReview",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/authentication.k8s.io/v1/selfsubjectreviews",
+    "namespaced": false
+  },
+  "SelfSubjectReviewStatusv1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.SelfSubjectReviewStatus"
+  },
+  "TokenReviewv1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.TokenReview",
+    "gvk": [
+      {
+        "group": "authentication.k8s.io",
+        "kind": "TokenReview",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/authentication.k8s.io/v1/tokenreviews",
+    "namespaced": false
+  },
+  "TokenReviewSpecv1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.TokenReviewSpec"
+  },
+  "TokenReviewStatusv1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.TokenReviewStatus"
+  },
+  "UserInfov1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1.UserInfo"
+  },
+  "SelfSubjectReviewv1beta1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1beta1.SelfSubjectReview",
+    "gvk": [
+      {
+        "group": "authentication.k8s.io",
+        "kind": "SelfSubjectReview",
+        "version": "v1beta1"
+      }
+    ],
+    "path": "/apis/authentication.k8s.io/v1beta1/selfsubjectreviews",
+    "namespaced": false
+  },
+  "SelfSubjectReviewStatusv1beta1": {
+    "originalSchemaName": "io.k8s.api.authentication.v1beta1.SelfSubjectReviewStatus"
+  },
+  "FieldSelectorAttributesv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.FieldSelectorAttributes"
+  },
+  "LabelSelectorAttributesv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.LabelSelectorAttributes"
+  },
+  "LocalSubjectAccessReviewv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.LocalSubjectAccessReview",
+    "gvk": [
+      {
+        "group": "authorization.k8s.io",
+        "kind": "LocalSubjectAccessReview",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/authorization.k8s.io/v1/namespaces/{namespace}/localsubjectaccessreviews",
+    "namespaced": true
+  },
+  "NonResourceAttributesv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.NonResourceAttributes"
+  },
+  "NonResourceRulev1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.NonResourceRule"
+  },
+  "ResourceAttributesv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.ResourceAttributes"
+  },
+  "ResourceRulev1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.ResourceRule"
+  },
+  "SelfSubjectAccessReviewv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.SelfSubjectAccessReview",
+    "gvk": [
+      {
+        "group": "authorization.k8s.io",
+        "kind": "SelfSubjectAccessReview",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/authorization.k8s.io/v1/selfsubjectaccessreviews",
+    "namespaced": false
+  },
+  "SelfSubjectAccessReviewSpecv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.SelfSubjectAccessReviewSpec"
+  },
+  "SelfSubjectRulesReviewv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.SelfSubjectRulesReview",
+    "gvk": [
+      {
+        "group": "authorization.k8s.io",
+        "kind": "SelfSubjectRulesReview",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/authorization.k8s.io/v1/selfsubjectrulesreviews",
+    "namespaced": false
+  },
+  "SelfSubjectRulesReviewSpecv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.SelfSubjectRulesReviewSpec"
+  },
+  "SubjectAccessReviewv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.SubjectAccessReview",
+    "gvk": [
+      {
+        "group": "authorization.k8s.io",
+        "kind": "SubjectAccessReview",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/authorization.k8s.io/v1/subjectaccessreviews",
+    "namespaced": false
+  },
+  "SubjectAccessReviewSpecv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.SubjectAccessReviewSpec"
+  },
+  "SubjectAccessReviewStatusv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.SubjectAccessReviewStatus"
+  },
+  "SubjectRulesReviewStatusv1": {
+    "originalSchemaName": "io.k8s.api.authorization.v1.SubjectRulesReviewStatus"
+  },
+  "FieldSelectorRequirementv1": {
+    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.FieldSelectorRequirement"
+  },
+  "CrossVersionObjectReferencev1": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v1.CrossVersionObjectReference"
+  },
+  "HorizontalPodAutoscalerv1": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v1.HorizontalPodAutoscaler",
+    "gvk": [
+      {
+        "group": "autoscaling",
+        "kind": "HorizontalPodAutoscaler",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers",
+    "namespaced": true
+  },
+  "HorizontalPodAutoscalerSpecv1": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v1.HorizontalPodAutoscalerSpec"
+  },
+  "HorizontalPodAutoscalerStatusv1": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v1.HorizontalPodAutoscalerStatus"
+  },
+  "ContainerResourceMetricSourcev2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.ContainerResourceMetricSource"
+  },
+  "ContainerResourceMetricStatusv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.ContainerResourceMetricStatus"
+  },
+  "CrossVersionObjectReferencev2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.CrossVersionObjectReference"
+  },
+  "ExternalMetricSourcev2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.ExternalMetricSource"
+  },
+  "ExternalMetricStatusv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.ExternalMetricStatus"
+  },
+  "HPAScalingPolicyv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.HPAScalingPolicy"
+  },
+  "HPAScalingRulesv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.HPAScalingRules"
+  },
+  "HorizontalPodAutoscalerv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscaler",
+    "gvk": [
+      {
+        "group": "autoscaling",
+        "kind": "HorizontalPodAutoscaler",
+        "version": "v2"
+      }
+    ],
+    "path": "/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers",
+    "namespaced": true
+  },
+  "HorizontalPodAutoscalerBehaviorv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscalerBehavior"
+  },
+  "HorizontalPodAutoscalerConditionv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscalerCondition"
+  },
+  "HorizontalPodAutoscalerSpecv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscalerSpec"
+  },
+  "HorizontalPodAutoscalerStatusv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscalerStatus"
+  },
+  "MetricIdentifierv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricIdentifier"
+  },
+  "MetricSpecv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricSpec"
+  },
+  "MetricStatusv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricStatus"
+  },
+  "MetricTargetv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricTarget"
+  },
+  "MetricValueStatusv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricValueStatus"
+  },
+  "ObjectMetricSourcev2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.ObjectMetricSource"
+  },
+  "ObjectMetricStatusv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.ObjectMetricStatus"
+  },
+  "PodsMetricSourcev2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.PodsMetricSource"
+  },
+  "PodsMetricStatusv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.PodsMetricStatus"
+  },
+  "ResourceMetricSourcev2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.ResourceMetricSource"
+  },
+  "ResourceMetricStatusv2": {
+    "originalSchemaName": "io.k8s.api.autoscaling.v2.ResourceMetricStatus"
+  },
+  "CronJobv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.CronJob",
+    "gvk": [
+      {
+        "group": "batch",
+        "kind": "CronJob",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/batch/v1/namespaces/{namespace}/cronjobs",
+    "namespaced": true
+  },
+  "CronJobSpecv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.CronJobSpec"
+  },
+  "CronJobStatusv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.CronJobStatus"
+  },
+  "Jobv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.Job",
+    "gvk": [
+      {
+        "group": "batch",
+        "kind": "Job",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/batch/v1/namespaces/{namespace}/jobs",
+    "namespaced": true
+  },
+  "JobConditionv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.JobCondition"
+  },
+  "JobSpecv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.JobSpec"
+  },
+  "JobStatusv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.JobStatus"
+  },
+  "JobTemplateSpecv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.JobTemplateSpec"
+  },
+  "PodFailurePolicyv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.PodFailurePolicy"
+  },
+  "PodFailurePolicyOnExitCodesRequirementv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.PodFailurePolicyOnExitCodesRequirement"
+  },
+  "PodFailurePolicyOnPodConditionsPatternv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.PodFailurePolicyOnPodConditionsPattern"
+  },
+  "PodFailurePolicyRulev1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.PodFailurePolicyRule"
+  },
+  "SuccessPolicyv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.SuccessPolicy"
+  },
+  "SuccessPolicyRulev1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.SuccessPolicyRule"
+  },
+  "UncountedTerminatedPodsv1": {
+    "originalSchemaName": "io.k8s.api.batch.v1.UncountedTerminatedPods"
+  },
   "CertificateSigningRequestv1": {
     "originalSchemaName": "io.k8s.api.certificates.v1.CertificateSigningRequest",
     "gvk": [
@@ -710,42 +2230,404 @@
   "CertificateSigningRequestStatusv1": {
     "originalSchemaName": "io.k8s.api.certificates.v1.CertificateSigningRequestStatus"
   },
-  "PriorityClassv1": {
-    "originalSchemaName": "io.k8s.api.scheduling.v1.PriorityClass",
+  "ClusterTrustBundlev1alpha1": {
+    "originalSchemaName": "io.k8s.api.certificates.v1alpha1.ClusterTrustBundle",
     "gvk": [
       {
-        "group": "scheduling.k8s.io",
-        "kind": "PriorityClass",
+        "group": "certificates.k8s.io",
+        "kind": "ClusterTrustBundle",
+        "version": "v1alpha1"
+      }
+    ],
+    "path": "/apis/certificates.k8s.io/v1alpha1/clustertrustbundles",
+    "namespaced": false
+  },
+  "ClusterTrustBundleSpecv1alpha1": {
+    "originalSchemaName": "io.k8s.api.certificates.v1alpha1.ClusterTrustBundleSpec"
+  },
+  "Leasev1": {
+    "originalSchemaName": "io.k8s.api.coordination.v1.Lease",
+    "gvk": [
+      {
+        "group": "coordination.k8s.io",
+        "kind": "Lease",
         "version": "v1"
       }
     ],
-    "path": "/apis/scheduling.k8s.io/v1/priorityclasses",
-    "namespaced": false
+    "path": "/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases",
+    "namespaced": true
   },
-  "APIGroupv1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.APIGroup",
+  "LeaseSpecv1": {
+    "originalSchemaName": "io.k8s.api.coordination.v1.LeaseSpec"
+  },
+  "LeaseCandidatev1alpha2": {
+    "originalSchemaName": "io.k8s.api.coordination.v1alpha2.LeaseCandidate",
     "gvk": [
       {
-        "group": "",
-        "kind": "APIGroup",
+        "group": "coordination.k8s.io",
+        "kind": "LeaseCandidate",
+        "version": "v1alpha2"
+      }
+    ],
+    "path": "/apis/coordination.k8s.io/v1alpha2/namespaces/{namespace}/leasecandidates",
+    "namespaced": true
+  },
+  "LeaseCandidateSpecv1alpha2": {
+    "originalSchemaName": "io.k8s.api.coordination.v1alpha2.LeaseCandidateSpec"
+  },
+  "Endpointv1": {
+    "originalSchemaName": "io.k8s.api.discovery.v1.Endpoint"
+  },
+  "EndpointConditionsv1": {
+    "originalSchemaName": "io.k8s.api.discovery.v1.EndpointConditions"
+  },
+  "EndpointHintsv1": {
+    "originalSchemaName": "io.k8s.api.discovery.v1.EndpointHints"
+  },
+  "EndpointSlicev1": {
+    "originalSchemaName": "io.k8s.api.discovery.v1.EndpointSlice",
+    "gvk": [
+      {
+        "group": "discovery.k8s.io",
+        "kind": "EndpointSlice",
         "version": "v1"
       }
-    ]
+    ],
+    "path": "/apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices",
+    "namespaced": true
   },
-  "GroupVersionForDiscoveryv1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.GroupVersionForDiscovery"
+  "ForZonev1": {
+    "originalSchemaName": "io.k8s.api.discovery.v1.ForZone"
   },
-  "ServerAddressByClientCIDRv1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.ServerAddressByClientCIDR"
+  "ExemptPriorityLevelConfigurationv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.ExemptPriorityLevelConfiguration"
   },
-  "NodeSelectorv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeSelector"
+  "FlowDistinguisherMethodv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowDistinguisherMethod"
   },
-  "NodeSelectorRequirementv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeSelectorRequirement"
+  "FlowSchemav1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowSchema",
+    "gvk": [
+      {
+        "group": "flowcontrol.apiserver.k8s.io",
+        "kind": "FlowSchema",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas",
+    "namespaced": false
   },
-  "NodeSelectorTermv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeSelectorTerm"
+  "FlowSchemaConditionv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowSchemaCondition"
+  },
+  "FlowSchemaSpecv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowSchemaSpec"
+  },
+  "FlowSchemaStatusv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowSchemaStatus"
+  },
+  "GroupSubjectv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.GroupSubject"
+  },
+  "LimitResponsev1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.LimitResponse"
+  },
+  "LimitedPriorityLevelConfigurationv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.LimitedPriorityLevelConfiguration"
+  },
+  "NonResourcePolicyRulev1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.NonResourcePolicyRule"
+  },
+  "PolicyRulesWithSubjectsv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PolicyRulesWithSubjects"
+  },
+  "PriorityLevelConfigurationv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfiguration",
+    "gvk": [
+      {
+        "group": "flowcontrol.apiserver.k8s.io",
+        "kind": "PriorityLevelConfiguration",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/flowcontrol.apiserver.k8s.io/v1/prioritylevelconfigurations",
+    "namespaced": false
+  },
+  "PriorityLevelConfigurationConditionv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationCondition"
+  },
+  "PriorityLevelConfigurationReferencev1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationReference"
+  },
+  "PriorityLevelConfigurationSpecv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationSpec"
+  },
+  "PriorityLevelConfigurationStatusv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationStatus"
+  },
+  "QueuingConfigurationv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.QueuingConfiguration"
+  },
+  "ResourcePolicyRulev1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.ResourcePolicyRule"
+  },
+  "ServiceAccountSubjectv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.ServiceAccountSubject"
+  },
+  "Subjectv1": {
+    "originalSchemaName": "io.k8s.api.rbac.v1.Subject"
+  },
+  "UserSubjectv1": {
+    "originalSchemaName": "io.k8s.api.flowcontrol.v1.UserSubject"
+  },
+  "ServerStorageVersionv1alpha1": {
+    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.ServerStorageVersion"
+  },
+  "StorageVersionv1alpha1": {
+    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.StorageVersion",
+    "gvk": [
+      {
+        "group": "internal.apiserver.k8s.io",
+        "kind": "StorageVersion",
+        "version": "v1alpha1"
+      }
+    ],
+    "path": "/apis/internal.apiserver.k8s.io/v1alpha1/storageversions",
+    "namespaced": false
+  },
+  "StorageVersionConditionv1alpha1": {
+    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.StorageVersionCondition"
+  },
+  "StorageVersionSpecv1alpha1": {
+    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.StorageVersionSpec"
+  },
+  "StorageVersionStatusv1alpha1": {
+    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.StorageVersionStatus"
+  },
+  "HTTPIngressPathv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.HTTPIngressPath"
+  },
+  "HTTPIngressRuleValuev1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.HTTPIngressRuleValue"
+  },
+  "IPBlockv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IPBlock"
+  },
+  "Ingressv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.Ingress",
+    "gvk": [
+      {
+        "group": "networking.k8s.io",
+        "kind": "Ingress",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses",
+    "namespaced": true
+  },
+  "IngressBackendv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressBackend"
+  },
+  "IngressClassv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressClass",
+    "gvk": [
+      {
+        "group": "networking.k8s.io",
+        "kind": "IngressClass",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/networking.k8s.io/v1/ingressclasses",
+    "namespaced": false
+  },
+  "IngressClassParametersReferencev1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressClassParametersReference"
+  },
+  "IngressClassSpecv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressClassSpec"
+  },
+  "IngressLoadBalancerIngressv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressLoadBalancerIngress"
+  },
+  "IngressLoadBalancerStatusv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressLoadBalancerStatus"
+  },
+  "IngressPortStatusv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressPortStatus"
+  },
+  "IngressRulev1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressRule"
+  },
+  "IngressServiceBackendv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressServiceBackend"
+  },
+  "IngressSpecv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressSpec"
+  },
+  "IngressStatusv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressStatus"
+  },
+  "IngressTLSv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.IngressTLS"
+  },
+  "NetworkPolicyv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicy",
+    "gvk": [
+      {
+        "group": "networking.k8s.io",
+        "kind": "NetworkPolicy",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies",
+    "namespaced": true
+  },
+  "NetworkPolicyEgressRulev1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicyEgressRule"
+  },
+  "NetworkPolicyIngressRulev1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicyIngressRule"
+  },
+  "NetworkPolicyPeerv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicyPeer"
+  },
+  "NetworkPolicyPortv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicyPort"
+  },
+  "NetworkPolicySpecv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicySpec"
+  },
+  "ServiceBackendPortv1": {
+    "originalSchemaName": "io.k8s.api.networking.v1.ServiceBackendPort"
+  },
+  "IPAddressv1beta1": {
+    "originalSchemaName": "io.k8s.api.networking.v1beta1.IPAddress",
+    "gvk": [
+      {
+        "group": "networking.k8s.io",
+        "kind": "IPAddress",
+        "version": "v1beta1"
+      }
+    ],
+    "path": "/apis/networking.k8s.io/v1beta1/ipaddresses",
+    "namespaced": false
+  },
+  "IPAddressSpecv1beta1": {
+    "originalSchemaName": "io.k8s.api.networking.v1beta1.IPAddressSpec"
+  },
+  "ParentReferencev1beta1": {
+    "originalSchemaName": "io.k8s.api.networking.v1beta1.ParentReference"
+  },
+  "ServiceCIDRv1beta1": {
+    "originalSchemaName": "io.k8s.api.networking.v1beta1.ServiceCIDR",
+    "gvk": [
+      {
+        "group": "networking.k8s.io",
+        "kind": "ServiceCIDR",
+        "version": "v1beta1"
+      }
+    ],
+    "path": "/apis/networking.k8s.io/v1beta1/servicecidrs",
+    "namespaced": false
+  },
+  "ServiceCIDRSpecv1beta1": {
+    "originalSchemaName": "io.k8s.api.networking.v1beta1.ServiceCIDRSpec"
+  },
+  "ServiceCIDRStatusv1beta1": {
+    "originalSchemaName": "io.k8s.api.networking.v1beta1.ServiceCIDRStatus"
+  },
+  "Overheadv1": {
+    "originalSchemaName": "io.k8s.api.node.v1.Overhead"
+  },
+  "RuntimeClassv1": {
+    "originalSchemaName": "io.k8s.api.node.v1.RuntimeClass",
+    "gvk": [
+      {
+        "group": "node.k8s.io",
+        "kind": "RuntimeClass",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/node.k8s.io/v1/runtimeclasses",
+    "namespaced": false
+  },
+  "Schedulingv1": {
+    "originalSchemaName": "io.k8s.api.node.v1.Scheduling"
+  },
+  "PodDisruptionBudgetv1": {
+    "originalSchemaName": "io.k8s.api.policy.v1.PodDisruptionBudget",
+    "gvk": [
+      {
+        "group": "policy",
+        "kind": "PodDisruptionBudget",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets",
+    "namespaced": true
+  },
+  "PodDisruptionBudgetSpecv1": {
+    "originalSchemaName": "io.k8s.api.policy.v1.PodDisruptionBudgetSpec"
+  },
+  "PodDisruptionBudgetStatusv1": {
+    "originalSchemaName": "io.k8s.api.policy.v1.PodDisruptionBudgetStatus"
+  },
+  "AggregationRulev1": {
+    "originalSchemaName": "io.k8s.api.rbac.v1.AggregationRule"
+  },
+  "ClusterRolev1": {
+    "originalSchemaName": "io.k8s.api.rbac.v1.ClusterRole",
+    "gvk": [
+      {
+        "group": "rbac.authorization.k8s.io",
+        "kind": "ClusterRole",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/rbac.authorization.k8s.io/v1/clusterroles",
+    "namespaced": false
+  },
+  "ClusterRoleBindingv1": {
+    "originalSchemaName": "io.k8s.api.rbac.v1.ClusterRoleBinding",
+    "gvk": [
+      {
+        "group": "rbac.authorization.k8s.io",
+        "kind": "ClusterRoleBinding",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings",
+    "namespaced": false
+  },
+  "PolicyRulev1": {
+    "originalSchemaName": "io.k8s.api.rbac.v1.PolicyRule"
+  },
+  "Rolev1": {
+    "originalSchemaName": "io.k8s.api.rbac.v1.Role",
+    "gvk": [
+      {
+        "group": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles",
+    "namespaced": true
+  },
+  "RoleBindingv1": {
+    "originalSchemaName": "io.k8s.api.rbac.v1.RoleBinding",
+    "gvk": [
+      {
+        "group": "rbac.authorization.k8s.io",
+        "kind": "RoleBinding",
+        "version": "v1"
+      }
+    ],
+    "path": "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings",
+    "namespaced": true
+  },
+  "RoleRefv1": {
+    "originalSchemaName": "io.k8s.api.rbac.v1.RoleRef"
   },
   "AllocatedDeviceStatusv1alpha3": {
     "originalSchemaName": "io.k8s.api.resource.v1alpha3.AllocatedDeviceStatus"
@@ -866,120 +2748,6 @@
   },
   "ResourceSliceSpecv1alpha3": {
     "originalSchemaName": "io.k8s.api.resource.v1alpha3.ResourceSliceSpec"
-  },
-  "Conditionv1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.Condition"
-  },
-  "ExemptPriorityLevelConfigurationv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.ExemptPriorityLevelConfiguration"
-  },
-  "FlowDistinguisherMethodv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowDistinguisherMethod"
-  },
-  "FlowSchemav1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowSchema",
-    "gvk": [
-      {
-        "group": "flowcontrol.apiserver.k8s.io",
-        "kind": "FlowSchema",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas",
-    "namespaced": false
-  },
-  "FlowSchemaConditionv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowSchemaCondition"
-  },
-  "FlowSchemaSpecv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowSchemaSpec"
-  },
-  "FlowSchemaStatusv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.FlowSchemaStatus"
-  },
-  "GroupSubjectv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.GroupSubject"
-  },
-  "LimitResponsev1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.LimitResponse"
-  },
-  "LimitedPriorityLevelConfigurationv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.LimitedPriorityLevelConfiguration"
-  },
-  "NonResourcePolicyRulev1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.NonResourcePolicyRule"
-  },
-  "PolicyRulesWithSubjectsv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PolicyRulesWithSubjects"
-  },
-  "PriorityLevelConfigurationv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfiguration",
-    "gvk": [
-      {
-        "group": "flowcontrol.apiserver.k8s.io",
-        "kind": "PriorityLevelConfiguration",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/flowcontrol.apiserver.k8s.io/v1/prioritylevelconfigurations",
-    "namespaced": false
-  },
-  "PriorityLevelConfigurationConditionv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationCondition"
-  },
-  "PriorityLevelConfigurationReferencev1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationReference"
-  },
-  "PriorityLevelConfigurationSpecv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationSpec"
-  },
-  "PriorityLevelConfigurationStatusv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationStatus"
-  },
-  "QueuingConfigurationv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.QueuingConfiguration"
-  },
-  "ResourcePolicyRulev1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.ResourcePolicyRule"
-  },
-  "ServiceAccountSubjectv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.ServiceAccountSubject"
-  },
-  "Subjectv1": {
-    "originalSchemaName": "io.k8s.api.rbac.v1.Subject"
-  },
-  "UserSubjectv1": {
-    "originalSchemaName": "io.k8s.api.flowcontrol.v1.UserSubject"
-  },
-  "Leasev1": {
-    "originalSchemaName": "io.k8s.api.coordination.v1.Lease",
-    "gvk": [
-      {
-        "group": "coordination.k8s.io",
-        "kind": "Lease",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases",
-    "namespaced": true
-  },
-  "LeaseSpecv1": {
-    "originalSchemaName": "io.k8s.api.coordination.v1.LeaseSpec"
-  },
-  "MicroTimev1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
-  },
-  "VolumeAttributesClassv1beta1": {
-    "originalSchemaName": "io.k8s.api.storage.v1beta1.VolumeAttributesClass",
-    "gvk": [
-      {
-        "group": "storage.k8s.io",
-        "kind": "VolumeAttributesClass",
-        "version": "v1beta1"
-      }
-    ],
-    "path": "/apis/storage.k8s.io/v1beta1/volumeattributesclasses",
-    "namespaced": false
   },
   "AllocatedDeviceStatusv1beta1": {
     "originalSchemaName": "io.k8s.api.resource.v1beta1.AllocatedDeviceStatus"
@@ -1104,741 +2872,23 @@
   "ResourceSliceSpecv1beta1": {
     "originalSchemaName": "io.k8s.api.resource.v1beta1.ResourceSliceSpec"
   },
-  "UserInfov1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.UserInfo"
-  },
-  "SelfSubjectReviewv1beta1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1beta1.SelfSubjectReview",
+  "PriorityClassv1": {
+    "originalSchemaName": "io.k8s.api.scheduling.v1.PriorityClass",
     "gvk": [
       {
-        "group": "authentication.k8s.io",
-        "kind": "SelfSubjectReview",
-        "version": "v1beta1"
+        "group": "scheduling.k8s.io",
+        "kind": "PriorityClass",
+        "version": "v1"
       }
     ],
-    "path": "/apis/authentication.k8s.io/v1beta1/selfsubjectreviews",
+    "path": "/apis/scheduling.k8s.io/v1/priorityclasses",
     "namespaced": false
-  },
-  "SelfSubjectReviewStatusv1beta1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1beta1.SelfSubjectReviewStatus"
-  },
-  "EventSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EventSource"
-  },
-  "ObjectReferencev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ObjectReference"
-  },
-  "Eventv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Event",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "Event",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/events",
-    "namespaced": true
-  },
-  "EventSeriesv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EventSeries"
-  },
-  "AuditAnnotationv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.AuditAnnotation"
-  },
-  "ExpressionWarningv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ExpressionWarning"
-  },
-  "MatchConditionv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.MatchCondition"
-  },
-  "MatchResourcesv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.MatchResources"
-  },
-  "MutatingWebhookv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.MutatingWebhook"
-  },
-  "MutatingWebhookConfigurationv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.MutatingWebhookConfiguration",
-    "gvk": [
-      {
-        "group": "admissionregistration.k8s.io",
-        "kind": "MutatingWebhookConfiguration",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations",
-    "namespaced": false
-  },
-  "NamedRuleWithOperationsv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.NamedRuleWithOperations"
-  },
-  "ParamKindv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ParamKind"
-  },
-  "ParamRefv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ParamRef"
-  },
-  "RuleWithOperationsv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.RuleWithOperations"
-  },
-  "ServiceReferencev1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ServiceReference"
-  },
-  "TypeCheckingv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.TypeChecking"
-  },
-  "ValidatingAdmissionPolicyv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicy",
-    "gvk": [
-      {
-        "group": "admissionregistration.k8s.io",
-        "kind": "ValidatingAdmissionPolicy",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies",
-    "namespaced": false
-  },
-  "ValidatingAdmissionPolicyBindingv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicyBinding",
-    "gvk": [
-      {
-        "group": "admissionregistration.k8s.io",
-        "kind": "ValidatingAdmissionPolicyBinding",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicybindings",
-    "namespaced": false
-  },
-  "ValidatingAdmissionPolicyBindingSpecv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicyBindingSpec"
-  },
-  "ValidatingAdmissionPolicySpecv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicySpec"
-  },
-  "ValidatingAdmissionPolicyStatusv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingAdmissionPolicyStatus"
-  },
-  "ValidatingWebhookv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingWebhook"
-  },
-  "ValidatingWebhookConfigurationv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.ValidatingWebhookConfiguration",
-    "gvk": [
-      {
-        "group": "admissionregistration.k8s.io",
-        "kind": "ValidatingWebhookConfiguration",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations",
-    "namespaced": false
-  },
-  "Validationv1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.Validation"
-  },
-  "Variablev1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1.Variable"
-  },
-  "WebhookClientConfigv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.WebhookClientConfig"
-  },
-  "LabelSelectorv1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector"
-  },
-  "LabelSelectorRequirementv1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement"
-  },
-  "VolumeAttributesClassv1alpha1": {
-    "originalSchemaName": "io.k8s.api.storage.v1alpha1.VolumeAttributesClass",
-    "gvk": [
-      {
-        "group": "storage.k8s.io",
-        "kind": "VolumeAttributesClass",
-        "version": "v1alpha1"
-      }
-    ],
-    "path": "/apis/storage.k8s.io/v1alpha1/volumeattributesclasses",
-    "namespaced": false
-  },
-  "IPAddressv1beta1": {
-    "originalSchemaName": "io.k8s.api.networking.v1beta1.IPAddress",
-    "gvk": [
-      {
-        "group": "networking.k8s.io",
-        "kind": "IPAddress",
-        "version": "v1beta1"
-      }
-    ],
-    "path": "/apis/networking.k8s.io/v1beta1/ipaddresses",
-    "namespaced": false
-  },
-  "IPAddressSpecv1beta1": {
-    "originalSchemaName": "io.k8s.api.networking.v1beta1.IPAddressSpec"
-  },
-  "ParentReferencev1beta1": {
-    "originalSchemaName": "io.k8s.api.networking.v1beta1.ParentReference"
-  },
-  "ServiceCIDRv1beta1": {
-    "originalSchemaName": "io.k8s.api.networking.v1beta1.ServiceCIDR",
-    "gvk": [
-      {
-        "group": "networking.k8s.io",
-        "kind": "ServiceCIDR",
-        "version": "v1beta1"
-      }
-    ],
-    "path": "/apis/networking.k8s.io/v1beta1/servicecidrs",
-    "namespaced": false
-  },
-  "ServiceCIDRSpecv1beta1": {
-    "originalSchemaName": "io.k8s.api.networking.v1beta1.ServiceCIDRSpec"
-  },
-  "ServiceCIDRStatusv1beta1": {
-    "originalSchemaName": "io.k8s.api.networking.v1beta1.ServiceCIDRStatus"
-  },
-  "APIVersionsv1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.APIVersions",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "APIVersions",
-        "version": "v1"
-      }
-    ]
-  },
-  "GroupVersionResourcev1alpha1": {
-    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.GroupVersionResource"
-  },
-  "MigrationConditionv1alpha1": {
-    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.MigrationCondition"
-  },
-  "StorageVersionMigrationv1alpha1": {
-    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.StorageVersionMigration",
-    "gvk": [
-      {
-        "group": "storagemigration.k8s.io",
-        "kind": "StorageVersionMigration",
-        "version": "v1alpha1"
-      }
-    ],
-    "path": "/apis/storagemigration.k8s.io/v1alpha1/storageversionmigrations",
-    "namespaced": false
-  },
-  "StorageVersionMigrationSpecv1alpha1": {
-    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.StorageVersionMigrationSpec"
-  },
-  "StorageVersionMigrationStatusv1alpha1": {
-    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.StorageVersionMigrationStatus"
-  },
-  "FieldSelectorAttributesv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.FieldSelectorAttributes"
-  },
-  "LabelSelectorAttributesv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.LabelSelectorAttributes"
-  },
-  "LocalSubjectAccessReviewv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.LocalSubjectAccessReview",
-    "gvk": [
-      {
-        "group": "authorization.k8s.io",
-        "kind": "LocalSubjectAccessReview",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/authorization.k8s.io/v1/namespaces/{namespace}/localsubjectaccessreviews",
-    "namespaced": true
-  },
-  "NonResourceAttributesv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.NonResourceAttributes"
-  },
-  "NonResourceRulev1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.NonResourceRule"
-  },
-  "ResourceAttributesv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.ResourceAttributes"
-  },
-  "ResourceRulev1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.ResourceRule"
-  },
-  "SelfSubjectAccessReviewv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.SelfSubjectAccessReview",
-    "gvk": [
-      {
-        "group": "authorization.k8s.io",
-        "kind": "SelfSubjectAccessReview",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/authorization.k8s.io/v1/selfsubjectaccessreviews",
-    "namespaced": false
-  },
-  "SelfSubjectAccessReviewSpecv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.SelfSubjectAccessReviewSpec"
-  },
-  "SelfSubjectRulesReviewv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.SelfSubjectRulesReview",
-    "gvk": [
-      {
-        "group": "authorization.k8s.io",
-        "kind": "SelfSubjectRulesReview",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/authorization.k8s.io/v1/selfsubjectrulesreviews",
-    "namespaced": false
-  },
-  "SelfSubjectRulesReviewSpecv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.SelfSubjectRulesReviewSpec"
-  },
-  "SubjectAccessReviewv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.SubjectAccessReview",
-    "gvk": [
-      {
-        "group": "authorization.k8s.io",
-        "kind": "SubjectAccessReview",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/authorization.k8s.io/v1/subjectaccessreviews",
-    "namespaced": false
-  },
-  "SubjectAccessReviewSpecv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.SubjectAccessReviewSpec"
-  },
-  "SubjectAccessReviewStatusv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.SubjectAccessReviewStatus"
-  },
-  "SubjectRulesReviewStatusv1": {
-    "originalSchemaName": "io.k8s.api.authorization.v1.SubjectRulesReviewStatus"
-  },
-  "FieldSelectorRequirementv1": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.FieldSelectorRequirement"
-  },
-  "CronJobv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.CronJob",
-    "gvk": [
-      {
-        "group": "batch",
-        "kind": "CronJob",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/batch/v1/namespaces/{namespace}/cronjobs",
-    "namespaced": true
-  },
-  "CronJobSpecv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.CronJobSpec"
-  },
-  "CronJobStatusv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.CronJobStatus"
-  },
-  "Jobv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.Job",
-    "gvk": [
-      {
-        "group": "batch",
-        "kind": "Job",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/batch/v1/namespaces/{namespace}/jobs",
-    "namespaced": true
-  },
-  "JobConditionv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.JobCondition"
-  },
-  "JobSpecv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.JobSpec"
-  },
-  "JobStatusv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.JobStatus"
-  },
-  "JobTemplateSpecv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.JobTemplateSpec"
-  },
-  "PodFailurePolicyv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.PodFailurePolicy"
-  },
-  "PodFailurePolicyOnExitCodesRequirementv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.PodFailurePolicyOnExitCodesRequirement"
-  },
-  "PodFailurePolicyOnPodConditionsPatternv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.PodFailurePolicyOnPodConditionsPattern"
-  },
-  "PodFailurePolicyRulev1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.PodFailurePolicyRule"
-  },
-  "SuccessPolicyv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.SuccessPolicy"
-  },
-  "SuccessPolicyRulev1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.SuccessPolicyRule"
-  },
-  "UncountedTerminatedPodsv1": {
-    "originalSchemaName": "io.k8s.api.batch.v1.UncountedTerminatedPods"
-  },
-  "AWSElasticBlockStoreVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.AWSElasticBlockStoreVolumeSource"
-  },
-  "Affinityv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Affinity"
-  },
-  "AppArmorProfilev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.AppArmorProfile"
-  },
-  "AzureDiskVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.AzureDiskVolumeSource"
-  },
-  "AzureFileVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.AzureFileVolumeSource"
-  },
-  "CSIVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.CSIVolumeSource"
-  },
-  "Capabilitiesv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Capabilities"
-  },
-  "CephFSVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.CephFSVolumeSource"
-  },
-  "CinderVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.CinderVolumeSource"
-  },
-  "ClusterTrustBundleProjectionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ClusterTrustBundleProjection"
-  },
-  "ConfigMapEnvSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapEnvSource"
-  },
-  "ConfigMapKeySelectorv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapKeySelector"
-  },
-  "ConfigMapProjectionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapProjection"
-  },
-  "ConfigMapVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapVolumeSource"
-  },
-  "Containerv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Container"
-  },
-  "ContainerPortv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ContainerPort"
-  },
-  "ContainerResizePolicyv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ContainerResizePolicy"
-  },
-  "DownwardAPIProjectionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.DownwardAPIProjection"
-  },
-  "DownwardAPIVolumeFilev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.DownwardAPIVolumeFile"
-  },
-  "DownwardAPIVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.DownwardAPIVolumeSource"
-  },
-  "EmptyDirVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EmptyDirVolumeSource"
-  },
-  "EnvFromSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EnvFromSource"
-  },
-  "EnvVarv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EnvVar"
-  },
-  "EnvVarSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EnvVarSource"
-  },
-  "EphemeralContainerv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EphemeralContainer"
-  },
-  "EphemeralVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EphemeralVolumeSource"
-  },
-  "ExecActionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ExecAction"
-  },
-  "FCVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.FCVolumeSource"
-  },
-  "FlexVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.FlexVolumeSource"
-  },
-  "FlockerVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.FlockerVolumeSource"
-  },
-  "GCEPersistentDiskVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.GCEPersistentDiskVolumeSource"
-  },
-  "GRPCActionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.GRPCAction"
-  },
-  "GitRepoVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.GitRepoVolumeSource"
-  },
-  "GlusterfsVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.GlusterfsVolumeSource"
-  },
-  "HTTPGetActionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.HTTPGetAction"
-  },
-  "HTTPHeaderv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.HTTPHeader"
-  },
-  "HostAliasv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.HostAlias"
-  },
-  "HostPathVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.HostPathVolumeSource"
-  },
-  "ISCSIVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ISCSIVolumeSource"
-  },
-  "ImageVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ImageVolumeSource"
-  },
-  "KeyToPathv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.KeyToPath"
-  },
-  "Lifecyclev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Lifecycle"
-  },
-  "LifecycleHandlerv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.LifecycleHandler"
-  },
-  "LocalObjectReferencev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.LocalObjectReference"
-  },
-  "NFSVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NFSVolumeSource"
-  },
-  "NodeAffinityv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeAffinity"
-  },
-  "ObjectFieldSelectorv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ObjectFieldSelector"
-  },
-  "PersistentVolumeClaimSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimSpec"
-  },
-  "PersistentVolumeClaimTemplatev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimTemplate"
-  },
-  "PersistentVolumeClaimVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimVolumeSource"
-  },
-  "PhotonPersistentDiskVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PhotonPersistentDiskVolumeSource"
-  },
-  "PodAffinityv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodAffinity"
-  },
-  "PodAffinityTermv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodAffinityTerm"
-  },
-  "PodAntiAffinityv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodAntiAffinity"
-  },
-  "PodDNSConfigv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodDNSConfig"
-  },
-  "PodDNSConfigOptionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodDNSConfigOption"
-  },
-  "PodOSv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodOS"
-  },
-  "PodReadinessGatev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodReadinessGate"
-  },
-  "PodResourceClaimv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodResourceClaim"
-  },
-  "PodSchedulingGatev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodSchedulingGate"
-  },
-  "PodSecurityContextv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodSecurityContext"
-  },
-  "PodSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodSpec"
-  },
-  "PodTemplateSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodTemplateSpec"
-  },
-  "PortworxVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PortworxVolumeSource"
-  },
-  "PreferredSchedulingTermv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PreferredSchedulingTerm"
-  },
-  "Probev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Probe"
-  },
-  "ProjectedVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ProjectedVolumeSource"
-  },
-  "QuobyteVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.QuobyteVolumeSource"
-  },
-  "RBDVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.RBDVolumeSource"
-  },
-  "ResourceClaimv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ResourceClaim"
-  },
-  "ResourceFieldSelectorv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ResourceFieldSelector"
-  },
-  "ResourceRequirementsv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ResourceRequirements"
-  },
-  "SELinuxOptionsv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SELinuxOptions"
-  },
-  "ScaleIOVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ScaleIOVolumeSource"
-  },
-  "SeccompProfilev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SeccompProfile"
-  },
-  "SecretEnvSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SecretEnvSource"
-  },
-  "SecretKeySelectorv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SecretKeySelector"
-  },
-  "SecretProjectionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SecretProjection"
-  },
-  "SecretVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SecretVolumeSource"
-  },
-  "SecurityContextv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SecurityContext"
-  },
-  "ServiceAccountTokenProjectionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ServiceAccountTokenProjection"
-  },
-  "SleepActionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SleepAction"
-  },
-  "StorageOSVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.StorageOSVolumeSource"
-  },
-  "Sysctlv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Sysctl"
-  },
-  "TCPSocketActionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.TCPSocketAction"
-  },
-  "TopologySpreadConstraintv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.TopologySpreadConstraint"
-  },
-  "TypedLocalObjectReferencev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.TypedLocalObjectReference"
-  },
-  "TypedObjectReferencev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.TypedObjectReference"
-  },
-  "Volumev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Volume"
-  },
-  "VolumeDevicev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.VolumeDevice"
-  },
-  "VolumeMountv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.VolumeMount"
-  },
-  "VolumeProjectionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.VolumeProjection"
-  },
-  "VolumeResourceRequirementsv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.VolumeResourceRequirements"
-  },
-  "VsphereVirtualDiskVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.VsphereVirtualDiskVolumeSource"
-  },
-  "WeightedPodAffinityTermv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.WeightedPodAffinityTerm"
-  },
-  "WindowsSecurityContextOptionsv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.WindowsSecurityContextOptions"
-  },
-  "IntOrString": {
-    "originalSchemaName": "io.k8s.apimachinery.pkg.util.intstr.IntOrString"
-  },
-  "CrossVersionObjectReferencev1": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v1.CrossVersionObjectReference"
-  },
-  "HorizontalPodAutoscalerv1": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v1.HorizontalPodAutoscaler",
-    "gvk": [
-      {
-        "group": "autoscaling",
-        "kind": "HorizontalPodAutoscaler",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers",
-    "namespaced": true
-  },
-  "HorizontalPodAutoscalerSpecv1": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v1.HorizontalPodAutoscalerSpec"
-  },
-  "HorizontalPodAutoscalerStatusv1": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v1.HorizontalPodAutoscalerStatus"
-  },
-  "AzureFilePersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.AzureFilePersistentVolumeSource"
-  },
-  "CSIPersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.CSIPersistentVolumeSource"
-  },
-  "CephFSPersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.CephFSPersistentVolumeSource"
-  },
-  "CinderPersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.CinderPersistentVolumeSource"
-  },
-  "FlexPersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.FlexPersistentVolumeSource"
-  },
-  "GlusterfsPersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.GlusterfsPersistentVolumeSource"
-  },
-  "ISCSIPersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ISCSIPersistentVolumeSource"
-  },
-  "LocalVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.LocalVolumeSource"
-  },
-  "PersistentVolumeSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeSpec"
-  },
-  "RBDPersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.RBDPersistentVolumeSource"
-  },
-  "ScaleIOPersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ScaleIOPersistentVolumeSource"
-  },
-  "SecretReferencev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SecretReference"
-  },
-  "StorageOSPersistentVolumeSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.StorageOSPersistentVolumeSource"
   },
   "TopologySelectorLabelRequirementv1": {
     "originalSchemaName": "io.k8s.api.core.v1.TopologySelectorLabelRequirement"
   },
   "TopologySelectorTermv1": {
     "originalSchemaName": "io.k8s.api.core.v1.TopologySelectorTerm"
-  },
-  "VolumeNodeAffinityv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.VolumeNodeAffinity"
   },
   "CSIDriverv1": {
     "originalSchemaName": "io.k8s.api.storage.v1.CSIDriver",
@@ -1897,18 +2947,6 @@
     "path": "/apis/storage.k8s.io/v1/storageclasses",
     "namespaced": false
   },
-  "TokenRequestv1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.TokenRequest",
-    "gvk": [
-      {
-        "group": "authentication.k8s.io",
-        "kind": "TokenRequest",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/serviceaccounts/{name}/token",
-    "namespaced": true
-  },
   "VolumeAttachmentv1": {
     "originalSchemaName": "io.k8s.api.storage.v1.VolumeAttachment",
     "gvk": [
@@ -1936,1101 +2974,52 @@
   "VolumeNodeResourcesv1": {
     "originalSchemaName": "io.k8s.api.storage.v1.VolumeNodeResources"
   },
-  "ServerStorageVersionv1alpha1": {
-    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.ServerStorageVersion"
-  },
-  "StorageVersionv1alpha1": {
-    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.StorageVersion",
+  "VolumeAttributesClassv1alpha1": {
+    "originalSchemaName": "io.k8s.api.storage.v1alpha1.VolumeAttributesClass",
     "gvk": [
       {
-        "group": "internal.apiserver.k8s.io",
-        "kind": "StorageVersion",
+        "group": "storage.k8s.io",
+        "kind": "VolumeAttributesClass",
         "version": "v1alpha1"
       }
     ],
-    "path": "/apis/internal.apiserver.k8s.io/v1alpha1/storageversions",
+    "path": "/apis/storage.k8s.io/v1alpha1/volumeattributesclasses",
     "namespaced": false
   },
-  "StorageVersionConditionv1alpha1": {
-    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.StorageVersionCondition"
-  },
-  "StorageVersionSpecv1alpha1": {
-    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.StorageVersionSpec"
-  },
-  "StorageVersionStatusv1alpha1": {
-    "originalSchemaName": "io.k8s.api.apiserverinternal.v1alpha1.StorageVersionStatus"
-  },
-  "APIServicev1": {
-    "originalSchemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIService",
+  "VolumeAttributesClassv1beta1": {
+    "originalSchemaName": "io.k8s.api.storage.v1beta1.VolumeAttributesClass",
     "gvk": [
       {
-        "group": "apiregistration.k8s.io",
-        "kind": "APIService",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/apiregistration.k8s.io/v1/apiservices",
-    "namespaced": false
-  },
-  "APIServiceConditionv1": {
-    "originalSchemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIServiceCondition"
-  },
-  "APIServiceSpecv1": {
-    "originalSchemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIServiceSpec"
-  },
-  "APIServiceStatusv1": {
-    "originalSchemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIServiceStatus"
-  },
-  "ClusterTrustBundlev1alpha1": {
-    "originalSchemaName": "io.k8s.api.certificates.v1alpha1.ClusterTrustBundle",
-    "gvk": [
-      {
-        "group": "certificates.k8s.io",
-        "kind": "ClusterTrustBundle",
-        "version": "v1alpha1"
-      }
-    ],
-    "path": "/apis/certificates.k8s.io/v1alpha1/clustertrustbundles",
-    "namespaced": false
-  },
-  "ClusterTrustBundleSpecv1alpha1": {
-    "originalSchemaName": "io.k8s.api.certificates.v1alpha1.ClusterTrustBundleSpec"
-  },
-  "AggregationRulev1": {
-    "originalSchemaName": "io.k8s.api.rbac.v1.AggregationRule"
-  },
-  "ClusterRolev1": {
-    "originalSchemaName": "io.k8s.api.rbac.v1.ClusterRole",
-    "gvk": [
-      {
-        "group": "rbac.authorization.k8s.io",
-        "kind": "ClusterRole",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/rbac.authorization.k8s.io/v1/clusterroles",
-    "namespaced": false
-  },
-  "ClusterRoleBindingv1": {
-    "originalSchemaName": "io.k8s.api.rbac.v1.ClusterRoleBinding",
-    "gvk": [
-      {
-        "group": "rbac.authorization.k8s.io",
-        "kind": "ClusterRoleBinding",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings",
-    "namespaced": false
-  },
-  "PolicyRulev1": {
-    "originalSchemaName": "io.k8s.api.rbac.v1.PolicyRule"
-  },
-  "Rolev1": {
-    "originalSchemaName": "io.k8s.api.rbac.v1.Role",
-    "gvk": [
-      {
-        "group": "rbac.authorization.k8s.io",
-        "kind": "Role",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles",
-    "namespaced": true
-  },
-  "RoleBindingv1": {
-    "originalSchemaName": "io.k8s.api.rbac.v1.RoleBinding",
-    "gvk": [
-      {
-        "group": "rbac.authorization.k8s.io",
-        "kind": "RoleBinding",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings",
-    "namespaced": true
-  },
-  "RoleRefv1": {
-    "originalSchemaName": "io.k8s.api.rbac.v1.RoleRef"
-  },
-  "PodDisruptionBudgetv1": {
-    "originalSchemaName": "io.k8s.api.policy.v1.PodDisruptionBudget",
-    "gvk": [
-      {
-        "group": "policy",
-        "kind": "PodDisruptionBudget",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets",
-    "namespaced": true
-  },
-  "PodDisruptionBudgetSpecv1": {
-    "originalSchemaName": "io.k8s.api.policy.v1.PodDisruptionBudgetSpec"
-  },
-  "PodDisruptionBudgetStatusv1": {
-    "originalSchemaName": "io.k8s.api.policy.v1.PodDisruptionBudgetStatus"
-  },
-  "ContainerResourceMetricSourcev2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.ContainerResourceMetricSource"
-  },
-  "ContainerResourceMetricStatusv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.ContainerResourceMetricStatus"
-  },
-  "CrossVersionObjectReferencev2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.CrossVersionObjectReference"
-  },
-  "ExternalMetricSourcev2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.ExternalMetricSource"
-  },
-  "ExternalMetricStatusv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.ExternalMetricStatus"
-  },
-  "HPAScalingPolicyv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.HPAScalingPolicy"
-  },
-  "HPAScalingRulesv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.HPAScalingRules"
-  },
-  "HorizontalPodAutoscalerv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscaler",
-    "gvk": [
-      {
-        "group": "autoscaling",
-        "kind": "HorizontalPodAutoscaler",
-        "version": "v2"
-      }
-    ],
-    "path": "/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers",
-    "namespaced": true
-  },
-  "HorizontalPodAutoscalerBehaviorv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscalerBehavior"
-  },
-  "HorizontalPodAutoscalerConditionv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscalerCondition"
-  },
-  "HorizontalPodAutoscalerSpecv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscalerSpec"
-  },
-  "HorizontalPodAutoscalerStatusv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.HorizontalPodAutoscalerStatus"
-  },
-  "MetricIdentifierv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricIdentifier"
-  },
-  "MetricSpecv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricSpec"
-  },
-  "MetricStatusv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricStatus"
-  },
-  "MetricTargetv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricTarget"
-  },
-  "MetricValueStatusv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.MetricValueStatus"
-  },
-  "ObjectMetricSourcev2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.ObjectMetricSource"
-  },
-  "ObjectMetricStatusv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.ObjectMetricStatus"
-  },
-  "PodsMetricSourcev2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.PodsMetricSource"
-  },
-  "PodsMetricStatusv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.PodsMetricStatus"
-  },
-  "ResourceMetricSourcev2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.ResourceMetricSource"
-  },
-  "ResourceMetricStatusv2": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v2.ResourceMetricStatus"
-  },
-  "ApplyConfigurationv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ApplyConfiguration"
-  },
-  "JSONPatchv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.JSONPatch"
-  },
-  "MatchConditionv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MatchCondition"
-  },
-  "MatchResourcesv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MatchResources"
-  },
-  "MutatingAdmissionPolicyv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicy",
-    "gvk": [
-      {
-        "group": "admissionregistration.k8s.io",
-        "kind": "MutatingAdmissionPolicy",
-        "version": "v1alpha1"
-      }
-    ],
-    "path": "/apis/admissionregistration.k8s.io/v1alpha1/mutatingadmissionpolicies",
-    "namespaced": false
-  },
-  "MutatingAdmissionPolicyBindingv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicyBinding",
-    "gvk": [
-      {
-        "group": "admissionregistration.k8s.io",
-        "kind": "MutatingAdmissionPolicyBinding",
-        "version": "v1alpha1"
-      }
-    ],
-    "path": "/apis/admissionregistration.k8s.io/v1alpha1/mutatingadmissionpolicybindings",
-    "namespaced": false
-  },
-  "MutatingAdmissionPolicyBindingSpecv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicyBindingSpec"
-  },
-  "MutatingAdmissionPolicySpecv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicySpec"
-  },
-  "Mutationv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.Mutation"
-  },
-  "NamedRuleWithOperationsv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations"
-  },
-  "ParamKindv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ParamKind"
-  },
-  "ParamRefv1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.ParamRef"
-  },
-  "Variablev1alpha1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1alpha1.Variable"
-  },
-  "LeaseCandidatev1alpha2": {
-    "originalSchemaName": "io.k8s.api.coordination.v1alpha2.LeaseCandidate",
-    "gvk": [
-      {
-        "group": "coordination.k8s.io",
-        "kind": "LeaseCandidate",
-        "version": "v1alpha2"
-      }
-    ],
-    "path": "/apis/coordination.k8s.io/v1alpha2/namespaces/{namespace}/leasecandidates",
-    "namespaced": true
-  },
-  "LeaseCandidateSpecv1alpha2": {
-    "originalSchemaName": "io.k8s.api.coordination.v1alpha2.LeaseCandidateSpec"
-  },
-  "HTTPIngressPathv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.HTTPIngressPath"
-  },
-  "HTTPIngressRuleValuev1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.HTTPIngressRuleValue"
-  },
-  "IPBlockv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IPBlock"
-  },
-  "Ingressv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.Ingress",
-    "gvk": [
-      {
-        "group": "networking.k8s.io",
-        "kind": "Ingress",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses",
-    "namespaced": true
-  },
-  "IngressBackendv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressBackend"
-  },
-  "IngressClassv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressClass",
-    "gvk": [
-      {
-        "group": "networking.k8s.io",
-        "kind": "IngressClass",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/networking.k8s.io/v1/ingressclasses",
-    "namespaced": false
-  },
-  "IngressClassParametersReferencev1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressClassParametersReference"
-  },
-  "IngressClassSpecv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressClassSpec"
-  },
-  "IngressLoadBalancerIngressv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressLoadBalancerIngress"
-  },
-  "IngressLoadBalancerStatusv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressLoadBalancerStatus"
-  },
-  "IngressPortStatusv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressPortStatus"
-  },
-  "IngressRulev1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressRule"
-  },
-  "IngressServiceBackendv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressServiceBackend"
-  },
-  "IngressSpecv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressSpec"
-  },
-  "IngressStatusv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressStatus"
-  },
-  "IngressTLSv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.IngressTLS"
-  },
-  "NetworkPolicyv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicy",
-    "gvk": [
-      {
-        "group": "networking.k8s.io",
-        "kind": "NetworkPolicy",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies",
-    "namespaced": true
-  },
-  "NetworkPolicyEgressRulev1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicyEgressRule"
-  },
-  "NetworkPolicyIngressRulev1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicyIngressRule"
-  },
-  "NetworkPolicyPeerv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicyPeer"
-  },
-  "NetworkPolicyPortv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicyPort"
-  },
-  "NetworkPolicySpecv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.NetworkPolicySpec"
-  },
-  "ServiceBackendPortv1": {
-    "originalSchemaName": "io.k8s.api.networking.v1.ServiceBackendPort"
-  },
-  "AuditAnnotationv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.AuditAnnotation"
-  },
-  "ExpressionWarningv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ExpressionWarning"
-  },
-  "MatchConditionv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.MatchCondition"
-  },
-  "MatchResourcesv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.MatchResources"
-  },
-  "NamedRuleWithOperationsv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations"
-  },
-  "ParamKindv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ParamKind"
-  },
-  "ParamRefv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ParamRef"
-  },
-  "TypeCheckingv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.TypeChecking"
-  },
-  "ValidatingAdmissionPolicyv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicy",
-    "gvk": [
-      {
-        "group": "admissionregistration.k8s.io",
-        "kind": "ValidatingAdmissionPolicy",
+        "group": "storage.k8s.io",
+        "kind": "VolumeAttributesClass",
         "version": "v1beta1"
       }
     ],
-    "path": "/apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies",
+    "path": "/apis/storage.k8s.io/v1beta1/volumeattributesclasses",
     "namespaced": false
   },
-  "ValidatingAdmissionPolicyBindingv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBinding",
+  "GroupVersionResourcev1alpha1": {
+    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.GroupVersionResource"
+  },
+  "MigrationConditionv1alpha1": {
+    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.MigrationCondition"
+  },
+  "StorageVersionMigrationv1alpha1": {
+    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.StorageVersionMigration",
     "gvk": [
       {
-        "group": "admissionregistration.k8s.io",
-        "kind": "ValidatingAdmissionPolicyBinding",
-        "version": "v1beta1"
+        "group": "storagemigration.k8s.io",
+        "kind": "StorageVersionMigration",
+        "version": "v1alpha1"
       }
     ],
-    "path": "/apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicybindings",
+    "path": "/apis/storagemigration.k8s.io/v1alpha1/storageversionmigrations",
     "namespaced": false
   },
-  "ValidatingAdmissionPolicyBindingSpecv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingSpec"
-  },
-  "ValidatingAdmissionPolicySpecv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec"
-  },
-  "ValidatingAdmissionPolicyStatusv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyStatus"
-  },
-  "Validationv1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.Validation"
-  },
-  "Variablev1beta1": {
-    "originalSchemaName": "io.k8s.api.admissionregistration.v1beta1.Variable"
-  },
-  "SelfSubjectReviewv1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.SelfSubjectReview",
-    "gvk": [
-      {
-        "group": "authentication.k8s.io",
-        "kind": "SelfSubjectReview",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/authentication.k8s.io/v1/selfsubjectreviews",
-    "namespaced": false
-  },
-  "SelfSubjectReviewStatusv1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.SelfSubjectReviewStatus"
-  },
-  "TokenReviewv1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.TokenReview",
-    "gvk": [
-      {
-        "group": "authentication.k8s.io",
-        "kind": "TokenReview",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/authentication.k8s.io/v1/tokenreviews",
-    "namespaced": false
-  },
-  "TokenReviewSpecv1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.TokenReviewSpec"
-  },
-  "TokenReviewStatusv1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.TokenReviewStatus"
-  },
-  "Endpointv1": {
-    "originalSchemaName": "io.k8s.api.discovery.v1.Endpoint"
-  },
-  "EndpointConditionsv1": {
-    "originalSchemaName": "io.k8s.api.discovery.v1.EndpointConditions"
-  },
-  "EndpointHintsv1": {
-    "originalSchemaName": "io.k8s.api.discovery.v1.EndpointHints"
-  },
-  "EndpointPortv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EndpointPort"
-  },
-  "EndpointSlicev1": {
-    "originalSchemaName": "io.k8s.api.discovery.v1.EndpointSlice",
-    "gvk": [
-      {
-        "group": "discovery.k8s.io",
-        "kind": "EndpointSlice",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices",
-    "namespaced": true
-  },
-  "ForZonev1": {
-    "originalSchemaName": "io.k8s.api.discovery.v1.ForZone"
-  },
-  "CustomResourceColumnDefinitionv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceColumnDefinition"
-  },
-  "CustomResourceConversionv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceConversion"
-  },
-  "CustomResourceDefinitionv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinition",
-    "gvk": [
-      {
-        "group": "apiextensions.k8s.io",
-        "kind": "CustomResourceDefinition",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/apiextensions.k8s.io/v1/customresourcedefinitions",
-    "namespaced": false
-  },
-  "CustomResourceDefinitionConditionv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionCondition"
-  },
-  "CustomResourceDefinitionNamesv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionNames"
-  },
-  "CustomResourceDefinitionSpecv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionSpec"
-  },
-  "CustomResourceDefinitionStatusv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionStatus"
-  },
-  "CustomResourceDefinitionVersionv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionVersion"
-  },
-  "CustomResourceSubresourceScalev1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceSubresourceScale"
-  },
-  "CustomResourceSubresourceStatusv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceSubresourceStatus"
-  },
-  "CustomResourceSubresourcesv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceSubresources"
-  },
-  "CustomResourceValidationv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceValidation"
-  },
-  "ExternalDocumentationv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ExternalDocumentation"
-  },
-  "JSONv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSON"
-  },
-  "JSONSchemaPropsv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSONSchemaProps"
-  },
-  "JSONSchemaPropsOrArrayv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSONSchemaPropsOrArray"
-  },
-  "JSONSchemaPropsOrBoolv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSONSchemaPropsOrBool"
-  },
-  "JSONSchemaPropsOrStringArrayv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.JSONSchemaPropsOrStringArray"
-  },
-  "SelectableFieldv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.SelectableField"
-  },
-  "ValidationRulev1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ValidationRule"
-  },
-  "WebhookConversionv1": {
-    "originalSchemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.WebhookConversion"
-  },
-  "ControllerRevisionv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.ControllerRevision",
-    "gvk": [
-      {
-        "group": "apps",
-        "kind": "ControllerRevision",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/apps/v1/namespaces/{namespace}/controllerrevisions",
-    "namespaced": true
-  },
-  "DaemonSetv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSet",
-    "gvk": [
-      {
-        "group": "apps",
-        "kind": "DaemonSet",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/apps/v1/namespaces/{namespace}/daemonsets",
-    "namespaced": true
-  },
-  "DaemonSetConditionv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSetCondition"
-  },
-  "DaemonSetSpecv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSetSpec"
-  },
-  "DaemonSetStatusv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSetStatus"
-  },
-  "DaemonSetUpdateStrategyv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.DaemonSetUpdateStrategy"
-  },
-  "Deploymentv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.Deployment",
-    "gvk": [
-      {
-        "group": "apps",
-        "kind": "Deployment",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/apps/v1/namespaces/{namespace}/deployments",
-    "namespaced": true
-  },
-  "DeploymentConditionv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.DeploymentCondition"
-  },
-  "DeploymentSpecv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.DeploymentSpec"
-  },
-  "DeploymentStatusv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.DeploymentStatus"
-  },
-  "DeploymentStrategyv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.DeploymentStrategy"
-  },
-  "ReplicaSetv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.ReplicaSet",
-    "gvk": [
-      {
-        "group": "apps",
-        "kind": "ReplicaSet",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/apps/v1/namespaces/{namespace}/replicasets",
-    "namespaced": true
-  },
-  "ReplicaSetConditionv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.ReplicaSetCondition"
-  },
-  "ReplicaSetSpecv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.ReplicaSetSpec"
-  },
-  "ReplicaSetStatusv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.ReplicaSetStatus"
-  },
-  "RollingUpdateDaemonSetv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.RollingUpdateDaemonSet"
-  },
-  "RollingUpdateDeploymentv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.RollingUpdateDeployment"
-  },
-  "RollingUpdateStatefulSetStrategyv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.RollingUpdateStatefulSetStrategy"
-  },
-  "StatefulSetv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSet",
-    "gvk": [
-      {
-        "group": "apps",
-        "kind": "StatefulSet",
-        "version": "v1"
-      }
-    ],
-    "path": "/apis/apps/v1/namespaces/{namespace}/statefulsets",
-    "namespaced": true
-  },
-  "StatefulSetConditionv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetCondition"
-  },
-  "StatefulSetOrdinalsv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetOrdinals"
-  },
-  "StatefulSetPersistentVolumeClaimRetentionPolicyv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetPersistentVolumeClaimRetentionPolicy"
-  },
-  "StatefulSetSpecv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetSpec"
-  },
-  "StatefulSetStatusv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetStatus"
-  },
-  "StatefulSetUpdateStrategyv1": {
-    "originalSchemaName": "io.k8s.api.apps.v1.StatefulSetUpdateStrategy"
-  },
-  "Scalev1": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v1.Scale",
-    "gvk": [
-      {
-        "group": "autoscaling",
-        "kind": "Scale",
-        "version": "v1"
-      }
-    ]
-  },
-  "ScaleSpecv1": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v1.ScaleSpec"
-  },
-  "ScaleStatusv1": {
-    "originalSchemaName": "io.k8s.api.autoscaling.v1.ScaleStatus"
-  },
-  "ModifyVolumeStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ModifyVolumeStatus"
-  },
-  "PersistentVolumeClaimv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaim",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "PersistentVolumeClaim",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/persistentvolumeclaims",
-    "namespaced": true
-  },
-  "PersistentVolumeClaimConditionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimCondition"
-  },
-  "PersistentVolumeClaimStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeClaimStatus"
-  },
-  "BoundObjectReferencev1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.BoundObjectReference"
-  },
-  "TokenRequestSpecv1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.TokenRequestSpec"
-  },
-  "TokenRequestStatusv1": {
-    "originalSchemaName": "io.k8s.api.authentication.v1.TokenRequestStatus"
-  },
-  "AttachedVolumev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.AttachedVolume"
-  },
-  "Bindingv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Binding",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "Binding",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/bindings",
-    "namespaced": true
-  },
-  "ClientIPConfigv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ClientIPConfig"
-  },
-  "ComponentConditionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ComponentCondition"
-  },
-  "ComponentStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ComponentStatus",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "ComponentStatus",
-        "version": "v1"
-      }
-    ]
-  },
-  "ConfigMapv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ConfigMap",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "ConfigMap",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/configmaps",
-    "namespaced": true
-  },
-  "ConfigMapNodeConfigSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ConfigMapNodeConfigSource"
-  },
-  "ContainerImagev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ContainerImage"
-  },
-  "ContainerStatev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ContainerState"
-  },
-  "ContainerStateRunningv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ContainerStateRunning"
-  },
-  "ContainerStateTerminatedv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ContainerStateTerminated"
-  },
-  "ContainerStateWaitingv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ContainerStateWaiting"
-  },
-  "ContainerStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ContainerStatus"
-  },
-  "ContainerUserv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ContainerUser"
-  },
-  "DaemonEndpointv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.DaemonEndpoint"
-  },
-  "EndpointAddressv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EndpointAddress"
-  },
-  "EndpointSubsetv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.EndpointSubset"
-  },
-  "Endpointsv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Endpoints",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "Endpoints",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/endpoints",
-    "namespaced": true
-  },
-  "HostIPv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.HostIP"
-  },
-  "LimitRangev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.LimitRange",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "LimitRange",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/limitranges",
-    "namespaced": true
-  },
-  "LimitRangeItemv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.LimitRangeItem"
-  },
-  "LimitRangeSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.LimitRangeSpec"
-  },
-  "LinuxContainerUserv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.LinuxContainerUser"
-  },
-  "LoadBalancerIngressv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.LoadBalancerIngress"
-  },
-  "LoadBalancerStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.LoadBalancerStatus"
-  },
-  "Namespacev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Namespace",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "Namespace",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces",
-    "namespaced": false
-  },
-  "NamespaceConditionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NamespaceCondition"
-  },
-  "NamespaceSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NamespaceSpec"
-  },
-  "NamespaceStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NamespaceStatus"
-  },
-  "Nodev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Node",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "Node",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/nodes",
-    "namespaced": false
-  },
-  "NodeAddressv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeAddress"
-  },
-  "NodeConditionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeCondition"
-  },
-  "NodeConfigSourcev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeConfigSource"
-  },
-  "NodeConfigStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeConfigStatus"
-  },
-  "NodeDaemonEndpointsv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeDaemonEndpoints"
-  },
-  "NodeFeaturesv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeFeatures"
-  },
-  "NodeRuntimeHandlerv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeRuntimeHandler"
-  },
-  "NodeRuntimeHandlerFeaturesv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeRuntimeHandlerFeatures"
-  },
-  "NodeSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeSpec"
-  },
-  "NodeStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeStatus"
-  },
-  "NodeSystemInfov1": {
-    "originalSchemaName": "io.k8s.api.core.v1.NodeSystemInfo"
-  },
-  "PersistentVolumev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolume",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "PersistentVolume",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/persistentvolumes",
-    "namespaced": false
-  },
-  "PersistentVolumeStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PersistentVolumeStatus"
-  },
-  "Podv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Pod",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "Pod",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/pods",
-    "namespaced": true
-  },
-  "PodConditionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodCondition"
-  },
-  "PodIPv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodIP"
-  },
-  "PodResourceClaimStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodResourceClaimStatus"
-  },
-  "PodStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodStatus"
-  },
-  "PodTemplatev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PodTemplate",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "PodTemplate",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/podtemplates",
-    "namespaced": true
-  },
-  "PortStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.PortStatus"
-  },
-  "ReplicationControllerv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ReplicationController",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "ReplicationController",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/replicationcontrollers",
-    "namespaced": true
-  },
-  "ReplicationControllerConditionv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ReplicationControllerCondition"
-  },
-  "ReplicationControllerSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ReplicationControllerSpec"
-  },
-  "ReplicationControllerStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ReplicationControllerStatus"
-  },
-  "ResourceHealthv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ResourceHealth"
-  },
-  "ResourceQuotav1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ResourceQuota",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "ResourceQuota",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/resourcequotas",
-    "namespaced": true
-  },
-  "ResourceQuotaSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ResourceQuotaSpec"
-  },
-  "ResourceQuotaStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ResourceQuotaStatus"
-  },
-  "ResourceStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ResourceStatus"
-  },
-  "ScopeSelectorv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ScopeSelector"
-  },
-  "ScopedResourceSelectorRequirementv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ScopedResourceSelectorRequirement"
-  },
-  "Secretv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Secret",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "Secret",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/secrets",
-    "namespaced": true
-  },
-  "Servicev1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Service",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "Service",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/services",
-    "namespaced": true
-  },
-  "ServiceAccountv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ServiceAccount",
-    "gvk": [
-      {
-        "group": "",
-        "kind": "ServiceAccount",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/serviceaccounts",
-    "namespaced": true
-  },
-  "ServicePortv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ServicePort"
-  },
-  "ServiceSpecv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ServiceSpec"
-  },
-  "ServiceStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.ServiceStatus"
-  },
-  "SessionAffinityConfigv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.SessionAffinityConfig"
-  },
-  "Taintv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.Taint"
-  },
-  "VolumeMountStatusv1": {
-    "originalSchemaName": "io.k8s.api.core.v1.VolumeMountStatus"
-  },
-  "Evictionv1": {
-    "originalSchemaName": "io.k8s.api.policy.v1.Eviction",
-    "gvk": [
-      {
-        "group": "policy",
-        "kind": "Eviction",
-        "version": "v1"
-      }
-    ],
-    "path": "/api/v1/namespaces/{namespace}/pods/{name}/eviction",
-    "namespaced": true
+  "StorageVersionMigrationSpecv1alpha1": {
+    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.StorageVersionMigrationSpec"
+  },
+  "StorageVersionMigrationStatusv1alpha1": {
+    "originalSchemaName": "io.k8s.api.storagemigration.v1alpha1.StorageVersionMigrationStatus"
   }
 }
