@@ -32,6 +32,7 @@ export class ValidatingWebhookConfigurationv1 extends ApiObject {
   constructor(app: K8sApp, name: string, args: ValidatingWebhookConfigurationv1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.webhooks = args.webhooks;
     app.resources.push(this);
   }

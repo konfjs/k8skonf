@@ -31,6 +31,7 @@ export class LeaseCandidatev1alpha2 extends NamespacedApiObject {
   constructor(app: K8sApp, name: string, args: LeaseCandidatev1alpha2Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.spec = args.spec;
     app.resources.push(this);
   }

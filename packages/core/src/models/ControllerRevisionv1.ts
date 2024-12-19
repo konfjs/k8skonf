@@ -36,6 +36,7 @@ export class ControllerRevisionv1 extends NamespacedApiObject {
     super();
     this.data = args.data;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.revision = args.revision;
     app.resources.push(this);
   }

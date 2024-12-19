@@ -37,6 +37,7 @@ export class RoleBindingv1 extends NamespacedApiObject {
   constructor(app: K8sApp, name: string, args: RoleBindingv1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.roleRef = args.roleRef;
     this.subjects = args.subjects;
     app.resources.push(this);

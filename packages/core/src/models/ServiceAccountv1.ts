@@ -44,6 +44,7 @@ export class ServiceAccountv1 extends NamespacedApiObject {
     this.automountServiceAccountToken = args.automountServiceAccountToken;
     this.imagePullSecrets = args.imagePullSecrets;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.secrets = args.secrets;
     app.resources.push(this);
   }

@@ -26,6 +26,7 @@ export class SelfSubjectReviewv1beta1 extends ApiObject {
   constructor(app: K8sApp, name: string, args: SelfSubjectReviewv1beta1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     app.resources.push(this);
   }
 }

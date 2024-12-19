@@ -31,6 +31,7 @@ export class LocalSubjectAccessReviewv1 extends NamespacedApiObject {
   constructor(app: K8sApp, name: string, args: LocalSubjectAccessReviewv1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.spec = args.spec;
     app.resources.push(this);
   }

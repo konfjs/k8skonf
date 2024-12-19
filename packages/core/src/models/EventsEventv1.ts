@@ -104,6 +104,7 @@ export class EventsEventv1 extends NamespacedApiObject {
     this.deprecatedSource = args.deprecatedSource;
     this.eventTime = args.eventTime;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.note = args.note;
     this.reason = args.reason;
     this.regarding = args.regarding;

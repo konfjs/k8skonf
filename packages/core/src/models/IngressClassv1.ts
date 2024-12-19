@@ -32,6 +32,7 @@ export class IngressClassv1 extends ApiObject {
   constructor(app: K8sApp, name: string, args: IngressClassv1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.spec = args.spec;
     app.resources.push(this);
   }

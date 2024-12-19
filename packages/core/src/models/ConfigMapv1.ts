@@ -43,6 +43,7 @@ export class ConfigMapv1 extends NamespacedApiObject {
     this.data = args.data;
     this.immutable = args.immutable;
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     app.resources.push(this);
   }
 }

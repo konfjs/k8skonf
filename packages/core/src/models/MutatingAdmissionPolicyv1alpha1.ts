@@ -32,6 +32,7 @@ export class MutatingAdmissionPolicyv1alpha1 extends ApiObject {
   constructor(app: K8sApp, name: string, args: MutatingAdmissionPolicyv1alpha1Args) {
     super();
     this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.spec = args.spec;
     app.resources.push(this);
   }

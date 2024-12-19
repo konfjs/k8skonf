@@ -211,6 +211,7 @@ function morph() {
                         if (prop.getName() === 'metadata') {
                             interfaceProp.hasQuestionToken = true;
                             c.statements.push('this.metadata = args.metadata || { name };');
+                            c.statements.push('this.metadata.name ??= name;');
                             prop.setHasQuestionToken(false);
                             if (groupVersionKindMap[className].namespaced) {
                                 classDeclaration.setExtends('NamespacedApiObject');
