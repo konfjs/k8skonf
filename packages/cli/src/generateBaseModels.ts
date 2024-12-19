@@ -96,7 +96,12 @@ function main() {
     fs.writeFileSync(
         './group-version-kind-map.json',
         JSON.stringify(
-            groupVersionKindMap,
+            Object.keys(groupVersionKindMap)
+                .sort()
+                .reduce((sorted: GroupVersionKindMap, key) => {
+                    sorted[key] = groupVersionKindMap[key];
+                    return sorted;
+                }, {}),
             (key, value) => {
                 if (value instanceof Set) {
                     return Array.from(value).map((item) => JSON.parse(item));
