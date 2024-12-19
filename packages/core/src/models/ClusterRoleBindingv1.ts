@@ -1,13 +1,13 @@
 import { ObjectMetav1 } from './ObjectMetav1.js';
+import { RbacSubjectv1 } from './RbacSubjectv1.js';
 import { RoleRefv1 } from './RoleRefv1.js';
-import { Subjectv1 } from './Subjectv1.js';
 import { K8sApp } from '../K8sApp.js';
 import { ApiObject } from '../ApiObject.js';
 
 export interface ClusterRoleBindingv1Args {
   readonly metadata?: ObjectMetav1;
   readonly roleRef: RoleRefv1;
-  readonly subjects?: Array<Subjectv1>;
+  readonly subjects?: Array<RbacSubjectv1>;
 }
 
 /**
@@ -33,7 +33,7 @@ export class ClusterRoleBindingv1 extends ApiObject {
   /**
    * Subjects holds references to the objects the role applies to.
    */
-  readonly subjects?: Array<Subjectv1>;
+  readonly subjects?: Array<RbacSubjectv1>;
 
   constructor(app: K8sApp, name: string, args: ClusterRoleBindingv1Args) {
     super();

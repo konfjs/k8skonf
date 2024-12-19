@@ -27,7 +27,7 @@ download-schema:
 prepare-schema:
 	@echo "Preparing Kubernetes schema"
 	@cd packages/cli
-	@bun src/generateBaseModels.ts
+	@bun src/prepareSchemas.ts
 
 
 # Generate packages/cli/files/gen/models/*.ts files

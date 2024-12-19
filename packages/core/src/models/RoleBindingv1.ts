@@ -1,12 +1,12 @@
+import { RbacSubjectv1 } from './RbacSubjectv1.js';
 import { RoleRefv1 } from './RoleRefv1.js';
-import { Subjectv1 } from './Subjectv1.js';
 import { K8sApp } from '../K8sApp.js';
 import { NamespacedObjectMetav1, NamespacedApiObject } from '../ApiObject.js';
 
 export interface RoleBindingv1Args {
   readonly metadata?: NamespacedObjectMetav1;
   readonly roleRef: RoleRefv1;
-  readonly subjects?: Array<Subjectv1>;
+  readonly subjects?: Array<RbacSubjectv1>;
 }
 
 /**
@@ -32,7 +32,7 @@ export class RoleBindingv1 extends NamespacedApiObject {
   /**
    * Subjects holds references to the objects the role applies to.
    */
-  readonly subjects?: Array<Subjectv1>;
+  readonly subjects?: Array<RbacSubjectv1>;
 
   constructor(app: K8sApp, name: string, args: RoleBindingv1Args) {
     super();

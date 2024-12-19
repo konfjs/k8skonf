@@ -5,7 +5,7 @@ import { UserSubjectv1 } from './UserSubjectv1.js';
 /**
  * Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account.
  */
-export interface Subjectv1 {
+export interface FlowcontrolSubjectv1 {
   /**
    * `group` matches based on user group name.
    */

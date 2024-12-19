@@ -1,55 +1,76 @@
 {
   "components": {
     "schemas": {
-      "CertificateSigningRequestv1": {
-        "description": "CertificateSigningRequest objects provide a mechanism to obtain x509 certificates by submitting a certificate signing request, and having it asynchronously approved and issued.\n\nKubelets use this API to obtain:\n 1. client certificates to authenticate to kube-apiserver (with the \"kubernetes.io/kube-apiserver-client-kubelet\" signerName).\n 2. serving certificates for TLS endpoints kube-apiserver can connect to securely (with the \"kubernetes.io/kubelet-serving\" signerName).\n\nThis API can be used to request client certificates to authenticate to kube-apiserver (with the \"kubernetes.io/kube-apiserver-client\" signerName), or to obtain certificates from custom non-Kubernetes signers.",
+      "APIResourcev1": {
+        "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "categories": {
+            "description": "categories is a list of the grouped resources this resource belongs to (e.g. 'all')",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "group": {
+            "description": "group is the preferred group of the resource.  Empty implies the group of the containing resource list. For subresources, this may have a different value, for example: Scale\".",
             "type": "string"
           },
           "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "default": "",
+            "description": "kind is the kind for the resource (e.g. 'Foo' is the kind for a resource 'foo')",
             "type": "string"
           },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetav1"
-              }
-            ],
-            "default": {}
+          "name": {
+            "default": "",
+            "description": "name is the plural name of the resource.",
+            "type": "string"
           },
-          "spec": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateSigningRequestSpecv1"
-              }
-            ],
-            "default": {},
-            "description": "spec contains the certificate request, and is immutable after creation. Only the request, signerName, expirationSeconds, and usages fields can be set on creation. Other fields are derived by Kubernetes and cannot be modified by users."
+          "namespaced": {
+            "default": false,
+            "description": "namespaced indicates if a resource is namespaced or not.",
+            "type": "boolean"
           },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CertificateSigningRequestStatusv1"
-              }
-            ],
-            "default": {},
-            "description": "status contains information about whether the request is approved or denied, and the certificate issued by the signer, or the failure condition indicating signer failure."
+          "shortNames": {
+            "description": "shortNames is a list of suggested short names of the resource.",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "singularName": {
+            "default": "",
+            "description": "singularName is the singular name of the resource.  This allows clients to handle plural and singular opaquely. The singularName is more correct for reporting status on a single item and both singular and plural are allowed from the kubectl CLI interface.",
+            "type": "string"
+          },
+          "storageVersionHash": {
+            "description": "The hash value of the storage version, the version this resource is converted to when written to the data store. Value must be treated as opaque by clients. Only equality comparison on the value is valid. This is an alpha feature and may change or be removed in the future. The field is populated by the apiserver only if the StorageVersionHash feature gate is enabled. This field will remain optional even if it graduates.",
+            "type": "string"
+          },
+          "verbs": {
+            "description": "verbs is a list of supported kube verbs (this includes get, list, watch, create, update, patch, delete, deletecollection, and proxy)",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "version": {
+            "description": "version is the preferred version of the resource.  Empty implies the version of the containing resource list For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource's group)\".",
+            "type": "string"
           }
         },
         "required": [
-          "spec"
+          "name",
+          "singularName",
+          "namespaced",
+          "kind",
+          "verbs"
         ],
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "certificates.k8s.io",
-            "kind": "CertificateSigningRequest",
-            "version": "v1"
-          }
-        ]
+        "type": "object"
       },
       "CertificateSigningRequestConditionv1": {
         "description": "CertificateSigningRequestCondition describes a condition of a CertificateSigningRequest object",
@@ -186,76 +207,55 @@
         },
         "type": "object"
       },
-      "APIResourcev1": {
-        "description": "APIResource specifies the name of a resource and whether it is namespaced.",
+      "CertificateSigningRequestv1": {
+        "description": "CertificateSigningRequest objects provide a mechanism to obtain x509 certificates by submitting a certificate signing request, and having it asynchronously approved and issued.\n\nKubelets use this API to obtain:\n 1. client certificates to authenticate to kube-apiserver (with the \"kubernetes.io/kube-apiserver-client-kubelet\" signerName).\n 2. serving certificates for TLS endpoints kube-apiserver can connect to securely (with the \"kubernetes.io/kubelet-serving\" signerName).\n\nThis API can be used to request client certificates to authenticate to kube-apiserver (with the \"kubernetes.io/kube-apiserver-client\" signerName), or to obtain certificates from custom non-Kubernetes signers.",
         "properties": {
-          "categories": {
-            "description": "categories is a list of the grouped resources this resource belongs to (e.g. 'all')",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "group": {
-            "description": "group is the preferred group of the resource.  Empty implies the group of the containing resource list. For subresources, this may have a different value, for example: Scale\".",
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
             "type": "string"
           },
           "kind": {
-            "default": "",
-            "description": "kind is the kind for the resource (e.g. 'Foo' is the kind for a resource 'foo')",
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
             "type": "string"
           },
-          "name": {
-            "default": "",
-            "description": "name is the plural name of the resource.",
-            "type": "string"
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetav1"
+              }
+            ],
+            "default": {}
           },
-          "namespaced": {
-            "default": false,
-            "description": "namespaced indicates if a resource is namespaced or not.",
-            "type": "boolean"
+          "spec": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CertificateSigningRequestSpecv1"
+              }
+            ],
+            "default": {},
+            "description": "spec contains the certificate request, and is immutable after creation. Only the request, signerName, expirationSeconds, and usages fields can be set on creation. Other fields are derived by Kubernetes and cannot be modified by users."
           },
-          "shortNames": {
-            "description": "shortNames is a list of suggested short names of the resource.",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "singularName": {
-            "default": "",
-            "description": "singularName is the singular name of the resource.  This allows clients to handle plural and singular opaquely. The singularName is more correct for reporting status on a single item and both singular and plural are allowed from the kubectl CLI interface.",
-            "type": "string"
-          },
-          "storageVersionHash": {
-            "description": "The hash value of the storage version, the version this resource is converted to when written to the data store. Value must be treated as opaque by clients. Only equality comparison on the value is valid. This is an alpha feature and may change or be removed in the future. The field is populated by the apiserver only if the StorageVersionHash feature gate is enabled. This field will remain optional even if it graduates.",
-            "type": "string"
-          },
-          "verbs": {
-            "description": "verbs is a list of supported kube verbs (this includes get, list, watch, create, update, patch, delete, deletecollection, and proxy)",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "version": {
-            "description": "version is the preferred version of the resource.  Empty implies the version of the containing resource list For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource's group)\".",
-            "type": "string"
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CertificateSigningRequestStatusv1"
+              }
+            ],
+            "default": {},
+            "description": "status contains information about whether the request is approved or denied, and the certificate issued by the signer, or the failure condition indicating signer failure."
           }
         },
         "required": [
-          "name",
-          "singularName",
-          "namespaced",
-          "kind",
-          "verbs"
+          "spec"
         ],
-        "type": "object"
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "certificates.k8s.io",
+            "kind": "CertificateSigningRequest",
+            "version": "v1"
+          }
+        ]
       },
       "DeleteOptionsv1": {
         "description": "DeleteOptions may be provided when deleting an API object.",
@@ -841,61 +841,9 @@
         },
         "type": "object"
       },
-      "Statusv1": {
-        "description": "Status is a return value for calls that don't return other objects.",
-        "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "code": {
-            "description": "Suggested HTTP return code for this status, 0 if not set.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "details": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusDetailsv1"
-              }
-            ],
-            "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "message": {
-            "description": "A human-readable description of the status of this operation.",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ListMetav1"
-              }
-            ],
-            "default": {},
-            "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-          },
-          "reason": {
-            "description": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.",
-            "type": "string"
-          },
-          "status": {
-            "description": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "",
-            "kind": "Status",
-            "version": "v1"
-          }
-        ]
+      "RawExtension": {
+        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
+        "type": "object"
       },
       "StatusCausev1": {
         "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
@@ -954,6 +902,62 @@
           }
         },
         "type": "object"
+      },
+      "Statusv1": {
+        "description": "Status is a return value for calls that don't return other objects.",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "code": {
+            "description": "Suggested HTTP return code for this status, 0 if not set.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "details": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusDetailsv1"
+              }
+            ],
+            "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "message": {
+            "description": "A human-readable description of the status of this operation.",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ListMetav1"
+              }
+            ],
+            "default": {},
+            "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          },
+          "reason": {
+            "description": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.",
+            "type": "string"
+          },
+          "status": {
+            "description": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "",
+            "kind": "Status",
+            "version": "v1"
+          }
+        ]
       },
       "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
@@ -1288,10 +1292,6 @@
             "version": "v1alpha1"
           }
         ]
-      },
-      "RawExtension": {
-        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
-        "type": "object"
       }
     },
     "securitySchemes": {

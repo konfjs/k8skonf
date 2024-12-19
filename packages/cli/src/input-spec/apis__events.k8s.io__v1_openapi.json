@@ -1,199 +1,6 @@
 {
   "components": {
     "schemas": {
-      "EventSourcev1": {
-        "description": "EventSource contains information for an event.",
-        "properties": {
-          "component": {
-            "description": "Component from which the event is generated.",
-            "type": "string"
-          },
-          "host": {
-            "description": "Node name on which the event is generated.",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "ObjectReferencev1": {
-        "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-        "properties": {
-          "apiVersion": {
-            "description": "API version of the referent.",
-            "type": "string"
-          },
-          "fieldPath": {
-            "description": "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: \"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered the event) or if no container name is specified \"spec.containers[2]\" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
-            "type": "string"
-          },
-          "kind": {
-            "description": "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "name": {
-            "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-            "type": "string"
-          },
-          "namespace": {
-            "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-            "type": "string"
-          },
-          "resourceVersion": {
-            "description": "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-            "type": "string"
-          },
-          "uid": {
-            "description": "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "x-kubernetes-map-type": "atomic"
-      },
-      "Eventv1": {
-        "description": "Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data.",
-        "properties": {
-          "action": {
-            "description": "action is what action was taken/failed regarding to the regarding object. It is machine-readable. This field cannot be empty for new Events and it can have at most 128 characters.",
-            "type": "string"
-          },
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "deprecatedCount": {
-            "description": "deprecatedCount is the deprecated field assuring backward compatibility with core.v1 Event type.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "deprecatedFirstTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timev1"
-              }
-            ],
-            "description": "deprecatedFirstTimestamp is the deprecated field assuring backward compatibility with core.v1 Event type."
-          },
-          "deprecatedLastTimestamp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timev1"
-              }
-            ],
-            "description": "deprecatedLastTimestamp is the deprecated field assuring backward compatibility with core.v1 Event type."
-          },
-          "deprecatedSource": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EventSourcev1"
-              }
-            ],
-            "default": {},
-            "description": "deprecatedSource is the deprecated field assuring backward compatibility with core.v1 Event type."
-          },
-          "eventTime": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MicroTimev1"
-              }
-            ],
-            "description": "eventTime is the time when this Event was first observed. It is required."
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetav1"
-              }
-            ],
-            "default": {},
-            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
-          },
-          "note": {
-            "description": "note is a human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.",
-            "type": "string"
-          },
-          "reason": {
-            "description": "reason is why the action was taken. It is human-readable. This field cannot be empty for new Events and it can have at most 128 characters.",
-            "type": "string"
-          },
-          "regarding": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectReferencev1"
-              }
-            ],
-            "default": {},
-            "description": "regarding contains the object this Event is about. In most cases it's an Object reporting controller implements, e.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object."
-          },
-          "related": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectReferencev1"
-              }
-            ],
-            "description": "related is the optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object."
-          },
-          "reportingController": {
-            "description": "reportingController is the name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`. This field cannot be empty for new Events.",
-            "type": "string"
-          },
-          "reportingInstance": {
-            "description": "reportingInstance is the ID of the controller instance, e.g. `kubelet-xyzf`. This field cannot be empty for new Events and it can have at most 128 characters.",
-            "type": "string"
-          },
-          "series": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EventSeriesv1"
-              }
-            ],
-            "description": "series is data about the Event series this event represents or nil if it's a singleton Event."
-          },
-          "type": {
-            "description": "type is the type of this event (Normal, Warning), new types could be added in the future. It is machine-readable. This field cannot be empty for new Events.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "eventTime"
-        ],
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "events.k8s.io",
-            "kind": "Event",
-            "version": "v1"
-          }
-        ]
-      },
-      "EventSeriesv1": {
-        "description": "EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time. How often to update the EventSeries is up to the event reporters. The default event reporter in \"k8s.io/client-go/tools/events/event_broadcaster.go\" shows how this struct is updated on heartbeats and can guide customized reporter implementations.",
-        "properties": {
-          "count": {
-            "default": 0,
-            "description": "count is the number of occurrences in this series up to the last heartbeat time.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "lastObservedTime": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MicroTimev1"
-              }
-            ],
-            "description": "lastObservedTime is the time when last Event from the series was seen before last heartbeat."
-          }
-        },
-        "required": [
-          "count",
-          "lastObservedTime"
-        ],
-        "type": "object"
-      },
       "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
@@ -616,6 +423,164 @@
           }
         ]
       },
+      "EventSourcev1": {
+        "description": "EventSource contains information for an event.",
+        "properties": {
+          "component": {
+            "description": "Component from which the event is generated.",
+            "type": "string"
+          },
+          "host": {
+            "description": "Node name on which the event is generated.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "EventsEventSeriesv1": {
+        "description": "EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time. How often to update the EventSeries is up to the event reporters. The default event reporter in \"k8s.io/client-go/tools/events/event_broadcaster.go\" shows how this struct is updated on heartbeats and can guide customized reporter implementations.",
+        "properties": {
+          "count": {
+            "default": 0,
+            "description": "count is the number of occurrences in this series up to the last heartbeat time.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "lastObservedTime": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MicroTimev1"
+              }
+            ],
+            "description": "lastObservedTime is the time when last Event from the series was seen before last heartbeat."
+          }
+        },
+        "required": [
+          "count",
+          "lastObservedTime"
+        ],
+        "type": "object"
+      },
+      "EventsEventv1": {
+        "description": "Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data.",
+        "properties": {
+          "action": {
+            "description": "action is what action was taken/failed regarding to the regarding object. It is machine-readable. This field cannot be empty for new Events and it can have at most 128 characters.",
+            "type": "string"
+          },
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "deprecatedCount": {
+            "description": "deprecatedCount is the deprecated field assuring backward compatibility with core.v1 Event type.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "deprecatedFirstTimestamp": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Timev1"
+              }
+            ],
+            "description": "deprecatedFirstTimestamp is the deprecated field assuring backward compatibility with core.v1 Event type."
+          },
+          "deprecatedLastTimestamp": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Timev1"
+              }
+            ],
+            "description": "deprecatedLastTimestamp is the deprecated field assuring backward compatibility with core.v1 Event type."
+          },
+          "deprecatedSource": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EventSourcev1"
+              }
+            ],
+            "default": {},
+            "description": "deprecatedSource is the deprecated field assuring backward compatibility with core.v1 Event type."
+          },
+          "eventTime": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MicroTimev1"
+              }
+            ],
+            "description": "eventTime is the time when this Event was first observed. It is required."
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetav1"
+              }
+            ],
+            "default": {},
+            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          },
+          "note": {
+            "description": "note is a human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.",
+            "type": "string"
+          },
+          "reason": {
+            "description": "reason is why the action was taken. It is human-readable. This field cannot be empty for new Events and it can have at most 128 characters.",
+            "type": "string"
+          },
+          "regarding": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectReferencev1"
+              }
+            ],
+            "default": {},
+            "description": "regarding contains the object this Event is about. In most cases it's an Object reporting controller implements, e.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object."
+          },
+          "related": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectReferencev1"
+              }
+            ],
+            "description": "related is the optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object."
+          },
+          "reportingController": {
+            "description": "reportingController is the name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`. This field cannot be empty for new Events.",
+            "type": "string"
+          },
+          "reportingInstance": {
+            "description": "reportingInstance is the ID of the controller instance, e.g. `kubelet-xyzf`. This field cannot be empty for new Events and it can have at most 128 characters.",
+            "type": "string"
+          },
+          "series": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EventsEventSeriesv1"
+              }
+            ],
+            "description": "series is data about the Event series this event represents or nil if it's a singleton Event."
+          },
+          "type": {
+            "description": "type is the type of this event (Normal, Warning), new types could be added in the future. It is machine-readable. This field cannot be empty for new Events.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "eventTime"
+        ],
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "events.k8s.io",
+            "kind": "Event",
+            "version": "v1"
+          }
+        ]
+      },
       "FieldsV1v1": {
         "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
         "type": "object"
@@ -795,6 +760,41 @@
         },
         "type": "object"
       },
+      "ObjectReferencev1": {
+        "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
+        "properties": {
+          "apiVersion": {
+            "description": "API version of the referent.",
+            "type": "string"
+          },
+          "fieldPath": {
+            "description": "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: \"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered the event) or if no container name is specified \"spec.containers[2]\" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+            "type": "string"
+          },
+          "kind": {
+            "description": "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+            "type": "string"
+          },
+          "namespace": {
+            "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+            "type": "string"
+          },
+          "resourceVersion": {
+            "description": "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+            "type": "string"
+          },
+          "uid": {
+            "description": "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "x-kubernetes-map-type": "atomic"
+      },
       "OwnerReferencev1": {
         "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
         "properties": {
@@ -849,6 +849,68 @@
           },
           "uid": {
             "description": "Specifies the target UID.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "RawExtension": {
+        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
+        "type": "object"
+      },
+      "StatusCausev1": {
+        "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
+        "properties": {
+          "field": {
+            "description": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\"",
+            "type": "string"
+          },
+          "message": {
+            "description": "A human-readable description of the cause of the error.  This field may be presented as-is to a reader.",
+            "type": "string"
+          },
+          "reason": {
+            "description": "A machine-readable description of the cause of the error. If this value is empty there is no information available.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "StatusDetailsv1": {
+        "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
+        "properties": {
+          "causes": {
+            "description": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StatusCausev1"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "group": {
+            "description": "The group attribute of the resource associated with the status StatusReason.",
+            "type": "string"
+          },
+          "kind": {
+            "description": "The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described).",
+            "type": "string"
+          },
+          "retryAfterSeconds": {
+            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "uid": {
+            "description": "UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
             "type": "string"
           }
         },
@@ -909,64 +971,6 @@
             "version": "v1"
           }
         ]
-      },
-      "StatusCausev1": {
-        "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
-        "properties": {
-          "field": {
-            "description": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\"",
-            "type": "string"
-          },
-          "message": {
-            "description": "A human-readable description of the cause of the error.  This field may be presented as-is to a reader.",
-            "type": "string"
-          },
-          "reason": {
-            "description": "A machine-readable description of the cause of the error. If this value is empty there is no information available.",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "StatusDetailsv1": {
-        "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
-        "properties": {
-          "causes": {
-            "description": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/StatusCausev1"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "group": {
-            "description": "The group attribute of the resource associated with the status StatusReason.",
-            "type": "string"
-          },
-          "kind": {
-            "description": "The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "name": {
-            "description": "The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described).",
-            "type": "string"
-          },
-          "retryAfterSeconds": {
-            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "uid": {
-            "description": "UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
-            "type": "string"
-          }
-        },
-        "type": "object"
       },
       "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
@@ -1301,10 +1305,6 @@
             "version": "v1alpha1"
           }
         ]
-      },
-      "RawExtension": {
-        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
-        "type": "object"
       }
     },
     "securitySchemes": {

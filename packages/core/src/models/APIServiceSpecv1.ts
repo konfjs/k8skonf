@@ -1,4 +1,4 @@
-import { ServiceReferencev1 } from './ServiceReferencev1.js';
+import { ApiregistrationServiceReferencev1 } from './ApiregistrationServiceReferencev1.js';
 
 /**
  * APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification.
@@ -23,7 +23,7 @@ export interface APIServiceSpecv1 {
   /**
    * Service is a reference to the service for this API server.  It must communicate on port 443. If the Service is nil, that means the handling for the API groupversion is handled locally on this server. The call will simply delegate to the normal handler chain to be fulfilled.
    */
-  service?: ServiceReferencev1;
+  service?: ApiregistrationServiceReferencev1;
   /**
    * Version is the API version this server hosts.  For example, \"v1\"
    */

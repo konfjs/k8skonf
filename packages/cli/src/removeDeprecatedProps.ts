@@ -1,4 +1,4 @@
-import { K8sOpenApiSpec } from './removeModelPrefixes.js';
+import { K8sOpenApiSpec } from './prepareModels.js';
 
 export function removeDeprecatedProps(spec: K8sOpenApiSpec): void {
     if (spec.components.schemas) {

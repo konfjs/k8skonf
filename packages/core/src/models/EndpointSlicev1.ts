@@ -1,4 +1,4 @@
-import { EndpointPortv1 } from './EndpointPortv1.js';
+import { DiscoveryEndpointPortv1 } from './DiscoveryEndpointPortv1.js';
 import { Endpointv1 } from './Endpointv1.js';
 import { K8sApp } from '../K8sApp.js';
 import { NamespacedObjectMetav1, NamespacedApiObject } from '../ApiObject.js';
@@ -7,7 +7,7 @@ export interface EndpointSlicev1Args {
   readonly addressType: string;
   readonly endpoints: Array<Endpointv1>;
   readonly metadata?: NamespacedObjectMetav1;
-  readonly ports?: Array<EndpointPortv1>;
+  readonly ports?: Array<DiscoveryEndpointPortv1>;
 }
 
 /**
@@ -37,7 +37,7 @@ export class EndpointSlicev1 extends NamespacedApiObject {
   /**
    * ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. When ports is empty, it indicates that there are no defined ports. When a port is defined with a nil port value, it indicates \"all ports\". Each slice may include a maximum of 100 ports.
    */
-  readonly ports?: Array<EndpointPortv1>;
+  readonly ports?: Array<DiscoveryEndpointPortv1>;
 
   constructor(app: K8sApp, name: string, args: EndpointSlicev1Args) {
     super();

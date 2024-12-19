@@ -1,10 +1,10 @@
-import { EventSeriesv1 } from './EventSeriesv1.js';
+import { CoreEventSeriesv1 } from './CoreEventSeriesv1.js';
 import { EventSourcev1 } from './EventSourcev1.js';
 import { ObjectReferencev1 } from './ObjectReferencev1.js';
 import { K8sApp } from '../K8sApp.js';
 import { NamespacedObjectMetav1, NamespacedApiObject } from '../ApiObject.js';
 
-export interface Eventv1Args {
+export interface CoreEventv1Args {
   readonly action?: string;
   readonly count?: number;
   readonly eventTime?: Date;
@@ -17,7 +17,7 @@ export interface Eventv1Args {
   readonly related?: ObjectReferencev1;
   readonly reportingComponent?: string;
   readonly reportingInstance?: string;
-  readonly series?: EventSeriesv1;
+  readonly series?: CoreEventSeriesv1;
   readonly source?: EventSourcev1;
   readonly type?: string;
 }
@@ -25,7 +25,7 @@ export interface Eventv1Args {
 /**
  * Event is a report of an event somewhere in the cluster.  Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data.
  */
-export class Eventv1 extends NamespacedApiObject {
+export class CoreEventv1 extends NamespacedApiObject {
   /**
    * What action was taken/failed regarding to the Regarding object.
    */
@@ -85,7 +85,7 @@ export class Eventv1 extends NamespacedApiObject {
   /**
    * Data about the Event series this event represents or nil if it\'s a singleton Event.
    */
-  readonly series?: EventSeriesv1;
+  readonly series?: CoreEventSeriesv1;
   /**
    * The component reporting this event. Should be a short machine understandable string.
    */
@@ -95,7 +95,7 @@ export class Eventv1 extends NamespacedApiObject {
    */
   readonly type?: string;
 
-  constructor(app: K8sApp, name: string, args: Eventv1Args) {
+  constructor(app: K8sApp, name: string, args: CoreEventv1Args) {
     super();
     this.action = args.action;
     this.count = args.count;

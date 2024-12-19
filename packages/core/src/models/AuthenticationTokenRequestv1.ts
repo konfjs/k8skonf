@@ -2,7 +2,7 @@ import { TokenRequestSpecv1 } from './TokenRequestSpecv1.js';
 import { K8sApp } from '../K8sApp.js';
 import { NamespacedObjectMetav1, NamespacedApiObject } from '../ApiObject.js';
 
-export interface TokenRequestv1Args {
+export interface AuthenticationTokenRequestv1Args {
   readonly metadata?: NamespacedObjectMetav1;
   readonly spec: TokenRequestSpecv1;
 }
@@ -10,7 +10,7 @@ export interface TokenRequestv1Args {
 /**
  * TokenRequest requests a token for a given service account.
  */
-export class TokenRequestv1 extends NamespacedApiObject {
+export class AuthenticationTokenRequestv1 extends NamespacedApiObject {
   /**
    * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
    */
@@ -28,7 +28,7 @@ export class TokenRequestv1 extends NamespacedApiObject {
    */
   readonly spec: TokenRequestSpecv1;
 
-  constructor(app: K8sApp, name: string, args: TokenRequestv1Args) {
+  constructor(app: K8sApp, name: string, args: AuthenticationTokenRequestv1Args) {
     super();
     this.metadata = args.metadata || { name };
     this.spec = args.spec;
