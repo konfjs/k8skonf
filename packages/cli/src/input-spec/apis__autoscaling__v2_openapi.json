@@ -1,6 +1,77 @@
 {
   "components": {
     "schemas": {
+      "APIResourcev1": {
+        "description": "APIResource specifies the name of a resource and whether it is namespaced.",
+        "properties": {
+          "categories": {
+            "description": "categories is a list of the grouped resources this resource belongs to (e.g. 'all')",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "group": {
+            "description": "group is the preferred group of the resource.  Empty implies the group of the containing resource list. For subresources, this may have a different value, for example: Scale\".",
+            "type": "string"
+          },
+          "kind": {
+            "default": "",
+            "description": "kind is the kind for the resource (e.g. 'Foo' is the kind for a resource 'foo')",
+            "type": "string"
+          },
+          "name": {
+            "default": "",
+            "description": "name is the plural name of the resource.",
+            "type": "string"
+          },
+          "namespaced": {
+            "default": false,
+            "description": "namespaced indicates if a resource is namespaced or not.",
+            "type": "boolean"
+          },
+          "shortNames": {
+            "description": "shortNames is a list of suggested short names of the resource.",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "singularName": {
+            "default": "",
+            "description": "singularName is the singular name of the resource.  This allows clients to handle plural and singular opaquely. The singularName is more correct for reporting status on a single item and both singular and plural are allowed from the kubectl CLI interface.",
+            "type": "string"
+          },
+          "storageVersionHash": {
+            "description": "The hash value of the storage version, the version this resource is converted to when written to the data store. Value must be treated as opaque by clients. Only equality comparison on the value is valid. This is an alpha feature and may change or be removed in the future. The field is populated by the apiserver only if the StorageVersionHash feature gate is enabled. This field will remain optional even if it graduates.",
+            "type": "string"
+          },
+          "verbs": {
+            "description": "verbs is a list of supported kube verbs (this includes get, list, watch, create, update, patch, delete, deletecollection, and proxy)",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "version": {
+            "description": "version is the preferred version of the resource.  Empty implies the version of the containing resource list For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource's group)\".",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "singularName",
+          "namespaced",
+          "kind",
+          "verbs"
+        ],
+        "type": "object"
+      },
       "ContainerResourceMetricSourcev2": {
         "description": "ContainerResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source.  Only one \"target\" type should be set.",
         "properties": {
@@ -82,793 +153,6 @@
         "required": [
           "kind",
           "name"
-        ],
-        "type": "object"
-      },
-      "ExternalMetricSourcev2": {
-        "description": "ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).",
-        "properties": {
-          "metric": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricIdentifierv2"
-              }
-            ],
-            "default": {},
-            "description": "metric identifies the target metric by name and selector"
-          },
-          "target": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricTargetv2"
-              }
-            ],
-            "default": {},
-            "description": "target specifies the target value for the given metric"
-          }
-        },
-        "required": [
-          "metric",
-          "target"
-        ],
-        "type": "object"
-      },
-      "ExternalMetricStatusv2": {
-        "description": "ExternalMetricStatus indicates the current value of a global metric not associated with any Kubernetes object.",
-        "properties": {
-          "current": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricValueStatusv2"
-              }
-            ],
-            "default": {},
-            "description": "current contains the current value for the given metric"
-          },
-          "metric": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricIdentifierv2"
-              }
-            ],
-            "default": {},
-            "description": "metric identifies the target metric by name and selector"
-          }
-        },
-        "required": [
-          "metric",
-          "current"
-        ],
-        "type": "object"
-      },
-      "HPAScalingPolicyv2": {
-        "description": "HPAScalingPolicy is a single policy which must hold true for a specified past interval.",
-        "properties": {
-          "periodSeconds": {
-            "default": 0,
-            "description": "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": {
-            "default": "",
-            "description": "type is used to specify the scaling policy.",
-            "type": "string"
-          },
-          "value": {
-            "default": 0,
-            "description": "value contains the amount of change which is permitted by the policy. It must be greater than zero",
-            "format": "int32",
-            "type": "integer"
-          }
-        },
-        "required": [
-          "type",
-          "value",
-          "periodSeconds"
-        ],
-        "type": "object"
-      },
-      "HPAScalingRulesv2": {
-        "description": "HPAScalingRules configures the scaling behavior for one direction. These Rules are applied after calculating DesiredReplicas from metrics for the HPA. They can limit the scaling velocity by specifying scaling policies. They can prevent flapping by specifying the stabilization window, so that the number of replicas is not set instantly, instead, the safest value from the stabilization window is chosen.",
-        "properties": {
-          "policies": {
-            "description": "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/HPAScalingPolicyv2"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "selectPolicy": {
-            "description": "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
-            "type": "string"
-          },
-          "stabilizationWindowSeconds": {
-            "description": "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
-            "format": "int32",
-            "type": "integer"
-          }
-        },
-        "type": "object"
-      },
-      "HorizontalPodAutoscalerv2": {
-        "description": "HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified.",
-        "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetav1"
-              }
-            ],
-            "default": {},
-            "description": "metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
-          },
-          "spec": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HorizontalPodAutoscalerSpecv2"
-              }
-            ],
-            "default": {},
-            "description": "spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status."
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HorizontalPodAutoscalerStatusv2"
-              }
-            ],
-            "default": {},
-            "description": "status is the current information about the autoscaler."
-          }
-        },
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "autoscaling",
-            "kind": "HorizontalPodAutoscaler",
-            "version": "v2"
-          }
-        ]
-      },
-      "HorizontalPodAutoscalerBehaviorv2": {
-        "description": "HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).",
-        "properties": {
-          "scaleDown": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HPAScalingRulesv2"
-              }
-            ],
-            "description": "scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used)."
-          },
-          "scaleUp": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HPAScalingRulesv2"
-              }
-            ],
-            "description": "scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of:\n  * increase no more than 4 pods per 60 seconds\n  * double the number of pods per 60 seconds\nNo stabilization is used."
-          }
-        },
-        "type": "object"
-      },
-      "HorizontalPodAutoscalerConditionv2": {
-        "description": "HorizontalPodAutoscalerCondition describes the state of a HorizontalPodAutoscaler at a certain point.",
-        "properties": {
-          "lastTransitionTime": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timev1"
-              }
-            ],
-            "description": "lastTransitionTime is the last time the condition transitioned from one status to another"
-          },
-          "message": {
-            "description": "message is a human-readable explanation containing details about the transition",
-            "type": "string"
-          },
-          "reason": {
-            "description": "reason is the reason for the condition's last transition.",
-            "type": "string"
-          },
-          "status": {
-            "default": "",
-            "description": "status is the status of the condition (True, False, Unknown)",
-            "type": "string"
-          },
-          "type": {
-            "default": "",
-            "description": "type describes the current condition",
-            "type": "string"
-          }
-        },
-        "required": [
-          "type",
-          "status"
-        ],
-        "type": "object"
-      },
-      "HorizontalPodAutoscalerSpecv2": {
-        "description": "HorizontalPodAutoscalerSpec describes the desired functionality of the HorizontalPodAutoscaler.",
-        "properties": {
-          "behavior": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HorizontalPodAutoscalerBehaviorv2"
-              }
-            ],
-            "description": "behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). If not set, the default HPAScalingRules for scale up and scale down are used."
-          },
-          "maxReplicas": {
-            "default": 0,
-            "description": "maxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "metrics": {
-            "description": "metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).  The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/MetricSpecv2"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "minReplicas": {
-            "description": "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "scaleTargetRef": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CrossVersionObjectReferencev2"
-              }
-            ],
-            "default": {},
-            "description": "scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count."
-          }
-        },
-        "required": [
-          "scaleTargetRef",
-          "maxReplicas"
-        ],
-        "type": "object"
-      },
-      "HorizontalPodAutoscalerStatusv2": {
-        "description": "HorizontalPodAutoscalerStatus describes the current status of a horizontal pod autoscaler.",
-        "properties": {
-          "conditions": {
-            "description": "conditions is the set of conditions required for this autoscaler to scale its target, and indicates whether or not those conditions are met.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/HorizontalPodAutoscalerConditionv2"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-map-keys": [
-              "type"
-            ],
-            "x-kubernetes-list-type": "map",
-            "x-kubernetes-patch-merge-key": "type",
-            "x-kubernetes-patch-strategy": "merge"
-          },
-          "currentMetrics": {
-            "description": "currentMetrics is the last read state of the metrics used by this autoscaler.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/MetricStatusv2"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "currentReplicas": {
-            "description": "currentReplicas is current number of replicas of pods managed by this autoscaler, as last seen by the autoscaler.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "desiredReplicas": {
-            "default": 0,
-            "description": "desiredReplicas is the desired number of replicas of pods managed by this autoscaler, as last calculated by the autoscaler.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "lastScaleTime": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timev1"
-              }
-            ],
-            "description": "lastScaleTime is the last time the HorizontalPodAutoscaler scaled the number of pods, used by the autoscaler to control how often the number of pods is changed."
-          },
-          "observedGeneration": {
-            "description": "observedGeneration is the most recent generation observed by this autoscaler.",
-            "format": "int64",
-            "type": "integer"
-          }
-        },
-        "required": [
-          "desiredReplicas"
-        ],
-        "type": "object"
-      },
-      "MetricIdentifierv2": {
-        "description": "MetricIdentifier defines the name and optionally selector for a metric",
-        "properties": {
-          "name": {
-            "default": "",
-            "description": "name is the name of the given metric",
-            "type": "string"
-          },
-          "selector": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/LabelSelectorv1"
-              }
-            ],
-            "description": "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics."
-          }
-        },
-        "required": [
-          "name"
-        ],
-        "type": "object"
-      },
-      "MetricSpecv2": {
-        "description": "MetricSpec specifies how to scale based on a single metric (only `type` and one other matching field should be set at once).",
-        "properties": {
-          "containerResource": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ContainerResourceMetricSourcev2"
-              }
-            ],
-            "description": "containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source."
-          },
-          "external": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ExternalMetricSourcev2"
-              }
-            ],
-            "description": "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster)."
-          },
-          "object": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetricSourcev2"
-              }
-            ],
-            "description": "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object)."
-          },
-          "pods": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PodsMetricSourcev2"
-              }
-            ],
-            "description": "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value."
-          },
-          "resource": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceMetricSourcev2"
-              }
-            ],
-            "description": "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source."
-          },
-          "type": {
-            "default": "",
-            "description": "type is the type of metric source.  It should be one of \"ContainerResource\", \"External\", \"Object\", \"Pods\" or \"Resource\", each mapping to a matching field in the object.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "type"
-        ],
-        "type": "object"
-      },
-      "MetricStatusv2": {
-        "description": "MetricStatus describes the last-read state of a single metric.",
-        "properties": {
-          "containerResource": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ContainerResourceMetricStatusv2"
-              }
-            ],
-            "description": "container resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source."
-          },
-          "external": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ExternalMetricStatusv2"
-              }
-            ],
-            "description": "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster)."
-          },
-          "object": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetricStatusv2"
-              }
-            ],
-            "description": "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object)."
-          },
-          "pods": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PodsMetricStatusv2"
-              }
-            ],
-            "description": "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value."
-          },
-          "resource": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceMetricStatusv2"
-              }
-            ],
-            "description": "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source."
-          },
-          "type": {
-            "default": "",
-            "description": "type is the type of metric source.  It will be one of \"ContainerResource\", \"External\", \"Object\", \"Pods\" or \"Resource\", each corresponds to a matching field in the object.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "type"
-        ],
-        "type": "object"
-      },
-      "MetricTargetv2": {
-        "description": "MetricTarget defines the target value, average value, or average utilization of a specific metric",
-        "properties": {
-          "averageUtilization": {
-            "description": "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
-            "format": "int32",
-            "type": "integer"
-          },
-          "averageValue": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Quantity"
-              }
-            ],
-            "description": "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)"
-          },
-          "type": {
-            "default": "",
-            "description": "type represents whether the metric type is Utilization, Value, or AverageValue",
-            "type": "string"
-          },
-          "value": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Quantity"
-              }
-            ],
-            "description": "value is the target value of the metric (as a quantity)."
-          }
-        },
-        "required": [
-          "type"
-        ],
-        "type": "object"
-      },
-      "MetricValueStatusv2": {
-        "description": "MetricValueStatus holds the current value for a metric",
-        "properties": {
-          "averageUtilization": {
-            "description": "currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "averageValue": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Quantity"
-              }
-            ],
-            "description": "averageValue is the current value of the average of the metric across all relevant pods (as a quantity)"
-          },
-          "value": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Quantity"
-              }
-            ],
-            "description": "value is the current value of the metric (as a quantity)."
-          }
-        },
-        "type": "object"
-      },
-      "ObjectMetricSourcev2": {
-        "description": "ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).",
-        "properties": {
-          "describedObject": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CrossVersionObjectReferencev2"
-              }
-            ],
-            "default": {},
-            "description": "describedObject specifies the descriptions of a object,such as kind,name apiVersion"
-          },
-          "metric": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricIdentifierv2"
-              }
-            ],
-            "default": {},
-            "description": "metric identifies the target metric by name and selector"
-          },
-          "target": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricTargetv2"
-              }
-            ],
-            "default": {},
-            "description": "target specifies the target value for the given metric"
-          }
-        },
-        "required": [
-          "describedObject",
-          "target",
-          "metric"
-        ],
-        "type": "object"
-      },
-      "ObjectMetricStatusv2": {
-        "description": "ObjectMetricStatus indicates the current value of a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).",
-        "properties": {
-          "current": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricValueStatusv2"
-              }
-            ],
-            "default": {},
-            "description": "current contains the current value for the given metric"
-          },
-          "describedObject": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CrossVersionObjectReferencev2"
-              }
-            ],
-            "default": {},
-            "description": "DescribedObject specifies the descriptions of a object,such as kind,name apiVersion"
-          },
-          "metric": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricIdentifierv2"
-              }
-            ],
-            "default": {},
-            "description": "metric identifies the target metric by name and selector"
-          }
-        },
-        "required": [
-          "metric",
-          "current",
-          "describedObject"
-        ],
-        "type": "object"
-      },
-      "PodsMetricSourcev2": {
-        "description": "PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.",
-        "properties": {
-          "metric": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricIdentifierv2"
-              }
-            ],
-            "default": {},
-            "description": "metric identifies the target metric by name and selector"
-          },
-          "target": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricTargetv2"
-              }
-            ],
-            "default": {},
-            "description": "target specifies the target value for the given metric"
-          }
-        },
-        "required": [
-          "metric",
-          "target"
-        ],
-        "type": "object"
-      },
-      "PodsMetricStatusv2": {
-        "description": "PodsMetricStatus indicates the current value of a metric describing each pod in the current scale target (for example, transactions-processed-per-second).",
-        "properties": {
-          "current": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricValueStatusv2"
-              }
-            ],
-            "default": {},
-            "description": "current contains the current value for the given metric"
-          },
-          "metric": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricIdentifierv2"
-              }
-            ],
-            "default": {},
-            "description": "metric identifies the target metric by name and selector"
-          }
-        },
-        "required": [
-          "metric",
-          "current"
-        ],
-        "type": "object"
-      },
-      "ResourceMetricSourcev2": {
-        "description": "ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source.  Only one \"target\" type should be set.",
-        "properties": {
-          "name": {
-            "default": "",
-            "description": "name is the name of the resource in question.",
-            "type": "string"
-          },
-          "target": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricTargetv2"
-              }
-            ],
-            "default": {},
-            "description": "target specifies the target value for the given metric"
-          }
-        },
-        "required": [
-          "name",
-          "target"
-        ],
-        "type": "object"
-      },
-      "ResourceMetricStatusv2": {
-        "description": "ResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source.",
-        "properties": {
-          "current": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MetricValueStatusv2"
-              }
-            ],
-            "default": {},
-            "description": "current contains the current value for the given metric"
-          },
-          "name": {
-            "default": "",
-            "description": "name is the name of the resource in question.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "current"
-        ],
-        "type": "object"
-      },
-      "Quantity": {
-        "description": "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors.\n\nThe serialization format is:\n\n``` <quantity>        ::= <signedNumber><suffix>\n\n\t(Note that <suffix> may be empty, from the \"\" case in <decimalSI>.)\n\n<digit>           ::= 0 | 1 | ... | 9 <digits>          ::= <digit> | <digit><digits> <number>          ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign>            ::= \"+\" | \"-\" <signedNumber>    ::= <number> | <sign><number> <suffix>          ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI>        ::= Ki | Mi | Gi | Ti | Pi | Ei\n\n\t(International System of units; See: http://physics.nist.gov/cuu/Units/binary.html)\n\n<decimalSI>       ::= m | \"\" | k | M | G | T | P | E\n\n\t(Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.)\n\n<decimalExponent> ::= \"e\" <signedNumber> | \"E\" <signedNumber> ```\n\nNo matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities.\n\nWhen a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized.\n\nBefore serializing, Quantity will be put in \"canonical form\". This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that:\n\n- No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible.\n\nThe sign will be omitted unless the number is negative.\n\nExamples:\n\n- 1.5 will be serialized as \"1500m\" - 1.5Gi will be serialized as \"1536Mi\"\n\nNote that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise.\n\nNon-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.)\n\nThis format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ]
-      },
-      "APIResourcev1": {
-        "description": "APIResource specifies the name of a resource and whether it is namespaced.",
-        "properties": {
-          "categories": {
-            "description": "categories is a list of the grouped resources this resource belongs to (e.g. 'all')",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "group": {
-            "description": "group is the preferred group of the resource.  Empty implies the group of the containing resource list. For subresources, this may have a different value, for example: Scale\".",
-            "type": "string"
-          },
-          "kind": {
-            "default": "",
-            "description": "kind is the kind for the resource (e.g. 'Foo' is the kind for a resource 'foo')",
-            "type": "string"
-          },
-          "name": {
-            "default": "",
-            "description": "name is the plural name of the resource.",
-            "type": "string"
-          },
-          "namespaced": {
-            "default": false,
-            "description": "namespaced indicates if a resource is namespaced or not.",
-            "type": "boolean"
-          },
-          "shortNames": {
-            "description": "shortNames is a list of suggested short names of the resource.",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "singularName": {
-            "default": "",
-            "description": "singularName is the singular name of the resource.  This allows clients to handle plural and singular opaquely. The singularName is more correct for reporting status on a single item and both singular and plural are allowed from the kubectl CLI interface.",
-            "type": "string"
-          },
-          "storageVersionHash": {
-            "description": "The hash value of the storage version, the version this resource is converted to when written to the data store. Value must be treated as opaque by clients. Only equality comparison on the value is valid. This is an alpha feature and may change or be removed in the future. The field is populated by the apiserver only if the StorageVersionHash feature gate is enabled. This field will remain optional even if it graduates.",
-            "type": "string"
-          },
-          "verbs": {
-            "description": "verbs is a list of supported kube verbs (this includes get, list, watch, create, update, patch, delete, deletecollection, and proxy)",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "version": {
-            "description": "version is the preferred version of the resource.  Empty implies the version of the containing resource list For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource's group)\".",
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "singularName",
-          "namespaced",
-          "kind",
-          "verbs"
         ],
         "type": "object"
       },
@@ -1223,19 +507,103 @@
           }
         ]
       },
+      "ExternalMetricSourcev2": {
+        "description": "ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).",
+        "properties": {
+          "metric": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricIdentifierv2"
+              }
+            ],
+            "default": {},
+            "description": "metric identifies the target metric by name and selector"
+          },
+          "target": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricTargetv2"
+              }
+            ],
+            "default": {},
+            "description": "target specifies the target value for the given metric"
+          }
+        },
+        "required": [
+          "metric",
+          "target"
+        ],
+        "type": "object"
+      },
+      "ExternalMetricStatusv2": {
+        "description": "ExternalMetricStatus indicates the current value of a global metric not associated with any Kubernetes object.",
+        "properties": {
+          "current": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricValueStatusv2"
+              }
+            ],
+            "default": {},
+            "description": "current contains the current value for the given metric"
+          },
+          "metric": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricIdentifierv2"
+              }
+            ],
+            "default": {},
+            "description": "metric identifies the target metric by name and selector"
+          }
+        },
+        "required": [
+          "metric",
+          "current"
+        ],
+        "type": "object"
+      },
       "FieldsV1v1": {
         "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
         "type": "object"
       },
-      "LabelSelectorv1": {
-        "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+      "HPAScalingPolicyv2": {
+        "description": "HPAScalingPolicy is a single policy which must hold true for a specified past interval.",
         "properties": {
-          "matchExpressions": {
-            "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+          "periodSeconds": {
+            "default": 0,
+            "description": "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": {
+            "default": "",
+            "description": "type is used to specify the scaling policy.",
+            "type": "string"
+          },
+          "value": {
+            "default": 0,
+            "description": "value contains the amount of change which is permitted by the policy. It must be greater than zero",
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "type",
+          "value",
+          "periodSeconds"
+        ],
+        "type": "object"
+      },
+      "HPAScalingRulesv2": {
+        "description": "HPAScalingRules configures the scaling behavior for one direction. These Rules are applied after calculating DesiredReplicas from metrics for the HPA. They can limit the scaling velocity by specifying scaling policies. They can prevent flapping by specifying the stabilization window, so that the number of replicas is not set instantly, instead, the safest value from the stabilization window is chosen.",
+        "properties": {
+          "policies": {
+            "description": "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/LabelSelectorRequirementv1"
+                  "$ref": "#/components/schemas/HPAScalingPolicyv2"
                 }
               ],
               "default": {}
@@ -1243,17 +611,238 @@
             "type": "array",
             "x-kubernetes-list-type": "atomic"
           },
-          "matchLabels": {
-            "additionalProperties": {
-              "default": "",
-              "type": "string"
+          "selectPolicy": {
+            "description": "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
+            "type": "string"
+          },
+          "stabilizationWindowSeconds": {
+            "description": "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "HorizontalPodAutoscalerBehaviorv2": {
+        "description": "HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).",
+        "properties": {
+          "scaleDown": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HPAScalingRulesv2"
+              }
+            ],
+            "description": "scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used)."
+          },
+          "scaleUp": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HPAScalingRulesv2"
+              }
+            ],
+            "description": "scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of:\n  * increase no more than 4 pods per 60 seconds\n  * double the number of pods per 60 seconds\nNo stabilization is used."
+          }
+        },
+        "type": "object"
+      },
+      "HorizontalPodAutoscalerConditionv2": {
+        "description": "HorizontalPodAutoscalerCondition describes the state of a HorizontalPodAutoscaler at a certain point.",
+        "properties": {
+          "lastTransitionTime": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Timev1"
+              }
+            ],
+            "description": "lastTransitionTime is the last time the condition transitioned from one status to another"
+          },
+          "message": {
+            "description": "message is a human-readable explanation containing details about the transition",
+            "type": "string"
+          },
+          "reason": {
+            "description": "reason is the reason for the condition's last transition.",
+            "type": "string"
+          },
+          "status": {
+            "default": "",
+            "description": "status is the status of the condition (True, False, Unknown)",
+            "type": "string"
+          },
+          "type": {
+            "default": "",
+            "description": "type describes the current condition",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "status"
+        ],
+        "type": "object"
+      },
+      "HorizontalPodAutoscalerSpecv2": {
+        "description": "HorizontalPodAutoscalerSpec describes the desired functionality of the HorizontalPodAutoscaler.",
+        "properties": {
+          "behavior": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HorizontalPodAutoscalerBehaviorv2"
+              }
+            ],
+            "description": "behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). If not set, the default HPAScalingRules for scale up and scale down are used."
+          },
+          "maxReplicas": {
+            "default": 0,
+            "description": "maxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "metrics": {
+            "description": "metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).  The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MetricSpecv2"
+                }
+              ],
+              "default": {}
             },
-            "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-            "type": "object"
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "minReplicas": {
+            "description": "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "scaleTargetRef": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossVersionObjectReferencev2"
+              }
+            ],
+            "default": {},
+            "description": "scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count."
+          }
+        },
+        "required": [
+          "scaleTargetRef",
+          "maxReplicas"
+        ],
+        "type": "object"
+      },
+      "HorizontalPodAutoscalerStatusv2": {
+        "description": "HorizontalPodAutoscalerStatus describes the current status of a horizontal pod autoscaler.",
+        "properties": {
+          "conditions": {
+            "description": "conditions is the set of conditions required for this autoscaler to scale its target, and indicates whether or not those conditions are met.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/HorizontalPodAutoscalerConditionv2"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-map-keys": [
+              "type"
+            ],
+            "x-kubernetes-list-type": "map",
+            "x-kubernetes-patch-merge-key": "type",
+            "x-kubernetes-patch-strategy": "merge"
+          },
+          "currentMetrics": {
+            "description": "currentMetrics is the last read state of the metrics used by this autoscaler.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MetricStatusv2"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "currentReplicas": {
+            "description": "currentReplicas is current number of replicas of pods managed by this autoscaler, as last seen by the autoscaler.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "desiredReplicas": {
+            "default": 0,
+            "description": "desiredReplicas is the desired number of replicas of pods managed by this autoscaler, as last calculated by the autoscaler.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "lastScaleTime": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Timev1"
+              }
+            ],
+            "description": "lastScaleTime is the last time the HorizontalPodAutoscaler scaled the number of pods, used by the autoscaler to control how often the number of pods is changed."
+          },
+          "observedGeneration": {
+            "description": "observedGeneration is the most recent generation observed by this autoscaler.",
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "desiredReplicas"
+        ],
+        "type": "object"
+      },
+      "HorizontalPodAutoscalerv2": {
+        "description": "HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified.",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetav1"
+              }
+            ],
+            "default": {},
+            "description": "metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          },
+          "spec": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HorizontalPodAutoscalerSpecv2"
+              }
+            ],
+            "default": {},
+            "description": "spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status."
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HorizontalPodAutoscalerStatusv2"
+              }
+            ],
+            "default": {},
+            "description": "status is the current information about the autoscaler."
           }
         },
         "type": "object",
-        "x-kubernetes-map-type": "atomic"
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "autoscaling",
+            "kind": "HorizontalPodAutoscaler",
+            "version": "v2"
+          }
+        ]
       },
       "LabelSelectorRequirementv1": {
         "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
@@ -1283,6 +872,34 @@
           "operator"
         ],
         "type": "object"
+      },
+      "LabelSelectorv1": {
+        "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+        "properties": {
+          "matchExpressions": {
+            "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/LabelSelectorRequirementv1"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "matchLabels": {
+            "additionalProperties": {
+              "default": "",
+              "type": "string"
+            },
+            "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+            "type": "object"
+          }
+        },
+        "type": "object",
+        "x-kubernetes-map-type": "atomic"
       },
       "ListMetav1": {
         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
@@ -1341,6 +958,198 @@
               }
             ],
             "description": "Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over."
+          }
+        },
+        "type": "object"
+      },
+      "MetricIdentifierv2": {
+        "description": "MetricIdentifier defines the name and optionally selector for a metric",
+        "properties": {
+          "name": {
+            "default": "",
+            "description": "name is the name of the given metric",
+            "type": "string"
+          },
+          "selector": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LabelSelectorv1"
+              }
+            ],
+            "description": "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics."
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "MetricSpecv2": {
+        "description": "MetricSpec specifies how to scale based on a single metric (only `type` and one other matching field should be set at once).",
+        "properties": {
+          "containerResource": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ContainerResourceMetricSourcev2"
+              }
+            ],
+            "description": "containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source."
+          },
+          "external": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalMetricSourcev2"
+              }
+            ],
+            "description": "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster)."
+          },
+          "object": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetricSourcev2"
+              }
+            ],
+            "description": "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object)."
+          },
+          "pods": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PodsMetricSourcev2"
+              }
+            ],
+            "description": "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value."
+          },
+          "resource": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceMetricSourcev2"
+              }
+            ],
+            "description": "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source."
+          },
+          "type": {
+            "default": "",
+            "description": "type is the type of metric source.  It should be one of \"ContainerResource\", \"External\", \"Object\", \"Pods\" or \"Resource\", each mapping to a matching field in the object.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "type": "object"
+      },
+      "MetricStatusv2": {
+        "description": "MetricStatus describes the last-read state of a single metric.",
+        "properties": {
+          "containerResource": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ContainerResourceMetricStatusv2"
+              }
+            ],
+            "description": "container resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source."
+          },
+          "external": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalMetricStatusv2"
+              }
+            ],
+            "description": "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster)."
+          },
+          "object": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetricStatusv2"
+              }
+            ],
+            "description": "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object)."
+          },
+          "pods": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PodsMetricStatusv2"
+              }
+            ],
+            "description": "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value."
+          },
+          "resource": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceMetricStatusv2"
+              }
+            ],
+            "description": "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source."
+          },
+          "type": {
+            "default": "",
+            "description": "type is the type of metric source.  It will be one of \"ContainerResource\", \"External\", \"Object\", \"Pods\" or \"Resource\", each corresponds to a matching field in the object.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "type": "object"
+      },
+      "MetricTargetv2": {
+        "description": "MetricTarget defines the target value, average value, or average utilization of a specific metric",
+        "properties": {
+          "averageUtilization": {
+            "description": "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+            "format": "int32",
+            "type": "integer"
+          },
+          "averageValue": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Quantity"
+              }
+            ],
+            "description": "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)"
+          },
+          "type": {
+            "default": "",
+            "description": "type represents whether the metric type is Utilization, Value, or AverageValue",
+            "type": "string"
+          },
+          "value": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Quantity"
+              }
+            ],
+            "description": "value is the target value of the metric (as a quantity)."
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "type": "object"
+      },
+      "MetricValueStatusv2": {
+        "description": "MetricValueStatus holds the current value for a metric",
+        "properties": {
+          "averageUtilization": {
+            "description": "currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "averageValue": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Quantity"
+              }
+            ],
+            "description": "averageValue is the current value of the average of the metric across all relevant pods (as a quantity)"
+          },
+          "value": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Quantity"
+              }
+            ],
+            "description": "value is the current value of the metric (as a quantity)."
           }
         },
         "type": "object"
@@ -1454,6 +1263,82 @@
         },
         "type": "object"
       },
+      "ObjectMetricSourcev2": {
+        "description": "ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).",
+        "properties": {
+          "describedObject": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossVersionObjectReferencev2"
+              }
+            ],
+            "default": {},
+            "description": "describedObject specifies the descriptions of a object,such as kind,name apiVersion"
+          },
+          "metric": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricIdentifierv2"
+              }
+            ],
+            "default": {},
+            "description": "metric identifies the target metric by name and selector"
+          },
+          "target": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricTargetv2"
+              }
+            ],
+            "default": {},
+            "description": "target specifies the target value for the given metric"
+          }
+        },
+        "required": [
+          "describedObject",
+          "target",
+          "metric"
+        ],
+        "type": "object"
+      },
+      "ObjectMetricStatusv2": {
+        "description": "ObjectMetricStatus indicates the current value of a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).",
+        "properties": {
+          "current": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricValueStatusv2"
+              }
+            ],
+            "default": {},
+            "description": "current contains the current value for the given metric"
+          },
+          "describedObject": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossVersionObjectReferencev2"
+              }
+            ],
+            "default": {},
+            "description": "DescribedObject specifies the descriptions of a object,such as kind,name apiVersion"
+          },
+          "metric": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricIdentifierv2"
+              }
+            ],
+            "default": {},
+            "description": "metric identifies the target metric by name and selector"
+          }
+        },
+        "required": [
+          "metric",
+          "current",
+          "describedObject"
+        ],
+        "type": "object"
+      },
       "OwnerReferencev1": {
         "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
         "properties": {
@@ -1499,6 +1384,62 @@
         "description": "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.",
         "type": "object"
       },
+      "PodsMetricSourcev2": {
+        "description": "PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.",
+        "properties": {
+          "metric": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricIdentifierv2"
+              }
+            ],
+            "default": {},
+            "description": "metric identifies the target metric by name and selector"
+          },
+          "target": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricTargetv2"
+              }
+            ],
+            "default": {},
+            "description": "target specifies the target value for the given metric"
+          }
+        },
+        "required": [
+          "metric",
+          "target"
+        ],
+        "type": "object"
+      },
+      "PodsMetricStatusv2": {
+        "description": "PodsMetricStatus indicates the current value of a metric describing each pod in the current scale target (for example, transactions-processed-per-second).",
+        "properties": {
+          "current": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricValueStatusv2"
+              }
+            ],
+            "default": {},
+            "description": "current contains the current value for the given metric"
+          },
+          "metric": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricIdentifierv2"
+              }
+            ],
+            "default": {},
+            "description": "metric identifies the target metric by name and selector"
+          }
+        },
+        "required": [
+          "metric",
+          "current"
+        ],
+        "type": "object"
+      },
       "Preconditionsv1": {
         "description": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out.",
         "properties": {
@@ -1508,6 +1449,127 @@
           },
           "uid": {
             "description": "Specifies the target UID.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Quantity": {
+        "description": "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors.\n\nThe serialization format is:\n\n``` <quantity>        ::= <signedNumber><suffix>\n\n\t(Note that <suffix> may be empty, from the \"\" case in <decimalSI>.)\n\n<digit>           ::= 0 | 1 | ... | 9 <digits>          ::= <digit> | <digit><digits> <number>          ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign>            ::= \"+\" | \"-\" <signedNumber>    ::= <number> | <sign><number> <suffix>          ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI>        ::= Ki | Mi | Gi | Ti | Pi | Ei\n\n\t(International System of units; See: http://physics.nist.gov/cuu/Units/binary.html)\n\n<decimalSI>       ::= m | \"\" | k | M | G | T | P | E\n\n\t(Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.)\n\n<decimalExponent> ::= \"e\" <signedNumber> | \"E\" <signedNumber> ```\n\nNo matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities.\n\nWhen a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized.\n\nBefore serializing, Quantity will be put in \"canonical form\". This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that:\n\n- No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible.\n\nThe sign will be omitted unless the number is negative.\n\nExamples:\n\n- 1.5 will be serialized as \"1500m\" - 1.5Gi will be serialized as \"1536Mi\"\n\nNote that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise.\n\nNon-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.)\n\nThis format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "RawExtension": {
+        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
+        "type": "object"
+      },
+      "ResourceMetricSourcev2": {
+        "description": "ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source.  Only one \"target\" type should be set.",
+        "properties": {
+          "name": {
+            "default": "",
+            "description": "name is the name of the resource in question.",
+            "type": "string"
+          },
+          "target": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricTargetv2"
+              }
+            ],
+            "default": {},
+            "description": "target specifies the target value for the given metric"
+          }
+        },
+        "required": [
+          "name",
+          "target"
+        ],
+        "type": "object"
+      },
+      "ResourceMetricStatusv2": {
+        "description": "ResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source.",
+        "properties": {
+          "current": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricValueStatusv2"
+              }
+            ],
+            "default": {},
+            "description": "current contains the current value for the given metric"
+          },
+          "name": {
+            "default": "",
+            "description": "name is the name of the resource in question.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "current"
+        ],
+        "type": "object"
+      },
+      "StatusCausev1": {
+        "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
+        "properties": {
+          "field": {
+            "description": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\"",
+            "type": "string"
+          },
+          "message": {
+            "description": "A human-readable description of the cause of the error.  This field may be presented as-is to a reader.",
+            "type": "string"
+          },
+          "reason": {
+            "description": "A machine-readable description of the cause of the error. If this value is empty there is no information available.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "StatusDetailsv1": {
+        "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
+        "properties": {
+          "causes": {
+            "description": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StatusCausev1"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "group": {
+            "description": "The group attribute of the resource associated with the status StatusReason.",
+            "type": "string"
+          },
+          "kind": {
+            "description": "The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described).",
+            "type": "string"
+          },
+          "retryAfterSeconds": {
+            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "uid": {
+            "description": "UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
             "type": "string"
           }
         },
@@ -1568,64 +1630,6 @@
             "version": "v1"
           }
         ]
-      },
-      "StatusCausev1": {
-        "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
-        "properties": {
-          "field": {
-            "description": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\"",
-            "type": "string"
-          },
-          "message": {
-            "description": "A human-readable description of the cause of the error.  This field may be presented as-is to a reader.",
-            "type": "string"
-          },
-          "reason": {
-            "description": "A machine-readable description of the cause of the error. If this value is empty there is no information available.",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "StatusDetailsv1": {
-        "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
-        "properties": {
-          "causes": {
-            "description": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/StatusCausev1"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "group": {
-            "description": "The group attribute of the resource associated with the status StatusReason.",
-            "type": "string"
-          },
-          "kind": {
-            "description": "The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "name": {
-            "description": "The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described).",
-            "type": "string"
-          },
-          "retryAfterSeconds": {
-            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "uid": {
-            "description": "UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
-            "type": "string"
-          }
-        },
-        "type": "object"
       },
       "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
@@ -1960,10 +1964,6 @@
             "version": "v1alpha1"
           }
         ]
-      },
-      "RawExtension": {
-        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
-        "type": "object"
       }
     },
     "securitySchemes": {

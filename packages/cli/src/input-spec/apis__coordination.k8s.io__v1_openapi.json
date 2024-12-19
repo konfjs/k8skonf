@@ -1,89 +1,6 @@
 {
   "components": {
     "schemas": {
-      "Leasev1": {
-        "description": "Lease defines a lease concept.",
-        "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetav1"
-              }
-            ],
-            "default": {},
-            "description": "More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
-          },
-          "spec": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/LeaseSpecv1"
-              }
-            ],
-            "default": {},
-            "description": "spec contains the specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
-          }
-        },
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "coordination.k8s.io",
-            "kind": "Lease",
-            "version": "v1"
-          }
-        ]
-      },
-      "LeaseSpecv1": {
-        "description": "LeaseSpec is a specification of a Lease.",
-        "properties": {
-          "acquireTime": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MicroTimev1"
-              }
-            ],
-            "description": "acquireTime is a time when the current lease was acquired."
-          },
-          "holderIdentity": {
-            "description": "holderIdentity contains the identity of the holder of a current lease. If Coordinated Leader Election is used, the holder identity must be equal to the elected LeaseCandidate.metadata.name field.",
-            "type": "string"
-          },
-          "leaseDurationSeconds": {
-            "description": "leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measured against the time of last observed renewTime.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "leaseTransitions": {
-            "description": "leaseTransitions is the number of transitions of a lease between holders.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "preferredHolder": {
-            "description": "PreferredHolder signals to a lease holder that the lease has a more optimal holder and should be given up. This field can only be set if Strategy is also set.",
-            "type": "string"
-          },
-          "renewTime": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MicroTimev1"
-              }
-            ],
-            "description": "renewTime is a time when the current holder of a lease has last updated the lease."
-          },
-          "strategy": {
-            "description": "Strategy indicates the strategy for picking the leader for coordinated leader election. If the field is not specified, there is no active coordination for this lease. (Alpha) Using this field requires the CoordinatedLeaderElection feature gate to be enabled.",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
       "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
@@ -510,6 +427,89 @@
         "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
         "type": "object"
       },
+      "LeaseSpecv1": {
+        "description": "LeaseSpec is a specification of a Lease.",
+        "properties": {
+          "acquireTime": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MicroTimev1"
+              }
+            ],
+            "description": "acquireTime is a time when the current lease was acquired."
+          },
+          "holderIdentity": {
+            "description": "holderIdentity contains the identity of the holder of a current lease. If Coordinated Leader Election is used, the holder identity must be equal to the elected LeaseCandidate.metadata.name field.",
+            "type": "string"
+          },
+          "leaseDurationSeconds": {
+            "description": "leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measured against the time of last observed renewTime.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "leaseTransitions": {
+            "description": "leaseTransitions is the number of transitions of a lease between holders.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "preferredHolder": {
+            "description": "PreferredHolder signals to a lease holder that the lease has a more optimal holder and should be given up. This field can only be set if Strategy is also set.",
+            "type": "string"
+          },
+          "renewTime": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MicroTimev1"
+              }
+            ],
+            "description": "renewTime is a time when the current holder of a lease has last updated the lease."
+          },
+          "strategy": {
+            "description": "Strategy indicates the strategy for picking the leader for coordinated leader election. If the field is not specified, there is no active coordination for this lease. (Alpha) Using this field requires the CoordinatedLeaderElection feature gate to be enabled.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Leasev1": {
+        "description": "Lease defines a lease concept.",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetav1"
+              }
+            ],
+            "default": {},
+            "description": "More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          },
+          "spec": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeaseSpecv1"
+              }
+            ],
+            "default": {},
+            "description": "spec contains the specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
+          }
+        },
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "coordination.k8s.io",
+            "kind": "Lease",
+            "version": "v1"
+          }
+        ]
+      },
       "ListMetav1": {
         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
         "properties": {
@@ -744,61 +744,9 @@
         },
         "type": "object"
       },
-      "Statusv1": {
-        "description": "Status is a return value for calls that don't return other objects.",
-        "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "code": {
-            "description": "Suggested HTTP return code for this status, 0 if not set.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "details": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusDetailsv1"
-              }
-            ],
-            "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "message": {
-            "description": "A human-readable description of the status of this operation.",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ListMetav1"
-              }
-            ],
-            "default": {},
-            "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-          },
-          "reason": {
-            "description": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.",
-            "type": "string"
-          },
-          "status": {
-            "description": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "",
-            "kind": "Status",
-            "version": "v1"
-          }
-        ]
+      "RawExtension": {
+        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
+        "type": "object"
       },
       "StatusCausev1": {
         "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
@@ -857,6 +805,62 @@
           }
         },
         "type": "object"
+      },
+      "Statusv1": {
+        "description": "Status is a return value for calls that don't return other objects.",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "code": {
+            "description": "Suggested HTTP return code for this status, 0 if not set.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "details": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusDetailsv1"
+              }
+            ],
+            "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "message": {
+            "description": "A human-readable description of the status of this operation.",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ListMetav1"
+              }
+            ],
+            "default": {},
+            "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          },
+          "reason": {
+            "description": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.",
+            "type": "string"
+          },
+          "status": {
+            "description": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "",
+            "kind": "Status",
+            "version": "v1"
+          }
+        ]
       },
       "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
@@ -1191,10 +1195,6 @@
             "version": "v1alpha1"
           }
         ]
-      },
-      "RawExtension": {
-        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
-        "type": "object"
       }
     },
     "securitySchemes": {

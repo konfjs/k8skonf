@@ -1,7 +1,7 @@
+import { AdmissionregistrationWebhookClientConfigv1 } from './AdmissionregistrationWebhookClientConfigv1.js';
 import { LabelSelectorv1 } from './LabelSelectorv1.js';
 import { MatchConditionv1 } from './MatchConditionv1.js';
 import { RuleWithOperationsv1 } from './RuleWithOperationsv1.js';
-import { WebhookClientConfigv1 } from './WebhookClientConfigv1.js';
 
 /**
  * MutatingWebhook describes an admission webhook and the resources and operations it applies to.
@@ -14,7 +14,7 @@ export interface MutatingWebhookv1 {
   /**
    * ClientConfig defines how to communicate with the hook. Required
    */
-  clientConfig: WebhookClientConfigv1;
+  clientConfig: AdmissionregistrationWebhookClientConfigv1;
   /**
    * FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.
    */

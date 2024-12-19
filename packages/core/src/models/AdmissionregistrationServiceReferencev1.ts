@@ -1,7 +1,7 @@
 /**
  * ServiceReference holds a reference to Service.legacy.k8s.io
  */
-export interface ServiceReferencev1 {
+export interface AdmissionregistrationServiceReferencev1 {
   /**
    * `name` is the name of the service. Required
    */

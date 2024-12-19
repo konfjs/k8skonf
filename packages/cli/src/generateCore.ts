@@ -74,7 +74,7 @@ function replaceRefs(sourceFile: SourceFile) {
         const typeRef = node.getFirstAncestorByKind(SyntaxKind.TypeReference);
         if (typeRef) {
             console.log(
-                `Replacing ${pc.dim(typeRef.getText())} in ${pc.cyan(typeRef.getSourceFile().getBaseName())} with ${pc.yellowBright('number | string')}`,
+                `Replacing ${pc.gray(typeRef.getText())} in ${pc.cyan(typeRef.getSourceFile().getBaseName())} with ${pc.yellowBright('number | string')}`,
             );
             typeRef.replaceWithText('number | string');
         }

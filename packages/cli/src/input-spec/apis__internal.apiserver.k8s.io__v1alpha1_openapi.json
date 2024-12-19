@@ -1,180 +1,6 @@
 {
   "components": {
     "schemas": {
-      "ServerStorageVersionv1alpha1": {
-        "description": "An API server instance reports the version it can decode and the version it encodes objects to when persisting objects in the backend.",
-        "properties": {
-          "apiServerID": {
-            "description": "The ID of the reporting API server.",
-            "type": "string"
-          },
-          "decodableVersions": {
-            "description": "The API server can decode objects encoded in these versions. The encodingVersion must be included in the decodableVersions.",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "set"
-          },
-          "encodingVersion": {
-            "description": "The API server encodes the object to this version when persisting it in the backend (e.g., etcd).",
-            "type": "string"
-          },
-          "servedVersions": {
-            "description": "The API server can serve these versions. DecodableVersions must include all ServedVersions.",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "set"
-          }
-        },
-        "type": "object"
-      },
-      "StorageVersionv1alpha1": {
-        "description": "Storage version of a specific resource.",
-        "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetav1"
-              }
-            ],
-            "default": {},
-            "description": "The name is <group>.<resource>."
-          },
-          "spec": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageVersionSpecv1alpha1"
-              }
-            ],
-            "default": {},
-            "description": "Spec is an empty spec. It is here to comply with Kubernetes API style."
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StorageVersionStatusv1alpha1"
-              }
-            ],
-            "default": {},
-            "description": "API server instances report the version they can decode and the version they encode objects to when persisting objects in the backend."
-          }
-        },
-        "required": [
-          "spec",
-          "status"
-        ],
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "internal.apiserver.k8s.io",
-            "kind": "StorageVersion",
-            "version": "v1alpha1"
-          }
-        ]
-      },
-      "StorageVersionConditionv1alpha1": {
-        "description": "Describes the state of the storageVersion at a certain point.",
-        "properties": {
-          "lastTransitionTime": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timev1"
-              }
-            ],
-            "description": "Last time the condition transitioned from one status to another."
-          },
-          "message": {
-            "description": "A human readable message indicating details about the transition.",
-            "type": "string"
-          },
-          "observedGeneration": {
-            "description": "If set, this represents the .metadata.generation that the condition was set based upon.",
-            "format": "int64",
-            "type": "integer"
-          },
-          "reason": {
-            "default": "",
-            "description": "The reason for the condition's last transition.",
-            "type": "string"
-          },
-          "status": {
-            "default": "",
-            "description": "Status of the condition, one of True, False, Unknown.",
-            "type": "string"
-          },
-          "type": {
-            "default": "",
-            "description": "Type of the condition.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "type",
-          "status",
-          "reason",
-          "message"
-        ],
-        "type": "object"
-      },
-      "StorageVersionSpecv1alpha1": {
-        "description": "StorageVersionSpec is an empty spec.",
-        "type": "object"
-      },
-      "StorageVersionStatusv1alpha1": {
-        "description": "API server instances report the versions they can decode and the version they encode objects to when persisting objects in the backend.",
-        "properties": {
-          "commonEncodingVersion": {
-            "description": "If all API server instances agree on the same encoding storage version, then this field is set to that version. Otherwise this field is left empty. API servers should finish updating its storageVersionStatus entry before serving write operations, so that this field will be in sync with the reality.",
-            "type": "string"
-          },
-          "conditions": {
-            "description": "The latest available observations of the storageVersion's state.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/StorageVersionConditionv1alpha1"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-map-keys": [
-              "type"
-            ],
-            "x-kubernetes-list-type": "map"
-          },
-          "storageVersions": {
-            "description": "The reported versions per API server instance.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/ServerStorageVersionv1alpha1"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-map-keys": [
-              "apiServerID"
-            ],
-            "x-kubernetes-list-type": "map"
-          }
-        },
-        "type": "object"
-      },
       "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
@@ -830,61 +656,41 @@
         },
         "type": "object"
       },
-      "Statusv1": {
-        "description": "Status is a return value for calls that don't return other objects.",
+      "RawExtension": {
+        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
+        "type": "object"
+      },
+      "ServerStorageVersionv1alpha1": {
+        "description": "An API server instance reports the version it can decode and the version it encodes objects to when persisting objects in the backend.",
         "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "apiServerID": {
+            "description": "The ID of the reporting API server.",
             "type": "string"
           },
-          "code": {
-            "description": "Suggested HTTP return code for this status, 0 if not set.",
-            "format": "int32",
-            "type": "integer"
+          "decodableVersions": {
+            "description": "The API server can decode objects encoded in these versions. The encodingVersion must be included in the decodableVersions.",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "set"
           },
-          "details": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusDetailsv1"
-              }
-            ],
-            "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "encodingVersion": {
+            "description": "The API server encodes the object to this version when persisting it in the backend (e.g., etcd).",
             "type": "string"
           },
-          "message": {
-            "description": "A human-readable description of the status of this operation.",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ListMetav1"
-              }
-            ],
-            "default": {},
-            "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-          },
-          "reason": {
-            "description": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.",
-            "type": "string"
-          },
-          "status": {
-            "description": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
-            "type": "string"
+          "servedVersions": {
+            "description": "The API server can serve these versions. DecodableVersions must include all ServedVersions.",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "set"
           }
         },
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "",
-            "kind": "Status",
-            "version": "v1"
-          }
-        ]
+        "type": "object"
       },
       "StatusCausev1": {
         "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
@@ -943,6 +749,204 @@
           }
         },
         "type": "object"
+      },
+      "Statusv1": {
+        "description": "Status is a return value for calls that don't return other objects.",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "code": {
+            "description": "Suggested HTTP return code for this status, 0 if not set.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "details": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusDetailsv1"
+              }
+            ],
+            "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "message": {
+            "description": "A human-readable description of the status of this operation.",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ListMetav1"
+              }
+            ],
+            "default": {},
+            "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          },
+          "reason": {
+            "description": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.",
+            "type": "string"
+          },
+          "status": {
+            "description": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "",
+            "kind": "Status",
+            "version": "v1"
+          }
+        ]
+      },
+      "StorageVersionConditionv1alpha1": {
+        "description": "Describes the state of the storageVersion at a certain point.",
+        "properties": {
+          "lastTransitionTime": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Timev1"
+              }
+            ],
+            "description": "Last time the condition transitioned from one status to another."
+          },
+          "message": {
+            "description": "A human readable message indicating details about the transition.",
+            "type": "string"
+          },
+          "observedGeneration": {
+            "description": "If set, this represents the .metadata.generation that the condition was set based upon.",
+            "format": "int64",
+            "type": "integer"
+          },
+          "reason": {
+            "default": "",
+            "description": "The reason for the condition's last transition.",
+            "type": "string"
+          },
+          "status": {
+            "default": "",
+            "description": "Status of the condition, one of True, False, Unknown.",
+            "type": "string"
+          },
+          "type": {
+            "default": "",
+            "description": "Type of the condition.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "status",
+          "reason",
+          "message"
+        ],
+        "type": "object"
+      },
+      "StorageVersionSpecv1alpha1": {
+        "description": "StorageVersionSpec is an empty spec.",
+        "type": "object"
+      },
+      "StorageVersionStatusv1alpha1": {
+        "description": "API server instances report the versions they can decode and the version they encode objects to when persisting objects in the backend.",
+        "properties": {
+          "commonEncodingVersion": {
+            "description": "If all API server instances agree on the same encoding storage version, then this field is set to that version. Otherwise this field is left empty. API servers should finish updating its storageVersionStatus entry before serving write operations, so that this field will be in sync with the reality.",
+            "type": "string"
+          },
+          "conditions": {
+            "description": "The latest available observations of the storageVersion's state.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StorageVersionConditionv1alpha1"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-map-keys": [
+              "type"
+            ],
+            "x-kubernetes-list-type": "map"
+          },
+          "storageVersions": {
+            "description": "The reported versions per API server instance.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ServerStorageVersionv1alpha1"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-map-keys": [
+              "apiServerID"
+            ],
+            "x-kubernetes-list-type": "map"
+          }
+        },
+        "type": "object"
+      },
+      "StorageVersionv1alpha1": {
+        "description": "Storage version of a specific resource.",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetav1"
+              }
+            ],
+            "default": {},
+            "description": "The name is <group>.<resource>."
+          },
+          "spec": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StorageVersionSpecv1alpha1"
+              }
+            ],
+            "default": {},
+            "description": "Spec is an empty spec. It is here to comply with Kubernetes API style."
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StorageVersionStatusv1alpha1"
+              }
+            ],
+            "default": {},
+            "description": "API server instances report the version they can decode and the version they encode objects to when persisting objects in the backend."
+          }
+        },
+        "required": [
+          "spec",
+          "status"
+        ],
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "internal.apiserver.k8s.io",
+            "kind": "StorageVersion",
+            "version": "v1alpha1"
+          }
+        ]
       },
       "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
@@ -1277,10 +1281,6 @@
             "version": "v1alpha1"
           }
         ]
-      },
-      "RawExtension": {
-        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
-        "type": "object"
       }
     },
     "securitySchemes": {

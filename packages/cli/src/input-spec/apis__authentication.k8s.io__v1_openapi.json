@@ -1,196 +1,6 @@
 {
   "components": {
     "schemas": {
-      "SelfSubjectReviewv1": {
-        "description": "SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request. When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.",
-        "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetav1"
-              }
-            ],
-            "default": {},
-            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SelfSubjectReviewStatusv1"
-              }
-            ],
-            "default": {},
-            "description": "Status is filled in by the server with the user attributes."
-          }
-        },
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "authentication.k8s.io",
-            "kind": "SelfSubjectReview",
-            "version": "v1"
-          }
-        ]
-      },
-      "SelfSubjectReviewStatusv1": {
-        "description": "SelfSubjectReviewStatus is filled by the kube-apiserver and sent back to a user.",
-        "properties": {
-          "userInfo": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserInfov1"
-              }
-            ],
-            "default": {},
-            "description": "User attributes of the user making this request."
-          }
-        },
-        "type": "object"
-      },
-      "TokenReviewv1": {
-        "description": "TokenReview attempts to authenticate a token to a known user. Note: TokenReview requests may be cached by the webhook token authenticator plugin in the kube-apiserver.",
-        "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetav1"
-              }
-            ],
-            "default": {},
-            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
-          },
-          "spec": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TokenReviewSpecv1"
-              }
-            ],
-            "default": {},
-            "description": "Spec holds information about the request being evaluated"
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TokenReviewStatusv1"
-              }
-            ],
-            "default": {},
-            "description": "Status is filled in by the server and indicates whether the request can be authenticated."
-          }
-        },
-        "required": [
-          "spec"
-        ],
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "authentication.k8s.io",
-            "kind": "TokenReview",
-            "version": "v1"
-          }
-        ]
-      },
-      "TokenReviewSpecv1": {
-        "description": "TokenReviewSpec is a description of the token authentication request.",
-        "properties": {
-          "audiences": {
-            "description": "Audiences is a list of the identifiers that the resource server presented with the token identifies as. Audience-aware token authenticators will verify that the token was intended for at least one of the audiences in this list. If no audiences are provided, the audience will default to the audience of the Kubernetes apiserver.",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "token": {
-            "description": "Token is the opaque bearer token.",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "TokenReviewStatusv1": {
-        "description": "TokenReviewStatus is the result of the token authentication request.",
-        "properties": {
-          "audiences": {
-            "description": "Audiences are audience identifiers chosen by the authenticator that are compatible with both the TokenReview and token. An identifier is any identifier in the intersection of the TokenReviewSpec audiences and the token's audiences. A client of the TokenReview API that sets the spec.audiences field should validate that a compatible audience identifier is returned in the status.audiences field to ensure that the TokenReview server is audience aware. If a TokenReview returns an empty status.audience field where status.authenticated is \"true\", the token is valid against the audience of the Kubernetes API server.",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "authenticated": {
-            "description": "Authenticated indicates that the token was associated with a known user.",
-            "type": "boolean"
-          },
-          "error": {
-            "description": "Error indicates that the token couldn't be checked",
-            "type": "string"
-          },
-          "user": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserInfov1"
-              }
-            ],
-            "default": {},
-            "description": "User is the UserInfo associated with the provided token."
-          }
-        },
-        "type": "object"
-      },
-      "UserInfov1": {
-        "description": "UserInfo holds the information about the user needed to implement the user.Info interface.",
-        "properties": {
-          "extra": {
-            "additionalProperties": {
-              "items": {
-                "default": "",
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "description": "Any additional information provided by the authenticator.",
-            "type": "object"
-          },
-          "groups": {
-            "description": "The names of groups this user is a part of.",
-            "items": {
-              "default": "",
-              "type": "string"
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "uid": {
-            "description": "A unique value that identifies this user across time. If this user is deleted and another user by the same name is added, they will have different UIDs.",
-            "type": "string"
-          },
-          "username": {
-            "description": "The name that uniquely identifies this user among all active users.",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
       "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
@@ -458,10 +268,200 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
+      "SelfSubjectReviewStatusv1": {
+        "description": "SelfSubjectReviewStatus is filled by the kube-apiserver and sent back to a user.",
+        "properties": {
+          "userInfo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserInfov1"
+              }
+            ],
+            "default": {},
+            "description": "User attributes of the user making this request."
+          }
+        },
+        "type": "object"
+      },
+      "SelfSubjectReviewv1": {
+        "description": "SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request. When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetav1"
+              }
+            ],
+            "default": {},
+            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SelfSubjectReviewStatusv1"
+              }
+            ],
+            "default": {},
+            "description": "Status is filled in by the server with the user attributes."
+          }
+        },
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "authentication.k8s.io",
+            "kind": "SelfSubjectReview",
+            "version": "v1"
+          }
+        ]
+      },
       "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
         "format": "date-time",
         "type": "string"
+      },
+      "TokenReviewSpecv1": {
+        "description": "TokenReviewSpec is a description of the token authentication request.",
+        "properties": {
+          "audiences": {
+            "description": "Audiences is a list of the identifiers that the resource server presented with the token identifies as. Audience-aware token authenticators will verify that the token was intended for at least one of the audiences in this list. If no audiences are provided, the audience will default to the audience of the Kubernetes apiserver.",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "token": {
+            "description": "Token is the opaque bearer token.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TokenReviewStatusv1": {
+        "description": "TokenReviewStatus is the result of the token authentication request.",
+        "properties": {
+          "audiences": {
+            "description": "Audiences are audience identifiers chosen by the authenticator that are compatible with both the TokenReview and token. An identifier is any identifier in the intersection of the TokenReviewSpec audiences and the token's audiences. A client of the TokenReview API that sets the spec.audiences field should validate that a compatible audience identifier is returned in the status.audiences field to ensure that the TokenReview server is audience aware. If a TokenReview returns an empty status.audience field where status.authenticated is \"true\", the token is valid against the audience of the Kubernetes API server.",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "authenticated": {
+            "description": "Authenticated indicates that the token was associated with a known user.",
+            "type": "boolean"
+          },
+          "error": {
+            "description": "Error indicates that the token couldn't be checked",
+            "type": "string"
+          },
+          "user": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserInfov1"
+              }
+            ],
+            "default": {},
+            "description": "User is the UserInfo associated with the provided token."
+          }
+        },
+        "type": "object"
+      },
+      "TokenReviewv1": {
+        "description": "TokenReview attempts to authenticate a token to a known user. Note: TokenReview requests may be cached by the webhook token authenticator plugin in the kube-apiserver.",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetav1"
+              }
+            ],
+            "default": {},
+            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          },
+          "spec": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenReviewSpecv1"
+              }
+            ],
+            "default": {},
+            "description": "Spec holds information about the request being evaluated"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenReviewStatusv1"
+              }
+            ],
+            "default": {},
+            "description": "Status is filled in by the server and indicates whether the request can be authenticated."
+          }
+        },
+        "required": [
+          "spec"
+        ],
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "authentication.k8s.io",
+            "kind": "TokenReview",
+            "version": "v1"
+          }
+        ]
+      },
+      "UserInfov1": {
+        "description": "UserInfo holds the information about the user needed to implement the user.Info interface.",
+        "properties": {
+          "extra": {
+            "additionalProperties": {
+              "items": {
+                "default": "",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": "Any additional information provided by the authenticator.",
+            "type": "object"
+          },
+          "groups": {
+            "description": "The names of groups this user is a part of.",
+            "items": {
+              "default": "",
+              "type": "string"
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "uid": {
+            "description": "A unique value that identifies this user across time. If this user is deleted and another user by the same name is added, they will have different UIDs.",
+            "type": "string"
+          },
+          "username": {
+            "description": "The name that uniquely identifies this user among all active users.",
+            "type": "string"
+          }
+        },
+        "type": "object"
       }
     },
     "securitySchemes": {

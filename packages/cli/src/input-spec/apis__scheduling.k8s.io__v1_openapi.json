@@ -1,57 +1,6 @@
 {
   "components": {
     "schemas": {
-      "PriorityClassv1": {
-        "description": "PriorityClass defines mapping from a priority class name to the priority integer value. The value can be any valid integer.",
-        "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "description": {
-            "description": "description is an arbitrary string that usually provides guidelines on when this priority class should be used.",
-            "type": "string"
-          },
-          "globalDefault": {
-            "description": "globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.",
-            "type": "boolean"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetav1"
-              }
-            ],
-            "default": {},
-            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
-          },
-          "preemptionPolicy": {
-            "description": "preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
-            "type": "string"
-          },
-          "value": {
-            "default": 0,
-            "description": "value represents the integer value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.",
-            "format": "int32",
-            "type": "integer"
-          }
-        },
-        "required": [
-          "value"
-        ],
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "scheduling.k8s.io",
-            "kind": "PriorityClass",
-            "version": "v1"
-          }
-        ]
-      },
       "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
@@ -707,61 +656,60 @@
         },
         "type": "object"
       },
-      "Statusv1": {
-        "description": "Status is a return value for calls that don't return other objects.",
+      "PriorityClassv1": {
+        "description": "PriorityClass defines mapping from a priority class name to the priority integer value. The value can be any valid integer.",
         "properties": {
           "apiVersion": {
             "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
             "type": "string"
           },
-          "code": {
-            "description": "Suggested HTTP return code for this status, 0 if not set.",
-            "format": "int32",
-            "type": "integer"
+          "description": {
+            "description": "description is an arbitrary string that usually provides guidelines on when this priority class should be used.",
+            "type": "string"
           },
-          "details": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StatusDetailsv1"
-              }
-            ],
-            "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
-            "x-kubernetes-list-type": "atomic"
+          "globalDefault": {
+            "description": "globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.",
+            "type": "boolean"
           },
           "kind": {
             "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
             "type": "string"
           },
-          "message": {
-            "description": "A human-readable description of the status of this operation.",
-            "type": "string"
-          },
           "metadata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ListMetav1"
+                "$ref": "#/components/schemas/ObjectMetav1"
               }
             ],
             "default": {},
-            "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
           },
-          "reason": {
-            "description": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.",
+          "preemptionPolicy": {
+            "description": "preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
             "type": "string"
           },
-          "status": {
-            "description": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
-            "type": "string"
+          "value": {
+            "default": 0,
+            "description": "value represents the integer value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.",
+            "format": "int32",
+            "type": "integer"
           }
         },
+        "required": [
+          "value"
+        ],
         "type": "object",
         "x-kubernetes-group-version-kind": [
           {
-            "group": "",
-            "kind": "Status",
+            "group": "scheduling.k8s.io",
+            "kind": "PriorityClass",
             "version": "v1"
           }
         ]
+      },
+      "RawExtension": {
+        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
+        "type": "object"
       },
       "StatusCausev1": {
         "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
@@ -820,6 +768,62 @@
           }
         },
         "type": "object"
+      },
+      "Statusv1": {
+        "description": "Status is a return value for calls that don't return other objects.",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "code": {
+            "description": "Suggested HTTP return code for this status, 0 if not set.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "details": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusDetailsv1"
+              }
+            ],
+            "description": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "message": {
+            "description": "A human-readable description of the status of this operation.",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ListMetav1"
+              }
+            ],
+            "default": {},
+            "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          },
+          "reason": {
+            "description": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.",
+            "type": "string"
+          },
+          "status": {
+            "description": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "",
+            "kind": "Status",
+            "version": "v1"
+          }
+        ]
       },
       "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
@@ -1154,10 +1158,6 @@
             "version": "v1alpha1"
           }
         ]
-      },
-      "RawExtension": {
-        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
-        "type": "object"
       }
     },
     "securitySchemes": {

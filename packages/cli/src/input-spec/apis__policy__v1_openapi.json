@@ -1,155 +1,6 @@
 {
   "components": {
     "schemas": {
-      "PodDisruptionBudgetv1": {
-        "description": "PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods",
-        "properties": {
-          "apiVersion": {
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-            "type": "string"
-          },
-          "kind": {
-            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ObjectMetav1"
-              }
-            ],
-            "default": {},
-            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
-          },
-          "spec": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PodDisruptionBudgetSpecv1"
-              }
-            ],
-            "default": {},
-            "description": "Specification of the desired behavior of the PodDisruptionBudget."
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PodDisruptionBudgetStatusv1"
-              }
-            ],
-            "default": {},
-            "description": "Most recently observed status of the PodDisruptionBudget."
-          }
-        },
-        "type": "object",
-        "x-kubernetes-group-version-kind": [
-          {
-            "group": "policy",
-            "kind": "PodDisruptionBudget",
-            "version": "v1"
-          }
-        ]
-      },
-      "PodDisruptionBudgetSpecv1": {
-        "description": "PodDisruptionBudgetSpec is a description of a PodDisruptionBudget.",
-        "properties": {
-          "maxUnavailable": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IntOrString"
-              }
-            ],
-            "description": "An eviction is allowed if at most \"maxUnavailable\" pods selected by \"selector\" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with \"minAvailable\"."
-          },
-          "minAvailable": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IntOrString"
-              }
-            ],
-            "description": "An eviction is allowed if at least \"minAvailable\" pods selected by \"selector\" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying \"100%\"."
-          },
-          "selector": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/LabelSelectorv1"
-              }
-            ],
-            "description": "Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty ({}) selector will select all pods within the namespace.",
-            "x-kubernetes-patch-strategy": "replace"
-          },
-          "unhealthyPodEvictionPolicy": {
-            "description": "UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type=\"Ready\",status=\"True\".\n\nValid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy.\n\nIfHealthyBudget policy means that running pods (status.phase=\"Running\"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction.\n\nAlwaysAllow policy means that all running pods (status.phase=\"Running\"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.\n\nAdditional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field.\n\nThis field is beta-level. The eviction API uses this field when the feature gate PDBUnhealthyPodEvictionPolicy is enabled (enabled by default).",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "PodDisruptionBudgetStatusv1": {
-        "description": "PodDisruptionBudgetStatus represents information about the status of a PodDisruptionBudget. Status may trail the actual state of a system.",
-        "properties": {
-          "conditions": {
-            "description": "Conditions contain conditions for PDB. The disruption controller sets the DisruptionAllowed condition. The following are known values for the reason field (additional reasons could be added in the future): - SyncFailed: The controller encountered an error and wasn't able to compute\n              the number of allowed disruptions. Therefore no disruptions are\n              allowed and the status of the condition will be False.\n- InsufficientPods: The number of pods are either at or below the number\n                    required by the PodDisruptionBudget. No disruptions are\n                    allowed and the status of the condition will be False.\n- SufficientPods: There are more pods than required by the PodDisruptionBudget.\n                  The condition will be True, and the number of allowed\n                  disruptions are provided by the disruptionsAllowed property.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/Conditionv1"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-map-keys": [
-              "type"
-            ],
-            "x-kubernetes-list-type": "map",
-            "x-kubernetes-patch-merge-key": "type",
-            "x-kubernetes-patch-strategy": "merge"
-          },
-          "currentHealthy": {
-            "default": 0,
-            "description": "current number of healthy pods",
-            "format": "int32",
-            "type": "integer"
-          },
-          "desiredHealthy": {
-            "default": 0,
-            "description": "minimum desired number of healthy pods",
-            "format": "int32",
-            "type": "integer"
-          },
-          "disruptedPods": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/Timev1"
-            },
-            "description": "DisruptedPods contains information about pods whose eviction was processed by the API server eviction subresource handler but has not yet been observed by the PodDisruptionBudget controller. A pod will be in this map from the time when the API server processed the eviction request to the time when the pod is seen by PDB controller as having been marked for deletion (or after a timeout). The key in the map is the name of the pod and the value is the time when the API server processed the eviction request. If the deletion didn't occur and a pod is still there it will be removed from the list automatically by PodDisruptionBudget controller after some time. If everything goes smooth this map should be empty for the most of the time. Large number of entries in the map may indicate problems with pod deletions.",
-            "type": "object"
-          },
-          "disruptionsAllowed": {
-            "default": 0,
-            "description": "Number of pod disruptions that are currently allowed.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "expectedPods": {
-            "default": 0,
-            "description": "total number of pods counted by this disruption budget",
-            "format": "int32",
-            "type": "integer"
-          },
-          "observedGeneration": {
-            "description": "Most recent generation observed when updating this PDB status. DisruptionsAllowed and other status information is valid only if observedGeneration equals to PDB's object generation.",
-            "format": "int64",
-            "type": "integer"
-          }
-        },
-        "required": [
-          "disruptionsAllowed",
-          "currentHealthy",
-          "desiredHealthy",
-          "expectedPods"
-        ],
-        "type": "object"
-      },
       "APIResourcev1": {
         "description": "APIResource specifies the name of a resource and whether it is namespaced.",
         "properties": {
@@ -622,33 +473,17 @@
         "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
         "type": "object"
       },
-      "LabelSelectorv1": {
-        "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-        "properties": {
-          "matchExpressions": {
-            "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/LabelSelectorRequirementv1"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
+      "IntOrString": {
+        "description": "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
+        "format": "int-or-string",
+        "oneOf": [
+          {
+            "type": "integer"
           },
-          "matchLabels": {
-            "additionalProperties": {
-              "default": "",
-              "type": "string"
-            },
-            "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-            "type": "object"
+          {
+            "type": "string"
           }
-        },
-        "type": "object",
-        "x-kubernetes-map-type": "atomic"
+        ]
       },
       "LabelSelectorRequirementv1": {
         "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
@@ -678,6 +513,34 @@
           "operator"
         ],
         "type": "object"
+      },
+      "LabelSelectorv1": {
+        "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+        "properties": {
+          "matchExpressions": {
+            "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/LabelSelectorRequirementv1"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "matchLabels": {
+            "additionalProperties": {
+              "default": "",
+              "type": "string"
+            },
+            "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+            "type": "object"
+          }
+        },
+        "type": "object",
+        "x-kubernetes-map-type": "atomic"
       },
       "ListMetav1": {
         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
@@ -894,6 +757,155 @@
         "description": "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.",
         "type": "object"
       },
+      "PodDisruptionBudgetSpecv1": {
+        "description": "PodDisruptionBudgetSpec is a description of a PodDisruptionBudget.",
+        "properties": {
+          "maxUnavailable": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntOrString"
+              }
+            ],
+            "description": "An eviction is allowed if at most \"maxUnavailable\" pods selected by \"selector\" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with \"minAvailable\"."
+          },
+          "minAvailable": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntOrString"
+              }
+            ],
+            "description": "An eviction is allowed if at least \"minAvailable\" pods selected by \"selector\" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying \"100%\"."
+          },
+          "selector": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LabelSelectorv1"
+              }
+            ],
+            "description": "Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty ({}) selector will select all pods within the namespace.",
+            "x-kubernetes-patch-strategy": "replace"
+          },
+          "unhealthyPodEvictionPolicy": {
+            "description": "UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type=\"Ready\",status=\"True\".\n\nValid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy.\n\nIfHealthyBudget policy means that running pods (status.phase=\"Running\"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction.\n\nAlwaysAllow policy means that all running pods (status.phase=\"Running\"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.\n\nAdditional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field.\n\nThis field is beta-level. The eviction API uses this field when the feature gate PDBUnhealthyPodEvictionPolicy is enabled (enabled by default).",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PodDisruptionBudgetStatusv1": {
+        "description": "PodDisruptionBudgetStatus represents information about the status of a PodDisruptionBudget. Status may trail the actual state of a system.",
+        "properties": {
+          "conditions": {
+            "description": "Conditions contain conditions for PDB. The disruption controller sets the DisruptionAllowed condition. The following are known values for the reason field (additional reasons could be added in the future): - SyncFailed: The controller encountered an error and wasn't able to compute\n              the number of allowed disruptions. Therefore no disruptions are\n              allowed and the status of the condition will be False.\n- InsufficientPods: The number of pods are either at or below the number\n                    required by the PodDisruptionBudget. No disruptions are\n                    allowed and the status of the condition will be False.\n- SufficientPods: There are more pods than required by the PodDisruptionBudget.\n                  The condition will be True, and the number of allowed\n                  disruptions are provided by the disruptionsAllowed property.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Conditionv1"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-map-keys": [
+              "type"
+            ],
+            "x-kubernetes-list-type": "map",
+            "x-kubernetes-patch-merge-key": "type",
+            "x-kubernetes-patch-strategy": "merge"
+          },
+          "currentHealthy": {
+            "default": 0,
+            "description": "current number of healthy pods",
+            "format": "int32",
+            "type": "integer"
+          },
+          "desiredHealthy": {
+            "default": 0,
+            "description": "minimum desired number of healthy pods",
+            "format": "int32",
+            "type": "integer"
+          },
+          "disruptedPods": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Timev1"
+            },
+            "description": "DisruptedPods contains information about pods whose eviction was processed by the API server eviction subresource handler but has not yet been observed by the PodDisruptionBudget controller. A pod will be in this map from the time when the API server processed the eviction request to the time when the pod is seen by PDB controller as having been marked for deletion (or after a timeout). The key in the map is the name of the pod and the value is the time when the API server processed the eviction request. If the deletion didn't occur and a pod is still there it will be removed from the list automatically by PodDisruptionBudget controller after some time. If everything goes smooth this map should be empty for the most of the time. Large number of entries in the map may indicate problems with pod deletions.",
+            "type": "object"
+          },
+          "disruptionsAllowed": {
+            "default": 0,
+            "description": "Number of pod disruptions that are currently allowed.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "expectedPods": {
+            "default": 0,
+            "description": "total number of pods counted by this disruption budget",
+            "format": "int32",
+            "type": "integer"
+          },
+          "observedGeneration": {
+            "description": "Most recent generation observed when updating this PDB status. DisruptionsAllowed and other status information is valid only if observedGeneration equals to PDB's object generation.",
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "disruptionsAllowed",
+          "currentHealthy",
+          "desiredHealthy",
+          "expectedPods"
+        ],
+        "type": "object"
+      },
+      "PodDisruptionBudgetv1": {
+        "description": "PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods",
+        "properties": {
+          "apiVersion": {
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "type": "string"
+          },
+          "kind": {
+            "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "metadata": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectMetav1"
+              }
+            ],
+            "default": {},
+            "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          },
+          "spec": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PodDisruptionBudgetSpecv1"
+              }
+            ],
+            "default": {},
+            "description": "Specification of the desired behavior of the PodDisruptionBudget."
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PodDisruptionBudgetStatusv1"
+              }
+            ],
+            "default": {},
+            "description": "Most recently observed status of the PodDisruptionBudget."
+          }
+        },
+        "type": "object",
+        "x-kubernetes-group-version-kind": [
+          {
+            "group": "policy",
+            "kind": "PodDisruptionBudget",
+            "version": "v1"
+          }
+        ]
+      },
       "Preconditionsv1": {
         "description": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out.",
         "properties": {
@@ -903,6 +915,68 @@
           },
           "uid": {
             "description": "Specifies the target UID.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "RawExtension": {
+        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
+        "type": "object"
+      },
+      "StatusCausev1": {
+        "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
+        "properties": {
+          "field": {
+            "description": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\"",
+            "type": "string"
+          },
+          "message": {
+            "description": "A human-readable description of the cause of the error.  This field may be presented as-is to a reader.",
+            "type": "string"
+          },
+          "reason": {
+            "description": "A machine-readable description of the cause of the error. If this value is empty there is no information available.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "StatusDetailsv1": {
+        "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
+        "properties": {
+          "causes": {
+            "description": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/StatusCausev1"
+                }
+              ],
+              "default": {}
+            },
+            "type": "array",
+            "x-kubernetes-list-type": "atomic"
+          },
+          "group": {
+            "description": "The group attribute of the resource associated with the status StatusReason.",
+            "type": "string"
+          },
+          "kind": {
+            "description": "The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described).",
+            "type": "string"
+          },
+          "retryAfterSeconds": {
+            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.",
+            "format": "int32",
+            "type": "integer"
+          },
+          "uid": {
+            "description": "UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
             "type": "string"
           }
         },
@@ -963,64 +1037,6 @@
             "version": "v1"
           }
         ]
-      },
-      "StatusCausev1": {
-        "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
-        "properties": {
-          "field": {
-            "description": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\"",
-            "type": "string"
-          },
-          "message": {
-            "description": "A human-readable description of the cause of the error.  This field may be presented as-is to a reader.",
-            "type": "string"
-          },
-          "reason": {
-            "description": "A machine-readable description of the cause of the error. If this value is empty there is no information available.",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "StatusDetailsv1": {
-        "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
-        "properties": {
-          "causes": {
-            "description": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/StatusCausev1"
-                }
-              ],
-              "default": {}
-            },
-            "type": "array",
-            "x-kubernetes-list-type": "atomic"
-          },
-          "group": {
-            "description": "The group attribute of the resource associated with the status StatusReason.",
-            "type": "string"
-          },
-          "kind": {
-            "description": "The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-            "type": "string"
-          },
-          "name": {
-            "description": "The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described).",
-            "type": "string"
-          },
-          "retryAfterSeconds": {
-            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.",
-            "format": "int32",
-            "type": "integer"
-          },
-          "uid": {
-            "description": "UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
-            "type": "string"
-          }
-        },
-        "type": "object"
       },
       "Timev1": {
         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
@@ -1353,22 +1369,6 @@
             "group": "storagemigration.k8s.io",
             "kind": "WatchEvent",
             "version": "v1alpha1"
-          }
-        ]
-      },
-      "RawExtension": {
-        "description": "RawExtension is used to hold extensions in external versions.\n\nTo use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.\n\n// Internal package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.Object `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// External package:\n\n\ttype MyAPIObject struct {\n\t\truntime.TypeMeta `json:\",inline\"`\n\t\tMyPlugin runtime.RawExtension `json:\"myPlugin\"`\n\t}\n\n\ttype PluginA struct {\n\t\tAOption string `json:\"aOption\"`\n\t}\n\n// On the wire, the JSON will look something like this:\n\n\t{\n\t\t\"kind\":\"MyAPIObject\",\n\t\t\"apiVersion\":\"v1\",\n\t\t\"myPlugin\": {\n\t\t\t\"kind\":\"PluginA\",\n\t\t\t\"aOption\":\"foo\",\n\t\t},\n\t}\n\nSo what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package's DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)",
-        "type": "object"
-      },
-      "IntOrString": {
-        "description": "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
-        "format": "int-or-string",
-        "oneOf": [
-          {
-            "type": "integer"
-          },
-          {
-            "type": "string"
           }
         ]
       }
