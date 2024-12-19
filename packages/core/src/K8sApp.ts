@@ -14,7 +14,7 @@ export class K8sApp {
     constructor(
         readonly outputName: string,
         /**
-         * @default 'singleFile'
+         * @default 'filePerResource'
          */
         readonly outputType?: 'singleFile' | 'filePerResource',
     ) {}
@@ -28,7 +28,10 @@ export class K8sApp {
     }
 
     save() {
-        if (this.outputType === 'filePerResource') {
+        if (this.outputType === 'singleFile') {
+            console.log(pc.blueBright(`Saving to ${this.outputName}.yaml`));
+            fs.writeFileSync(`${this.outputName}.yaml`, this.toYaml());
+        } else {
             if (fs.existsSync(this.outputName)) {
                 fs.rmSync(this.outputName, { recursive: true });
             }
@@ -44,9 +47,6 @@ export class K8sApp {
                     yaml.stringify(r, { schema: 'yaml-1.1' }),
                 );
             }
-        } else {
-            console.log(pc.blueBright(`Saving to ${this.outputName}.yaml`));
-            fs.writeFileSync(`${this.outputName}.yaml`, this.toYaml());
         }
     }
 }
