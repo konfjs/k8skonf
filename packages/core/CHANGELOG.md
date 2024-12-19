@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.5](https://github.com/konfjs/k8skonf/compare/core-v1.32.4...core-v1.32.5) (2024-12-19)
+
+
+### Chores
+
+* **core:** make filePerResource as default output option ([#50](https://github.com/konfjs/k8skonf/issues/50)) ([c7c3bee](https://github.com/konfjs/k8skonf/commit/c7c3bee5879a68bc15591eaf7f6575607e0a3b96))
+
 ## [1.32.4](https://github.com/konfjs/k8skonf/compare/core-v1.32.3...core-v1.32.4) (2024-12-19)
 
 
