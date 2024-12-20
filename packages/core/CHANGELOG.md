@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.32.6](https://github.com/konfjs/k8skonf/compare/core-v1.32.5...core-v1.32.6) (2024-12-20)
+
+
+### Bug Fixes
+
+* **core:** add `name` getter as alias to `metadata.name` [#56](https://github.com/konfjs/k8skonf/issues/56) ([247eba8](https://github.com/konfjs/k8skonf/commit/247eba828b1b7ed10fcfcdfe6fbf0732c91d1623))
+* **core:** set default namespace at the app level ([#58](https://github.com/konfjs/k8skonf/issues/58)) ([12bb12e](https://github.com/konfjs/k8skonf/commit/12bb12ed8d994d5afa2e57e9a7a7fc0886108bc9))
+
 ## [1.32.5](https://github.com/konfjs/k8skonf/compare/core-v1.32.4...core-v1.32.5) (2024-12-19)
 
 
