@@ -17,6 +17,10 @@ export abstract class ApiObject {
     abstract readonly metadata: ObjectMetav1;
     abstract readonly apiVersion: string;
     abstract readonly kind: string;
+
+    get name() {
+        return this.metadata.name;
+    }
 }
 
 /**

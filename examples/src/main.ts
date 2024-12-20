@@ -1,5 +1,6 @@
 import { Helm, K8sApp } from '@k8skonf/core';
 import { Deploymentv1 } from '@k8skonf/core/Deploymentv1';
+import { log } from 'node:console';
 
 const app = new K8sApp('my-k8s-app', 'filePerResource');
 
@@ -29,7 +30,7 @@ chart.resources.forEach((resource) => {
     console.log(resource.apiVersion);
 });
 
-new Deploymentv1(app, 'my-nginx-deployment', {
+const d = new Deploymentv1(app, 'my-nginx-deployment', {
     spec: {
         selector: {
             matchLabels: {
@@ -59,5 +60,7 @@ new Deploymentv1(app, 'my-nginx-deployment', {
         },
     },
 });
+
+log('name is:', d.name);
 
 app.save();
