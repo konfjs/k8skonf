@@ -46,6 +46,6 @@ export class ServiceAccountv1 extends NamespacedApiObject {
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.secrets = args.secrets;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

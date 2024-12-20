@@ -91,7 +91,7 @@ export class Helm {
                 }
                 if (file.toJS() !== null) {
                     this.resources.push(file.toJS());
-                    app.resources.push(file.toJS());
+                    app.addResource(file.toJS());
                 }
             }
 

@@ -238,7 +238,7 @@ function morph() {
                         interfaceProps.push(interfaceProp);
                     }
                     sourceFile.insertInterface(classDeclaration.getChildIndex(), i);
-                    c.statements.push('app.resources.push(this);');
+                    c.statements.push('app.addResource(this);');
                     classDeclaration.addConstructor(c);
                 } else {
                     if (className === 'ObjectMetav1') {

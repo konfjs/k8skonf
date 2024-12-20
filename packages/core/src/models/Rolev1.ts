@@ -33,6 +33,6 @@ export class Rolev1 extends NamespacedApiObject {
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.rules = args.rules;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

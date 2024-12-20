@@ -27,6 +27,6 @@ export class SelfSubjectReviewv1beta1 extends ApiObject {
     super();
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

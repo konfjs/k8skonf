@@ -33,6 +33,6 @@ export class PodTemplatev1 extends NamespacedApiObject {
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.template = args.template;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

@@ -70,6 +70,6 @@ export class StorageClassv1 extends ApiObject {
     this.provisioner = args.provisioner;
     this.reclaimPolicy = args.reclaimPolicy;
     this.volumeBindingMode = args.volumeBindingMode;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

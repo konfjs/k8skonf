@@ -41,6 +41,6 @@ export class ClusterRoleBindingv1 extends ApiObject {
     this.metadata.name ??= name;
     this.roleRef = args.roleRef;
     this.subjects = args.subjects;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

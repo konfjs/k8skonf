@@ -113,6 +113,6 @@ export class CoreEventv1 extends NamespacedApiObject {
     this.series = args.series;
     this.source = args.source;
     this.type = args.type;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

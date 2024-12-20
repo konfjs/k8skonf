@@ -39,6 +39,6 @@ export class VolumeAttributesClassv1beta1 extends ApiObject {
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.parameters = args.parameters;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

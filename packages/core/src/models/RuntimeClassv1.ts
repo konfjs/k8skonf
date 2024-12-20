@@ -47,6 +47,6 @@ export class RuntimeClassv1 extends ApiObject {
     this.metadata.name ??= name;
     this.overhead = args.overhead;
     this.scheduling = args.scheduling;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

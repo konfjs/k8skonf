@@ -33,6 +33,6 @@ export class Endpointsv1 extends NamespacedApiObject {
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.subsets = args.subsets;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }
