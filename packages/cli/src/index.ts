@@ -65,17 +65,21 @@ async function main() {
     const crds = yaml.parseAllDocuments(fs.readFileSync(yamlSavePath, 'utf-8'));
     for (const c of crds) {
         const crd: CRD = c.toJS();
-        for (const version of crd.spec.versions) {
-            if (version.schema?.openAPIV3Schema) {
-                const className = `${crd.spec.names.kind}${version.name}`;
-                const i = await compile(version.schema.openAPIV3Schema, `${className}Args`, {
-                    bannerComment: '',
-                    additionalProperties: false,
-                    format: false,
-                });
+        for (const crdVersion of crd.spec.versions) {
+            if (crdVersion.schema?.openAPIV3Schema) {
+                const className = `${crd.spec.names.kind}${crdVersion.name}`;
+                const compiledInterface = await compile(
+                    crdVersion.schema.openAPIV3Schema,
+                    `${className}Args`,
+                    {
+                        bannerComment: '',
+                        additionalProperties: false,
+                        format: false,
+                    },
+                );
                 const sourceFile = project.createSourceFile(
                     path.join('crds', `${className}.ts`),
-                    i,
+                    compiledInterface,
                     {
                         overwrite: true,
                     },
@@ -115,6 +119,16 @@ async function main() {
                     extends: isNamespaced ? 'NamespacedApiObject' : 'ApiObject',
                     isExported: true,
                     properties: [
+                        {
+                            name: 'apiVersion',
+                            initializer: `'${crd.spec.group}/${crdVersion.name}'`,
+                            isReadonly: true,
+                        },
+                        {
+                            name: 'kind',
+                            initializer: `'${crd.spec.names.kind}'`,
+                            isReadonly: true,
+                        },
                         {
                             name: 'metadata',
                             type: isNamespaced ? 'NamespacedObjectMetav1' : 'ObjectMetav1',
