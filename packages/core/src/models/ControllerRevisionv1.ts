@@ -2,8 +2,8 @@ import { K8sApp } from '../K8sApp.js';
 import { NamespacedObjectMetav1, NamespacedApiObject } from '../ApiObject.js';
 
 export interface ControllerRevisionv1Args {
-  readonly data?: any;
   readonly metadata?: NamespacedObjectMetav1;
+  readonly data?: any;
   readonly revision: number;
 }
 
@@ -16,10 +16,6 @@ export class ControllerRevisionv1 extends NamespacedApiObject {
    */
   readonly apiVersion = 'apps/v1';
   /**
-   * Data is the serialized representation of the state.
-   */
-  readonly data?: any;
-  /**
    * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
    */
   readonly kind = 'ControllerRevision';
@@ -28,15 +24,19 @@ export class ControllerRevisionv1 extends NamespacedApiObject {
    */
   readonly metadata: NamespacedObjectMetav1;
   /**
+   * Data is the serialized representation of the state.
+   */
+  readonly data?: any;
+  /**
    * Revision indicates the revision of the state represented by Data.
    */
   readonly revision: number;
 
   constructor(app: K8sApp, name: string, args: ControllerRevisionv1Args) {
     super(args.metadata?.name || name);
-    this.data = args.data;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
+    this.data = args.data;
     this.revision = args.revision;
     app.addResource(this);
   }

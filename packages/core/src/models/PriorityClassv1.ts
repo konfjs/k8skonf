@@ -3,9 +3,9 @@ import { K8sApp } from '../K8sApp.js';
 import { ApiObject } from '../ApiObject.js';
 
 export interface PriorityClassv1Args {
+  readonly metadata?: ObjectMetav1;
   readonly description?: string;
   readonly globalDefault?: boolean;
-  readonly metadata?: ObjectMetav1;
   readonly preemptionPolicy?: string;
   readonly value: number;
 }
@@ -19,14 +19,6 @@ export class PriorityClassv1 extends ApiObject {
    */
   readonly apiVersion = 'scheduling.k8s.io/v1';
   /**
-   * description is an arbitrary string that usually provides guidelines on when this priority class should be used.
-   */
-  readonly description?: string;
-  /**
-   * globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
-   */
-  readonly globalDefault?: boolean;
-  /**
    * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
    */
   readonly kind = 'PriorityClass';
@@ -34,6 +26,14 @@ export class PriorityClassv1 extends ApiObject {
    * Standard object\'s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
    */
   readonly metadata: ObjectMetav1;
+  /**
+   * description is an arbitrary string that usually provides guidelines on when this priority class should be used.
+   */
+  readonly description?: string;
+  /**
+   * globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
+   */
+  readonly globalDefault?: boolean;
   /**
    * preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
    */
@@ -45,10 +45,10 @@ export class PriorityClassv1 extends ApiObject {
 
   constructor(app: K8sApp, name: string, args: PriorityClassv1Args) {
     super(args.metadata?.name || name);
-    this.description = args.description;
-    this.globalDefault = args.globalDefault;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
+    this.description = args.description;
+    this.globalDefault = args.globalDefault;
     this.preemptionPolicy = args.preemptionPolicy;
     this.value = args.value;
     app.addResource(this);
