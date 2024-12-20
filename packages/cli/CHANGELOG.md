@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/konfjs/k8skonf/compare/cli-v0.3.3...cli-v0.3.4) (2024-12-20)
+
+
+### Bug Fixes
+
+* **core:** set default namespace at the app level ([#58](https://github.com/konfjs/k8skonf/issues/58)) ([12bb12e](https://github.com/konfjs/k8skonf/commit/12bb12ed8d994d5afa2e57e9a7a7fc0886108bc9))
+
 ## [0.3.3](https://github.com/konfjs/k8skonf/compare/cli-v0.3.2...cli-v0.3.3) (2024-12-20)
 
 
