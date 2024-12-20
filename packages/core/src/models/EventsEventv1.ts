@@ -113,6 +113,6 @@ export class EventsEventv1 extends NamespacedApiObject {
     this.reportingInstance = args.reportingInstance;
     this.series = args.series;
     this.type = args.type;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

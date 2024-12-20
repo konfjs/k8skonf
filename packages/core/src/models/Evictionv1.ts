@@ -33,6 +33,6 @@ export class Evictionv1 extends NamespacedApiObject {
     this.deleteOptions = args.deleteOptions;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

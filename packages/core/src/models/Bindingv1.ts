@@ -33,6 +33,6 @@ export class Bindingv1 extends NamespacedApiObject {
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.target = args.target;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

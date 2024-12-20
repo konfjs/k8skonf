@@ -34,6 +34,6 @@ export class ValidatingAdmissionPolicyv1beta1 extends ApiObject {
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

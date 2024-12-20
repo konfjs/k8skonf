@@ -2,25 +2,40 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import pc from 'picocolors';
 import * as yaml from 'yaml';
-import { ApiObject } from './ApiObject.js';
+import { ApiObject, NamespacedApiObject } from './ApiObject.js';
+
+interface K8sAppArgs {
+    readonly namespace?: string;
+    /**
+     * @default 'filePerResource'
+     */
+    readonly outputType?: 'singleFile' | 'filePerResource';
+}
 
 /**
  * Each Kubernetes Api Object must belong to an instance of this class.
  * So we know where to save the resources.
  */
 export class K8sApp {
-    readonly resources: ApiObject[] = [];
+    private readonly resources: ApiObject[] | NamespacedApiObject[] = [];
+    readonly namespace?: string;
 
     constructor(
         readonly outputName: string,
-        /**
-         * @default 'filePerResource'
-         */
-        readonly outputType?: 'singleFile' | 'filePerResource',
-    ) {}
+        private readonly args?: K8sAppArgs,
+    ) {
+        this.namespace = args?.namespace;
+    }
 
-    addResource(resource: ApiObject) {
+    addResource(resource: ApiObject | NamespacedApiObject) {
+        if (resource instanceof NamespacedApiObject && !resource.metadata.namespace) {
+            resource.metadata.namespace = this.namespace;
+        }
         this.resources.push(resource);
+    }
+
+    getResources() {
+        return this.resources;
     }
 
     toYaml() {
@@ -28,7 +43,7 @@ export class K8sApp {
     }
 
     save() {
-        if (this.outputType === 'singleFile') {
+        if (this.args?.outputType === 'singleFile') {
             console.log(pc.blueBright(`Saving to ${this.outputName}.yaml`));
             fs.writeFileSync(`${this.outputName}.yaml`, this.toYaml());
         } else {

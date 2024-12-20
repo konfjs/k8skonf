@@ -51,6 +51,6 @@ export class PriorityClassv1 extends ApiObject {
     this.metadata.name ??= name;
     this.preemptionPolicy = args.preemptionPolicy;
     this.value = args.value;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

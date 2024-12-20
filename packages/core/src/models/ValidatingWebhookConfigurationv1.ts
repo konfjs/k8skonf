@@ -34,6 +34,6 @@ export class ValidatingWebhookConfigurationv1 extends ApiObject {
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.webhooks = args.webhooks;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

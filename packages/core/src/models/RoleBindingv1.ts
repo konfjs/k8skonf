@@ -40,6 +40,6 @@ export class RoleBindingv1 extends NamespacedApiObject {
     this.metadata.name ??= name;
     this.roleRef = args.roleRef;
     this.subjects = args.subjects;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }

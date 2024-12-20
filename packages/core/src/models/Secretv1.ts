@@ -50,6 +50,6 @@ export class Secretv1 extends NamespacedApiObject {
     this.metadata.name ??= name;
     this.stringData = args.stringData;
     this.type = args.type;
-    app.resources.push(this);
+    app.addResource(this);
   }
 }
