@@ -96,7 +96,7 @@ export class CoreEventv1 extends NamespacedApiObject {
   readonly type?: string;
 
   constructor(app: K8sApp, name: string, args: CoreEventv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.action = args.action;
     this.count = args.count;
     this.eventTime = args.eventTime;

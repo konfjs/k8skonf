@@ -30,7 +30,7 @@ export class DeviceClassv1alpha3 extends ApiObject {
   readonly spec: DeviceClassSpecv1alpha3;
 
   constructor(app: K8sApp, name: string, args: DeviceClassv1alpha3Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

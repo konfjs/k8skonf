@@ -30,7 +30,7 @@ export class ValidatingAdmissionPolicyv1 extends ApiObject {
   readonly spec?: ValidatingAdmissionPolicySpecv1;
 
   constructor(app: K8sApp, name: string, args: ValidatingAdmissionPolicyv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

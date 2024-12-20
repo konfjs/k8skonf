@@ -1,9 +1,9 @@
+import { log } from 'node:console';
 import { Helm, K8sApp } from '@k8skonf/core';
 import { ConfigMapv1 } from '@k8skonf/core/ConfigMapv1';
 import { Deploymentv1 } from '@k8skonf/core/Deploymentv1';
-import { log } from 'node:console';
 
-const app = new K8sApp('my-k8s-app', { namespace: 'my-app-namespace' });
+const app = new K8sApp('helm-example', { namespace: 'my-app-namespace', outputType: 'singleFile' });
 
 const chart = new Helm(app, 'ingress-nginx', {
     chart: 'ingress-nginx',
@@ -31,12 +31,18 @@ chart.resources.forEach((resource) => {
     console.log(resource.apiVersion);
 });
 
-new ConfigMapv1(app, 'my-config-map', {
+const cm = new ConfigMapv1(app, 'my-config-map', {
     metadata: {
         // name: 'my-config-map2', // inferred from resource name
         namespace: 'fooo',
     },
+    data: {
+        key1: 'value1',
+        key2: 'value2',
+    },
 });
+
+console.log('configmap name:', cm.name);
 
 const d = new Deploymentv1(app, 'my-nginx-deployment', {
     metadata: {

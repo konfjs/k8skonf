@@ -29,7 +29,7 @@ export class HorizontalPodAutoscalerv2 extends NamespacedApiObject {
   readonly spec?: HorizontalPodAutoscalerSpecv2;
 
   constructor(app: K8sApp, name: string, args: HorizontalPodAutoscalerv2Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

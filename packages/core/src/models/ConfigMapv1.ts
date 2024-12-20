@@ -38,7 +38,7 @@ export class ConfigMapv1 extends NamespacedApiObject {
   readonly metadata: NamespacedObjectMetav1;
 
   constructor(app: K8sApp, name: string, args: ConfigMapv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.binaryData = args.binaryData;
     this.data = args.data;
     this.immutable = args.immutable;

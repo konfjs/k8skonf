@@ -40,7 +40,7 @@ export class EndpointSlicev1 extends NamespacedApiObject {
   readonly ports?: Array<DiscoveryEndpointPortv1>;
 
   constructor(app: K8sApp, name: string, args: EndpointSlicev1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.addressType = args.addressType;
     this.endpoints = args.endpoints;
     this.metadata = args.metadata || { name };

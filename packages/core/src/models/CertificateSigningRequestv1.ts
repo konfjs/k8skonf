@@ -27,7 +27,7 @@ export class CertificateSigningRequestv1 extends ApiObject {
   readonly spec: CertificateSigningRequestSpecv1;
 
   constructor(app: K8sApp, name: string, args: CertificateSigningRequestv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

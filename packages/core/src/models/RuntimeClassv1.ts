@@ -41,7 +41,7 @@ export class RuntimeClassv1 extends ApiObject {
   readonly scheduling?: Schedulingv1;
 
   constructor(app: K8sApp, name: string, args: RuntimeClassv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.handler = args.handler;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;

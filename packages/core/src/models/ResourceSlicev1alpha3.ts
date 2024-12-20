@@ -30,7 +30,7 @@ export class ResourceSlicev1alpha3 extends ApiObject {
   readonly spec: ResourceSliceSpecv1alpha3;
 
   constructor(app: K8sApp, name: string, args: ResourceSlicev1alpha3Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

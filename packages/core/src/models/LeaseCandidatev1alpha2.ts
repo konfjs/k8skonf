@@ -29,7 +29,7 @@ export class LeaseCandidatev1alpha2 extends NamespacedApiObject {
   readonly spec?: LeaseCandidateSpecv1alpha2;
 
   constructor(app: K8sApp, name: string, args: LeaseCandidatev1alpha2Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

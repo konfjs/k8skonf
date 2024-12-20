@@ -36,7 +36,7 @@ export class ClusterRolev1 extends ApiObject {
   readonly rules?: Array<PolicyRulev1>;
 
   constructor(app: K8sApp, name: string, args: ClusterRolev1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.aggregationRule = args.aggregationRule;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;

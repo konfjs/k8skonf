@@ -36,7 +36,7 @@ export class ClusterRoleBindingv1 extends ApiObject {
   readonly subjects?: Array<RbacSubjectv1>;
 
   constructor(app: K8sApp, name: string, args: ClusterRoleBindingv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.roleRef = args.roleRef;

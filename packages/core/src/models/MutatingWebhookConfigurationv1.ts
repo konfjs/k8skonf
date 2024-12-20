@@ -30,7 +30,7 @@ export class MutatingWebhookConfigurationv1 extends ApiObject {
   readonly webhooks?: Array<MutatingWebhookv1>;
 
   constructor(app: K8sApp, name: string, args: MutatingWebhookConfigurationv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.webhooks = args.webhooks;

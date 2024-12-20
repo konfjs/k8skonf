@@ -96,7 +96,7 @@ export class EventsEventv1 extends NamespacedApiObject {
   readonly type?: string;
 
   constructor(app: K8sApp, name: string, args: EventsEventv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.action = args.action;
     this.deprecatedCount = args.deprecatedCount;
     this.deprecatedFirstTimestamp = args.deprecatedFirstTimestamp;

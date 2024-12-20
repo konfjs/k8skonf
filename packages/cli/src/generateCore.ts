@@ -195,7 +195,7 @@ function morph() {
                     };
 
                     c.statements = new Array<StatementStructures>();
-                    c.statements.push('super();');
+                    c.statements.push('super(args.metadata?.name || name);');
                     for (const prop of classDeclaration.getProperties()) {
                         prop.setIsReadonly(true);
                         const interfaceProp: PropertySignatureStructure = {
