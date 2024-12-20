@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/konfjs/k8skonf/compare/cli-v0.3.2...cli-v0.3.3) (2024-12-20)
+
+
+### Bug Fixes
+
+* **cli:** add apiVersion and kind to the generated CRDs ([#52](https://github.com/konfjs/k8skonf/issues/52)) ([db4e4e5](https://github.com/konfjs/k8skonf/commit/db4e4e5159775a223d25848c6a43759552e54736))
+
 ## [0.3.2](https://github.com/konfjs/k8skonf/compare/cli-v0.3.1...cli-v0.3.2) (2024-12-19)
 
 
