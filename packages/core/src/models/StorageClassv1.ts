@@ -4,9 +4,9 @@ import { K8sApp } from '../K8sApp.js';
 import { ApiObject } from '../ApiObject.js';
 
 export interface StorageClassv1Args {
+  readonly metadata?: ObjectMetav1;
   readonly allowVolumeExpansion?: boolean;
   readonly allowedTopologies?: Array<TopologySelectorTermv1>;
-  readonly metadata?: ObjectMetav1;
   readonly mountOptions?: Array<string>;
   readonly parameters?: { [key: string]: string };
   readonly provisioner: string;
@@ -19,14 +19,6 @@ export interface StorageClassv1Args {
  */
 export class StorageClassv1 extends ApiObject {
   /**
-   * allowVolumeExpansion shows whether the storage class allow volume expand.
-   */
-  readonly allowVolumeExpansion?: boolean;
-  /**
-   * allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
-   */
-  readonly allowedTopologies?: Array<TopologySelectorTermv1>;
-  /**
    * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
    */
   readonly apiVersion = 'storage.k8s.io/v1';
@@ -38,6 +30,14 @@ export class StorageClassv1 extends ApiObject {
    * Standard object\'s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
    */
   readonly metadata: ObjectMetav1;
+  /**
+   * allowVolumeExpansion shows whether the storage class allow volume expand.
+   */
+  readonly allowVolumeExpansion?: boolean;
+  /**
+   * allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
+   */
+  readonly allowedTopologies?: Array<TopologySelectorTermv1>;
   /**
    * mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. [\"ro\", \"soft\"]. Not validated - mount of the PVs will simply fail if one is invalid.
    */
@@ -61,10 +61,10 @@ export class StorageClassv1 extends ApiObject {
 
   constructor(app: K8sApp, name: string, args: StorageClassv1Args) {
     super(args.metadata?.name || name);
-    this.allowVolumeExpansion = args.allowVolumeExpansion;
-    this.allowedTopologies = args.allowedTopologies;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
+    this.allowVolumeExpansion = args.allowVolumeExpansion;
+    this.allowedTopologies = args.allowedTopologies;
     this.mountOptions = args.mountOptions;
     this.parameters = args.parameters;
     this.provisioner = args.provisioner;

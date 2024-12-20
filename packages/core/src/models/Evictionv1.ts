@@ -3,8 +3,8 @@ import { K8sApp } from '../K8sApp.js';
 import { NamespacedObjectMetav1, NamespacedApiObject } from '../ApiObject.js';
 
 export interface Evictionv1Args {
-  readonly deleteOptions?: DeleteOptionsv1;
   readonly metadata?: NamespacedObjectMetav1;
+  readonly deleteOptions?: DeleteOptionsv1;
 }
 
 /**
@@ -16,10 +16,6 @@ export class Evictionv1 extends NamespacedApiObject {
    */
   readonly apiVersion = 'policy/v1';
   /**
-   * DeleteOptions may be provided
-   */
-  readonly deleteOptions?: DeleteOptionsv1;
-  /**
    * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
    */
   readonly kind = 'Eviction';
@@ -27,12 +23,16 @@ export class Evictionv1 extends NamespacedApiObject {
    * ObjectMeta describes the pod that is being evicted.
    */
   readonly metadata: NamespacedObjectMetav1;
+  /**
+   * DeleteOptions may be provided
+   */
+  readonly deleteOptions?: DeleteOptionsv1;
 
   constructor(app: K8sApp, name: string, args: Evictionv1Args) {
     super(args.metadata?.name || name);
-    this.deleteOptions = args.deleteOptions;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
+    this.deleteOptions = args.deleteOptions;
     app.addResource(this);
   }
 }

@@ -3,8 +3,8 @@ import { K8sApp } from '../K8sApp.js';
 import { ApiObject } from '../ApiObject.js';
 
 export interface VolumeAttributesClassv1beta1Args {
-  readonly driverName: string;
   readonly metadata?: ObjectMetav1;
+  readonly driverName: string;
   readonly parameters?: { [key: string]: string };
 }
 
@@ -17,10 +17,6 @@ export class VolumeAttributesClassv1beta1 extends ApiObject {
    */
   readonly apiVersion = 'storage.k8s.io/v1beta1';
   /**
-   * Name of the CSI driver This field is immutable.
-   */
-  readonly driverName: string;
-  /**
    * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
    */
   readonly kind = 'VolumeAttributesClass';
@@ -29,15 +25,19 @@ export class VolumeAttributesClassv1beta1 extends ApiObject {
    */
   readonly metadata: ObjectMetav1;
   /**
+   * Name of the CSI driver This field is immutable.
+   */
+  readonly driverName: string;
+  /**
    * parameters hold volume attributes defined by the CSI driver. These values are opaque to the Kubernetes and are passed directly to the CSI driver. The underlying storage provider supports changing these attributes on an existing volume, however the parameters field itself is immutable. To invoke a volume update, a new VolumeAttributesClass should be created with new parameters, and the PersistentVolumeClaim should be updated to reference the new VolumeAttributesClass.  This field is required and must contain at least one key/value pair. The keys cannot be empty, and the maximum number of parameters is 512, with a cumulative max size of 256K. If the CSI driver rejects invalid parameters, the target PersistentVolumeClaim will be set to an \"Infeasible\" state in the modifyVolumeStatus field.
    */
   readonly parameters?: { [key: string]: string };
 
   constructor(app: K8sApp, name: string, args: VolumeAttributesClassv1beta1Args) {
     super(args.metadata?.name || name);
-    this.driverName = args.driverName;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
+    this.driverName = args.driverName;
     this.parameters = args.parameters;
     app.addResource(this);
   }

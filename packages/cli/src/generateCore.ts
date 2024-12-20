@@ -194,10 +194,21 @@ function morph() {
                         ],
                     };
 
+                    const preferredOrder = ['apiVersion', 'kind', 'metadata', 'spec'];
+                    const orderedProps = classDeclaration.getProperties().sort((a, b) => {
+                        const aIndex = preferredOrder.indexOf(a.getName());
+                        const bIndex = preferredOrder.indexOf(b.getName());
+                        if (aIndex === -1 && bIndex === -1) return 0;
+                        if (aIndex === -1) return 1;
+                        if (bIndex === -1) return -1;
+                        return aIndex - bIndex;
+                    });
+
                     c.statements = new Array<StatementStructures>();
                     c.statements.push('super(args.metadata?.name || name);');
-                    for (const prop of classDeclaration.getProperties()) {
+                    for (const [i, prop] of orderedProps.entries()) {
                         prop.setIsReadonly(true);
+                        classDeclaration.getProperty(prop.getName())?.setOrder(i);
                         const interfaceProp: PropertySignatureStructure = {
                             kind: StructureKind.PropertySignature,
                             name: prop.getName(),

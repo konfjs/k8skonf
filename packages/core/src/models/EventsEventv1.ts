@@ -5,13 +5,13 @@ import { K8sApp } from '../K8sApp.js';
 import { NamespacedObjectMetav1, NamespacedApiObject } from '../ApiObject.js';
 
 export interface EventsEventv1Args {
+  readonly metadata?: NamespacedObjectMetav1;
   readonly action?: string;
   readonly deprecatedCount?: number;
   readonly deprecatedFirstTimestamp?: Date;
   readonly deprecatedLastTimestamp?: Date;
   readonly deprecatedSource?: EventSourcev1;
   readonly eventTime: Date;
-  readonly metadata?: NamespacedObjectMetav1;
   readonly note?: string;
   readonly reason?: string;
   readonly regarding?: ObjectReferencev1;
@@ -27,13 +27,21 @@ export interface EventsEventv1Args {
  */
 export class EventsEventv1 extends NamespacedApiObject {
   /**
-   * action is what action was taken/failed regarding to the regarding object. It is machine-readable. This field cannot be empty for new Events and it can have at most 128 characters.
-   */
-  readonly action?: string;
-  /**
    * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
    */
   readonly apiVersion = 'events.k8s.io/v1';
+  /**
+   * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+   */
+  readonly kind = 'Event';
+  /**
+   * Standard object\'s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+   */
+  readonly metadata: NamespacedObjectMetav1;
+  /**
+   * action is what action was taken/failed regarding to the regarding object. It is machine-readable. This field cannot be empty for new Events and it can have at most 128 characters.
+   */
+  readonly action?: string;
   /**
    * deprecatedCount is the deprecated field assuring backward compatibility with core.v1 Event type.
    */
@@ -54,14 +62,6 @@ export class EventsEventv1 extends NamespacedApiObject {
    * eventTime is the time when this Event was first observed. It is required.
    */
   readonly eventTime: Date;
-  /**
-   * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-   */
-  readonly kind = 'Event';
-  /**
-   * Standard object\'s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-   */
-  readonly metadata: NamespacedObjectMetav1;
   /**
    * note is a human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
    */
@@ -97,14 +97,14 @@ export class EventsEventv1 extends NamespacedApiObject {
 
   constructor(app: K8sApp, name: string, args: EventsEventv1Args) {
     super(args.metadata?.name || name);
+    this.metadata = args.metadata || { name };
+    this.metadata.name ??= name;
     this.action = args.action;
     this.deprecatedCount = args.deprecatedCount;
     this.deprecatedFirstTimestamp = args.deprecatedFirstTimestamp;
     this.deprecatedLastTimestamp = args.deprecatedLastTimestamp;
     this.deprecatedSource = args.deprecatedSource;
     this.eventTime = args.eventTime;
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
     this.note = args.note;
     this.reason = args.reason;
     this.regarding = args.regarding;
