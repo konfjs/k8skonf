@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.5](https://github.com/konfjs/k8skonf/compare/cli-v0.3.4...cli-v0.3.5) (2024-12-20)
+
+
+### Bug Fixes
+
+* always order by apiVersion, kind, metadata, spec ([#61](https://github.com/konfjs/k8skonf/issues/61)) ([e864ff3](https://github.com/konfjs/k8skonf/commit/e864ff3fc64d0990f6f80cf64160a77d86613045))
+* **core:** add toYaml method for all ApiObjects ([#59](https://github.com/konfjs/k8skonf/issues/59)) ([b8de6e7](https://github.com/konfjs/k8skonf/commit/b8de6e77fbff730cdfb5b1d09c81cbbbf4a70c67))
+* **core:** return type of ApiObject.name ([b8de6e7](https://github.com/konfjs/k8skonf/commit/b8de6e77fbff730cdfb5b1d09c81cbbbf4a70c67))
+
 ## [0.3.4](https://github.com/konfjs/k8skonf/compare/cli-v0.3.3...cli-v0.3.4) (2024-12-20)
 
 
