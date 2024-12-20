@@ -29,7 +29,7 @@ export class Rolev1 extends NamespacedApiObject {
   readonly rules?: Array<PolicyRulev1>;
 
   constructor(app: K8sApp, name: string, args: Rolev1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.rules = args.rules;

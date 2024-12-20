@@ -30,7 +30,7 @@ export class CSINodev1 extends ApiObject {
   readonly spec: CSINodeSpecv1;
 
   constructor(app: K8sApp, name: string, args: CSINodev1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

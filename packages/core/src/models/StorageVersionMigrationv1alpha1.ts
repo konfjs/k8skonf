@@ -30,7 +30,7 @@ export class StorageVersionMigrationv1alpha1 extends ApiObject {
   readonly spec?: StorageVersionMigrationSpecv1alpha1;
 
   constructor(app: K8sApp, name: string, args: StorageVersionMigrationv1alpha1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

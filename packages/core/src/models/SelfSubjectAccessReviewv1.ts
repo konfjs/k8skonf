@@ -30,7 +30,7 @@ export class SelfSubjectAccessReviewv1 extends ApiObject {
   readonly spec: SelfSubjectAccessReviewSpecv1;
 
   constructor(app: K8sApp, name: string, args: SelfSubjectAccessReviewv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

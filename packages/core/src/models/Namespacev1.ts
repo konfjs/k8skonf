@@ -30,7 +30,7 @@ export class Namespacev1 extends ApiObject {
   readonly spec?: NamespaceSpecv1;
 
   constructor(app: K8sApp, name: string, args: Namespacev1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

@@ -1,3 +1,4 @@
+import * as yaml from 'yaml';
 import { ObjectMetav1 } from './models/ObjectMetav1.js';
 
 export interface NamespacedObjectMetav1 extends ObjectMetav1 {
@@ -14,12 +15,18 @@ export interface NamespacedObjectMetav1 extends ObjectMetav1 {
  * ApiObject is the base class for all Kubernetes API objects.
  */
 export abstract class ApiObject {
+    readonly name: string;
     abstract readonly metadata: ObjectMetav1;
     abstract readonly apiVersion: string;
     abstract readonly kind: string;
 
-    get name() {
-        return this.metadata.name;
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    toYaml(): string {
+        const { name, ...rest } = this;
+        return yaml.stringify(rest, { schema: 'yaml-1.1' });
     }
 }
 

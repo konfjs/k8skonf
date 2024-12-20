@@ -33,7 +33,7 @@ export class ControllerRevisionv1 extends NamespacedApiObject {
   readonly revision: number;
 
   constructor(app: K8sApp, name: string, args: ControllerRevisionv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.data = args.data;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;

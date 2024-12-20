@@ -7,12 +7,28 @@ import { ApiObject } from './ApiObject.js';
 import { K8sApp } from './K8sApp.js';
 import { ObjectMetav1 } from './models/ObjectMetav1.js';
 
-class HelmObject extends ApiObject {
-    readonly apiVersion!: string;
-    readonly kind!: string;
-    readonly metadata!: ObjectMetav1;
+interface HelmObjectArgs {
+    readonly apiVersion: string;
+    readonly kind: string;
+    readonly metadata: ObjectMetav1;
     readonly spec: any;
     readonly [key: string]: any;
+}
+
+class HelmObject extends ApiObject {
+    readonly apiVersion: string;
+    readonly kind: string;
+    readonly metadata: ObjectMetav1;
+    readonly spec: any;
+    readonly [key: string]: any;
+    constructor(name: string, args: HelmObjectArgs) {
+        super(name);
+        this.apiVersion = args.apiVersion;
+        this.kind = args.kind;
+        this.metadata = args.metadata;
+        this.spec = args.spec;
+        Object.assign(this, args);
+    }
 }
 
 export interface HelmArgs {
@@ -89,9 +105,11 @@ export class Helm {
                 if (file.errors.length) {
                     console.error('Error parsing file:', file.errors);
                 }
-                if (file.toJS() !== null) {
-                    this.resources.push(file.toJS());
-                    app.addResource(file.toJS());
+                const helmObj = file.toJS();
+                if (helmObj !== null) {
+                    const resource = new HelmObject(helmObj.metadata.name, helmObj);
+                    this.resources.push(resource);
+                    app.addResource(resource);
                 }
             }
 

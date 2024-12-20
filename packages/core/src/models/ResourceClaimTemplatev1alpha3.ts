@@ -29,7 +29,7 @@ export class ResourceClaimTemplatev1alpha3 extends NamespacedApiObject {
   readonly spec: ResourceClaimTemplateSpecv1alpha3;
 
   constructor(app: K8sApp, name: string, args: ResourceClaimTemplatev1alpha3Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

@@ -29,7 +29,7 @@ export class Bindingv1 extends NamespacedApiObject {
   readonly target: ObjectReferencev1;
 
   constructor(app: K8sApp, name: string, args: Bindingv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.target = args.target;

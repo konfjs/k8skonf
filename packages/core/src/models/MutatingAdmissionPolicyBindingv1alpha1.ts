@@ -30,7 +30,7 @@ export class MutatingAdmissionPolicyBindingv1alpha1 extends ApiObject {
   readonly spec?: MutatingAdmissionPolicyBindingSpecv1alpha1;
 
   constructor(app: K8sApp, name: string, args: MutatingAdmissionPolicyBindingv1alpha1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

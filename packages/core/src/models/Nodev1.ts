@@ -30,7 +30,7 @@ export class Nodev1 extends ApiObject {
   readonly spec?: NodeSpecv1;
 
   constructor(app: K8sApp, name: string, args: Nodev1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

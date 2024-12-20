@@ -29,7 +29,7 @@ export class DaemonSetv1 extends NamespacedApiObject {
   readonly spec?: DaemonSetSpecv1;
 
   constructor(app: K8sApp, name: string, args: DaemonSetv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

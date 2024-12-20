@@ -29,7 +29,7 @@ export class Evictionv1 extends NamespacedApiObject {
   readonly metadata: NamespacedObjectMetav1;
 
   constructor(app: K8sApp, name: string, args: Evictionv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.deleteOptions = args.deleteOptions;
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;

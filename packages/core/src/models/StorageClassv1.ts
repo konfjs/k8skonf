@@ -60,7 +60,7 @@ export class StorageClassv1 extends ApiObject {
   readonly volumeBindingMode?: string;
 
   constructor(app: K8sApp, name: string, args: StorageClassv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.allowVolumeExpansion = args.allowVolumeExpansion;
     this.allowedTopologies = args.allowedTopologies;
     this.metadata = args.metadata || { name };

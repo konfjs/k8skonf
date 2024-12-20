@@ -29,7 +29,7 @@ export class PodTemplatev1 extends NamespacedApiObject {
   readonly template?: PodTemplateSpecv1;
 
   constructor(app: K8sApp, name: string, args: PodTemplatev1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.template = args.template;

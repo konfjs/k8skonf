@@ -29,7 +29,7 @@ export class ReplicationControllerv1 extends NamespacedApiObject {
   readonly spec?: ReplicationControllerSpecv1;
 
   constructor(app: K8sApp, name: string, args: ReplicationControllerv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

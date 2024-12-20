@@ -29,7 +29,7 @@ export class ResourceClaimv1beta1 extends NamespacedApiObject {
   readonly spec: ResourceClaimSpecv1beta1;
 
   constructor(app: K8sApp, name: string, args: ResourceClaimv1beta1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

@@ -30,7 +30,7 @@ export class FlowSchemav1 extends ApiObject {
   readonly spec?: FlowSchemaSpecv1;
 
   constructor(app: K8sApp, name: string, args: FlowSchemav1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

@@ -1,7 +1,6 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import pc from 'picocolors';
-import * as yaml from 'yaml';
 import { ApiObject, NamespacedApiObject } from './ApiObject.js';
 
 interface K8sAppArgs {
@@ -39,7 +38,7 @@ export class K8sApp {
     }
 
     toYaml() {
-        return `---\n${this.resources.map((resource) => yaml.stringify(resource, { schema: 'yaml-1.1' })).join('---\n')}`;
+        return `---\n${this.resources.map((resource) => resource.toYaml()).join('---\n')}`;
     }
 
     save() {
@@ -59,7 +58,7 @@ export class K8sApp {
                 );
                 fs.writeFileSync(
                     path.join(this.outputName, `${r.kind}.${r.metadata.name}.yaml`),
-                    yaml.stringify(r, { schema: 'yaml-1.1' }),
+                    r.toYaml(),
                 );
             }
         }

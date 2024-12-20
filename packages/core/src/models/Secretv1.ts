@@ -43,7 +43,7 @@ export class Secretv1 extends NamespacedApiObject {
   readonly type?: string;
 
   constructor(app: K8sApp, name: string, args: Secretv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.data = args.data;
     this.immutable = args.immutable;
     this.metadata = args.metadata || { name };

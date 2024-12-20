@@ -29,7 +29,7 @@ export class LocalSubjectAccessReviewv1 extends NamespacedApiObject {
   readonly spec: SubjectAccessReviewSpecv1;
 
   constructor(app: K8sApp, name: string, args: LocalSubjectAccessReviewv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

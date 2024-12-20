@@ -40,7 +40,7 @@ export class ServiceAccountv1 extends NamespacedApiObject {
   readonly secrets?: Array<ObjectReferencev1>;
 
   constructor(app: K8sApp, name: string, args: ServiceAccountv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.automountServiceAccountToken = args.automountServiceAccountToken;
     this.imagePullSecrets = args.imagePullSecrets;
     this.metadata = args.metadata || { name };

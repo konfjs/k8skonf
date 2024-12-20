@@ -30,7 +30,7 @@ export class IngressClassv1 extends ApiObject {
   readonly spec?: IngressClassSpecv1;
 
   constructor(app: K8sApp, name: string, args: IngressClassv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

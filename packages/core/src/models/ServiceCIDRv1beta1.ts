@@ -30,7 +30,7 @@ export class ServiceCIDRv1beta1 extends ApiObject {
   readonly spec?: ServiceCIDRSpecv1beta1;
 
   constructor(app: K8sApp, name: string, args: ServiceCIDRv1beta1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;

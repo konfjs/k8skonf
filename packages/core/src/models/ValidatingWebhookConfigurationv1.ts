@@ -30,7 +30,7 @@ export class ValidatingWebhookConfigurationv1 extends ApiObject {
   readonly webhooks?: Array<ValidatingWebhookv1>;
 
   constructor(app: K8sApp, name: string, args: ValidatingWebhookConfigurationv1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.webhooks = args.webhooks;

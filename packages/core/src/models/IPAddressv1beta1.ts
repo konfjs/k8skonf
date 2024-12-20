@@ -30,7 +30,7 @@ export class IPAddressv1beta1 extends ApiObject {
   readonly spec?: IPAddressSpecv1beta1;
 
   constructor(app: K8sApp, name: string, args: IPAddressv1beta1Args) {
-    super();
+    super(args.metadata?.name || name);
     this.metadata = args.metadata || { name };
     this.metadata.name ??= name;
     this.spec = args.spec;
