@@ -28,7 +28,7 @@ metadata:
   name: ingress-nginx-controller
   namespace: nginx
 data:
-  allow-snippet-annotations: 'false'
+  allow-snippet-annotations: "false"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -43,7 +43,7 @@ metadata:
   name: ingress-nginx
 rules:
   - apiGroups:
-      - ''
+      - ""
     resources:
       - configmaps
       - endpoints
@@ -62,13 +62,13 @@ rules:
       - list
       - watch
   - apiGroups:
-      - ''
+      - ""
     resources:
       - nodes
     verbs:
       - get
   - apiGroups:
-      - ''
+      - ""
     resources:
       - services
     verbs:
@@ -84,7 +84,7 @@ rules:
       - list
       - watch
   - apiGroups:
-      - ''
+      - ""
     resources:
       - events
     verbs:
@@ -148,13 +148,13 @@ metadata:
   namespace: nginx
 rules:
   - apiGroups:
-      - ''
+      - ""
     resources:
       - namespaces
     verbs:
       - get
   - apiGroups:
-      - ''
+      - ""
     resources:
       - configmaps
       - pods
@@ -165,7 +165,7 @@ rules:
       - list
       - watch
   - apiGroups:
-      - ''
+      - ""
     resources:
       - services
     verbs:
@@ -210,7 +210,7 @@ rules:
     verbs:
       - create
   - apiGroups:
-      - ''
+      - ""
     resources:
       - events
     verbs:
@@ -620,7 +620,7 @@ metadata:
     app.kubernetes.io/component: admission-webhook
 rules:
   - apiGroups:
-      - ''
+      - ""
     resources:
       - secrets
     verbs:
@@ -771,13 +771,13 @@ spec:
         kubernetes.io/os: linux
 ---
 apiVersion: v1
-data:
-  key1: value1
-  key2: value2
 kind: ConfigMap
 metadata:
   namespace: fooo
   name: my-config-map
+data:
+  key1: value1
+  key2: value2
 ---
 apiVersion: apps/v1
 kind: Deployment
