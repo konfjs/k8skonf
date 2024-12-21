@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.6](https://github.com/konfjs/k8skonf/compare/cli-v0.3.5...cli-v0.3.6) (2024-12-21)
+
+
+### Bug Fixes
+
+* **cli:** fix CRD constructor ([#62](https://github.com/konfjs/k8skonf/issues/62)) ([d0675d3](https://github.com/konfjs/k8skonf/commit/d0675d366ed53124489b2cdcac6cb8dc33a14ed1))
+
 ## [0.3.5](https://github.com/konfjs/k8skonf/compare/cli-v0.3.4...cli-v0.3.5) (2024-12-20)
 
 
