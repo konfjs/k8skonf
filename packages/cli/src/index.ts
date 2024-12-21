@@ -157,10 +157,10 @@ async function main() {
                                 },
                             ],
                             statements: [
-                                'super();',
+                                'super(args.metadata?.name || name);',
                                 'this.metadata = args.metadata || { name };',
                                 'this.spec = args.spec;',
-                                'app.resources.push(this);',
+                                'app.addResource(this);',
                             ],
                         },
                     ],
