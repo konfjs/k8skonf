@@ -23,6 +23,7 @@ download-schema:
 
 
 # Generate packages/cli/src/input-spec/*.json files
+# Generate group-version-kind-map.json
 .PHONY: prepare-schema
 prepare-schema:
 	@echo "Preparing Kubernetes schema"
