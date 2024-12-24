@@ -158,7 +158,10 @@ async function main() {
                             ],
                             statements: [
                                 'super(args.metadata?.name || name);',
-                                'this.metadata = args.metadata || { name };',
+                                'this.metadata = {',
+                                '  name: args.metadata?.name || name,',
+                                '  ...args.metadata,',
+                                '};',
                                 'this.spec = args.spec;',
                                 'app.addResource(this);',
                             ],
