@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.8](https://github.com/konfjs/k8skonf/compare/core-v1.32.7...core-v1.32.8) (2024-12-24)
+
+
+### Bug Fixes
+
+* always define metadata.name first ([#65](https://github.com/konfjs/k8skonf/issues/65)) ([53fdc64](https://github.com/konfjs/k8skonf/commit/53fdc64badd8e00d9cce96fa974cdcffd7ab2f95))
+
 ## [1.32.7](https://github.com/konfjs/k8skonf/compare/core-v1.32.6...core-v1.32.7) (2024-12-20)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.7](https://github.com/konfjs/k8skonf/compare/cli-v0.3.6...cli-v0.3.7) (2024-12-24)
+
+
+### Bug Fixes
+
+* always define metadata.name first ([#65](https://github.com/konfjs/k8skonf/issues/65)) ([53fdc64](https://github.com/konfjs/k8skonf/commit/53fdc64badd8e00d9cce96fa974cdcffd7ab2f95))
+* **cli:** always define metadata.name first for CRDs ([#68](https://github.com/konfjs/k8skonf/issues/68)) ([a01edd4](https://github.com/konfjs/k8skonf/commit/a01edd450c657b48e707249f28a5e90651872a91))
+
 ## [0.3.6](https://github.com/konfjs/k8skonf/compare/cli-v0.3.5...cli-v0.3.6) (2024-12-21)
 
 
