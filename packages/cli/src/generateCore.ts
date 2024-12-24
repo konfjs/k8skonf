@@ -221,8 +221,10 @@ function morph() {
                         }
                         if (prop.getName() === 'metadata') {
                             interfaceProp.hasQuestionToken = true;
-                            c.statements.push('this.metadata = args.metadata || { name };');
-                            c.statements.push('this.metadata.name ??= name;');
+                            c.statements.push('this.metadata = {');
+                            c.statements.push('  name: args.metadata?.name || name,');
+                            c.statements.push('  ...args.metadata,');
+                            c.statements.push('};');
                             prop.setHasQuestionToken(false);
                             if (groupVersionKindMap[className].namespaced) {
                                 classDeclaration.setExtends('NamespacedApiObject');

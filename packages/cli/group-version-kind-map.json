@@ -1,7 +1,7 @@
 {
   "APIGroupv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.APIGroup",
-    "fileName": "apis_openapi.json",
+    "fileName": "apis__authentication.k8s.io_openapi.json",
     "gvk": [
       {
         "group": "",
@@ -12,7 +12,7 @@
   },
   "APIResourcev1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.APIResource",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "APIServiceConditionv1": {
     "schemaName": "io.k8s.kube-aggregator.pkg.apis.apiregistration.v1.APIServiceCondition",
@@ -64,7 +64,7 @@
   },
   "Affinityv1": {
     "schemaName": "io.k8s.api.core.v1.Affinity",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "AggregationRulev1": {
     "schemaName": "io.k8s.api.rbac.v1.AggregationRule",
@@ -100,7 +100,7 @@
   },
   "AppArmorProfilev1": {
     "schemaName": "io.k8s.api.core.v1.AppArmorProfile",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ApplyConfigurationv1alpha1": {
     "schemaName": "io.k8s.api.admissionregistration.v1alpha1.ApplyConfiguration",
@@ -141,7 +141,7 @@
   },
   "AzureFileVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.AzureFileVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "BasicDevicev1alpha3": {
     "schemaName": "io.k8s.api.resource.v1alpha3.BasicDevice",
@@ -233,11 +233,11 @@
   },
   "CSIVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.CSIVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "Capabilitiesv1": {
     "schemaName": "io.k8s.api.core.v1.Capabilities",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "CephFSPersistentVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.CephFSPersistentVolumeSource",
@@ -245,7 +245,7 @@
   },
   "CephFSVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.CephFSVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "CertificateSigningRequestConditionv1": {
     "schemaName": "io.k8s.api.certificates.v1.CertificateSigningRequestCondition",
@@ -278,7 +278,7 @@
   },
   "CinderVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.CinderVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ClientIPConfigv1": {
     "schemaName": "io.k8s.api.core.v1.ClientIPConfig",
@@ -312,7 +312,7 @@
   },
   "ClusterTrustBundleProjectionv1": {
     "schemaName": "io.k8s.api.core.v1.ClusterTrustBundleProjection",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ClusterTrustBundleSpecv1alpha1": {
     "schemaName": "io.k8s.api.certificates.v1alpha1.ClusterTrustBundleSpec",
@@ -348,15 +348,15 @@
   },
   "Conditionv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.Condition",
-    "fileName": "apis__resource.k8s.io__v1beta1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "ConfigMapEnvSourcev1": {
     "schemaName": "io.k8s.api.core.v1.ConfigMapEnvSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ConfigMapKeySelectorv1": {
     "schemaName": "io.k8s.api.core.v1.ConfigMapKeySelector",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ConfigMapNodeConfigSourcev1": {
     "schemaName": "io.k8s.api.core.v1.ConfigMapNodeConfigSource",
@@ -364,11 +364,11 @@
   },
   "ConfigMapProjectionv1": {
     "schemaName": "io.k8s.api.core.v1.ConfigMapProjection",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ConfigMapVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.ConfigMapVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ConfigMapv1": {
     "schemaName": "io.k8s.api.core.v1.ConfigMap",
@@ -389,11 +389,11 @@
   },
   "ContainerPortv1": {
     "schemaName": "io.k8s.api.core.v1.ContainerPort",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ContainerResizePolicyv1": {
     "schemaName": "io.k8s.api.core.v1.ContainerResizePolicy",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ContainerResourceMetricSourcev2": {
     "schemaName": "io.k8s.api.autoscaling.v2.ContainerResourceMetricSource",
@@ -429,7 +429,7 @@
   },
   "Containerv1": {
     "schemaName": "io.k8s.api.core.v1.Container",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ControllerRevisionv1": {
     "schemaName": "io.k8s.api.apps.v1.ControllerRevision",
@@ -586,7 +586,7 @@
   },
   "DeleteOptionsv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json",
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json",
     "gvk": [
       {
         "group": "",
@@ -1056,19 +1056,19 @@
   },
   "DownwardAPIProjectionv1": {
     "schemaName": "io.k8s.api.core.v1.DownwardAPIProjection",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "DownwardAPIVolumeFilev1": {
     "schemaName": "io.k8s.api.core.v1.DownwardAPIVolumeFile",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "DownwardAPIVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.DownwardAPIVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "EmptyDirVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.EmptyDirVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "EndpointAddressv1": {
     "schemaName": "io.k8s.api.core.v1.EndpointAddress",
@@ -1118,27 +1118,27 @@
   },
   "EnvFromSourcev1": {
     "schemaName": "io.k8s.api.core.v1.EnvFromSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "EnvVarSourcev1": {
     "schemaName": "io.k8s.api.core.v1.EnvVarSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "EnvVarv1": {
     "schemaName": "io.k8s.api.core.v1.EnvVar",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "EphemeralContainerv1": {
     "schemaName": "io.k8s.api.core.v1.EphemeralContainer",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "EphemeralVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.EphemeralVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "EventSourcev1": {
     "schemaName": "io.k8s.api.core.v1.EventSource",
-    "fileName": "apis__events.k8s.io__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "EventsEventSeriesv1": {
     "schemaName": "io.k8s.api.events.v1.EventSeries",
@@ -1172,7 +1172,7 @@
   },
   "ExecActionv1": {
     "schemaName": "io.k8s.api.core.v1.ExecAction",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ExemptPriorityLevelConfigurationv1": {
     "schemaName": "io.k8s.api.flowcontrol.v1.ExemptPriorityLevelConfiguration",
@@ -1212,7 +1212,7 @@
   },
   "FieldsV1v1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.FieldsV1",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "FlexPersistentVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.FlexPersistentVolumeSource",
@@ -1220,7 +1220,7 @@
   },
   "FlexVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.FlexVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "FlockerVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.FlockerVolumeSource",
@@ -1269,11 +1269,11 @@
   },
   "GRPCActionv1": {
     "schemaName": "io.k8s.api.core.v1.GRPCAction",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "GitRepoVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.GitRepoVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "GlusterfsPersistentVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.GlusterfsPersistentVolumeSource",
@@ -1281,7 +1281,7 @@
   },
   "GlusterfsVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.GlusterfsVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "GroupSubjectv1": {
     "schemaName": "io.k8s.api.flowcontrol.v1.GroupSubject",
@@ -1289,7 +1289,7 @@
   },
   "GroupVersionForDiscoveryv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.GroupVersionForDiscovery",
-    "fileName": "apis_openapi.json"
+    "fileName": "apis__authentication.k8s.io_openapi.json"
   },
   "GroupVersionResourcev1alpha1": {
     "schemaName": "io.k8s.api.storagemigration.v1alpha1.GroupVersionResource",
@@ -1305,11 +1305,11 @@
   },
   "HTTPGetActionv1": {
     "schemaName": "io.k8s.api.core.v1.HTTPGetAction",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "HTTPHeaderv1": {
     "schemaName": "io.k8s.api.core.v1.HTTPHeader",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "HTTPIngressPathv1": {
     "schemaName": "io.k8s.api.networking.v1.HTTPIngressPath",
@@ -1371,7 +1371,7 @@
   },
   "HostAliasv1": {
     "schemaName": "io.k8s.api.core.v1.HostAlias",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "HostIPv1": {
     "schemaName": "io.k8s.api.core.v1.HostIP",
@@ -1408,11 +1408,11 @@
   },
   "ISCSIVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.ISCSIVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ImageVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.ImageVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "IngressBackendv1": {
     "schemaName": "io.k8s.api.networking.v1.IngressBackend",
@@ -1486,7 +1486,7 @@
   },
   "IntOrString": {
     "schemaName": "io.k8s.apimachinery.pkg.util.intstr.IntOrString",
-    "fileName": "apis__policy__v1_openapi.json"
+    "fileName": "apis__networking.k8s.io__v1_openapi.json"
   },
   "JSONPatchv1alpha1": {
     "schemaName": "io.k8s.api.admissionregistration.v1alpha1.JSONPatch",
@@ -1543,7 +1543,7 @@
   },
   "KeyToPathv1": {
     "schemaName": "io.k8s.api.core.v1.KeyToPath",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "LabelSelectorAttributesv1": {
     "schemaName": "io.k8s.api.authorization.v1.LabelSelectorAttributes",
@@ -1551,11 +1551,11 @@
   },
   "LabelSelectorRequirementv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement",
-    "fileName": "apis__storage.k8s.io__v1_openapi.json"
+    "fileName": "apis__admissionregistration.k8s.io__v1alpha1_openapi.json"
   },
   "LabelSelectorv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector",
-    "fileName": "apis__storage.k8s.io__v1_openapi.json"
+    "fileName": "apis__admissionregistration.k8s.io__v1alpha1_openapi.json"
   },
   "LeaseCandidateSpecv1alpha2": {
     "schemaName": "io.k8s.api.coordination.v1alpha2.LeaseCandidateSpec",
@@ -1593,11 +1593,11 @@
   },
   "LifecycleHandlerv1": {
     "schemaName": "io.k8s.api.core.v1.LifecycleHandler",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "Lifecyclev1": {
     "schemaName": "io.k8s.api.core.v1.Lifecycle",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "LimitRangeItemv1": {
     "schemaName": "io.k8s.api.core.v1.LimitRangeItem",
@@ -1634,7 +1634,7 @@
   },
   "ListMetav1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "LoadBalancerIngressv1": {
     "schemaName": "io.k8s.api.core.v1.LoadBalancerIngress",
@@ -1646,7 +1646,7 @@
   },
   "LocalObjectReferencev1": {
     "schemaName": "io.k8s.api.core.v1.LocalObjectReference",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "LocalSubjectAccessReviewv1": {
     "schemaName": "io.k8s.api.authorization.v1.LocalSubjectAccessReview",
@@ -1667,7 +1667,7 @@
   },
   "ManagedFieldsEntryv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.ManagedFieldsEntry",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "MatchConditionv1": {
     "schemaName": "io.k8s.api.admissionregistration.v1.MatchCondition",
@@ -1715,7 +1715,7 @@
   },
   "MicroTimev1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime",
-    "fileName": "apis__events.k8s.io__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "MigrationConditionv1alpha1": {
     "schemaName": "io.k8s.api.storagemigration.v1alpha1.MigrationCondition",
@@ -1723,7 +1723,7 @@
   },
   "ModifyVolumeStatusv1": {
     "schemaName": "io.k8s.api.core.v1.ModifyVolumeStatus",
-    "fileName": "apis__apps__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "MutatingAdmissionPolicyBindingSpecv1alpha1": {
     "schemaName": "io.k8s.api.admissionregistration.v1alpha1.MutatingAdmissionPolicyBindingSpec",
@@ -1868,7 +1868,7 @@
   },
   "NodeAffinityv1": {
     "schemaName": "io.k8s.api.core.v1.NodeAffinity",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "NodeConditionv1": {
     "schemaName": "io.k8s.api.core.v1.NodeCondition",
@@ -1900,15 +1900,15 @@
   },
   "NodeSelectorRequirementv1": {
     "schemaName": "io.k8s.api.core.v1.NodeSelectorRequirement",
-    "fileName": "apis__storage.k8s.io__v1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "NodeSelectorTermv1": {
     "schemaName": "io.k8s.api.core.v1.NodeSelectorTerm",
-    "fileName": "apis__storage.k8s.io__v1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "NodeSelectorv1": {
     "schemaName": "io.k8s.api.core.v1.NodeSelector",
-    "fileName": "apis__storage.k8s.io__v1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "NodeSpecv1": {
     "schemaName": "io.k8s.api.core.v1.NodeSpec",
@@ -1949,11 +1949,11 @@
   },
   "ObjectFieldSelectorv1": {
     "schemaName": "io.k8s.api.core.v1.ObjectFieldSelector",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ObjectMetav1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "ObjectMetricSourcev2": {
     "schemaName": "io.k8s.api.autoscaling.v2.ObjectMetricSource",
@@ -1981,7 +1981,7 @@
   },
   "OwnerReferencev1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.OwnerReference",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "ParamKindv1": {
     "schemaName": "io.k8s.api.admissionregistration.v1.ParamKind",
@@ -2013,38 +2013,40 @@
   },
   "Patchv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.Patch",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "PersistentVolumeClaimConditionv1": {
     "schemaName": "io.k8s.api.core.v1.PersistentVolumeClaimCondition",
-    "fileName": "apis__apps__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PersistentVolumeClaimSpecv1": {
     "schemaName": "io.k8s.api.core.v1.PersistentVolumeClaimSpec",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PersistentVolumeClaimStatusv1": {
     "schemaName": "io.k8s.api.core.v1.PersistentVolumeClaimStatus",
-    "fileName": "apis__apps__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PersistentVolumeClaimTemplatev1": {
     "schemaName": "io.k8s.api.core.v1.PersistentVolumeClaimTemplate",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PersistentVolumeClaimVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.PersistentVolumeClaimVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PersistentVolumeClaimv1": {
     "schemaName": "io.k8s.api.core.v1.PersistentVolumeClaim",
-    "fileName": "apis__apps__v1_openapi.json",
+    "fileName": "api__v1_openapi.json",
     "gvk": [
       {
         "group": "",
         "kind": "PersistentVolumeClaim",
         "version": "v1"
       }
-    ]
+    ],
+    "path": "/api/v1/namespaces/{namespace}/persistentvolumeclaims",
+    "namespaced": true
   },
   "PersistentVolumeSpecv1": {
     "schemaName": "io.k8s.api.core.v1.PersistentVolumeSpec",
@@ -2073,15 +2075,15 @@
   },
   "PodAffinityTermv1": {
     "schemaName": "io.k8s.api.core.v1.PodAffinityTerm",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodAffinityv1": {
     "schemaName": "io.k8s.api.core.v1.PodAffinity",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodAntiAffinityv1": {
     "schemaName": "io.k8s.api.core.v1.PodAntiAffinity",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodConditionv1": {
     "schemaName": "io.k8s.api.core.v1.PodCondition",
@@ -2089,11 +2091,11 @@
   },
   "PodDNSConfigOptionv1": {
     "schemaName": "io.k8s.api.core.v1.PodDNSConfigOption",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodDNSConfigv1": {
     "schemaName": "io.k8s.api.core.v1.PodDNSConfig",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodDisruptionBudgetSpecv1": {
     "schemaName": "io.k8s.api.policy.v1.PodDisruptionBudgetSpec",
@@ -2138,11 +2140,11 @@
   },
   "PodOSv1": {
     "schemaName": "io.k8s.api.core.v1.PodOS",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodReadinessGatev1": {
     "schemaName": "io.k8s.api.core.v1.PodReadinessGate",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodResourceClaimStatusv1": {
     "schemaName": "io.k8s.api.core.v1.PodResourceClaimStatus",
@@ -2150,19 +2152,19 @@
   },
   "PodResourceClaimv1": {
     "schemaName": "io.k8s.api.core.v1.PodResourceClaim",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodSchedulingGatev1": {
     "schemaName": "io.k8s.api.core.v1.PodSchedulingGate",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodSecurityContextv1": {
     "schemaName": "io.k8s.api.core.v1.PodSecurityContext",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodSpecv1": {
     "schemaName": "io.k8s.api.core.v1.PodSpec",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodStatusv1": {
     "schemaName": "io.k8s.api.core.v1.PodStatus",
@@ -2170,7 +2172,7 @@
   },
   "PodTemplateSpecv1": {
     "schemaName": "io.k8s.api.core.v1.PodTemplateSpec",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PodTemplatev1": {
     "schemaName": "io.k8s.api.core.v1.PodTemplate",
@@ -2224,11 +2226,11 @@
   },
   "Preconditionsv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.Preconditions",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "PreferredSchedulingTermv1": {
     "schemaName": "io.k8s.api.core.v1.PreferredSchedulingTerm",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "PriorityClassv1": {
     "schemaName": "io.k8s.api.scheduling.v1.PriorityClass",
@@ -2274,15 +2276,15 @@
   },
   "Probev1": {
     "schemaName": "io.k8s.api.core.v1.Probe",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ProjectedVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.ProjectedVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "Quantity": {
     "schemaName": "io.k8s.apimachinery.pkg.api.resource.Quantity",
-    "fileName": "apis__storage.k8s.io__v1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "QueuingConfigurationv1": {
     "schemaName": "io.k8s.api.flowcontrol.v1.QueuingConfiguration",
@@ -2298,11 +2300,11 @@
   },
   "RBDVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.RBDVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "RawExtension": {
     "schemaName": "io.k8s.apimachinery.pkg.runtime.RawExtension",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "RbacSubjectv1": {
     "schemaName": "io.k8s.api.rbac.v1.Subject",
@@ -2422,7 +2424,7 @@
   },
   "ResourceClaimv1": {
     "schemaName": "io.k8s.api.core.v1.ResourceClaim",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ResourceClaimv1alpha3": {
     "schemaName": "io.k8s.api.resource.v1alpha3.ResourceClaim",
@@ -2452,7 +2454,7 @@
   },
   "ResourceFieldSelectorv1": {
     "schemaName": "io.k8s.api.core.v1.ResourceFieldSelector",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ResourceHealthv1": {
     "schemaName": "io.k8s.api.core.v1.ResourceHealth",
@@ -2501,7 +2503,7 @@
   },
   "ResourceRequirementsv1": {
     "schemaName": "io.k8s.api.core.v1.ResourceRequirements",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ResourceRulev1": {
     "schemaName": "io.k8s.api.authorization.v1.ResourceRule",
@@ -2606,7 +2608,7 @@
   },
   "SELinuxOptionsv1": {
     "schemaName": "io.k8s.api.core.v1.SELinuxOptions",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ScaleIOPersistentVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.ScaleIOPersistentVolumeSource",
@@ -2614,19 +2616,19 @@
   },
   "ScaleIOVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.ScaleIOVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ScaleSpecv1": {
     "schemaName": "io.k8s.api.autoscaling.v1.ScaleSpec",
-    "fileName": "apis__apps__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ScaleStatusv1": {
     "schemaName": "io.k8s.api.autoscaling.v1.ScaleStatus",
-    "fileName": "apis__apps__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "Scalev1": {
     "schemaName": "io.k8s.api.autoscaling.v1.Scale",
-    "fileName": "apis__apps__v1_openapi.json",
+    "fileName": "api__v1_openapi.json",
     "gvk": [
       {
         "group": "autoscaling",
@@ -2649,19 +2651,19 @@
   },
   "SeccompProfilev1": {
     "schemaName": "io.k8s.api.core.v1.SeccompProfile",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "SecretEnvSourcev1": {
     "schemaName": "io.k8s.api.core.v1.SecretEnvSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "SecretKeySelectorv1": {
     "schemaName": "io.k8s.api.core.v1.SecretKeySelector",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "SecretProjectionv1": {
     "schemaName": "io.k8s.api.core.v1.SecretProjection",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "SecretReferencev1": {
     "schemaName": "io.k8s.api.core.v1.SecretReference",
@@ -2669,7 +2671,7 @@
   },
   "SecretVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.SecretVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "Secretv1": {
     "schemaName": "io.k8s.api.core.v1.Secret",
@@ -2686,7 +2688,7 @@
   },
   "SecurityContextv1": {
     "schemaName": "io.k8s.api.core.v1.SecurityContext",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "SelectableFieldv1": {
     "schemaName": "io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.SelectableField",
@@ -2762,7 +2764,7 @@
   },
   "ServerAddressByClientCIDRv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.ServerAddressByClientCIDR",
-    "fileName": "apis_openapi.json"
+    "fileName": "apis__authentication.k8s.io_openapi.json"
   },
   "ServerStorageVersionv1alpha1": {
     "schemaName": "io.k8s.api.apiserverinternal.v1alpha1.ServerStorageVersion",
@@ -2774,7 +2776,7 @@
   },
   "ServiceAccountTokenProjectionv1": {
     "schemaName": "io.k8s.api.core.v1.ServiceAccountTokenProjection",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "ServiceAccountv1": {
     "schemaName": "io.k8s.api.core.v1.ServiceAccount",
@@ -2845,7 +2847,7 @@
   },
   "SleepActionv1": {
     "schemaName": "io.k8s.api.core.v1.SleepAction",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "StatefulSetConditionv1": {
     "schemaName": "io.k8s.api.apps.v1.StatefulSetCondition",
@@ -2886,15 +2888,15 @@
   },
   "StatusCausev1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.StatusCause",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "StatusDetailsv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.StatusDetails",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "Statusv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.Status",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json",
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json",
     "gvk": [
       {
         "group": "",
@@ -2922,7 +2924,7 @@
   },
   "StorageOSVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.StorageOSVolumeSource",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "StorageTokenRequestv1": {
     "schemaName": "io.k8s.api.storage.v1.TokenRequest",
@@ -3009,11 +3011,11 @@
   },
   "Sysctlv1": {
     "schemaName": "io.k8s.api.core.v1.Sysctl",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "TCPSocketActionv1": {
     "schemaName": "io.k8s.api.core.v1.TCPSocketAction",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "Taintv1": {
     "schemaName": "io.k8s.api.core.v1.Taint",
@@ -3021,7 +3023,7 @@
   },
   "Timev1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.Time",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json"
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json"
   },
   "TokenRequestSpecv1": {
     "schemaName": "io.k8s.api.authentication.v1.TokenRequestSpec",
@@ -3054,7 +3056,7 @@
   },
   "Tolerationv1": {
     "schemaName": "io.k8s.api.core.v1.Toleration",
-    "fileName": "apis__node.k8s.io__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "TopologySelectorLabelRequirementv1": {
     "schemaName": "io.k8s.api.core.v1.TopologySelectorLabelRequirement",
@@ -3066,7 +3068,7 @@
   },
   "TopologySpreadConstraintv1": {
     "schemaName": "io.k8s.api.core.v1.TopologySpreadConstraint",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "TypeCheckingv1": {
     "schemaName": "io.k8s.api.admissionregistration.v1.TypeChecking",
@@ -3082,7 +3084,7 @@
   },
   "TypedObjectReferencev1": {
     "schemaName": "io.k8s.api.core.v1.TypedObjectReference",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "UncountedTerminatedPodsv1": {
     "schemaName": "io.k8s.api.batch.v1.UncountedTerminatedPods",
@@ -3090,7 +3092,7 @@
   },
   "UserInfov1": {
     "schemaName": "io.k8s.api.authentication.v1.UserInfo",
-    "fileName": "apis__authentication.k8s.io__v1beta1_openapi.json"
+    "fileName": "apis__authentication.k8s.io__v1_openapi.json"
   },
   "UserSubjectv1": {
     "schemaName": "io.k8s.api.flowcontrol.v1.UserSubject",
@@ -3266,7 +3268,7 @@
   },
   "VolumeDevicev1": {
     "schemaName": "io.k8s.api.core.v1.VolumeDevice",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "VolumeErrorv1": {
     "schemaName": "io.k8s.api.storage.v1.VolumeError",
@@ -3278,7 +3280,7 @@
   },
   "VolumeMountv1": {
     "schemaName": "io.k8s.api.core.v1.VolumeMount",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "VolumeNodeAffinityv1": {
     "schemaName": "io.k8s.api.core.v1.VolumeNodeAffinity",
@@ -3290,15 +3292,15 @@
   },
   "VolumeProjectionv1": {
     "schemaName": "io.k8s.api.core.v1.VolumeProjection",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "VolumeResourceRequirementsv1": {
     "schemaName": "io.k8s.api.core.v1.VolumeResourceRequirements",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "Volumev1": {
     "schemaName": "io.k8s.api.core.v1.Volume",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "VsphereVirtualDiskVolumeSourcev1": {
     "schemaName": "io.k8s.api.core.v1.VsphereVirtualDiskVolumeSource",
@@ -3306,7 +3308,7 @@
   },
   "WatchEventv1": {
     "schemaName": "io.k8s.apimachinery.pkg.apis.meta.v1.WatchEvent",
-    "fileName": "apis__storagemigration.k8s.io__v1alpha1_openapi.json",
+    "fileName": "apis__resource.k8s.io__v1alpha3_openapi.json",
     "gvk": [
       {
         "group": "",
@@ -3621,10 +3623,10 @@
   },
   "WeightedPodAffinityTermv1": {
     "schemaName": "io.k8s.api.core.v1.WeightedPodAffinityTerm",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   },
   "WindowsSecurityContextOptionsv1": {
     "schemaName": "io.k8s.api.core.v1.WindowsSecurityContextOptions",
-    "fileName": "apis__batch__v1_openapi.json"
+    "fileName": "api__v1_openapi.json"
   }
 }

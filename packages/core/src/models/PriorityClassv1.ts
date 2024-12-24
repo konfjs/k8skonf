@@ -45,8 +45,10 @@ export class PriorityClassv1 extends ApiObject {
 
   constructor(app: K8sApp, name: string, args: PriorityClassv1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.description = args.description;
     this.globalDefault = args.globalDefault;
     this.preemptionPolicy = args.preemptionPolicy;

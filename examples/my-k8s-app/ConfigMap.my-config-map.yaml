@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: fooo
   name: my-config-map
+  namespace: fooo
 data:
   key1: value1
   key2: value2

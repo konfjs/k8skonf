@@ -45,8 +45,10 @@ export class CSIStorageCapacityv1 extends NamespacedApiObject {
 
   constructor(app: K8sApp, name: string, args: CSIStorageCapacityv1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.capacity = args.capacity;
     this.maximumVolumeSize = args.maximumVolumeSize;
     this.nodeTopology = args.nodeTopology;

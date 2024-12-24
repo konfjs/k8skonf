@@ -37,8 +37,10 @@ export class ClusterRolev1 extends ApiObject {
 
   constructor(app: K8sApp, name: string, args: ClusterRolev1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.aggregationRule = args.aggregationRule;
     this.rules = args.rules;
     app.addResource(this);
