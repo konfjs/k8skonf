@@ -30,8 +30,10 @@ export class PodTemplatev1 extends NamespacedApiObject {
 
   constructor(app: K8sApp, name: string, args: PodTemplatev1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.template = args.template;
     app.addResource(this);
   }

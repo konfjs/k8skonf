@@ -35,8 +35,10 @@ export class VolumeAttributesClassv1beta1 extends ApiObject {
 
   constructor(app: K8sApp, name: string, args: VolumeAttributesClassv1beta1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.driverName = args.driverName;
     this.parameters = args.parameters;
     app.addResource(this);

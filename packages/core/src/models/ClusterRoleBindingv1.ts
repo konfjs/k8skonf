@@ -37,8 +37,10 @@ export class ClusterRoleBindingv1 extends ApiObject {
 
   constructor(app: K8sApp, name: string, args: ClusterRoleBindingv1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.roleRef = args.roleRef;
     this.subjects = args.subjects;
     app.addResource(this);

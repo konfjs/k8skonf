@@ -34,8 +34,10 @@ export class ControllerRevisionv1 extends NamespacedApiObject {
 
   constructor(app: K8sApp, name: string, args: ControllerRevisionv1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.data = args.data;
     this.revision = args.revision;
     app.addResource(this);

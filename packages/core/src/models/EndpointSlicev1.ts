@@ -41,8 +41,10 @@ export class EndpointSlicev1 extends NamespacedApiObject {
 
   constructor(app: K8sApp, name: string, args: EndpointSlicev1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.addressType = args.addressType;
     this.endpoints = args.endpoints;
     this.ports = args.ports;

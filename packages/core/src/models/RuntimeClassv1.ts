@@ -42,8 +42,10 @@ export class RuntimeClassv1 extends ApiObject {
 
   constructor(app: K8sApp, name: string, args: RuntimeClassv1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.handler = args.handler;
     this.overhead = args.overhead;
     this.scheduling = args.scheduling;

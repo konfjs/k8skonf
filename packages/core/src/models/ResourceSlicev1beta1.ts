@@ -31,8 +31,10 @@ export class ResourceSlicev1beta1 extends ApiObject {
 
   constructor(app: K8sApp, name: string, args: ResourceSlicev1beta1Args) {
     super(args.metadata?.name || name);
-    this.metadata = args.metadata || { name };
-    this.metadata.name ??= name;
+    this.metadata = {
+      name: args.metadata?.name || name,
+      ...args.metadata,
+    };
     this.spec = args.spec;
     app.addResource(this);
   }
