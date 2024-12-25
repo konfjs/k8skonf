@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/konfjs/k8skonf/compare/cli-v0.3.7...cli-v0.4.0) (2024-12-25)
+
+
+### Features
+
+* add k8skonfig.yaml file for declarative crd configs ([#70](https://github.com/konfjs/k8skonf/issues/70)) ([572272a](https://github.com/konfjs/k8skonf/commit/572272ac395329ffab044b58585f6b5285612f6c))
+
 ## [0.3.7](https://github.com/konfjs/k8skonf/compare/cli-v0.3.6...cli-v0.3.7) (2024-12-24)
 
 
