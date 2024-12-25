@@ -15,10 +15,14 @@ export function lowerCaseFirstLetter(val: string) {
 
 export function formatCode(modelsPath: string) {
     if (resolvePackage('@biomejs/biome')) {
-        console.log(`Formatting code in ${modelsPath} using ${pc.yellowBright('Biome')}`);
+        console.log(
+            `Formatting code in ${pc.yellowBright(modelsPath)} using ${pc.yellowBright('Biome')}`,
+        );
         execSync(`npx biome format --write --indent-width=2 ${modelsPath}/`, { stdio: 'inherit' });
     } else if (resolvePackage('prettier')) {
-        console.log(`Formatting code in ${modelsPath} using ${pc.yellowBright('Prettier')}`);
+        console.log(
+            `Formatting code in ${pc.yellowBright(modelsPath)} using ${pc.yellowBright('Prettier')}`,
+        );
         execSync(`npx prettier --write ${modelsPath}/`, { stdio: 'inherit' });
     } else {
         console.log(
