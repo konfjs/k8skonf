@@ -20,6 +20,9 @@ importers:
 
   examples:
     dependencies:
+      '@k8skonf/cli':
+        specifier: workspace:*
+        version: link:../packages/cli
       '@k8skonf/core':
         specifier: workspace:*
         version: link:../packages/core

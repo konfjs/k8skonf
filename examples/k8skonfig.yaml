@@ -1,0 +1,8 @@
+outDir: crds
+crds:
+  argocd:
+    - https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/v2.13.2/manifests/crds/application-crd.yaml
+    - https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/v2.13.2/manifests/crds/applicationset-crd.yaml
+    - https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/v2.13.2/manifests/crds/appproject-crd.yaml
+  external-secrets:
+    - https://raw.githubusercontent.com/external-secrets/external-secrets/refs/tags/v0.12.1/deploy/crds/bundle.yaml

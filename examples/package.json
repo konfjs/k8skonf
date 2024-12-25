@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@k8skonf/cli": "workspace:*",
     "@k8skonf/core": "workspace:*"
   }
 }
