@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.9](https://github.com/konfjs/k8skonf/compare/core-v1.32.8...core-v1.32.9) (2024-12-31)
+
+
+### Bug Fixes
+
+* **core:** disable aliasDuplicateObjects ([#73](https://github.com/konfjs/k8skonf/issues/73)) ([f12538f](https://github.com/konfjs/k8skonf/commit/f12538fb3aedb9425e106e3a1b815fcac234b45a))
+
 ## [1.32.8](https://github.com/konfjs/k8skonf/compare/core-v1.32.7...core-v1.32.8) (2024-12-24)
 
 
