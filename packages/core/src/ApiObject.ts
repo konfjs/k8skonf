@@ -26,7 +26,7 @@ export abstract class ApiObject {
 
     toYaml(): string {
         const { name, ...rest } = this;
-        return yaml.stringify(rest, { schema: 'yaml-1.1' });
+        return yaml.stringify(rest, { schema: 'yaml-1.1', aliasDuplicateObjects: false });
     }
 }
 
