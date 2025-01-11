@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.10](https://github.com/konfjs/k8skonf/compare/core-v1.32.9...core-v1.32.10) (2025-01-11)
+
+
+### Dependencies
+
+* bump dependencies ([#76](https://github.com/konfjs/k8skonf/issues/76)) ([c28613b](https://github.com/konfjs/k8skonf/commit/c28613bb5bd878b0a777a71302bc7049b9954416))
+
 ## [1.32.9](https://github.com/konfjs/k8skonf/compare/core-v1.32.8...core-v1.32.9) (2024-12-31)
 
 
