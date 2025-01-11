@@ -96,7 +96,15 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
             const cacheDir = path.join(cacheHome, pkg);
             fs.mkdirSync(cacheDir, { recursive: true });
             for (const url of urls) {
-                await fetchAndParseCRDs(output[pkg], url, cacheDir);
+                try {
+                    new URL(url);
+                    await fetchAndParseCRDs(output[pkg], url, cacheDir);
+                } catch (e) {
+                    log(`Reading CRDs from ${pc.yellowBright(url)}`);
+                    yaml.parseAllDocuments(fs.readFileSync(url, 'utf-8')).forEach((c) =>
+                        output[pkg].push(c.toJS()),
+                    );
+                }
             }
         }
     }

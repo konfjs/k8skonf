@@ -6,3 +6,5 @@ crds:
     - https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/v2.13.2/manifests/crds/appproject-crd.yaml
   external-secrets:
     - https://raw.githubusercontent.com/external-secrets/external-secrets/refs/tags/v0.12.1/deploy/crds/bundle.yaml
+  moco:
+    - moco/CustomResourceDefinition.mysqlclusters.moco.cybozu.com.yaml
