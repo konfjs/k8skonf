@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.1](https://github.com/konfjs/k8skonf/compare/cli-v0.4.0...cli-v0.4.1) (2025-01-11)
+
+
+### Bug Fixes
+
+* **cli:** read local crd yaml files from config ([#79](https://github.com/konfjs/k8skonf/issues/79)) ([f948e14](https://github.com/konfjs/k8skonf/commit/f948e149af78c94e14d7e9f83be47b1d7ded3c9b))
+
+
+### Dependencies
+
+* bump dependencies ([#76](https://github.com/konfjs/k8skonf/issues/76)) ([c28613b](https://github.com/konfjs/k8skonf/commit/c28613bb5bd878b0a777a71302bc7049b9954416))
+
 ## [0.4.0](https://github.com/konfjs/k8skonf/compare/cli-v0.3.7...cli-v0.4.0) (2024-12-25)
 
 
