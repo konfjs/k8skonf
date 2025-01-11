@@ -23,6 +23,11 @@
       "type": "ci",
       "hidden": false,
       "section": "Chores"
+    },
+    {
+      "type": "deps",
+      "hidden": false,
+      "section": "Dependencies"
     }
   ],
   "packages": {
