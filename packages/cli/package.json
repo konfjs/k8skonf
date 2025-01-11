@@ -55,14 +55,14 @@
   "devDependencies": {
     "@k8skonf/core": "workspace:*",
     "@openapitools/openapi-generator-cli": "2.15.3",
-    "typescript": "5.7.2"
+    "typescript": "5.7.3"
   },
   "dependencies": {
-    "commander": "^12.1.0",
+    "commander": "^13.0.0",
     "json-schema-to-typescript": "^15.0.3",
     "picocolors": "^1.1.1",
     "resolve-pkg": "^2.0.0",
-    "ts-morph": "^24.0.0",
-    "yaml": "^2.6.1"
+    "ts-morph": "^25.0.0",
+    "yaml": "^2.7.0"
   }
 }
