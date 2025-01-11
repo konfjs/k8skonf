@@ -26,13 +26,6 @@ importers:
       '@k8skonf/core':
         specifier: workspace:*
         version: link:../packages/core
-    devDependencies:
-      '@tfkonf/core':
-        specifier: 0.2.1
-        version: 0.2.1
-      '@tfkonf/provider-google':
-        specifier: 0.1.1
-        version: 0.1.1
 
   packages/cli:
     dependencies:
@@ -206,12 +199,6 @@ packages:
     resolution: {integrity: sha512-2UBnsDlMt36thhdXxisbA1qReVtbCaw+NCvXoslRXlaJBL4qkAmZUhNeDLNu3LCbwA2PASMWhJSqeLwgwMCitw==}
     engines: {node: '>=16'}
     hasBin: true
-
-  '@tfkonf/core@0.2.1':
-    resolution: {integrity: sha512-qJMtToEhm3ap7rYiHQamW8G7HclvvRthF7usY33ysLWigzeb1Wml7r49jYPgzFDtqkIkNeMtmWMFF35FM+w+Zw==}
-
-  '@tfkonf/provider-google@0.1.1':
-    resolution: {integrity: sha512-8V140QCjsyQ33U/2rZCjNLquPSHxBOXExwkILY5Yxh2HAG+VqzGZ6/R3mgDuu6eNH6H/bnI5kc5R18dThRS35Q==}
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -986,12 +973,6 @@ snapshots:
       - debug
       - encoding
       - supports-color
-
-  '@tfkonf/core@0.2.1': {}
-
-  '@tfkonf/provider-google@0.1.1':
-    dependencies:
-      '@tfkonf/core': 0.2.1
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
