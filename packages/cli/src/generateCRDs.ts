@@ -45,7 +45,7 @@ interface K8sList {
 }
 
 function isK8sList(o: any | K8sList): o is K8sList {
-    return o && typeof(o) === "object" && "List" === o["kind"];
+    return o && typeof(o) === "object" && o["kind"] === "List";
 }
 
 interface K8sKonfig {
