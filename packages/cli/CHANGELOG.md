@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/konfjs/k8skonf/compare/cli-v0.4.1...cli-v0.5.0) (2025-01-17)
+
+
+### Features
+
+* **cli:** parse k8sList for collections of CRDs ([#80](https://github.com/konfjs/k8skonf/issues/80)) ([731d7be](https://github.com/konfjs/k8skonf/commit/731d7bef6fc16aee192f69dcc3dd28309628beaa))
+
 ## [0.4.1](https://github.com/konfjs/k8skonf/compare/cli-v0.4.0...cli-v0.4.1) (2025-01-11)
 
 

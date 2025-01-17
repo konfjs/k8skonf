@@ -1,6 +1,6 @@
 {
   "name": "@k8skonf/cli",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "author": {
     "name": "konfjs",
     "url": "https://github.com/konfjs"
