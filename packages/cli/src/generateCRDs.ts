@@ -35,6 +35,19 @@ interface CRD {
     };
 }
 
+interface K8sList {
+    apiVersion: string;
+    kind: "List",
+    items: CRD[],
+    metadata: {
+        resourceVersion: string
+    }
+}
+
+function isK8sList(o: any | K8sList): o is K8sList {
+    return o && typeof(o) === "object" && o["kind"] === "List";
+}
+
 interface K8sKonfig {
     /**
      * @default "./crds"
@@ -52,6 +65,16 @@ export function readConfig(configPath: string) {
     return config;
 }
 
+function parseCRDs(crds: CRD[], data: string) {
+    yaml.parseAllDocuments(data).forEach((c) => {
+        const json = c.toJS();
+        if (isK8sList(json)) {
+            json.items.forEach((subC)=>crds.push(subC));
+        } else
+            crds.push(json);
+    });
+}
+
 async function fetchAndParseCRDs(crds: CRD[], url: string, cacheDir: string) {
     const cacheId = crypto.createHash('sha1').update(url).digest('hex');
     const yamlSavePath = path.join(cacheDir, `${cacheId}-${path.basename(url)}`);
@@ -63,9 +86,7 @@ async function fetchAndParseCRDs(crds: CRD[], url: string, cacheDir: string) {
     } else {
         log(`Reading CRDs from ${pc.yellowBright(url)} (cached)`);
     }
-    yaml.parseAllDocuments(fs.readFileSync(yamlSavePath, 'utf-8')).forEach((c) =>
-        crds.push(c.toJS()),
-    );
+    parseCRDs(crds, fs.readFileSync(yamlSavePath, 'utf-8'))
 }
 
 interface Output {
@@ -86,9 +107,7 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
             await fetchAndParseCRDs(output[''], url.toString(), cacheHome);
         } catch (e) {
             log(`Reading CRDs from ${pc.yellowBright(crdPathOrUrl)}`);
-            yaml.parseAllDocuments(fs.readFileSync(crdPathOrUrl, 'utf-8')).forEach((c) =>
-                output[''].push(c.toJS()),
-            );
+            parseCRDs(output[''], fs.readFileSync(crdPathOrUrl, 'utf-8'));
         }
     } else if (config) {
         for (const [pkg, urls] of Object.entries(config.crds || {})) {
@@ -101,9 +120,7 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
                     await fetchAndParseCRDs(output[pkg], url, cacheDir);
                 } catch (e) {
                     log(`Reading CRDs from ${pc.yellowBright(url)}`);
-                    yaml.parseAllDocuments(fs.readFileSync(url, 'utf-8')).forEach((c) =>
-                        output[pkg].push(c.toJS()),
-                    );
+                    parseCRDs(output[pkg], fs.readFileSync(url, 'utf-8'));
                 }
             }
         }
