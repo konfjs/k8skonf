@@ -12,5 +12,5 @@ updates:
     schedule:
       interval: "daily"
     commit-message:
-      prefix: ""
-      prefix-development: ""
+      prefix: "deps"
+      prefix-development: "deps-dev"
