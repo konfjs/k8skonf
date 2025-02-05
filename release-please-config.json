@@ -7,7 +7,7 @@
     {
       "type": "feat",
       "hidden": false,
-      "section": "Features"
+      "section": "New Features"
     },
     {
       "type": "fix",
@@ -26,6 +26,11 @@
     },
     {
       "type": "deps",
+      "hidden": false,
+      "section": "Dependencies"
+    },
+    {
+      "type": "deps-dev",
       "hidden": false,
       "section": "Dependencies"
     }
