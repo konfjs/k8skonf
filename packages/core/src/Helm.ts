@@ -5,12 +5,12 @@ import * as path from 'node:path';
 import * as yaml from 'yaml';
 import { ApiObject } from './ApiObject.js';
 import { K8sApp } from './K8sApp.js';
-import { ObjectMetav1 } from './models/ObjectMetav1.js';
+import { ObjectMeta } from './models/meta/v1/ObjectMeta';
 
 interface HelmObjectArgs {
     readonly apiVersion: string;
     readonly kind: string;
-    readonly metadata: ObjectMetav1;
+    readonly metadata: ObjectMeta;
     readonly spec: any;
     readonly [key: string]: any;
 }
@@ -18,7 +18,7 @@ interface HelmObjectArgs {
 class HelmObject extends ApiObject {
     readonly apiVersion: string;
     readonly kind: string;
-    readonly metadata: ObjectMetav1;
+    readonly metadata: ObjectMeta;
     readonly spec: any;
     readonly [key: string]: any;
     constructor(name: string, args: HelmObjectArgs) {
