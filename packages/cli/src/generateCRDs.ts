@@ -7,7 +7,7 @@ import { compile } from 'json-schema-to-typescript';
 import pc from 'picocolors';
 import { ClassDeclarationStructure, Project, StructureKind } from 'ts-morph';
 import * as yaml from 'yaml';
-import { formatCode } from './utils.js';
+import { formatCode } from './utils';
 
 interface CRD {
     apiVersion: string;
@@ -37,15 +37,15 @@ interface CRD {
 
 interface K8sList {
     apiVersion: string;
-    kind: "List",
-    items: CRD[],
+    kind: 'List';
+    items: CRD[];
     metadata: {
-        resourceVersion: string
-    }
+        resourceVersion: string;
+    };
 }
 
 function isK8sList(o: any | K8sList): o is K8sList {
-    return o && typeof(o) === "object" && o["kind"] === "List";
+    return o && typeof o === 'object' && o.kind === 'List';
 }
 
 interface K8sKonfig {
@@ -69,9 +69,8 @@ function parseCRDs(crds: CRD[], data: string) {
     yaml.parseAllDocuments(data).forEach((c) => {
         const json = c.toJS();
         if (isK8sList(json)) {
-            json.items.forEach((subC)=>crds.push(subC));
-        } else
-            crds.push(json);
+            json.items.forEach((subC) => crds.push(subC));
+        } else crds.push(json);
     });
 }
 
@@ -86,7 +85,7 @@ async function fetchAndParseCRDs(crds: CRD[], url: string, cacheDir: string) {
     } else {
         log(`Reading CRDs from ${pc.yellowBright(url)} (cached)`);
     }
-    parseCRDs(crds, fs.readFileSync(yamlSavePath, 'utf-8'))
+    parseCRDs(crds, fs.readFileSync(yamlSavePath, 'utf-8'));
 }
 
 interface Output {

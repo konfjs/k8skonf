@@ -133,6 +133,7 @@ dist
 *.cts
 *.mjs
 
+.DS_Store
 
-packages/cli/files
+packages/cli/gen
 packages/cli/src/models
