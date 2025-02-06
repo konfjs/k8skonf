@@ -1,3 +1,4 @@
+import { log } from 'node:console';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import pc from 'picocolors';
@@ -14,46 +15,28 @@ import {
     StructureKind,
     SyntaxKind,
 } from 'ts-morph';
-import { formatCode, removeUnusedFiles } from './utils.js';
-
-interface GroupVersionKindMapOutput {
-    /**
-     * @example "Deploymentv1"
-     */
-    [schemaName: string]: {
-        /**
-         * @example "io.k8s.api.apps.v1.Deployment"
-         */
-        originalSchemaName: string;
-        /**
-         * @example '[{group: "apps", kind: "Deployment", version: "v1"}]'
-         */
-        gvk?: {
-            group: string;
-            kind: string;
-            version: string;
-        }[];
-        /**
-         * @example "/apis/apps/v1/namespaces/{namespace}/deployments"
-         */
-        path?: string;
-        namespaced?: boolean;
-    };
-}
+import type { Schemas } from './parseSchemas';
+import { formatCode, removeUnusedFiles } from './utils';
 
 function removeUnusedThings(
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
     className: string,
-    groupVersionKindMap: GroupVersionKindMapOutput,
 ) {
-    const statusImport = `${groupVersionKindMap[className]?.gvk?.[0].kind}Status${groupVersionKindMap[className]?.gvk?.[0].version}`;
     sourceFile.getImportDeclaration('../http/http.js')?.remove();
-    sourceFile.getImportDeclaration(`../models/${statusImport}.js`)?.remove();
-    sourceFile.getImportDeclaration('../models/SubjectAccessReviewStatusv1.js')?.remove();
-    sourceFile.getImportDeclaration('../models/SubjectRulesReviewStatusv1.js')?.remove();
-    sourceFile.getImportDeclaration('../models/Quantity.js')?.remove();
-    sourceFile.getImportDeclaration('../models/IntOrString.js')?.remove();
+    sourceFile.getImportDeclaration(`../models/${className}Status.js`)?.remove();
+    sourceFile
+        .getImportDeclaration('../models/IoK8sApiAuthorizationV1SubjectAccessReviewStatus.js')
+        ?.remove();
+    sourceFile
+        .getImportDeclaration('../models/IoK8sApiAuthorizationV1SubjectRulesReviewStatus.js')
+        ?.remove();
+    sourceFile
+        .getImportDeclaration('../models/IoK8sApimachineryPkgApiResourceQuantity.js')
+        ?.remove();
+    sourceFile
+        .getImportDeclaration('../models/IoK8sApimachineryPkgUtilIntstrIntOrString.js')
+        ?.remove();
     classDeclaration.getConstructors()[0]?.remove();
     classDeclaration.getStaticMethod('getAttributeTypeMap')?.remove();
     classDeclaration.getStaticMember('discriminator')?.remove();
@@ -73,7 +56,7 @@ function replaceRefs(sourceFile: SourceFile) {
     t?.findReferencesAsNodes().forEach((node) => {
         const typeRef = node.getFirstAncestorByKind(SyntaxKind.TypeReference);
         if (typeRef) {
-            console.log(
+            log(
                 `Replacing ${pc.gray(typeRef.getText())} in ${pc.cyan(typeRef.getSourceFile().getBaseName())} with ${pc.yellowBright('number | string')}`,
             );
             typeRef.replaceWithText('number | string');
@@ -83,8 +66,12 @@ function replaceRefs(sourceFile: SourceFile) {
 }
 
 function replaceNumberStringTypes(project: Project, modelsPath: string) {
-    const quantityFile = project.getSourceFile(path.join(modelsPath, 'Quantity.ts'));
-    const intOrStringFile = project.getSourceFile(path.join(modelsPath, 'IntOrString.ts'));
+    const quantityFile = project.getSourceFile(
+        path.join(modelsPath, 'IoK8sApimachineryPkgApiResourceQuantity.ts'),
+    );
+    const intOrStringFile = project.getSourceFile(
+        path.join(modelsPath, 'IoK8sApimachineryPkgUtilIntstrIntOrString.ts'),
+    );
 
     if (quantityFile) {
         replaceRefs(quantityFile);
@@ -95,15 +82,25 @@ function replaceNumberStringTypes(project: Project, modelsPath: string) {
     }
 }
 
-function morph() {
+function createApiDirs(schemas: Schemas, modelsPath: string) {
+    for (const schema of Object.values(schemas.classes)) {
+        const apiDir = path.join(modelsPath, schema.group, schema.version);
+        fs.mkdirSync(apiDir, { recursive: true });
+    }
+}
+
+function main() {
     const corePath = path.join(import.meta.dirname, '../../core');
     const modelsPath = path.join(corePath, 'src/models');
     removeUnusedFiles(modelsPath);
+    /**
+     * Format code to get rid of the quotes around the keys
+     * so it's easier to work with ts-morph.
+     */
     formatCode(modelsPath);
 
     const project = new Project({
         tsConfigFilePath: path.join(corePath, 'tsconfig.json'),
-
         manipulationSettings: {
             indentationText: IndentationText.TwoSpaces,
             quoteKind: QuoteKind.Double,
@@ -113,38 +110,29 @@ function morph() {
     });
     replaceNumberStringTypes(project, modelsPath);
 
-    const groupVersionKindMap: GroupVersionKindMapOutput = JSON.parse(
-        fs.readFileSync(
-            path.join(import.meta.dirname, '..', 'group-version-kind-map.json'),
-            'utf-8',
-        ),
+    const schemas: Schemas = JSON.parse(
+        fs.readFileSync(path.join(import.meta.dirname, '../schemas.json'), 'utf-8'),
     );
+    createApiDirs(schemas, modelsPath);
 
     for (const sourceFile of project.getSourceFiles()) {
+        /**
+         * Only process files in the src/models directory.
+         */
         if (modelsPath === sourceFile.getDirectoryPath()) {
             removeAutogeneratedComments(sourceFile);
+            /**
+             * openapi-generator generates one class per file.
+             */
             const classDeclaration = sourceFile.getClasses()[0];
             const className = classDeclaration?.getName();
-
-            if (classDeclaration && className) {
-                removeUnusedThings(sourceFile, classDeclaration, className, groupVersionKindMap);
-                /**
-                 * Remove all the Status classes.
-                 */
-                const isStatus = /^[A-Za-z]+Statusv\d/;
-                if (sourceFile.getBaseNameWithoutExtension().match(isStatus)) {
-                    sourceFile.delete();
-                    continue;
-                }
-                /**
-                 * If the groupVersionKindMap contains the "path" property, then it's a Kubernetes API resource.
-                 * Everything else should be interfaces.
-                 */
-                if (groupVersionKindMap[className]?.path) {
+            if (className) {
+                removeUnusedThings(sourceFile, classDeclaration, className);
+                if (schemas.classes[className]) {
                     const apiVersionProperty = classDeclaration.getProperty('apiVersion');
                     if (apiVersionProperty) {
-                        const group = groupVersionKindMap[className].gvk?.[0].group;
-                        const version = groupVersionKindMap[className].gvk?.[0].version;
+                        const group = schemas.classes[className].group;
+                        const version = schemas.classes[className].version;
                         const groupVersion = group ? `${group}/${version}` : version;
                         apiVersionProperty.setInitializer(`'${groupVersion}'`);
                         apiVersionProperty.removeType();
@@ -154,9 +142,7 @@ function morph() {
 
                     const kindProperty = classDeclaration.getProperty('kind');
                     if (kindProperty) {
-                        kindProperty.setInitializer(
-                            `'${groupVersionKindMap[className].gvk?.[0].kind}'`,
-                        );
+                        kindProperty.setInitializer(`'${schemas.classes[className].kind}'`);
                         kindProperty.removeType();
                         kindProperty.setIsReadonly(true);
                         kindProperty.setHasQuestionToken(false);
@@ -171,7 +157,7 @@ function morph() {
 
                     const i: InterfaceDeclarationStructure = {
                         kind: StructureKind.Interface,
-                        name: `${className}Args`,
+                        name: `${schemas.classes[className].kind}Args`,
                         isExported: true,
                         properties: interfaceProps,
                     };
@@ -189,7 +175,7 @@ function morph() {
                             },
                             {
                                 name: 'args',
-                                type: `${className}Args`,
+                                type: `${schemas.classes[className].kind}Args`,
                             },
                         ],
                     };
@@ -226,16 +212,18 @@ function morph() {
                             c.statements.push('  ...args.metadata,');
                             c.statements.push('};');
                             prop.setHasQuestionToken(false);
-                            if (groupVersionKindMap[className].namespaced) {
+                            if (schemas.classes[className].namespaced) {
                                 classDeclaration.setExtends('NamespacedApiObject');
-                                prop.setType('NamespacedObjectMetav1');
+                                prop.setType('NamespacedObjectMeta');
                                 sourceFile.addImportDeclaration({
                                     moduleSpecifier: '../ApiObject.js',
-                                    namedImports: ['NamespacedObjectMetav1', 'NamespacedApiObject'],
+                                    namedImports: ['NamespacedObjectMeta', 'NamespacedApiObject'],
                                 });
-                                interfaceProp.type = 'NamespacedObjectMetav1';
+                                interfaceProp.type = 'NamespacedObjectMeta';
                                 sourceFile
-                                    .getImportDeclaration('../models/ObjectMetav1.js')
+                                    .getImportDeclaration(
+                                        '../models/IoK8sApimachineryPkgApisMetaV1ObjectMeta.js',
+                                    )
                                     ?.remove();
                             } else {
                                 classDeclaration.setExtends('ApiObject');
@@ -243,7 +231,7 @@ function morph() {
                                     moduleSpecifier: '../ApiObject.js',
                                     namedImports: ['ApiObject'],
                                 });
-                                interfaceProp.type = 'ObjectMetav1';
+                                interfaceProp.type = 'ApiObject';
                             }
                         } else {
                             c.statements.push(`this.${prop.getName()} = args.${prop.getName()};`);
@@ -253,8 +241,9 @@ function morph() {
                     sourceFile.insertInterface(classDeclaration.getChildIndex(), i);
                     c.statements.push('app.addResource(this);');
                     classDeclaration.addConstructor(c);
+                    classDeclaration.rename(schemas.classes[className].kind);
                 } else {
-                    if (className === 'ObjectMetav1') {
+                    if (className === 'IoK8sApimachineryPkgApisMetaV1ObjectMeta') {
                         classDeclaration.getProperty('namespace')?.remove();
                         classDeclaration.getProperty('creationTimestamp')?.remove();
                         classDeclaration.getProperty('deletionGracePeriodSeconds')?.remove();
@@ -262,10 +251,13 @@ function morph() {
                         classDeclaration.getProperty('generation')?.remove();
                         classDeclaration.getProperty('resourceVersion')?.remove();
                         classDeclaration.getProperty('uid')?.remove();
+                        classDeclaration.getProperty('selfLink')?.remove();
                     }
+                    classDeclaration.rename(schemas.interfaces[className].kind);
+
                     const i: InterfaceDeclarationStructure = {
                         kind: StructureKind.Interface,
-                        name: className,
+                        name: schemas.interfaces[className].kind,
                         isExported: true,
                         docs: [
                             {
@@ -292,8 +284,9 @@ function morph() {
                             };
                         }),
                     };
-                    sourceFile.addInterface(i);
+
                     classDeclaration.remove();
+                    sourceFile.addInterface(i);
                 }
 
                 sourceFile.getImportDeclarations().forEach((importDeclaration) => {
@@ -307,7 +300,39 @@ function morph() {
     }
 
     project.saveSync();
+
+    const p2 = new Project({
+        tsConfigFilePath: path.join(corePath, 'tsconfig.json'),
+        manipulationSettings: {
+            indentationText: IndentationText.TwoSpaces,
+            quoteKind: QuoteKind.Double,
+            insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces: true,
+            useTrailingCommas: true,
+        },
+    });
+    for (const sourceFile of p2.getSourceFiles()) {
+        if (modelsPath === sourceFile.getDirectoryPath()) {
+            const fileName = sourceFile.getBaseNameWithoutExtension();
+            const classSchema = schemas.classes[fileName];
+            const interfaceSchema = schemas.interfaces[fileName];
+
+            if (classSchema) {
+                sourceFile.move(
+                    path.join(classSchema.group, classSchema.version, `${classSchema.kind}.ts`),
+                );
+            } else if (interfaceSchema) {
+                sourceFile.move(
+                    path.join(
+                        interfaceSchema.group,
+                        interfaceSchema.version,
+                        `${interfaceSchema.kind}.ts`,
+                    ),
+                );
+            }
+        }
+    }
+    p2.saveSync();
     formatCode(modelsPath);
 }
 
-morph();
+main();

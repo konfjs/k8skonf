@@ -5,6 +5,10 @@ SHELL := /bin/bash
 k8sVersion := v1.32.1
 
 
+.PHONY: all
+all: download-schema parse-schema models core
+
+
 # Download Kubernetes OpenAPI schemas to packages/cli/input-spec/*.json
 .PHONY: download-schema
 download-schema:
@@ -16,36 +20,29 @@ download-schema:
 	@rm -rf temp-k8s
 
 
-# Generate packages/cli/src/input-spec/*.json files
-# Generate group-version-kind-map.json
-.PHONY: prepare-schema
-prepare-schema:
-	@echo "Preparing Kubernetes schema"
+# Generate schemas.json
+.PHONY: parse-schema
+parse-schema:
 	@cd packages/cli && \
-		echo ${PWD}; bun run src/prepareSchemas.ts
+		npx tsx src/parseSchemas.ts
 
 
-# Generate packages/cli/files/gen/models/*.ts files
+# Generate packages/cli/gen/models/*.ts files
 .PHONY: models
-models: prepare-schema
+models:
 	@echo "Generating Kubernetes models"
-	@cd packages/cli && \
-		pnpm gen && \
-		rsync -a --delete files/gen/models/ ../core/src/models/
+	@cd packages/cli && pnpm gen
 
 
-.PHONY: restore-models
-restore-models:
-	@echo "Restoring Kubernetes models"
-	@rsync -a --delete packages/cli/files/gen/models/ packages/core/src/models/
+.PHONY: copy-models
+copy-models:
+	@echo "Copying Kubernetes models"
+	@rsync -a --delete packages/cli/gen/models/ packages/core/src/models/
 
 
-# Generate packages/core/src/models/*.ts files
+# Update packages/core/src/models/*.ts files
 .PHONY: core
-core: restore-models
+core: copy-models
 	@echo "Generating @k8skonf/core package"
-	@cd packages/cli && \
-		bun src/generateCore.ts && \
-		cd ../core && \
-		pnpm lint && \
-		pnpm tsc --noEmit
+	@cd packages/cli && npx tsx src/generateCore.ts
+	@cd packages/core && pnpm lint && pnpm tsc --noEmit
