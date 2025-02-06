@@ -1,7 +1,7 @@
 import * as yaml from 'yaml';
-import { ObjectMetav1 } from './models/ObjectMetav1.js';
+import { ObjectMeta } from './models/meta/v1/ObjectMeta';
 
-export interface NamespacedObjectMetav1 extends ObjectMetav1 {
+export interface NamespacedObjectMeta extends ObjectMeta {
     /**
      * Namespace defines the space within which each name must be unique.
      * An empty namespace is equivalent to the "default" namespace,
@@ -16,7 +16,7 @@ export interface NamespacedObjectMetav1 extends ObjectMetav1 {
  */
 export abstract class ApiObject {
     readonly name: string;
-    abstract readonly metadata: ObjectMetav1;
+    abstract readonly metadata: ObjectMeta;
     abstract readonly apiVersion: string;
     abstract readonly kind: string;
 
@@ -35,5 +35,5 @@ export abstract class ApiObject {
  * objects that are scoped to a namespace.
  */
 export abstract class NamespacedApiObject extends ApiObject {
-    abstract readonly metadata: NamespacedObjectMetav1;
+    abstract readonly metadata: NamespacedObjectMeta;
 }
