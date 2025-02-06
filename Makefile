@@ -5,20 +5,15 @@ SHELL := /bin/bash
 k8sVersion := v1.32.1
 
 
-# Download Kubernetes OpenAPI schemas to packages/cli/files/kubernetes/api/openapi-spec/v3/*.json
+# Download Kubernetes OpenAPI schemas to packages/cli/input-spec/*.json
 .PHONY: download-schema
 download-schema:
 	@echo "Downloading Kubernetes schema version $(k8sVersion)"
-	@cd packages/cli && \
-		if [ -d "files/kubernetes" ]; then \
-			echo "kubernetes directory already exists"; \
-			echo "Updating to version $(k8sVersion)"; \
-			cd files/kubernetes && git fetch --tags && git checkout $(k8sVersion); \
-		else \
-			git clone --depth=1 --branch $(k8sVersion) --single-branch --filter=blob:none \
-				https://github.com/kubernetes/kubernetes.git files/kubernetes; \
-			cd files/kubernetes && git fetch --tags && git checkout $(k8sVersion); \
-		fi
+	@git clone --depth 1 --branch $(k8sVersion) --filter=blob:none --sparse https://github.com/kubernetes/kubernetes.git temp-k8s && \
+		cd temp-k8s && \
+		git sparse-checkout set --no-cone /api/openapi-spec/v3
+	@rsync -a --delete temp-k8s/api/openapi-spec/v3/ packages/cli/input-spec/
+	@rm -rf temp-k8s
 
 
 # Generate packages/cli/src/input-spec/*.json files

@@ -44,7 +44,7 @@
   },
   "scripts": {
     "lint": "biome lint",
-    "gen": "rm -rf ./files/gen && openapi-generator-cli generate",
+    "gen": "rm -rf ./gen && openapi-generator-cli generate",
     "add_shebang": "perl -i -pe 's,#!/usr/bin/env tsx,#!/usr/bin/env node,g' dist/index.js",
     "build": "rm -rf dist && tsc && pnpm run add_shebang && chmod +x dist/index.js",
     "prepack": "pnpm run build"

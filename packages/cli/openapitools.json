@@ -6,8 +6,8 @@
     "generators": {
       "v3.0": {
         "generatorName": "typescript",
-        "glob": "src/input-spec/*.json",
-        "output": "files/gen",
+        "glob": "input-spec/*.json",
+        "output": "gen",
         "additionalProperties": {
           "supportsES6": true,
           "importFileExtension": ".js",
