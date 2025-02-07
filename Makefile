@@ -51,4 +51,10 @@ copy-models:
 core: copy-models
 	@echo "Generating @k8skonf/core package"
 	@cd packages/cli && npx tsx src/generateCore.ts
+
+
+.PHONY: move-core
+move-core:
+	@echo "Moving models to subdirs"
+	@cd packages/cli && npx tsx src/moveCore.ts
 	@cd packages/core && pnpm lint && pnpm tsc --noEmit
