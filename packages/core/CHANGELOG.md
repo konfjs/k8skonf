@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.32.11](https://github.com/konfjs/k8skonf/compare/core-v1.32.10...core-v1.32.11) (2025-02-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** restructure models by k8s group and version ([#95](https://github.com/konfjs/k8skonf/issues/95))
+
+### New Features
+
+* **core:** restructure models by k8s group and version ([#95](https://github.com/konfjs/k8skonf/issues/95)) ([d38764e](https://github.com/konfjs/k8skonf/commit/d38764e0f75431956be0987bf35f0a6424f8ff29))
+* export apiGroups and apiVersions as namespaces ([#98](https://github.com/konfjs/k8skonf/issues/98)) ([e290957](https://github.com/konfjs/k8skonf/commit/e290957010f533bdaae768188371262e148a5c31))
+
+
+### Bug Fixes
+
+* **core:** remove k8s api files that are only used programmatically ([#96](https://github.com/konfjs/k8skonf/issues/96)) ([ed253a1](https://github.com/konfjs/k8skonf/commit/ed253a17fdd0c95706c467e740efd339a8872847))
+* **core:** remove unused interface files, reduces package size by 17% ([#96](https://github.com/konfjs/k8skonf/issues/96)) ([ed253a1](https://github.com/konfjs/k8skonf/commit/ed253a17fdd0c95706c467e740efd339a8872847))
+
+
+### Chores
+
+* move interfaces to types dir to easily distinguish api resources ([#97](https://github.com/konfjs/k8skonf/issues/97)) ([b20d4f0](https://github.com/konfjs/k8skonf/commit/b20d4f07f5bbaf173108f4417253152f1ed9c00d))
+* remove all target from makefile, as remove-unused target is not idempotent ([#97](https://github.com/konfjs/k8skonf/issues/97)) ([b20d4f0](https://github.com/konfjs/k8skonf/commit/b20d4f07f5bbaf173108f4417253152f1ed9c00d))
+
 ## [1.32.10](https://github.com/konfjs/k8skonf/compare/core-v1.32.9...core-v1.32.10) (2025-01-11)
 
 
