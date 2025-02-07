@@ -120,6 +120,7 @@ function main() {
             const className = classDeclaration?.getName();
             if (className) {
                 removeUnusedThings(sourceFile, classDeclaration, className);
+                log(`Processing ${pc.cyan(sourceFile.getBaseName())}`);
                 if (schemas.classes[className]) {
                     const apiVersionProperty = classDeclaration.getProperty('apiVersion');
                     if (apiVersionProperty) {

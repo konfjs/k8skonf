@@ -1,4 +1,4 @@
-import { TopologySelectorTerm } from '../../v1/types/TopologySelectorTerm';
+import { TopologySelectorTerm } from '../../core/v1/types/TopologySelectorTerm';
 import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';

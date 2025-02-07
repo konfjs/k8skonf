@@ -31,16 +31,19 @@ function main() {
             const schema = classSchema ?? interfaceSchema;
 
             /**
-             * In the OpenAPI spec file, classes contain .k8s.io, interfaces doesn't.
-             * Also, flowcontrol.apiserver.k8s.io is used in classes,
-             * but flowcontrol was used in interfaces.
+             * In the OpenAPI spec file, classes contain ".k8s.io", interfaces don't.
+             * "flowcontrol.apiserver.k8s.io" is used in classes, but just "flowcontrol" was used in interfaces.
+             * "rbac.authorization.k8s.io" is used in classes, but just "rbac" was used in interfaces.
+             *
+             * Following the same logic, "core" is used in the classes, but it's empty in the interfaces.
              */
+            const group = schema.group === '' ? 'core' : schema.group;
             let destDir = path.join(
                 modelsPath,
-                schema.group
+                group
                     .replace('.k8s.io', '')
-                    .replace('core', '')
-                    .replace('flowcontrol.apiserver', 'flowcontrol'),
+                    .replace('flowcontrol.apiserver', 'flowcontrol')
+                    .replace('rbac.authorization', 'rbac'),
                 schema.version,
             );
 
