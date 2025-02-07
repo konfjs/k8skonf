@@ -61,4 +61,10 @@ remove-unused:
 move-core:
 	@echo "Moving models to subdirs"
 	@cd packages/cli && npx tsx src/moveCore.ts
+
+
+.PHONY: add-exports
+add-exports:
+	@echo "Adding model exports"
+	@cd packages/cli && npx tsx src/addExports.ts
 	@cd packages/core && pnpm lint && pnpm tsc --noEmit

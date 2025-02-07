@@ -1,4 +1,4 @@
-import { NodeSelector } from '../../../v1/types/NodeSelector';
+import { NodeSelector } from '../../../core/v1/types/NodeSelector';
 import { Device } from './Device';
 import { ResourcePool } from './ResourcePool';
 

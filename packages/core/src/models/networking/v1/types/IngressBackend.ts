@@ -1,4 +1,4 @@
-import { TypedLocalObjectReference } from '../../../v1/types/TypedLocalObjectReference';
+import { TypedLocalObjectReference } from '../../../core/v1/types/TypedLocalObjectReference';
 import { IngressServiceBackend } from './IngressServiceBackend';
 
 /**
