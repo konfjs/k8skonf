@@ -1,4 +1,4 @@
-import { PodSpec } from '../core/v1/PodSpec';
+import { PodSpec } from './PodSpec';
 import { K8sApp } from '../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../ApiObject';
 

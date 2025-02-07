@@ -1,4 +1,4 @@
-import { Toleration } from '../../core/v1/Toleration';
+import { Toleration } from '../../v1/Toleration';
 
 /**
  * Scheduling specifies the scheduling constraints for nodes supporting a RuntimeClass.

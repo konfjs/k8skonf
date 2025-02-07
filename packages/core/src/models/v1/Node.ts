@@ -1,4 +1,4 @@
-import { NodeSpec } from '../core/v1/NodeSpec';
+import { NodeSpec } from './NodeSpec';
 import { ObjectMeta } from '../meta/v1/ObjectMeta';
 import { K8sApp } from '../../K8sApp';
 import { ApiObject } from '../../ApiObject';

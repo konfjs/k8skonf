@@ -1,4 +1,4 @@
-import { NamespaceSpec } from '../core/v1/NamespaceSpec';
+import { NamespaceSpec } from './NamespaceSpec';
 import { ObjectMeta } from '../meta/v1/ObjectMeta';
 import { K8sApp } from '../../K8sApp';
 import { ApiObject } from '../../ApiObject';

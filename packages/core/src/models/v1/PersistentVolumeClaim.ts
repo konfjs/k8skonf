@@ -1,4 +1,4 @@
-import { PersistentVolumeClaimSpec } from '../core/v1/PersistentVolumeClaimSpec';
+import { PersistentVolumeClaimSpec } from './PersistentVolumeClaimSpec';
 import { K8sApp } from '../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../ApiObject';
 
