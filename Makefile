@@ -3,6 +3,11 @@ SHELL := /bin/bash
 
 
 k8sVersion := v1.32.1
+k8sUnusedOpenApiFiles := \
+	".well-known__openid-configuration_openapi.json" \
+	"openid__v1__jwks_openapi.json" \
+	"logs_openapi.json" \
+	"version_openapi.json"
 
 
 .PHONY: all
@@ -18,6 +23,7 @@ download-schema:
 		git sparse-checkout set --no-cone /api/openapi-spec/v3
 	@rsync -a --delete temp-k8s/api/openapi-spec/v3/ packages/cli/input-spec/
 	@rm -rf temp-k8s
+	@cd packages/cli/input-spec/ && rm $(k8sUnusedOpenApiFiles)
 
 
 # Generate schemas.json
