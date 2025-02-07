@@ -1,4 +1,4 @@
-import { PersistentVolumeSpec } from '../core/v1/PersistentVolumeSpec';
+import { PersistentVolumeSpec } from './PersistentVolumeSpec';
 import { ObjectMeta } from '../meta/v1/ObjectMeta';
 import { K8sApp } from '../../K8sApp';
 import { ApiObject } from '../../ApiObject';

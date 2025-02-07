@@ -1,4 +1,4 @@
-import { ObjectReference } from '../../core/v1/ObjectReference';
+import { ObjectReference } from '../../v1/ObjectReference';
 import { EndpointConditions } from './EndpointConditions';
 import { EndpointHints } from './EndpointHints';
 

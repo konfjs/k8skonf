@@ -1,4 +1,4 @@
-import { LimitRangeSpec } from '../core/v1/LimitRangeSpec';
+import { LimitRangeSpec } from './LimitRangeSpec';
 import { K8sApp } from '../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../ApiObject';
 

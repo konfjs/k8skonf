@@ -1,5 +1,5 @@
 import { DaemonSetUpdateStrategy } from './DaemonSetUpdateStrategy';
-import { PodTemplateSpec } from '../../core/v1/PodTemplateSpec';
+import { PodTemplateSpec } from '../../v1/PodTemplateSpec';
 import { LabelSelector } from '../../meta/v1/LabelSelector';
 
 /**

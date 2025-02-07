@@ -1,4 +1,4 @@
-import { ReplicationControllerSpec } from '../core/v1/ReplicationControllerSpec';
+import { ReplicationControllerSpec } from './ReplicationControllerSpec';
 import { K8sApp } from '../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../ApiObject';
 

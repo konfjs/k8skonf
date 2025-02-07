@@ -2,7 +2,7 @@ import { StatefulSetOrdinals } from './StatefulSetOrdinals';
 import { StatefulSetPersistentVolumeClaimRetentionPolicy } from './StatefulSetPersistentVolumeClaimRetentionPolicy';
 import { StatefulSetUpdateStrategy } from './StatefulSetUpdateStrategy';
 import { PersistentVolumeClaim } from '../../v1/PersistentVolumeClaim';
-import { PodTemplateSpec } from '../../core/v1/PodTemplateSpec';
+import { PodTemplateSpec } from '../../v1/PodTemplateSpec';
 import { LabelSelector } from '../../meta/v1/LabelSelector';
 
 /**
