@@ -10,10 +10,6 @@ k8sUnusedOpenApiFiles := \
 	"version_openapi.json"
 
 
-.PHONY: all
-all: download-schema parse-schema models core
-
-
 # Download Kubernetes OpenAPI schemas to packages/cli/input-spec/*.json
 .PHONY: download-schema
 download-schema:

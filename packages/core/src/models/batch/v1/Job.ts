@@ -1,4 +1,4 @@
-import { JobSpec } from './JobSpec';
+import { JobSpec } from './types/JobSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

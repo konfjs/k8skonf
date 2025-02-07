@@ -1,4 +1,4 @@
-import { HorizontalPodAutoscalerSpec } from './HorizontalPodAutoscalerSpec';
+import { HorizontalPodAutoscalerSpec } from './types/HorizontalPodAutoscalerSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

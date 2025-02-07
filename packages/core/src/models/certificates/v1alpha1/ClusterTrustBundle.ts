@@ -1,5 +1,5 @@
-import { ClusterTrustBundleSpec } from './ClusterTrustBundleSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { ClusterTrustBundleSpec } from './types/ClusterTrustBundleSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

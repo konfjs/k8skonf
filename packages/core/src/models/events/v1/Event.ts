@@ -1,6 +1,6 @@
-import { EventSource } from '../../v1/EventSource';
-import { ObjectReference } from '../../v1/ObjectReference';
-import { EventSeries } from './EventSeries';
+import { EventSource } from '../../v1/types/EventSource';
+import { ObjectReference } from '../../v1/types/ObjectReference';
+import { EventSeries } from './types/EventSeries';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

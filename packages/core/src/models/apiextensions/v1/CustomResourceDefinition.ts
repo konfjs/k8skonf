@@ -1,5 +1,5 @@
-import { CustomResourceDefinitionSpec } from './CustomResourceDefinitionSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { CustomResourceDefinitionSpec } from './types/CustomResourceDefinitionSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

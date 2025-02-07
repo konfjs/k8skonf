@@ -1,4 +1,4 @@
-import { DaemonSetSpec } from './DaemonSetSpec';
+import { DaemonSetSpec } from './types/DaemonSetSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

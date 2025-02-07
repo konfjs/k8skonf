@@ -1,4 +1,4 @@
-import { IngressSpec } from './IngressSpec';
+import { IngressSpec } from './types/IngressSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

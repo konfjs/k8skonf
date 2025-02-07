@@ -1,5 +1,5 @@
-import { MutatingAdmissionPolicyBindingSpec } from './MutatingAdmissionPolicyBindingSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { MutatingAdmissionPolicyBindingSpec } from './types/MutatingAdmissionPolicyBindingSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

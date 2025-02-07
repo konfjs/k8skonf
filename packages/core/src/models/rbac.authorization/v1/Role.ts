@@ -1,4 +1,4 @@
-import { PolicyRule } from '../../rbac/v1/PolicyRule';
+import { PolicyRule } from '../../rbac/v1/types/PolicyRule';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

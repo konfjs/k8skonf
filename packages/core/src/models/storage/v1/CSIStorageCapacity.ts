@@ -1,4 +1,4 @@
-import { LabelSelector } from '../../meta/v1/LabelSelector';
+import { LabelSelector } from '../../meta/v1/types/LabelSelector';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

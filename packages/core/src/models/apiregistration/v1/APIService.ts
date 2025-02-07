@@ -1,5 +1,5 @@
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
-import { APIServiceSpec } from './APIServiceSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
+import { APIServiceSpec } from './types/APIServiceSpec';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

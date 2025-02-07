@@ -1,4 +1,4 @@
-import { PodDisruptionBudgetSpec } from './PodDisruptionBudgetSpec';
+import { PodDisruptionBudgetSpec } from './types/PodDisruptionBudgetSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

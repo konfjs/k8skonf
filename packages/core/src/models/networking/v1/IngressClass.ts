@@ -1,5 +1,5 @@
-import { IngressClassSpec } from './IngressClassSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { IngressClassSpec } from './types/IngressClassSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

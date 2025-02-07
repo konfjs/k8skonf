@@ -1,5 +1,5 @@
-import { DeviceClassSpec } from './DeviceClassSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { DeviceClassSpec } from './types/DeviceClassSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

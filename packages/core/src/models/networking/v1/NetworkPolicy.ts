@@ -1,4 +1,4 @@
-import { NetworkPolicySpec } from './NetworkPolicySpec';
+import { NetworkPolicySpec } from './types/NetworkPolicySpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

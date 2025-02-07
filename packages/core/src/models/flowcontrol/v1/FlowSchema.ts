@@ -1,5 +1,5 @@
-import { FlowSchemaSpec } from './FlowSchemaSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { FlowSchemaSpec } from './types/FlowSchemaSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

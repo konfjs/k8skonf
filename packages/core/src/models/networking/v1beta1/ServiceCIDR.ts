@@ -1,5 +1,5 @@
-import { ServiceCIDRSpec } from './ServiceCIDRSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { ServiceCIDRSpec } from './types/ServiceCIDRSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

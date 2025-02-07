@@ -26,14 +26,16 @@ function main() {
     for (const sourceFile of project.getSourceFiles()) {
         if (sourceFile.getDirectoryPath().startsWith(modelsPath)) {
             const fileName = sourceFile.getBaseNameWithoutExtension();
-            const schema = schemas.classes[fileName] ?? schemas.interfaces[fileName];
+            const classSchema = schemas.classes[fileName];
+            const interfaceSchema = schemas.interfaces[fileName];
+            const schema = classSchema ?? interfaceSchema;
 
             /**
              * In the OpenAPI spec file, classes contain .k8s.io, interfaces doesn't.
              * Also, flowcontrol.apiserver.k8s.io is used in classes,
              * but flowcontrol was used in interfaces.
              */
-            const destDir = path.join(
+            let destDir = path.join(
                 modelsPath,
                 schema.group
                     .replace('.k8s.io', '')
@@ -41,6 +43,10 @@ function main() {
                     .replace('flowcontrol.apiserver', 'flowcontrol'),
                 schema.version,
             );
+
+            if (interfaceSchema) {
+                destDir = path.join(destDir, 'types');
+            }
 
             if (!fs.existsSync(destDir)) {
                 log(`Creating directory ${pc.blueBright(destDir)}`);

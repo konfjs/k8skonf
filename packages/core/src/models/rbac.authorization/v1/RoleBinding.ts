@@ -1,5 +1,5 @@
-import { RoleRef } from '../../rbac/v1/RoleRef';
-import { Subject } from '../../rbac/v1/Subject';
+import { RoleRef } from '../../rbac/v1/types/RoleRef';
+import { Subject } from '../../rbac/v1/types/Subject';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

@@ -1,4 +1,4 @@
-import { LeaseCandidateSpec } from './LeaseCandidateSpec';
+import { LeaseCandidateSpec } from './types/LeaseCandidateSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

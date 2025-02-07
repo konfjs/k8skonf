@@ -1,4 +1,4 @@
-import { StatefulSetSpec } from './StatefulSetSpec';
+import { StatefulSetSpec } from './types/StatefulSetSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

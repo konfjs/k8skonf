@@ -1,5 +1,5 @@
-import { PriorityLevelConfigurationSpec } from './PriorityLevelConfigurationSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { PriorityLevelConfigurationSpec } from './types/PriorityLevelConfigurationSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

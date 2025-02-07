@@ -1,4 +1,4 @@
-import { ResourceQuotaSpec } from './ResourceQuotaSpec';
+import { ResourceQuotaSpec } from './types/ResourceQuotaSpec';
 import { K8sApp } from '../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../ApiObject';
 

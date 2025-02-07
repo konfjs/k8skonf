@@ -1,4 +1,4 @@
-import { DeploymentSpec } from './DeploymentSpec';
+import { DeploymentSpec } from './types/DeploymentSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 
