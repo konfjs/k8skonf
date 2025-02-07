@@ -1,5 +1,42 @@
 # Changelog
 
+## [0.6.0](https://github.com/konfjs/k8skonf/compare/cli-v0.5.0...cli-v0.6.0) (2025-02-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cli:** restructure models by k8s group and version ([#94](https://github.com/konfjs/k8skonf/issues/94))
+
+### New Features
+
+* **cli:** restructure models by k8s group and version ([#94](https://github.com/konfjs/k8skonf/issues/94)) ([432f6a0](https://github.com/konfjs/k8skonf/commit/432f6a0dab523f605d8da09ba5ae48113e2c716d))
+* export apiGroups and apiVersions as namespaces ([#98](https://github.com/konfjs/k8skonf/issues/98)) ([e290957](https://github.com/konfjs/k8skonf/commit/e290957010f533bdaae768188371262e148a5c31))
+
+
+### Bug Fixes
+
+* **cli:** move files to subdirs ([60a71f1](https://github.com/konfjs/k8skonf/commit/60a71f127ba3425c53b7d80e9a04bb6b776ac2c9))
+* **cli:** remove k8s api files that are only used programatically ([c96ccc8](https://github.com/konfjs/k8skonf/commit/c96ccc8cf1d88ef02f719ff28c5d95b29fcd923b))
+* **cli:** remove unused interface files, reduces package size by 17% ([c96ccc8](https://github.com/konfjs/k8skonf/commit/c96ccc8cf1d88ef02f719ff28c5d95b29fcd923b))
+* **cli:** sync schema.json ([60a71f1](https://github.com/konfjs/k8skonf/commit/60a71f127ba3425c53b7d80e9a04bb6b776ac2c9))
+
+
+### Chores
+
+* move interfaces to types dir to easily distinguish api resources ([#97](https://github.com/konfjs/k8skonf/issues/97)) ([b20d4f0](https://github.com/konfjs/k8skonf/commit/b20d4f07f5bbaf173108f4417253152f1ed9c00d))
+* remove all target from makefile, as remove-unused target is not idempotent ([#97](https://github.com/konfjs/k8skonf/issues/97)) ([b20d4f0](https://github.com/konfjs/k8skonf/commit/b20d4f07f5bbaf173108f4417253152f1ed9c00d))
+* remove unused open api spec files ([23dc2e6](https://github.com/konfjs/k8skonf/commit/23dc2e6adaea4eca3c173655d8e2ab732f5c0a2f))
+* use git sparse-checkout for kubernetes files ([#93](https://github.com/konfjs/k8skonf/issues/93)) ([b552816](https://github.com/konfjs/k8skonf/commit/b552816b298cef93d32ac462cb33862c41bd99ad))
+
+
+### Dependencies
+
+* bump @openapitools/openapi-generator-cli from 2.15.3 to 2.16.3 in /packages/cli [#89](https://github.com/konfjs/k8skonf/issues/89) ([d07f3c4](https://github.com/konfjs/k8skonf/commit/d07f3c4453a62d58afb40a8d79733c3ae399d71f))
+* bump commander from 13.0.0 to 13.1.0 in /packages/cli ([#87](https://github.com/konfjs/k8skonf/issues/87)) ([f0bb308](https://github.com/konfjs/k8skonf/commit/f0bb30826ccbf06a3df716bb703aee4bc4a856a5))
+* bump json-schema-to-typescript from 15.0.3 to 15.0.4 in /packages/cli [#88](https://github.com/konfjs/k8skonf/issues/88) ([46dc8d7](https://github.com/konfjs/k8skonf/commit/46dc8d70bc815a69297564fff05104236f8df9f2))
+* bump ts-morph from 25.0.0 to 25.0.1 in /packages/cli ([#92](https://github.com/konfjs/k8skonf/issues/92)) ([a875e5e](https://github.com/konfjs/k8skonf/commit/a875e5e7d53626ef1e877de467346982b4c98550))
+* use openapitools/openapi-generator 7.11.0 ([4a6e6ab](https://github.com/konfjs/k8skonf/commit/4a6e6ab5f319d4ba9c37bf379fd023e4395ce32a))
+
 ## [0.5.0](https://github.com/konfjs/k8skonf/compare/cli-v0.4.1...cli-v0.5.0) (2025-01-17)
 
 
