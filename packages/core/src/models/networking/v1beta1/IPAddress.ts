@@ -1,5 +1,5 @@
-import { IPAddressSpec } from './IPAddressSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { IPAddressSpec } from './types/IPAddressSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

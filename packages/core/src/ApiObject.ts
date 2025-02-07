@@ -1,5 +1,5 @@
 import * as yaml from 'yaml';
-import { ObjectMeta } from './models/meta/v1/ObjectMeta';
+import { ObjectMeta } from './models/meta/v1/types/ObjectMeta';
 
 export interface NamespacedObjectMeta extends ObjectMeta {
     /**

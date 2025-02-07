@@ -1,6 +1,6 @@
-import { RoleRef } from '../../rbac/v1/RoleRef';
-import { Subject } from '../../rbac/v1/Subject';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { RoleRef } from '../../rbac/v1/types/RoleRef';
+import { Subject } from '../../rbac/v1/types/Subject';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

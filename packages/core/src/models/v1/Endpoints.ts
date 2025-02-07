@@ -1,4 +1,4 @@
-import { EndpointSubset } from './EndpointSubset';
+import { EndpointSubset } from './types/EndpointSubset';
 import { K8sApp } from '../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../ApiObject';
 

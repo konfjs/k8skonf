@@ -1,4 +1,4 @@
-import { ObjectReference } from './ObjectReference';
+import { ObjectReference } from './types/ObjectReference';
 import { K8sApp } from '../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../ApiObject';
 

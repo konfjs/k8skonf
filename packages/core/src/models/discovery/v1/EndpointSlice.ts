@@ -1,5 +1,5 @@
-import { Endpoint } from './Endpoint';
-import { EndpointPort } from './EndpointPort';
+import { Endpoint } from './types/Endpoint';
+import { EndpointPort } from './types/EndpointPort';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

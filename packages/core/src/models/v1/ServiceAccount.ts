@@ -1,5 +1,5 @@
-import { LocalObjectReference } from './LocalObjectReference';
-import { ObjectReference } from './ObjectReference';
+import { LocalObjectReference } from './types/LocalObjectReference';
+import { ObjectReference } from './types/ObjectReference';
 import { K8sApp } from '../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../ApiObject';
 

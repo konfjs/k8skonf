@@ -1,5 +1,5 @@
-import { MutatingWebhook } from './MutatingWebhook';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { MutatingWebhook } from './types/MutatingWebhook';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 

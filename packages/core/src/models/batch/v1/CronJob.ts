@@ -1,4 +1,4 @@
-import { CronJobSpec } from './CronJobSpec';
+import { CronJobSpec } from './types/CronJobSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

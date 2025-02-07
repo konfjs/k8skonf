@@ -1,4 +1,4 @@
-import { ReplicaSetSpec } from './ReplicaSetSpec';
+import { ReplicaSetSpec } from './types/ReplicaSetSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

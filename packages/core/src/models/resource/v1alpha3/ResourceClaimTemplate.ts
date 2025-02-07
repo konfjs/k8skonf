@@ -1,4 +1,4 @@
-import { ResourceClaimTemplateSpec } from './ResourceClaimTemplateSpec';
+import { ResourceClaimTemplateSpec } from './types/ResourceClaimTemplateSpec';
 import { K8sApp } from '../../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
 

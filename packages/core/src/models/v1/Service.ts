@@ -1,4 +1,4 @@
-import { ServiceSpec } from './ServiceSpec';
+import { ServiceSpec } from './types/ServiceSpec';
 import { K8sApp } from '../../K8sApp';
 import { NamespacedObjectMeta, NamespacedApiObject } from '../../ApiObject';
 

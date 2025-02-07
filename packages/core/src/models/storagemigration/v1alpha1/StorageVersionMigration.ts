@@ -1,5 +1,5 @@
-import { StorageVersionMigrationSpec } from './StorageVersionMigrationSpec';
-import { ObjectMeta } from '../../meta/v1/ObjectMeta';
+import { StorageVersionMigrationSpec } from './types/StorageVersionMigrationSpec';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
 import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 
