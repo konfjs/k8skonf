@@ -7,7 +7,7 @@ import { compile } from 'json-schema-to-typescript';
 import pc from 'picocolors';
 import { ClassDeclarationStructure, Project, StructureKind } from 'ts-morph';
 import * as yaml from 'yaml';
-import { formatCode } from './utils';
+import { formatCode } from './utils.ts';
 
 interface CRD {
     apiVersion: string;
@@ -159,16 +159,16 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
                         namedImports: ['K8sApp'],
                     });
                     if (isNamespaced) {
-                        metadata?.setType('NamespacedObjectMetav1');
+                        metadata?.setType('NamespacedObjectMeta');
                         sourceFile.addImportDeclaration({
                             moduleSpecifier: '@k8skonf/core',
-                            namedImports: ['NamespacedApiObject', 'NamespacedObjectMetav1'],
+                            namedImports: ['NamespacedApiObject', 'NamespacedObjectMeta'],
                         });
                     } else {
-                        metadata?.setType('ObjectMetav1');
+                        metadata?.setType('ObjectMeta');
                         sourceFile.addImportDeclaration({
                             moduleSpecifier: '@k8skonf/core',
-                            namedImports: ['ApiObject', 'ObjectMetav1'],
+                            namedImports: ['ApiObject', 'ObjectMeta'],
                         });
                     }
 
@@ -190,7 +190,7 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
                             },
                             {
                                 name: 'metadata',
-                                type: isNamespaced ? 'NamespacedObjectMetav1' : 'ObjectMetav1',
+                                type: isNamespaced ? 'NamespacedObjectMeta' : 'ObjectMeta',
                                 isReadonly: true,
                             },
                             {

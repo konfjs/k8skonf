@@ -15,8 +15,8 @@ import {
     StructureKind,
     SyntaxKind,
 } from 'ts-morph';
-import type { Schemas } from './parseSchemas';
-import { formatCode, removeUnusedFiles } from './utils';
+import type { Schemas } from './parseSchemas.ts';
+import { formatCode, removeUnusedFiles } from './utils.ts';
 
 function removeUnusedThings(
     sourceFile: SourceFile,

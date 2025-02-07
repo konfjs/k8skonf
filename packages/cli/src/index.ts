@@ -2,7 +2,7 @@
 import { Command } from 'commander';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { generateCRDs, readConfig } from './generateCRDs.js';
+import { generateCRDs, readConfig } from './generateCRDs.ts';
 
 async function main() {
     const version = JSON.parse(
