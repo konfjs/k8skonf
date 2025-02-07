@@ -53,6 +53,14 @@ core: copy-models
 	@cd packages/cli && npx tsx src/generateCore.ts
 
 
+# Note: It seems I need to run this multiple times to remove all the unused interfaces.
+# Because on the first pass, it will remove some unused interfaces,
+# but it also could leave some interfaces orphaned.
+.PHONY: remove-unused
+remove-unused:
+	@cd packages/cli && npx tsx src/removeUnused.ts
+
+
 .PHONY: move-core
 move-core:
 	@echo "Moving models to subdirs"

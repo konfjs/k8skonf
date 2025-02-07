@@ -27,6 +27,10 @@ export function formatCode(modelsPath: string) {
     }
 }
 
+/**
+ * Remove some obvious unused files.
+ * They're mostly intended to be used programmatically.
+ */
 export function removeUnusedFiles(modelsPath: string) {
     const unusedFiles = new Set([
         'IoK8sApiCoreV1Event',
@@ -34,11 +38,33 @@ export function removeUnusedFiles(modelsPath: string) {
         'IoK8sApiCoreV1EventSource',
         'IoK8sApiEventsV1Event',
         'IoK8sApiEventsV1EventSeries',
-        'IoK8sApimachineryPkgApisMetaV1ListMeta.ts',
+
         'IoK8sApiCoreV1LoadBalancerIngress.ts',
         'IoK8sApiNetworkingV1IngressLoadBalancerIngress.ts',
+
+        'IoK8sApimachineryPkgApisMetaV1ListMeta.ts',
         'IoK8sApimachineryPkgApisMetaV1WatchEvent.ts',
         'IoK8sApimachineryPkgVersionInfo.ts',
+
+        'IoK8sApiPolicyV1Eviction.ts',
+
+        // internal.apiserver.k8s.io
+        'IoK8sApiApiserverinternalV1alpha1ServerStorageVersion.ts',
+        'IoK8sApiApiserverinternalV1alpha1StorageVersion.ts',
+        'IoK8sApiApiserverinternalV1alpha1StorageVersionCondition.ts',
+        'IoK8sApiApiserverinternalV1alpha1StorageVersionSpec.ts',
+
+        // authorization.k8s.io
+        'IoK8sApiAuthorizationV1LocalSubjectAccessReview.ts',
+        'IoK8sApiAuthorizationV1SelfSubjectAccessReview.ts',
+        'IoK8sApiAuthorizationV1SelfSubjectRulesReview.ts',
+        'IoK8sApiAuthorizationV1SubjectAccessReview.ts',
+
+        // authentication.k8s.io
+        'IoK8sApiAuthenticationV1SelfSubjectReview.ts',
+        'IoK8sApiAuthenticationV1TokenRequest.ts',
+        'IoK8sApiAuthenticationV1TokenReview.ts',
+        'IoK8sApiAuthenticationV1beta1SelfSubjectReview.ts',
     ]);
     fs.readdirSync(modelsPath).forEach((file) => {
         if (file.endsWith('Status.ts') || file.endsWith('List.ts') || unusedFiles.has(file)) {
