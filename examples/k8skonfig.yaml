@@ -1,4 +1,4 @@
-outDir: crds
+outDir: src/crds
 crds:
   argocd:
     - https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/v2.13.2/manifests/crds/application-crd.yaml

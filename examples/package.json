@@ -2,8 +2,13 @@
   "name": "@k8skonf/examples",
   "private": true,
   "type": "module",
-  "dependencies": {
+  "scripts": {
+    "build-cli": "cd ../packages/cli && pnpm build",
+    "crds": "pnpm build-cli && npx @k8skonf/cli"
+  },
+  "devDependencies": {
     "@k8skonf/cli": "workspace:*",
-    "@k8skonf/core": "workspace:*"
+    "@k8skonf/core": "workspace:*",
+    "tsx": "4.19.2"
   }
 }

@@ -19,13 +19,16 @@ importers:
         version: 5.7.3
 
   examples:
-    dependencies:
+    devDependencies:
       '@k8skonf/cli':
         specifier: workspace:*
         version: link:../packages/cli
       '@k8skonf/core':
         specifier: workspace:*
         version: link:../packages/core
+      tsx:
+        specifier: 4.19.2
+        version: 4.19.2
 
   packages/cli:
     dependencies:

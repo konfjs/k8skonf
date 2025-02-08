@@ -129,17 +129,24 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
         for (const crd of crds) {
             for (const crdVersion of crd.spec.versions) {
                 if (crdVersion.schema?.openAPIV3Schema) {
-                    const className = `${crd.spec.names.kind}${crdVersion.name}`;
+                    if (!fs.existsSync(path.join(outDir, pkg, crdVersion.name))) {
+                        fs.mkdirSync(path.join(outDir, pkg, crdVersion.name), { recursive: true });
+                    }
                     const compiledInterface = await compile(
                         crdVersion.schema.openAPIV3Schema,
-                        `${className}Args`,
+                        `${crd.spec.names.kind}Args`,
                         {
                             bannerComment: '',
                             additionalProperties: false,
                             format: false,
                         },
                     );
-                    const fileLocation = path.join(outDir, pkg, `${className}.ts`);
+                    const fileLocation = path.join(
+                        outDir,
+                        pkg,
+                        crdVersion.name,
+                        `${crd.spec.names.kind}.ts`,
+                    );
                     const sourceFile = project.createSourceFile(fileLocation, compiledInterface, {
                         overwrite: true,
                     });
@@ -235,5 +242,22 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
 
     log(`Saving generated files to the ${pc.yellowBright(outDir)} directory`);
     project.saveSync();
+
+    for (const crdDir of fs.readdirSync(outDir)) {
+        let indexFileContent = '';
+        for (const apiVersionDir of fs.readdirSync(path.join(outDir, crdDir))) {
+            let apiVersionFileContent = '';
+            for (const file of fs.readdirSync(path.join(outDir, crdDir, apiVersionDir))) {
+                apiVersionFileContent += `export * from './${apiVersionDir}/${path.basename(file, '.ts')}';\n`;
+            }
+            fs.writeFileSync(
+                path.join(outDir, crdDir, `${apiVersionDir}.ts`),
+                apiVersionFileContent,
+                'utf-8',
+            );
+            indexFileContent += `export * as ${apiVersionDir} from './${apiVersionDir}';\n`;
+        }
+        fs.writeFileSync(path.join(outDir, crdDir, 'index.ts'), indexFileContent, 'utf-8');
+    }
     formatCode(outDir);
 }
