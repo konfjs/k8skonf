@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.1](https://github.com/konfjs/k8skonf/compare/cli-v0.6.0...cli-v0.6.1) (2025-02-08)
+
+
+### Bug Fixes
+
+* **cli:** fix cli usage ([68130a0](https://github.com/konfjs/k8skonf/commit/68130a036ded718e79799799d6a580da4267ed92))
+* **cli:** group CRDs by apiVersion and export as namespaces ([724f8b5](https://github.com/konfjs/k8skonf/commit/724f8b5924624dc1bd0b256e3abb34b54a5a2300))
+
 ## [0.6.0](https://github.com/konfjs/k8skonf/compare/cli-v0.5.0...cli-v0.6.0) (2025-02-07)
 
 
