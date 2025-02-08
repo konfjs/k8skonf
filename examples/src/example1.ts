@@ -1,11 +1,11 @@
 import { log } from 'node:console';
 import { K8sApp } from '@k8skonf/core';
-import { ConfigMapv1 } from '@k8skonf/core/ConfigMapv1';
-import { Deploymentv1 } from '@k8skonf/core/Deploymentv1';
+import { ConfigMap } from '@k8skonf/core/core/v1/ConfigMap';
+import { Deployment } from '@k8skonf/core/apps/v1/Deployment';
 
 const app = new K8sApp('my-k8s-app', { namespace: 'my-app-namespace' });
 
-const cm = new ConfigMapv1(app, 'my-config-map', {
+const cm = new ConfigMap(app, 'my-config-map', {
     metadata: {
         // name: 'my-config-map2', // inferred from resource name
         namespace: 'fooo',
@@ -18,7 +18,7 @@ const cm = new ConfigMapv1(app, 'my-config-map', {
 
 console.log('configmap name:', cm.name);
 
-const d = new Deploymentv1(app, 'my-nginx-deployment', {
+const d = new Deployment(app, 'my-nginx-deployment', {
     metadata: {
         // name: 'my-nginx-deployment2', // inferred from resource name
         // namespace: 'fooo', // inferred from app namespace
