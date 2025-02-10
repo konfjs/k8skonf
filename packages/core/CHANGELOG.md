@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.12](https://github.com/konfjs/k8skonf/compare/core-v1.32.11...core-v1.32.12) (2025-02-10)
+
+
+### Bug Fixes
+
+* **core:** fix input metadata type ([def5918](https://github.com/konfjs/k8skonf/commit/def591860cca3bd7d1af8cd09f5659e79a8fbb83))
+
 ## [1.32.11](https://github.com/konfjs/k8skonf/compare/core-v1.32.10...core-v1.32.11) (2025-02-07)
 
 

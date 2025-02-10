@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/konfjs/k8skonf/compare/cli-v0.6.1...cli-v0.6.2) (2025-02-10)
+
+
+### Bug Fixes
+
+* **cli:** fix metadata input type ([e1347d4](https://github.com/konfjs/k8skonf/commit/e1347d41b60020d883e1f108f0755fc89255abb2))
+
 ## [0.6.1](https://github.com/konfjs/k8skonf/compare/cli-v0.6.0...cli-v0.6.1) (2025-02-08)
 
 
