@@ -224,7 +224,7 @@ function main() {
                                     moduleSpecifier: '../ApiObject.js',
                                     namedImports: ['ApiObject'],
                                 });
-                                interfaceProp.type = 'ApiObject';
+                                interfaceProp.type = 'ObjectMeta';
                             }
                         } else {
                             c.statements.push(`this.${prop.getName()} = args.${prop.getName()};`);
