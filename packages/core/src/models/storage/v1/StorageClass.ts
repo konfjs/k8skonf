@@ -4,7 +4,7 @@ import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 
 export interface StorageClassArgs {
-  readonly metadata?: ApiObject;
+  readonly metadata?: ObjectMeta;
   readonly allowVolumeExpansion?: boolean;
   readonly allowedTopologies?: Array<TopologySelectorTerm>;
   readonly mountOptions?: Array<string>;

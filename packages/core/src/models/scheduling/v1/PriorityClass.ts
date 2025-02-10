@@ -3,7 +3,7 @@ import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 
 export interface PriorityClassArgs {
-  readonly metadata?: ApiObject;
+  readonly metadata?: ObjectMeta;
   readonly description?: string;
   readonly globalDefault?: boolean;
   readonly preemptionPolicy?: string;

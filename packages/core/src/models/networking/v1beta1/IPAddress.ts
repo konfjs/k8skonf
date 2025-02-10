@@ -4,7 +4,7 @@ import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 
 export interface IPAddressArgs {
-  readonly metadata?: ApiObject;
+  readonly metadata?: ObjectMeta;
   readonly spec?: IPAddressSpec;
 }
 

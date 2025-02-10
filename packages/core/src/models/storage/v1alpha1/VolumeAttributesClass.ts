@@ -3,7 +3,7 @@ import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 
 export interface VolumeAttributesClassArgs {
-  readonly metadata?: ApiObject;
+  readonly metadata?: ObjectMeta;
   readonly driverName: string;
   readonly parameters?: { [key: string]: string };
 }

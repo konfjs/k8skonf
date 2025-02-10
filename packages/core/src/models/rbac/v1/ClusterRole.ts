@@ -5,7 +5,7 @@ import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 
 export interface ClusterRoleArgs {
-  readonly metadata?: ApiObject;
+  readonly metadata?: ObjectMeta;
   readonly aggregationRule?: AggregationRule;
   readonly rules?: Array<PolicyRule>;
 }

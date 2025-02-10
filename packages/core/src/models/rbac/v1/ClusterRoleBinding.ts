@@ -5,7 +5,7 @@ import { K8sApp } from '../../../K8sApp';
 import { ApiObject } from '../../../ApiObject';
 
 export interface ClusterRoleBindingArgs {
-  readonly metadata?: ApiObject;
+  readonly metadata?: ObjectMeta;
   readonly roleRef: RoleRef;
   readonly subjects?: Array<Subject>;
 }

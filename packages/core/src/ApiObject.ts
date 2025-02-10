@@ -13,6 +13,7 @@ export interface NamespacedObjectMeta extends ObjectMeta {
 
 /**
  * ApiObject is the base class for all Kubernetes API objects.
+ * Should represent cluster-scoped objects.
  */
 export abstract class ApiObject {
     readonly name: string;
