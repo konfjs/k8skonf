@@ -1,0 +1,9 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: foo
+  namespace: example3
+spec:
+  destination:
+    name: in-cluster
+  project: default
