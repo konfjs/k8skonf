@@ -28,9 +28,7 @@ function getApiResources(modelsPath: string, apiResources: ApiResources): void {
                         },
                     )) {
                         if (file.isFile()) {
-                            apiResources[apiGroup.name][apiVersion.name].push(
-                                path.basename(file.name, '.ts'),
-                            );
+                            apiResources[apiGroup.name][apiVersion.name].push(file.name);
                         }
                     }
                 }
@@ -71,7 +69,7 @@ export * from './Helm.ts';
 
                 let apiVersionFileContent = '';
                 for (const apiResource of apiResourceList) {
-                    apiVersionFileContent += `export * from './${apiVersion}/${apiResource}.ts';\n`;
+                    apiVersionFileContent += `export * from './${apiVersion}/${apiResource}';\n`;
                 }
                 const apiVersionFilePath = path.join(modelsPath, apiGroup, `${apiVersion}.ts`);
                 log(`Creating file ${pc.cyan(apiVersionFilePath)}`);
