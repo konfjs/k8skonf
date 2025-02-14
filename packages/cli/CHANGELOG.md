@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.6.3](https://github.com/konfjs/k8skonf/compare/cli-v0.6.2...cli-v0.6.3) (2025-02-14)
+
+
+### Bug Fixes
+
+* **crds:** generate CRD outputs with .ts extensions ([ac8c3e3](https://github.com/konfjs/k8skonf/commit/ac8c3e319ce8d214148202dee951191207862118))
+* **crds:** use type only imports where appropriate ([ac8c3e3](https://github.com/konfjs/k8skonf/commit/ac8c3e319ce8d214148202dee951191207862118))
+* enable verbatimModuleSyntax, support NodeJS' native TypeScript loader ([#108](https://github.com/konfjs/k8skonf/issues/108)) ([3861fdf](https://github.com/konfjs/k8skonf/commit/3861fdfb07ff60b207b8bdc871dee45c1ee46cdd))
+* use import extensions for all files to fix ESM usage ([#105](https://github.com/konfjs/k8skonf/issues/105)) ([6fdcea0](https://github.com/konfjs/k8skonf/commit/6fdcea07088b1fddd98b5094a36c747d5f96dd69))
+
+
+### Chores
+
+* **cli:** log local files explicitly ([d032c6c](https://github.com/konfjs/k8skonf/commit/d032c6c0eda3213707f99dd606b7e22b019b2ef9))
+* remove unnecessary path conversion ([c42d8d0](https://github.com/konfjs/k8skonf/commit/c42d8d032a0a991e7233335f3490f6c396d48d90))
+
 ## [0.6.2](https://github.com/konfjs/k8skonf/compare/cli-v0.6.1...cli-v0.6.2) (2025-02-10)
 
 
