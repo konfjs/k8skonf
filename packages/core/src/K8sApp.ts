@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import pc from 'picocolors';
-import { ApiObject, NamespacedApiObject } from './ApiObject.js';
+import { ApiObject, NamespacedApiObject } from './ApiObject.ts';
 
 interface K8sAppArgs {
     readonly namespace?: string;

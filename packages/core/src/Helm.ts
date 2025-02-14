@@ -3,8 +3,8 @@ import * as fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
 import * as yaml from 'yaml';
-import { ApiObject } from './ApiObject.js';
-import { K8sApp } from './K8sApp.js';
+import { ApiObject } from './ApiObject.ts';
+import { K8sApp } from './K8sApp.ts';
 import { ObjectMeta } from './models/meta/v1/types/ObjectMeta.ts';
 
 interface HelmObjectArgs {
