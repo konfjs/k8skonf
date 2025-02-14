@@ -118,7 +118,7 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
                     new URL(url);
                     await fetchAndParseCRDs(output[pkg], url, cacheDir);
                 } catch (e) {
-                    log(`Reading CRDs from ${pc.yellowBright(url)}`);
+                    log(`Reading CRDs from ${pc.yellowBright(url)} (local)`);
                     parseCRDs(output[pkg], fs.readFileSync(url, 'utf-8'));
                 }
             }
