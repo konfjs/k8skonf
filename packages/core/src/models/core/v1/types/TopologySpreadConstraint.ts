@@ -1,4 +1,4 @@
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
+import type { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * TopologySpreadConstraint specifies how to spread matching pods among the given topology.

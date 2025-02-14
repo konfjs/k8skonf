@@ -1,4 +1,4 @@
-import { HTTPHeader } from './HTTPHeader.ts';
+import type { HTTPHeader } from './HTTPHeader.ts';
 
 /**
  * HTTPGetAction describes an action based on HTTP Get requests.

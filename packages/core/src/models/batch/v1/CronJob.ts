@@ -1,6 +1,6 @@
-import { CronJobSpec } from './types/CronJobSpec.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { CronJobSpec } from './types/CronJobSpec.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface CronJobArgs {
   readonly metadata?: NamespacedObjectMeta;

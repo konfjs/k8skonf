@@ -1,5 +1,5 @@
-import { ExemptPriorityLevelConfiguration } from './ExemptPriorityLevelConfiguration.ts';
-import { LimitedPriorityLevelConfiguration } from './LimitedPriorityLevelConfiguration.ts';
+import type { ExemptPriorityLevelConfiguration } from './ExemptPriorityLevelConfiguration.ts';
+import type { LimitedPriorityLevelConfiguration } from './LimitedPriorityLevelConfiguration.ts';
 
 /**
  * PriorityLevelConfigurationSpec specifies the configuration of a priority level.

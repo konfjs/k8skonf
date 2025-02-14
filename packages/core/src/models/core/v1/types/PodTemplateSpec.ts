@@ -1,5 +1,5 @@
-import { PodSpec } from './PodSpec.ts';
-import { ObjectMeta } from '../../../meta/v1/types/ObjectMeta.ts';
+import type { PodSpec } from './PodSpec.ts';
+import type { ObjectMeta } from '../../../meta/v1/types/ObjectMeta.ts';
 
 /**
  * PodTemplateSpec describes the data a pod should have when created from a template

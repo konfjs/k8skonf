@@ -1,5 +1,5 @@
-import { JobSpec } from './JobSpec.ts';
-import { ObjectMeta } from '../../../meta/v1/types/ObjectMeta.ts';
+import type { JobSpec } from './JobSpec.ts';
+import type { ObjectMeta } from '../../../meta/v1/types/ObjectMeta.ts';
 
 /**
  * JobTemplateSpec describes the data a Job should have when created from a template

@@ -1,18 +1,18 @@
-import { Affinity } from './Affinity.ts';
-import { Container } from './Container.ts';
-import { EphemeralContainer } from './EphemeralContainer.ts';
-import { HostAlias } from './HostAlias.ts';
-import { LocalObjectReference } from './LocalObjectReference.ts';
-import { PodDNSConfig } from './PodDNSConfig.ts';
-import { PodOS } from './PodOS.ts';
-import { PodReadinessGate } from './PodReadinessGate.ts';
-import { PodResourceClaim } from './PodResourceClaim.ts';
-import { PodSchedulingGate } from './PodSchedulingGate.ts';
-import { PodSecurityContext } from './PodSecurityContext.ts';
-import { ResourceRequirements } from './ResourceRequirements.ts';
-import { Toleration } from './Toleration.ts';
-import { TopologySpreadConstraint } from './TopologySpreadConstraint.ts';
-import { Volume } from './Volume.ts';
+import type { Affinity } from './Affinity.ts';
+import type { Container } from './Container.ts';
+import type { EphemeralContainer } from './EphemeralContainer.ts';
+import type { HostAlias } from './HostAlias.ts';
+import type { LocalObjectReference } from './LocalObjectReference.ts';
+import type { PodDNSConfig } from './PodDNSConfig.ts';
+import type { PodOS } from './PodOS.ts';
+import type { PodReadinessGate } from './PodReadinessGate.ts';
+import type { PodResourceClaim } from './PodResourceClaim.ts';
+import type { PodSchedulingGate } from './PodSchedulingGate.ts';
+import type { PodSecurityContext } from './PodSecurityContext.ts';
+import type { ResourceRequirements } from './ResourceRequirements.ts';
+import type { Toleration } from './Toleration.ts';
+import type { TopologySpreadConstraint } from './TopologySpreadConstraint.ts';
+import type { Volume } from './Volume.ts';
 
 /**
  * PodSpec is a description of a pod.

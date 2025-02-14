@@ -1,4 +1,4 @@
-import { CrossVersionObjectReference } from './CrossVersionObjectReference.ts';
+import type { CrossVersionObjectReference } from './CrossVersionObjectReference.ts';
 
 /**
  * specification of a horizontal pod autoscaler.

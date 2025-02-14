@@ -1,5 +1,5 @@
-import { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec.ts';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
+import type { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec.ts';
+import type { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * ReplicaSetSpec is the specification of a ReplicaSet.

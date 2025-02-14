@@ -1,4 +1,4 @@
-import { IngressClassParametersReference } from './IngressClassParametersReference.ts';
+import type { IngressClassParametersReference } from './IngressClassParametersReference.ts';
 
 /**
  * IngressClassSpec provides information about the class of an Ingress.

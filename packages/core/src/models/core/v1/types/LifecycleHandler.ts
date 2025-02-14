@@ -1,7 +1,7 @@
-import { ExecAction } from './ExecAction.ts';
-import { HTTPGetAction } from './HTTPGetAction.ts';
-import { SleepAction } from './SleepAction.ts';
-import { TCPSocketAction } from './TCPSocketAction.ts';
+import type { ExecAction } from './ExecAction.ts';
+import type { HTTPGetAction } from './HTTPGetAction.ts';
+import type { SleepAction } from './SleepAction.ts';
+import type { TCPSocketAction } from './TCPSocketAction.ts';
 
 /**
  * LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified.

@@ -1,4 +1,4 @@
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
+import type { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * ParamRef describes how to locate the params to be used as input to expressions of rules applied by a policy binding.

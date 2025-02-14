@@ -1,7 +1,7 @@
-import { LocalObjectReference } from './types/LocalObjectReference.ts';
-import { ObjectReference } from './types/ObjectReference.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { LocalObjectReference } from './types/LocalObjectReference.ts';
+import type { ObjectReference } from './types/ObjectReference.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface ServiceAccountArgs {
   readonly metadata?: NamespacedObjectMeta;

@@ -1,13 +1,13 @@
-import { ContainerPort } from './ContainerPort.ts';
-import { ContainerResizePolicy } from './ContainerResizePolicy.ts';
-import { EnvFromSource } from './EnvFromSource.ts';
-import { EnvVar } from './EnvVar.ts';
-import { Lifecycle } from './Lifecycle.ts';
-import { Probe } from './Probe.ts';
-import { ResourceRequirements } from './ResourceRequirements.ts';
-import { SecurityContext } from './SecurityContext.ts';
-import { VolumeDevice } from './VolumeDevice.ts';
-import { VolumeMount } from './VolumeMount.ts';
+import type { ContainerPort } from './ContainerPort.ts';
+import type { ContainerResizePolicy } from './ContainerResizePolicy.ts';
+import type { EnvFromSource } from './EnvFromSource.ts';
+import type { EnvVar } from './EnvVar.ts';
+import type { Lifecycle } from './Lifecycle.ts';
+import type { Probe } from './Probe.ts';
+import type { ResourceRequirements } from './ResourceRequirements.ts';
+import type { SecurityContext } from './SecurityContext.ts';
+import type { VolumeDevice } from './VolumeDevice.ts';
+import type { VolumeMount } from './VolumeMount.ts';
 
 /**
  * A single application container that you want to run within a pod.

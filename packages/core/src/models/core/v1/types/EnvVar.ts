@@ -1,4 +1,4 @@
-import { EnvVarSource } from './EnvVarSource.ts';
+import type { EnvVarSource } from './EnvVarSource.ts';
 
 /**
  * EnvVar represents an environment variable present in a Container.

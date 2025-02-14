@@ -1,4 +1,4 @@
-import { LocalObjectReference } from './LocalObjectReference.ts';
+import type { LocalObjectReference } from './LocalObjectReference.ts';
 
 /**
  * ScaleIOVolumeSource represents a persistent ScaleIO volume

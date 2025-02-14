@@ -1,6 +1,6 @@
-import { MutatingWebhook } from './types/MutatingWebhook.ts';
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
-import { K8sApp } from '../../../K8sApp.ts';
+import type { MutatingWebhook } from './types/MutatingWebhook.ts';
+import type { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
 import { ApiObject } from '../../../ApiObject.ts';
 
 export interface MutatingWebhookConfigurationArgs {

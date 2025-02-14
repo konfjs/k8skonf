@@ -1,4 +1,4 @@
-import { JSONSchemaProps } from './JSONSchemaProps.ts';
+import type { JSONSchemaProps } from './JSONSchemaProps.ts';
 
 /**
  * CustomResourceValidation is a list of validation methods for CustomResources.

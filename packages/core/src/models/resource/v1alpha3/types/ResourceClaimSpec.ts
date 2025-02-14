@@ -1,4 +1,4 @@
-import { DeviceClaim } from './DeviceClaim.ts';
+import type { DeviceClaim } from './DeviceClaim.ts';
 
 /**
  * ResourceClaimSpec defines what is being requested in a ResourceClaim and how to configure it.

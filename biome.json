@@ -2,7 +2,13 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules/**/*", "dist/**/*", "packages/cli/files/**/*", "package.json"],
+    "ignore": [
+      "node_modules/**/*",
+      "dist/**/*",
+      "packages/cli/gen/**/*",
+      "packages/cli/input-spec/**/*",
+      "package.json"
+    ],
     "maxSize": 100000000
   },
   "formatter": {
@@ -20,9 +26,6 @@
       },
       "suspicious": {
         "noExplicitAny": "off"
-      },
-      "style": {
-        "useImportType": "off"
       },
       "complexity": {
         "noForEach": "off",

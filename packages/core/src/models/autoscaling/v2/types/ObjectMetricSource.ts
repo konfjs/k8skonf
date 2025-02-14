@@ -1,6 +1,6 @@
-import { CrossVersionObjectReference } from './CrossVersionObjectReference.ts';
-import { MetricIdentifier } from './MetricIdentifier.ts';
-import { MetricTarget } from './MetricTarget.ts';
+import type { CrossVersionObjectReference } from './CrossVersionObjectReference.ts';
+import type { MetricIdentifier } from './MetricIdentifier.ts';
+import type { MetricTarget } from './MetricTarget.ts';
 
 /**
  * ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).

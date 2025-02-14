@@ -1,4 +1,4 @@
-import { ObjectReference } from './ObjectReference.ts';
+import type { ObjectReference } from './ObjectReference.ts';
 
 /**
  * EndpointAddress is a tuple that describes single IP address.

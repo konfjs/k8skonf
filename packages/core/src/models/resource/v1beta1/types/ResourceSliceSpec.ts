@@ -1,6 +1,6 @@
-import { NodeSelector } from '../../../core/v1/types/NodeSelector.ts';
-import { Device } from './Device.ts';
-import { ResourcePool } from './ResourcePool.ts';
+import type { NodeSelector } from '../../../core/v1/types/NodeSelector.ts';
+import type { Device } from './Device.ts';
+import type { ResourcePool } from './ResourcePool.ts';
 
 /**
  * ResourceSliceSpec contains the information published by the driver in one ResourceSlice.

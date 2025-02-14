@@ -1,6 +1,6 @@
-import { DeploymentSpec } from './types/DeploymentSpec.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { DeploymentSpec } from './types/DeploymentSpec.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface DeploymentArgs {
   readonly metadata?: NamespacedObjectMeta;

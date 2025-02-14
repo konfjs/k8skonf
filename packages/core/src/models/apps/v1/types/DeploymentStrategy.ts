@@ -1,4 +1,4 @@
-import { RollingUpdateDeployment } from './RollingUpdateDeployment.ts';
+import type { RollingUpdateDeployment } from './RollingUpdateDeployment.ts';
 
 /**
  * DeploymentStrategy describes how to replace existing pods with new ones.

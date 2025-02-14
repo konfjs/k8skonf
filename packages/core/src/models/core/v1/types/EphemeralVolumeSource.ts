@@ -1,4 +1,4 @@
-import { PersistentVolumeClaimTemplate } from './PersistentVolumeClaimTemplate.ts';
+import type { PersistentVolumeClaimTemplate } from './PersistentVolumeClaimTemplate.ts';
 
 /**
  * Represents an ephemeral volume that is handled by a normal storage driver.

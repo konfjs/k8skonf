@@ -1,6 +1,6 @@
-import { PodTemplateSpec } from './types/PodTemplateSpec.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { PodTemplateSpec } from './types/PodTemplateSpec.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface PodTemplateArgs {
   readonly metadata?: NamespacedObjectMeta;

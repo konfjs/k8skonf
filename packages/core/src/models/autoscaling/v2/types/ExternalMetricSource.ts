@@ -1,5 +1,5 @@
-import { MetricIdentifier } from './MetricIdentifier.ts';
-import { MetricTarget } from './MetricTarget.ts';
+import type { MetricIdentifier } from './MetricIdentifier.ts';
+import type { MetricTarget } from './MetricTarget.ts';
 
 /**
  * ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).

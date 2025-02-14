@@ -1,5 +1,5 @@
-import { ExternalDocumentation } from './ExternalDocumentation.ts';
-import { ValidationRule } from './ValidationRule.ts';
+import type { ExternalDocumentation } from './ExternalDocumentation.ts';
+import type { ValidationRule } from './ValidationRule.ts';
 
 /**
  * JSONSchemaProps is a JSON-Schema following Specification Draft 4 (http://json-schema.org/).

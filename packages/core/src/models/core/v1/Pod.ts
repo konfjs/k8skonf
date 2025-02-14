@@ -1,6 +1,6 @@
-import { PodSpec } from './types/PodSpec.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { PodSpec } from './types/PodSpec.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface PodArgs {
   readonly metadata?: NamespacedObjectMeta;

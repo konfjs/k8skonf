@@ -1,7 +1,7 @@
-import { RoleRef } from './types/RoleRef.ts';
-import { Subject } from './types/Subject.ts';
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
-import { K8sApp } from '../../../K8sApp.ts';
+import type { RoleRef } from './types/RoleRef.ts';
+import type { Subject } from './types/Subject.ts';
+import type { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
 import { ApiObject } from '../../../ApiObject.ts';
 
 export interface ClusterRoleBindingArgs {

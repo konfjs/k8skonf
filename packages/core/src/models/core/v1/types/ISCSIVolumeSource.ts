@@ -1,4 +1,4 @@
-import { LocalObjectReference } from './LocalObjectReference.ts';
+import type { LocalObjectReference } from './LocalObjectReference.ts';
 
 /**
  * Represents an ISCSI disk. ISCSI volumes can only be mounted as read/write once. ISCSI volumes support ownership management and SELinux relabeling.

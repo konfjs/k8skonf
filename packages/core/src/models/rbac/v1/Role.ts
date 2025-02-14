@@ -1,6 +1,6 @@
-import { PolicyRule } from './types/PolicyRule.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { PolicyRule } from './types/PolicyRule.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface RoleArgs {
   readonly metadata?: NamespacedObjectMeta;

@@ -3,7 +3,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import pc from 'picocolors';
 import { IndentationText, Project, QuoteKind } from 'ts-morph';
-import { Schemas } from './parseSchemas.ts';
+import type { Schemas } from './parseSchemas.ts';
 
 function main() {
     const corePath = path.join(import.meta.dirname, '../../core');

@@ -1,4 +1,4 @@
-import { IngressBackend } from './IngressBackend.ts';
+import type { IngressBackend } from './IngressBackend.ts';
 
 /**
  * HTTPIngressPath associates a path with a backend. Incoming urls matching the path are forwarded to the backend.

@@ -1,4 +1,4 @@
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
+import type { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * ClusterTrustBundleProjection describes how to select a set of ClusterTrustBundle objects and project their contents into the pod filesystem.

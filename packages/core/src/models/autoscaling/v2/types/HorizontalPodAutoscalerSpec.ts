@@ -1,6 +1,6 @@
-import { CrossVersionObjectReference } from './CrossVersionObjectReference.ts';
-import { HorizontalPodAutoscalerBehavior } from './HorizontalPodAutoscalerBehavior.ts';
-import { MetricSpec } from './MetricSpec.ts';
+import type { CrossVersionObjectReference } from './CrossVersionObjectReference.ts';
+import type { HorizontalPodAutoscalerBehavior } from './HorizontalPodAutoscalerBehavior.ts';
+import type { MetricSpec } from './MetricSpec.ts';
 
 /**
  * HorizontalPodAutoscalerSpec describes the desired functionality of the HorizontalPodAutoscaler.
