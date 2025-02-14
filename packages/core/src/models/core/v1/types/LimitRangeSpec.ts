@@ -1,4 +1,4 @@
-import { LimitRangeItem } from './LimitRangeItem.ts';
+import type { LimitRangeItem } from './LimitRangeItem.ts';
 
 /**
  * LimitRangeSpec defines a min/max usage limit for resources that match on kind.

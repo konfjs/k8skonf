@@ -1,8 +1,8 @@
-import { AppArmorProfile } from './AppArmorProfile.ts';
-import { Capabilities } from './Capabilities.ts';
-import { SELinuxOptions } from './SELinuxOptions.ts';
-import { SeccompProfile } from './SeccompProfile.ts';
-import { WindowsSecurityContextOptions } from './WindowsSecurityContextOptions.ts';
+import type { AppArmorProfile } from './AppArmorProfile.ts';
+import type { Capabilities } from './Capabilities.ts';
+import type { SELinuxOptions } from './SELinuxOptions.ts';
+import type { SeccompProfile } from './SeccompProfile.ts';
+import type { WindowsSecurityContextOptions } from './WindowsSecurityContextOptions.ts';
 
 /**
  * SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.

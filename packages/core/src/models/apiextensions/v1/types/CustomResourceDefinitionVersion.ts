@@ -1,7 +1,7 @@
-import { CustomResourceColumnDefinition } from './CustomResourceColumnDefinition.ts';
-import { CustomResourceSubresources } from './CustomResourceSubresources.ts';
-import { CustomResourceValidation } from './CustomResourceValidation.ts';
-import { SelectableField } from './SelectableField.ts';
+import type { CustomResourceColumnDefinition } from './CustomResourceColumnDefinition.ts';
+import type { CustomResourceSubresources } from './CustomResourceSubresources.ts';
+import type { CustomResourceValidation } from './CustomResourceValidation.ts';
+import type { SelectableField } from './SelectableField.ts';
 
 /**
  * CustomResourceDefinitionVersion describes a version for CRD.

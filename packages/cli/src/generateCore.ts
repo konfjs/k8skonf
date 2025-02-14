@@ -3,15 +3,15 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import pc from 'picocolors';
 import {
-    ClassDeclaration,
-    ConstructorDeclarationStructure,
+    type ClassDeclaration,
+    type ConstructorDeclarationStructure,
     IndentationText,
-    InterfaceDeclarationStructure,
+    type InterfaceDeclarationStructure,
     Project,
-    PropertySignatureStructure,
+    type PropertySignatureStructure,
     QuoteKind,
-    SourceFile,
-    StatementStructures,
+    type SourceFile,
+    type StatementStructures,
     StructureKind,
     SyntaxKind,
 } from 'ts-morph';

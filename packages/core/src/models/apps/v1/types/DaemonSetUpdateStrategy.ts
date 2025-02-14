@@ -1,4 +1,4 @@
-import { RollingUpdateDaemonSet } from './RollingUpdateDaemonSet.ts';
+import type { RollingUpdateDaemonSet } from './RollingUpdateDaemonSet.ts';
 
 /**
  * DaemonSetUpdateStrategy is a struct used to control the update strategy for a DaemonSet.

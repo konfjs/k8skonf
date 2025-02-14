@@ -1,4 +1,4 @@
-import { Toleration } from '../../../core/v1/types/Toleration.ts';
+import type { Toleration } from '../../../core/v1/types/Toleration.ts';
 
 /**
  * Scheduling specifies the scheduling constraints for nodes supporting a RuntimeClass.

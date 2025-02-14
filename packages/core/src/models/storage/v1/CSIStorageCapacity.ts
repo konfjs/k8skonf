@@ -1,6 +1,6 @@
-import { LabelSelector } from '../../meta/v1/types/LabelSelector.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { LabelSelector } from '../../meta/v1/types/LabelSelector.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface CSIStorageCapacityArgs {
   readonly metadata?: NamespacedObjectMeta;

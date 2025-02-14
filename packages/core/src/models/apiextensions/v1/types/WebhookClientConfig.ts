@@ -1,4 +1,4 @@
-import { ServiceReference } from './ServiceReference.ts';
+import type { ServiceReference } from './ServiceReference.ts';
 
 /**
  * WebhookClientConfig contains the information to make a TLS connection with the webhook.

@@ -1,5 +1,5 @@
-import { NetworkPolicyPeer } from './NetworkPolicyPeer.ts';
-import { NetworkPolicyPort } from './NetworkPolicyPort.ts';
+import type { NetworkPolicyPeer } from './NetworkPolicyPeer.ts';
+import type { NetworkPolicyPort } from './NetworkPolicyPort.ts';
 
 /**
  * NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec\'s podSelector. The traffic must match both ports and from.

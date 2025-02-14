@@ -1,4 +1,4 @@
-import { HPAScalingRules } from './HPAScalingRules.ts';
+import type { HPAScalingRules } from './HPAScalingRules.ts';
 
 /**
  * HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).

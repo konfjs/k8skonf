@@ -1,6 +1,6 @@
-import { PodDisruptionBudgetSpec } from './types/PodDisruptionBudgetSpec.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { PodDisruptionBudgetSpec } from './types/PodDisruptionBudgetSpec.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface PodDisruptionBudgetArgs {
   readonly metadata?: NamespacedObjectMeta;

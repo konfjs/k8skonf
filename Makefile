@@ -78,4 +78,5 @@ fix-imports:
 
 .PHONY: lint
 lint:
-	@cd packages/core && pnpm lint && pnpm tsc --noEmit
+	@cd packages/cli && pnpm lint && pnpm tsc --noEmit
+	@cd packages/core && pnpm lint --fix && pnpm tsc --noEmit

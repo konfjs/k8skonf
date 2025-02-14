@@ -1,8 +1,8 @@
-import { ContainerResourceMetricSource } from './ContainerResourceMetricSource.ts';
-import { ExternalMetricSource } from './ExternalMetricSource.ts';
-import { ObjectMetricSource } from './ObjectMetricSource.ts';
-import { PodsMetricSource } from './PodsMetricSource.ts';
-import { ResourceMetricSource } from './ResourceMetricSource.ts';
+import type { ContainerResourceMetricSource } from './ContainerResourceMetricSource.ts';
+import type { ExternalMetricSource } from './ExternalMetricSource.ts';
+import type { ObjectMetricSource } from './ObjectMetricSource.ts';
+import type { PodsMetricSource } from './PodsMetricSource.ts';
+import type { ResourceMetricSource } from './ResourceMetricSource.ts';
 
 /**
  * MetricSpec specifies how to scale based on a single metric (only `type` and one other matching field should be set at once).

@@ -1,4 +1,4 @@
-import { DeviceAttribute } from './DeviceAttribute.ts';
+import type { DeviceAttribute } from './DeviceAttribute.ts';
 
 /**
  * BasicDevice defines one device instance.

@@ -1,4 +1,4 @@
-import { BasicDevice } from './BasicDevice.ts';
+import type { BasicDevice } from './BasicDevice.ts';
 
 /**
  * Device represents one individual hardware instance that can be selected based on its attributes. Besides the name, exactly one field must be set.

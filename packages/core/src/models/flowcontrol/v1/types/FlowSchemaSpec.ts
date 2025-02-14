@@ -1,6 +1,6 @@
-import { FlowDistinguisherMethod } from './FlowDistinguisherMethod.ts';
-import { PolicyRulesWithSubjects } from './PolicyRulesWithSubjects.ts';
-import { PriorityLevelConfigurationReference } from './PriorityLevelConfigurationReference.ts';
+import type { FlowDistinguisherMethod } from './FlowDistinguisherMethod.ts';
+import type { PolicyRulesWithSubjects } from './PolicyRulesWithSubjects.ts';
+import type { PriorityLevelConfigurationReference } from './PriorityLevelConfigurationReference.ts';
 
 /**
  * FlowSchemaSpec describes how the FlowSchema\'s specification looks like.

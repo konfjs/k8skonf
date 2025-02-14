@@ -1,9 +1,9 @@
-import { AuditAnnotation } from './AuditAnnotation.ts';
-import { MatchCondition } from './MatchCondition.ts';
-import { MatchResources } from './MatchResources.ts';
-import { ParamKind } from './ParamKind.ts';
-import { Validation } from './Validation.ts';
-import { Variable } from './Variable.ts';
+import type { AuditAnnotation } from './AuditAnnotation.ts';
+import type { MatchCondition } from './MatchCondition.ts';
+import type { MatchResources } from './MatchResources.ts';
+import type { ParamKind } from './ParamKind.ts';
+import type { Validation } from './Validation.ts';
+import type { Variable } from './Variable.ts';
 
 /**
  * ValidatingAdmissionPolicySpec is the specification of the desired behavior of the AdmissionPolicy.

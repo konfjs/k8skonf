@@ -1,4 +1,4 @@
-import { SuccessPolicyRule } from './SuccessPolicyRule.ts';
+import type { SuccessPolicyRule } from './SuccessPolicyRule.ts';
 
 /**
  * SuccessPolicy describes when a Job can be declared as succeeded based on the success of some indexes.

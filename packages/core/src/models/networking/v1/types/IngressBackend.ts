@@ -1,5 +1,5 @@
-import { TypedLocalObjectReference } from '../../../core/v1/types/TypedLocalObjectReference.ts';
-import { IngressServiceBackend } from './IngressServiceBackend.ts';
+import type { TypedLocalObjectReference } from '../../../core/v1/types/TypedLocalObjectReference.ts';
+import type { IngressServiceBackend } from './IngressServiceBackend.ts';
 
 /**
  * IngressBackend describes all endpoints for a given service and port.

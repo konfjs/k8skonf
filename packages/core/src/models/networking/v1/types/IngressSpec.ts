@@ -1,6 +1,6 @@
-import { IngressBackend } from './IngressBackend.ts';
-import { IngressRule } from './IngressRule.ts';
-import { IngressTLS } from './IngressTLS.ts';
+import type { IngressBackend } from './IngressBackend.ts';
+import type { IngressRule } from './IngressRule.ts';
+import type { IngressTLS } from './IngressTLS.ts';
 
 /**
  * IngressSpec describes the Ingress the user wishes to exist.

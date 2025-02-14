@@ -4,8 +4,8 @@ import * as os from 'node:os';
 import * as path from 'node:path';
 import * as yaml from 'yaml';
 import { ApiObject } from './ApiObject.ts';
-import { K8sApp } from './K8sApp.ts';
-import { ObjectMeta } from './models/meta/v1/types/ObjectMeta.ts';
+import type { K8sApp } from './K8sApp.ts';
+import type { ObjectMeta } from './models/meta/v1/types/ObjectMeta.ts';
 
 interface HelmObjectArgs {
     readonly apiVersion: string;

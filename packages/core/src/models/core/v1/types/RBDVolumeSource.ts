@@ -1,4 +1,4 @@
-import { LocalObjectReference } from './LocalObjectReference.ts';
+import type { LocalObjectReference } from './LocalObjectReference.ts';
 
 /**
  * Represents a Rados Block Device mount that lasts the lifetime of a pod. RBD volumes support ownership management and SELinux relabeling.

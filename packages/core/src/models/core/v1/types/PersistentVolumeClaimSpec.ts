@@ -1,7 +1,7 @@
-import { TypedLocalObjectReference } from './TypedLocalObjectReference.ts';
-import { TypedObjectReference } from './TypedObjectReference.ts';
-import { VolumeResourceRequirements } from './VolumeResourceRequirements.ts';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
+import type { TypedLocalObjectReference } from './TypedLocalObjectReference.ts';
+import type { TypedObjectReference } from './TypedObjectReference.ts';
+import type { VolumeResourceRequirements } from './VolumeResourceRequirements.ts';
+import type { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes

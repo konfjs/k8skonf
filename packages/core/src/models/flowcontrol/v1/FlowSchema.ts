@@ -1,6 +1,6 @@
-import { FlowSchemaSpec } from './types/FlowSchemaSpec.ts';
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
-import { K8sApp } from '../../../K8sApp.ts';
+import type { FlowSchemaSpec } from './types/FlowSchemaSpec.ts';
+import type { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
 import { ApiObject } from '../../../ApiObject.ts';
 
 export interface FlowSchemaArgs {

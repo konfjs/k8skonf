@@ -1,5 +1,5 @@
-import { PodAffinityTerm } from './PodAffinityTerm.ts';
-import { WeightedPodAffinityTerm } from './WeightedPodAffinityTerm.ts';
+import type { PodAffinityTerm } from './PodAffinityTerm.ts';
+import type { WeightedPodAffinityTerm } from './WeightedPodAffinityTerm.ts';
 
 /**
  * Pod anti affinity is a group of inter pod anti affinity scheduling rules.

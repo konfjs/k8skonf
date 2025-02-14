@@ -1,4 +1,4 @@
-import { LocalObjectReference } from './LocalObjectReference.ts';
+import type { LocalObjectReference } from './LocalObjectReference.ts';
 
 /**
  * Represents a StorageOS persistent volume resource.

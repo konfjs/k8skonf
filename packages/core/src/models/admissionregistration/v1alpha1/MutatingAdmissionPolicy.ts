@@ -1,6 +1,6 @@
-import { MutatingAdmissionPolicySpec } from './types/MutatingAdmissionPolicySpec.ts';
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
-import { K8sApp } from '../../../K8sApp.ts';
+import type { MutatingAdmissionPolicySpec } from './types/MutatingAdmissionPolicySpec.ts';
+import type { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
 import { ApiObject } from '../../../ApiObject.ts';
 
 export interface MutatingAdmissionPolicyArgs {

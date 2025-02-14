@@ -1,4 +1,4 @@
-import { CSINodeDriver } from './CSINodeDriver.ts';
+import type { CSINodeDriver } from './CSINodeDriver.ts';
 
 /**
  * CSINodeSpec holds information about the specification of all CSI drivers installed on a node

@@ -1,7 +1,7 @@
-import { Endpoint } from './types/Endpoint.ts';
-import { EndpointPort } from './types/EndpointPort.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { Endpoint } from './types/Endpoint.ts';
+import type { EndpointPort } from './types/EndpointPort.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface EndpointSliceArgs {
   readonly metadata?: NamespacedObjectMeta;

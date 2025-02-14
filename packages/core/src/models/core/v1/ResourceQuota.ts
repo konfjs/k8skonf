@@ -1,6 +1,6 @@
-import { ResourceQuotaSpec } from './types/ResourceQuotaSpec.ts';
-import { K8sApp } from '../../../K8sApp.ts';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
+import type { ResourceQuotaSpec } from './types/ResourceQuotaSpec.ts';
+import type { K8sApp } from '../../../K8sApp.ts';
+import { type NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface ResourceQuotaArgs {
   readonly metadata?: NamespacedObjectMeta;

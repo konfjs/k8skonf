@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import pc from 'picocolors';
-import { ApiObject, NamespacedApiObject } from './ApiObject.ts';
+import { type ApiObject, NamespacedApiObject } from './ApiObject.ts';
 
 interface K8sAppArgs {
     readonly namespace?: string;
@@ -18,12 +18,13 @@ interface K8sAppArgs {
 export class K8sApp {
     private readonly resources: ApiObject[] | NamespacedApiObject[] = [];
     readonly namespace?: string;
+    readonly outputName: string;
+    private readonly args?: K8sAppArgs;
 
-    constructor(
-        readonly outputName: string,
-        private readonly args?: K8sAppArgs,
-    ) {
+    constructor(outputName: string, args?: K8sAppArgs) {
         this.namespace = args?.namespace;
+        this.outputName = outputName;
+        this.args = args;
     }
 
     addResource(resource: ApiObject | NamespacedApiObject) {

@@ -6,8 +6,7 @@
     "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
-    // "verbatimModuleSyntax": true, // Would like to use this, but OpenAPI generator doesn't generate compatible imports and I didn't find an easy way to fix imports.
-    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     // "erasableSyntaxOnly": true, // TypeScript 5.8 feature. So we can use native NodeJS support.
 
     "declaration": true,

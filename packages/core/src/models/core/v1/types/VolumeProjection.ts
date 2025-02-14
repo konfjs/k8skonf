@@ -1,8 +1,8 @@
-import { ClusterTrustBundleProjection } from './ClusterTrustBundleProjection.ts';
-import { ConfigMapProjection } from './ConfigMapProjection.ts';
-import { DownwardAPIProjection } from './DownwardAPIProjection.ts';
-import { SecretProjection } from './SecretProjection.ts';
-import { ServiceAccountTokenProjection } from './ServiceAccountTokenProjection.ts';
+import type { ClusterTrustBundleProjection } from './ClusterTrustBundleProjection.ts';
+import type { ConfigMapProjection } from './ConfigMapProjection.ts';
+import type { DownwardAPIProjection } from './DownwardAPIProjection.ts';
+import type { SecretProjection } from './SecretProjection.ts';
+import type { ServiceAccountTokenProjection } from './ServiceAccountTokenProjection.ts';
 
 /**
  * Projection that may be projected along with other supported volume types. Exactly one of these fields must be set.

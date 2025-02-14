@@ -1,4 +1,4 @@
-import { SecretReference } from './SecretReference.ts';
+import type { SecretReference } from './SecretReference.ts';
 
 /**
  * ScaleIOPersistentVolumeSource represents a persistent ScaleIO volume

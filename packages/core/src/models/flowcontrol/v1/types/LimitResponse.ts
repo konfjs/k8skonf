@@ -1,4 +1,4 @@
-import { QueuingConfiguration } from './QueuingConfiguration.ts';
+import type { QueuingConfiguration } from './QueuingConfiguration.ts';
 
 /**
  * LimitResponse defines how to handle requests that can not be executed right now.

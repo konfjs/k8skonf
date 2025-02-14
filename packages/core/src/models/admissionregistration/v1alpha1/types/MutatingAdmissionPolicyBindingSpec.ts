@@ -1,5 +1,5 @@
-import { MatchResources } from './MatchResources.ts';
-import { ParamRef } from './ParamRef.ts';
+import type { MatchResources } from './MatchResources.ts';
+import type { ParamRef } from './ParamRef.ts';
 
 /**
  * MutatingAdmissionPolicyBindingSpec is the specification of the MutatingAdmissionPolicyBinding.

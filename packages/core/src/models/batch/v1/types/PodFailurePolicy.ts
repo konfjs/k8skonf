@@ -1,4 +1,4 @@
-import { PodFailurePolicyRule } from './PodFailurePolicyRule.ts';
+import type { PodFailurePolicyRule } from './PodFailurePolicyRule.ts';
 
 /**
  * PodFailurePolicy describes how failed pods influence the backoffLimit.

@@ -1,4 +1,4 @@
-import { PodDNSConfigOption } from './PodDNSConfigOption.ts';
+import type { PodDNSConfigOption } from './PodDNSConfigOption.ts';
 
 /**
  * PodDNSConfig defines the DNS parameters of a pod in addition to those generated from DNSPolicy.

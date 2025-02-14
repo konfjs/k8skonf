@@ -1,4 +1,4 @@
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
+import type { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * AggregationRule describes how to locate ClusterRoles to aggregate into the ClusterRole

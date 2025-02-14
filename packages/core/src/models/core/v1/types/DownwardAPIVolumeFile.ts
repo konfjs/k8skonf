@@ -1,5 +1,5 @@
-import { ObjectFieldSelector } from './ObjectFieldSelector.ts';
-import { ResourceFieldSelector } from './ResourceFieldSelector.ts';
+import type { ObjectFieldSelector } from './ObjectFieldSelector.ts';
+import type { ResourceFieldSelector } from './ResourceFieldSelector.ts';
 
 /**
  * DownwardAPIVolumeFile represents information to create the file containing the pod field
