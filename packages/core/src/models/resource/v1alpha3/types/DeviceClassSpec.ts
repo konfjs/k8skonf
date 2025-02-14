@@ -1,5 +1,5 @@
-import { DeviceClassConfiguration } from './DeviceClassConfiguration';
-import { DeviceSelector } from './DeviceSelector';
+import { DeviceClassConfiguration } from './DeviceClassConfiguration.ts';
+import { DeviceSelector } from './DeviceSelector.ts';
 
 /**
  * DeviceClassSpec is used in a [DeviceClass] to define what can be allocated and how to configure it.

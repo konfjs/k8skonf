@@ -56,10 +56,10 @@ function main() {
     const apiResources: ApiResources = {};
     getApiResources(modelsPath, apiResources);
 
-    let indexFileContent = `export * from './ApiObject';
-export * from './K8sApp';
-export * from './models/meta/v1/types/ObjectMeta';
-export * from './Helm';
+    let indexFileContent = `export * from './ApiObject.ts';
+export * from './K8sApp.ts';
+export * from './models/meta/v1/types/ObjectMeta.ts';
+export * from './Helm.ts';
 `;
 
     for (const apiGroup of Object.keys(apiResources)) {
@@ -67,11 +67,11 @@ export * from './Helm';
         for (const apiVersion of Object.keys(apiResources[apiGroup])) {
             const apiResourceList = apiResources[apiGroup][apiVersion];
             if (apiResourceList.length > 0) {
-                apiGroupFileContent += `export * as ${apiVersion} from './${apiGroup}/${apiVersion}';\n`;
+                apiGroupFileContent += `export * as ${apiVersion} from './${apiGroup}/${apiVersion}.ts';\n`;
 
                 let apiVersionFileContent = '';
                 for (const apiResource of apiResourceList) {
-                    apiVersionFileContent += `export * from './${apiVersion}/${apiResource}';\n`;
+                    apiVersionFileContent += `export * from './${apiVersion}/${apiResource}.ts';\n`;
                 }
                 const apiVersionFilePath = path.join(modelsPath, apiGroup, `${apiVersion}.ts`);
                 log(`Creating file ${pc.cyan(apiVersionFilePath)}`);
@@ -87,7 +87,7 @@ export * from './Helm';
             project.createSourceFile(apiGroupFilePath, apiGroupFileContent, {
                 overwrite: true,
             });
-            indexFileContent += `export * as ${apiGroup} from './models/${apiGroup}';\n`;
+            indexFileContent += `export * as ${apiGroup} from './models/${apiGroup}.ts';\n`;
         }
     }
 

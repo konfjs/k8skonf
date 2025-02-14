@@ -1,4 +1,4 @@
-import { ResourceClaim } from './ResourceClaim';
+import { ResourceClaim } from './ResourceClaim.ts';
 
 /**
  * ResourceRequirements describes the compute resource requirements.

@@ -1,6 +1,6 @@
-import { ResourceClaimSpec } from './types/ResourceClaimSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { ResourceClaimSpec } from './types/ResourceClaimSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface ResourceClaimArgs {
   readonly metadata?: NamespacedObjectMeta;

@@ -1,2 +1,2 @@
-export * from './v1/CronJob';
-export * from './v1/Job';
+export * from './v1/CronJob.ts';
+export * from './v1/Job.ts';

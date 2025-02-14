@@ -1,6 +1,6 @@
-import { NetworkPolicyEgressRule } from './NetworkPolicyEgressRule';
-import { NetworkPolicyIngressRule } from './NetworkPolicyIngressRule';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { NetworkPolicyEgressRule } from './NetworkPolicyEgressRule.ts';
+import { NetworkPolicyIngressRule } from './NetworkPolicyIngressRule.ts';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * NetworkPolicySpec provides the specification of a NetworkPolicy

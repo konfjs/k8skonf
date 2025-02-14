@@ -1,2 +1,2 @@
-export * from './v1/FlowSchema';
-export * from './v1/PriorityLevelConfiguration';
+export * from './v1/FlowSchema.ts';
+export * from './v1/PriorityLevelConfiguration.ts';

@@ -1,4 +1,4 @@
-import { PersistentVolumeSpec } from '../../../core/v1/types/PersistentVolumeSpec';
+import { PersistentVolumeSpec } from '../../../core/v1/types/PersistentVolumeSpec.ts';
 
 /**
  * VolumeAttachmentSource represents a volume that should be attached. Right now only PersistentVolumes can be attached via external attacher, in the future we may allow also inline volumes in pods. Exactly one member can be set.

@@ -1,4 +1,4 @@
-import { LocalObjectReference } from './LocalObjectReference';
+import { LocalObjectReference } from './LocalObjectReference.ts';
 
 /**
  * Represents a source location of a volume to mount, managed by an external CSI driver

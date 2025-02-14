@@ -1,1 +1,1 @@
-export * from './v1alpha1/StorageVersionMigration';
+export * from './v1alpha1/StorageVersionMigration.ts';

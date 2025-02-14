@@ -1,4 +1,4 @@
-import { NodeSelector } from './NodeSelector';
+import { NodeSelector } from './NodeSelector.ts';
 
 /**
  * VolumeNodeAffinity defines constraints that limit what nodes this volume can be accessed from.

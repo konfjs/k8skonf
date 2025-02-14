@@ -67,4 +67,15 @@ move-core:
 add-exports:
 	@echo "Adding model exports"
 	@cd packages/cli && npx tsx src/addExports.ts
+
+
+# Workaround until https://github.com/dsherret/ts-morph/issues/1612 is fixed.
+.PHONY: fix-imports
+fix-imports:
+	@echo "Fixing import extensions"
+	@cd packages/cli && npx tsx src/fixImports.ts
+
+
+.PHONY: lint
+lint:
 	@cd packages/core && pnpm lint && pnpm tsc --noEmit

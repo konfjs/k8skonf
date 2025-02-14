@@ -1,4 +1,4 @@
-import { ConfigMapNodeConfigSource } from './ConfigMapNodeConfigSource';
+import { ConfigMapNodeConfigSource } from './ConfigMapNodeConfigSource.ts';
 
 /**
  * NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil. This API is deprecated since 1.22

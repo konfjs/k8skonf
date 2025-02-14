@@ -1,4 +1,4 @@
-import { TokenRequest } from './TokenRequest';
+import { TokenRequest } from './TokenRequest.ts';
 
 /**
  * CSIDriverSpec is the specification of a CSIDriver.

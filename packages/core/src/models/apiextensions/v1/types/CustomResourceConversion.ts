@@ -1,4 +1,4 @@
-import { WebhookConversion } from './WebhookConversion';
+import { WebhookConversion } from './WebhookConversion.ts';
 
 /**
  * CustomResourceConversion describes how to convert different versions of a CR.

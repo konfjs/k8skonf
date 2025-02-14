@@ -1,7 +1,7 @@
-import { ConfigMapKeySelector } from './ConfigMapKeySelector';
-import { ObjectFieldSelector } from './ObjectFieldSelector';
-import { ResourceFieldSelector } from './ResourceFieldSelector';
-import { SecretKeySelector } from './SecretKeySelector';
+import { ConfigMapKeySelector } from './ConfigMapKeySelector.ts';
+import { ObjectFieldSelector } from './ObjectFieldSelector.ts';
+import { ResourceFieldSelector } from './ResourceFieldSelector.ts';
+import { SecretKeySelector } from './SecretKeySelector.ts';
 
 /**
  * EnvVarSource represents a source for the value of an EnvVar.

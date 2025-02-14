@@ -1,5 +1,5 @@
-import { DeviceAttribute } from './DeviceAttribute';
-import { DeviceCapacity } from './DeviceCapacity';
+import { DeviceAttribute } from './DeviceAttribute.ts';
+import { DeviceCapacity } from './DeviceCapacity.ts';
 
 /**
  * BasicDevice defines one device instance.

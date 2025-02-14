@@ -5,7 +5,7 @@ import * as os from 'node:os';
 import * as path from 'node:path';
 import { compile } from 'json-schema-to-typescript';
 import pc from 'picocolors';
-import { ClassDeclarationStructure, Project, StructureKind } from 'ts-morph';
+import { type ClassDeclarationStructure, Project, StructureKind } from 'ts-morph';
 import * as yaml from 'yaml';
 import { formatCode } from './utils.ts';
 

@@ -1,7 +1,7 @@
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
-import { APIServiceSpec } from './types/APIServiceSpec';
-import { K8sApp } from '../../../K8sApp';
-import { ApiObject } from '../../../ApiObject';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import { APIServiceSpec } from './types/APIServiceSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { ApiObject } from '../../../ApiObject.ts';
 
 export interface APIServiceArgs {
   readonly metadata?: ObjectMeta;

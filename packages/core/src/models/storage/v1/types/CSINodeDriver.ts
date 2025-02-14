@@ -1,4 +1,4 @@
-import { VolumeNodeResources } from './VolumeNodeResources';
+import { VolumeNodeResources } from './VolumeNodeResources.ts';
 
 /**
  * CSINodeDriver holds information about the specification of one CSI driver installed on a node

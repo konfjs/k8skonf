@@ -1,6 +1,6 @@
-import { CustomResourceConversion } from './CustomResourceConversion';
-import { CustomResourceDefinitionNames } from './CustomResourceDefinitionNames';
-import { CustomResourceDefinitionVersion } from './CustomResourceDefinitionVersion';
+import { CustomResourceConversion } from './CustomResourceConversion.ts';
+import { CustomResourceDefinitionNames } from './CustomResourceDefinitionNames.ts';
+import { CustomResourceDefinitionVersion } from './CustomResourceDefinitionVersion.ts';
 
 /**
  * CustomResourceDefinitionSpec describes how a user wants their resource to appear

@@ -1,5 +1,5 @@
-import { NetworkPolicyPeer } from './NetworkPolicyPeer';
-import { NetworkPolicyPort } from './NetworkPolicyPort';
+import { NetworkPolicyPeer } from './NetworkPolicyPeer.ts';
+import { NetworkPolicyPort } from './NetworkPolicyPort.ts';
 
 /**
  * NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec\'s podSelector. The traffic must match both ports and to. This type is beta-level in 1.8

@@ -1,4 +1,4 @@
-import { ClientIPConfig } from './ClientIPConfig';
+import { ClientIPConfig } from './ClientIPConfig.ts';
 
 /**
  * SessionAffinityConfig represents the configurations of session affinity.

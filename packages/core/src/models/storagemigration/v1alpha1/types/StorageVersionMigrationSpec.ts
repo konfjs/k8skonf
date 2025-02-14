@@ -1,4 +1,4 @@
-import { GroupVersionResource } from './GroupVersionResource';
+import { GroupVersionResource } from './GroupVersionResource.ts';
 
 /**
  * Spec of the storage version migration.

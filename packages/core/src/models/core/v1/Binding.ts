@@ -1,6 +1,6 @@
-import { ObjectReference } from './types/ObjectReference';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { ObjectReference } from './types/ObjectReference.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface BindingArgs {
   readonly metadata?: NamespacedObjectMeta;

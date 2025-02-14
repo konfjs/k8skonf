@@ -1,5 +1,5 @@
-import { ResourceClaimSpec } from './ResourceClaimSpec';
-import { ObjectMeta } from '../../../meta/v1/types/ObjectMeta';
+import { ResourceClaimSpec } from './ResourceClaimSpec.ts';
+import { ObjectMeta } from '../../../meta/v1/types/ObjectMeta.ts';
 
 /**
  * ResourceClaimTemplateSpec contains the metadata and fields for a ResourceClaim.

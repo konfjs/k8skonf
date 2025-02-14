@@ -1,4 +1,4 @@
-import { KeyToPath } from './KeyToPath';
+import { KeyToPath } from './KeyToPath.ts';
 
 /**
  * Adapts a Secret into a volume.  The contents of the target Secret\'s Data field will be presented in a volume as files using the keys in the Data field as the file names. Secret volumes support ownership management and SELinux relabeling.

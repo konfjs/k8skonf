@@ -1,6 +1,6 @@
-import { DaemonSetUpdateStrategy } from './DaemonSetUpdateStrategy';
-import { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { DaemonSetUpdateStrategy } from './DaemonSetUpdateStrategy.ts';
+import { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec.ts';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * DaemonSetSpec is the specification of a daemon set.

@@ -1,5 +1,5 @@
-import { ServicePort } from './ServicePort';
-import { SessionAffinityConfig } from './SessionAffinityConfig';
+import { ServicePort } from './ServicePort.ts';
+import { SessionAffinityConfig } from './SessionAffinityConfig.ts';
 
 /**
  * ServiceSpec describes the attributes that a user creates on a service.

@@ -1,4 +1,4 @@
-import { VolumeProjection } from './VolumeProjection';
+import { VolumeProjection } from './VolumeProjection.ts';
 
 /**
  * Represents a projected volume source

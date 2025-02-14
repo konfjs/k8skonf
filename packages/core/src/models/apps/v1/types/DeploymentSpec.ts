@@ -1,6 +1,6 @@
-import { DeploymentStrategy } from './DeploymentStrategy';
-import { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { DeploymentStrategy } from './DeploymentStrategy.ts';
+import { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec.ts';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * DeploymentSpec is the specification of the desired behavior of the Deployment.

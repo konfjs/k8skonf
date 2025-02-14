@@ -1,4 +1,4 @@
-import { LocalObjectReference } from './LocalObjectReference';
+import { LocalObjectReference } from './LocalObjectReference.ts';
 
 /**
  * FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.

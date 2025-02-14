@@ -1,6 +1,6 @@
-import { ServiceSpec } from './types/ServiceSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { ServiceSpec } from './types/ServiceSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface ServiceArgs {
   readonly metadata?: NamespacedObjectMeta;

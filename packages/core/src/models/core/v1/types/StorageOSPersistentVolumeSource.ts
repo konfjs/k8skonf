@@ -1,4 +1,4 @@
-import { ObjectReference } from './ObjectReference';
+import { ObjectReference } from './ObjectReference.ts';
 
 /**
  * Represents a StorageOS persistent volume resource.

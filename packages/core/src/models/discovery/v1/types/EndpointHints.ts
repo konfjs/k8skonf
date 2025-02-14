@@ -1,4 +1,4 @@
-import { ForZone } from './ForZone';
+import { ForZone } from './ForZone.ts';
 
 /**
  * EndpointHints provides hints describing how an endpoint should be consumed.

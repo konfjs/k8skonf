@@ -1,7 +1,7 @@
-import { CSIDriverSpec } from './types/CSIDriverSpec';
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
-import { K8sApp } from '../../../K8sApp';
-import { ApiObject } from '../../../ApiObject';
+import { CSIDriverSpec } from './types/CSIDriverSpec.ts';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { ApiObject } from '../../../ApiObject.ts';
 
 export interface CSIDriverArgs {
   readonly metadata?: ObjectMeta;

@@ -1,4 +1,4 @@
-import { ScopeSelector } from './ScopeSelector';
+import { ScopeSelector } from './ScopeSelector.ts';
 
 /**
  * ResourceQuotaSpec defines the desired hard limits to enforce for Quota.

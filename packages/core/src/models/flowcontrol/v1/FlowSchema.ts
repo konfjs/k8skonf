@@ -1,7 +1,7 @@
-import { FlowSchemaSpec } from './types/FlowSchemaSpec';
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
-import { K8sApp } from '../../../K8sApp';
-import { ApiObject } from '../../../ApiObject';
+import { FlowSchemaSpec } from './types/FlowSchemaSpec.ts';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { ApiObject } from '../../../ApiObject.ts';
 
 export interface FlowSchemaArgs {
   readonly metadata?: ObjectMeta;

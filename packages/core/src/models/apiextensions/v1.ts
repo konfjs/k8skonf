@@ -1,1 +1,1 @@
-export * from './v1/CustomResourceDefinition';
+export * from './v1/CustomResourceDefinition.ts';

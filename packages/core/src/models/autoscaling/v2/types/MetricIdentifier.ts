@@ -1,4 +1,4 @@
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * MetricIdentifier defines the name and optionally selector for a metric

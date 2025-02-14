@@ -1,4 +1,4 @@
-import { SecretReference } from './SecretReference';
+import { SecretReference } from './SecretReference.ts';
 
 /**
  * Represents a Ceph Filesystem mount that lasts the lifetime of a pod Cephfs volumes do not support ownership management or SELinux relabeling.

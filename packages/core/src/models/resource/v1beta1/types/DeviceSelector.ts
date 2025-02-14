@@ -1,4 +1,4 @@
-import { CELDeviceSelector } from './CELDeviceSelector';
+import { CELDeviceSelector } from './CELDeviceSelector.ts';
 
 /**
  * DeviceSelector must have exactly one field set.

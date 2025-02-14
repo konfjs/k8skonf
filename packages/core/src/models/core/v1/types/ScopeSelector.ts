@@ -1,4 +1,4 @@
-import { ScopedResourceSelectorRequirement } from './ScopedResourceSelectorRequirement';
+import { ScopedResourceSelectorRequirement } from './ScopedResourceSelectorRequirement.ts';
 
 /**
  * A scope selector represents the AND of the selectors represented by the scoped-resource selector requirements.

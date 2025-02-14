@@ -1,2 +1,2 @@
-export * from './v1beta1/IPAddress';
-export * from './v1beta1/ServiceCIDR';
+export * from './v1beta1/IPAddress.ts';
+export * from './v1beta1/ServiceCIDR.ts';

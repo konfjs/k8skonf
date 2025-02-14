@@ -1,6 +1,6 @@
-import { LimitRangeSpec } from './types/LimitRangeSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { LimitRangeSpec } from './types/LimitRangeSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface LimitRangeArgs {
   readonly metadata?: NamespacedObjectMeta;

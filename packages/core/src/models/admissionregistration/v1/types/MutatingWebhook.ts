@@ -1,7 +1,7 @@
-import { MatchCondition } from './MatchCondition';
-import { RuleWithOperations } from './RuleWithOperations';
-import { WebhookClientConfig } from './WebhookClientConfig';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { MatchCondition } from './MatchCondition.ts';
+import { RuleWithOperations } from './RuleWithOperations.ts';
+import { WebhookClientConfig } from './WebhookClientConfig.ts';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * MutatingWebhook describes an admission webhook and the resources and operations it applies to.

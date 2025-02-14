@@ -1,4 +1,4 @@
-import { OpaqueDeviceConfiguration } from './OpaqueDeviceConfiguration';
+import { OpaqueDeviceConfiguration } from './OpaqueDeviceConfiguration.ts';
 
 /**
  * DeviceClassConfiguration is used in DeviceClass.

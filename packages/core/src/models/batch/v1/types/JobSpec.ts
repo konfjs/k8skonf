@@ -1,7 +1,7 @@
-import { PodFailurePolicy } from './PodFailurePolicy';
-import { SuccessPolicy } from './SuccessPolicy';
-import { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { PodFailurePolicy } from './PodFailurePolicy.ts';
+import { SuccessPolicy } from './SuccessPolicy.ts';
+import { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec.ts';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * JobSpec describes how the job execution will look like.

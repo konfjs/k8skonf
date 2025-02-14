@@ -1,4 +1,4 @@
-import { ServiceReference } from './ServiceReference';
+import { ServiceReference } from './ServiceReference.ts';
 
 /**
  * APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification.

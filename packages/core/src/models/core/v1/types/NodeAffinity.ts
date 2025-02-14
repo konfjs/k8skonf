@@ -1,5 +1,5 @@
-import { NodeSelector } from './NodeSelector';
-import { PreferredSchedulingTerm } from './PreferredSchedulingTerm';
+import { NodeSelector } from './NodeSelector.ts';
+import { PreferredSchedulingTerm } from './PreferredSchedulingTerm.ts';
 
 /**
  * Node affinity is a group of node affinity scheduling rules.

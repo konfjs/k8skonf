@@ -1,4 +1,4 @@
-import { JobTemplateSpec } from './JobTemplateSpec';
+import { JobTemplateSpec } from './JobTemplateSpec.ts';
 
 /**
  * CronJobSpec describes how the job execution will look like and when it will actually run.

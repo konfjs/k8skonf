@@ -1,7 +1,7 @@
-import { CSINodeSpec } from './types/CSINodeSpec';
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
-import { K8sApp } from '../../../K8sApp';
-import { ApiObject } from '../../../ApiObject';
+import { CSINodeSpec } from './types/CSINodeSpec.ts';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { ApiObject } from '../../../ApiObject.ts';
 
 export interface CSINodeArgs {
   readonly metadata?: ObjectMeta;

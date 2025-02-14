@@ -1,8 +1,8 @@
-import { AppArmorProfile } from './AppArmorProfile';
-import { SELinuxOptions } from './SELinuxOptions';
-import { SeccompProfile } from './SeccompProfile';
-import { Sysctl } from './Sysctl';
-import { WindowsSecurityContextOptions } from './WindowsSecurityContextOptions';
+import { AppArmorProfile } from './AppArmorProfile.ts';
+import { SELinuxOptions } from './SELinuxOptions.ts';
+import { SeccompProfile } from './SeccompProfile.ts';
+import { Sysctl } from './Sysctl.ts';
+import { WindowsSecurityContextOptions } from './WindowsSecurityContextOptions.ts';
 
 /**
  * PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.

@@ -1,4 +1,4 @@
-import { PodTemplateSpec } from './PodTemplateSpec';
+import { PodTemplateSpec } from './PodTemplateSpec.ts';
 
 /**
  * ReplicationControllerSpec is the specification of a replication controller.

@@ -1,6 +1,6 @@
-import { LeaseSpec } from './types/LeaseSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { LeaseSpec } from './types/LeaseSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface LeaseArgs {
   readonly metadata?: NamespacedObjectMeta;
