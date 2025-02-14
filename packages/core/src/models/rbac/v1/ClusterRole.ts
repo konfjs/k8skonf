@@ -1,8 +1,8 @@
-import { AggregationRule } from './types/AggregationRule';
-import { PolicyRule } from './types/PolicyRule';
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
-import { K8sApp } from '../../../K8sApp';
-import { ApiObject } from '../../../ApiObject';
+import { AggregationRule } from './types/AggregationRule.ts';
+import { PolicyRule } from './types/PolicyRule.ts';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { ApiObject } from '../../../ApiObject.ts';
 
 export interface ClusterRoleArgs {
   readonly metadata?: ObjectMeta;

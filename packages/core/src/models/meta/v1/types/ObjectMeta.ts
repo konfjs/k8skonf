@@ -1,5 +1,5 @@
-import { ManagedFieldsEntry } from './ManagedFieldsEntry';
-import { OwnerReference } from './OwnerReference';
+import { ManagedFieldsEntry } from './ManagedFieldsEntry.ts';
+import { OwnerReference } from './OwnerReference.ts';
 
 /**
  * ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.

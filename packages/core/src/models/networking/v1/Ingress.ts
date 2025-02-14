@@ -1,6 +1,6 @@
-import { IngressSpec } from './types/IngressSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { IngressSpec } from './types/IngressSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface IngressArgs {
   readonly metadata?: NamespacedObjectMeta;

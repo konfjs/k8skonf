@@ -1,1 +1,1 @@
-export * from './v1/Lease';
+export * from './v1/Lease.ts';

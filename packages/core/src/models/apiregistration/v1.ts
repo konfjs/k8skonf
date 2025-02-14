@@ -1,1 +1,1 @@
-export * from './v1/APIService';
+export * from './v1/APIService.ts';

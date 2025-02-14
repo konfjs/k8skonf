@@ -1,4 +1,4 @@
-import { CustomResourceSubresourceScale } from './CustomResourceSubresourceScale';
+import { CustomResourceSubresourceScale } from './CustomResourceSubresourceScale.ts';
 
 /**
  * CustomResourceSubresources defines the status and scale subresources for CustomResources.

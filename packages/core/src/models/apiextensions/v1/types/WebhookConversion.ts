@@ -1,4 +1,4 @@
-import { WebhookClientConfig } from './WebhookClientConfig';
+import { WebhookClientConfig } from './WebhookClientConfig.ts';
 
 /**
  * WebhookConversion describes how to call a conversion webhook

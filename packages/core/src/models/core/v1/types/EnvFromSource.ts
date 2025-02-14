@@ -1,5 +1,5 @@
-import { ConfigMapEnvSource } from './ConfigMapEnvSource';
-import { SecretEnvSource } from './SecretEnvSource';
+import { ConfigMapEnvSource } from './ConfigMapEnvSource.ts';
+import { SecretEnvSource } from './SecretEnvSource.ts';
 
 /**
  * EnvFromSource represents the source of a set of ConfigMaps

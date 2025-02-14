@@ -1,7 +1,7 @@
-import { ExecAction } from './ExecAction';
-import { GRPCAction } from './GRPCAction';
-import { HTTPGetAction } from './HTTPGetAction';
-import { TCPSocketAction } from './TCPSocketAction';
+import { ExecAction } from './ExecAction.ts';
+import { GRPCAction } from './GRPCAction.ts';
+import { HTTPGetAction } from './HTTPGetAction.ts';
+import { TCPSocketAction } from './TCPSocketAction.ts';
 
 /**
  * Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.

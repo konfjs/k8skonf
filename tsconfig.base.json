@@ -2,10 +2,13 @@
   "compilerOptions": {
     "lib": ["ES2022"],
     "target": "ES2022",
-    "module": "ES2022",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
+    // "verbatimModuleSyntax": true, // Would like to use this, but OpenAPI generator doesn't generate compatible imports and I didn't find an easy way to fix imports.
+    "isolatedModules": true,
+    // "erasableSyntaxOnly": true, // TypeScript 5.8 feature. So we can use native NodeJS support.
 
     "declaration": true,
     "strict": true,

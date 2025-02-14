@@ -1,5 +1,5 @@
-import { ApplyConfiguration } from './ApplyConfiguration';
-import { JSONPatch } from './JSONPatch';
+import { ApplyConfiguration } from './ApplyConfiguration.ts';
+import { JSONPatch } from './JSONPatch.ts';
 
 /**
  * Mutation specifies the CEL expression which is used to apply the Mutation.

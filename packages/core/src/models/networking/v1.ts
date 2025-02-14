@@ -1,3 +1,3 @@
-export * from './v1/Ingress';
-export * from './v1/IngressClass';
-export * from './v1/NetworkPolicy';
+export * from './v1/Ingress.ts';
+export * from './v1/IngressClass.ts';
+export * from './v1/NetworkPolicy.ts';

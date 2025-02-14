@@ -1,5 +1,5 @@
-import { IPBlock } from './IPBlock';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { IPBlock } from './IPBlock.ts';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * NetworkPolicyPeer describes a peer to allow traffic to/from. Only certain combinations of fields are allowed

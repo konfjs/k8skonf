@@ -1,4 +1,4 @@
-import { ServiceBackendPort } from './ServiceBackendPort';
+import { ServiceBackendPort } from './ServiceBackendPort.ts';
 
 /**
  * IngressServiceBackend references a Kubernetes Service as a Backend.

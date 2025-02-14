@@ -1,4 +1,4 @@
-import { ParentReference } from './ParentReference';
+import { ParentReference } from './ParentReference.ts';
 
 /**
  * IPAddressSpec describe the attributes in an IP Address.

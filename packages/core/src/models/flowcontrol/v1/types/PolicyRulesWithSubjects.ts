@@ -1,6 +1,6 @@
-import { NonResourcePolicyRule } from './NonResourcePolicyRule';
-import { ResourcePolicyRule } from './ResourcePolicyRule';
-import { Subject } from './Subject';
+import { NonResourcePolicyRule } from './NonResourcePolicyRule.ts';
+import { ResourcePolicyRule } from './ResourcePolicyRule.ts';
+import { Subject } from './Subject.ts';
 
 /**
  * PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver. The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request.

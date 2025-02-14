@@ -1,4 +1,4 @@
-import { DeviceSelector } from './DeviceSelector';
+import { DeviceSelector } from './DeviceSelector.ts';
 
 /**
  * DeviceRequest is a request for devices required for a claim. This is typically a request for a single resource like a device, but can also ask for several identical devices.  A DeviceClassName is currently required. Clients must check that it is indeed set. It\'s absence indicates that something changed in a way that is not supported by the client yet, in which case it must refuse to handle the request.

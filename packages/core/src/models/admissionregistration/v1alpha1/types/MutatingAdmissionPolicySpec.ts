@@ -1,8 +1,8 @@
-import { MatchCondition } from './MatchCondition';
-import { MatchResources } from './MatchResources';
-import { Mutation } from './Mutation';
-import { ParamKind } from './ParamKind';
-import { Variable } from './Variable';
+import { MatchCondition } from './MatchCondition.ts';
+import { MatchResources } from './MatchResources.ts';
+import { Mutation } from './Mutation.ts';
+import { ParamKind } from './ParamKind.ts';
+import { Variable } from './Variable.ts';
 
 /**
  * MutatingAdmissionPolicySpec is the specification of the desired behavior of the admission policy.

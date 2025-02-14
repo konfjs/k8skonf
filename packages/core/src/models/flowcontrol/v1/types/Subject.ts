@@ -1,6 +1,6 @@
-import { GroupSubject } from './GroupSubject';
-import { ServiceAccountSubject } from './ServiceAccountSubject';
-import { UserSubject } from './UserSubject';
+import { GroupSubject } from './GroupSubject.ts';
+import { ServiceAccountSubject } from './ServiceAccountSubject.ts';
+import { UserSubject } from './UserSubject.ts';
 
 /**
  * Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account.

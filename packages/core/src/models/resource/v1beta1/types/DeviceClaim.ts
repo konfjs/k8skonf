@@ -1,6 +1,6 @@
-import { DeviceClaimConfiguration } from './DeviceClaimConfiguration';
-import { DeviceConstraint } from './DeviceConstraint';
-import { DeviceRequest } from './DeviceRequest';
+import { DeviceClaimConfiguration } from './DeviceClaimConfiguration.ts';
+import { DeviceConstraint } from './DeviceConstraint.ts';
+import { DeviceRequest } from './DeviceRequest.ts';
 
 /**
  * DeviceClaim defines how to request devices with a ResourceClaim.

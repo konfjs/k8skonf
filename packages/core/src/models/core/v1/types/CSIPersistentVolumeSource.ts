@@ -1,4 +1,4 @@
-import { SecretReference } from './SecretReference';
+import { SecretReference } from './SecretReference.ts';
 
 /**
  * Represents storage that is managed by an external CSI volume driver

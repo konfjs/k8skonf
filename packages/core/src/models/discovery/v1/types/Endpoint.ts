@@ -1,6 +1,6 @@
-import { ObjectReference } from '../../../core/v1/types/ObjectReference';
-import { EndpointConditions } from './EndpointConditions';
-import { EndpointHints } from './EndpointHints';
+import { ObjectReference } from '../../../core/v1/types/ObjectReference.ts';
+import { EndpointConditions } from './EndpointConditions.ts';
+import { EndpointHints } from './EndpointHints.ts';
 
 /**
  * Endpoint represents a single logical \"backend\" implementing a service.

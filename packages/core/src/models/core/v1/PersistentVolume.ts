@@ -1,7 +1,7 @@
-import { PersistentVolumeSpec } from './types/PersistentVolumeSpec';
-import { ObjectMeta } from '../../meta/v1/types/ObjectMeta';
-import { K8sApp } from '../../../K8sApp';
-import { ApiObject } from '../../../ApiObject';
+import { PersistentVolumeSpec } from './types/PersistentVolumeSpec.ts';
+import { ObjectMeta } from '../../meta/v1/types/ObjectMeta.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { ApiObject } from '../../../ApiObject.ts';
 
 export interface PersistentVolumeArgs {
   readonly metadata?: ObjectMeta;

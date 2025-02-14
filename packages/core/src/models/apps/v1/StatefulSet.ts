@@ -1,6 +1,6 @@
-import { StatefulSetSpec } from './types/StatefulSetSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { StatefulSetSpec } from './types/StatefulSetSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface StatefulSetArgs {
   readonly metadata?: NamespacedObjectMeta;

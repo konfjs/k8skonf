@@ -1,4 +1,4 @@
-import { SecretReference } from './SecretReference';
+import { SecretReference } from './SecretReference.ts';
 
 /**
  * FlexPersistentVolumeSource represents a generic persistent volume resource that is provisioned/attached using an exec based plugin.

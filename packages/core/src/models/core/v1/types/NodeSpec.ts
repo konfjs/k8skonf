@@ -1,5 +1,5 @@
-import { NodeConfigSource } from './NodeConfigSource';
-import { Taint } from './Taint';
+import { NodeConfigSource } from './NodeConfigSource.ts';
+import { Taint } from './Taint.ts';
 
 /**
  * NodeSpec describes the attributes that a node is created with.

@@ -1,1 +1,1 @@
-export * as v1 from './policy/v1';
+export * as v1 from './policy/v1.ts';

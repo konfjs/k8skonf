@@ -1,9 +1,9 @@
-import { StatefulSetOrdinals } from './StatefulSetOrdinals';
-import { StatefulSetPersistentVolumeClaimRetentionPolicy } from './StatefulSetPersistentVolumeClaimRetentionPolicy';
-import { StatefulSetUpdateStrategy } from './StatefulSetUpdateStrategy';
-import { PersistentVolumeClaim } from '../../../core/v1/PersistentVolumeClaim';
-import { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { StatefulSetOrdinals } from './StatefulSetOrdinals.ts';
+import { StatefulSetPersistentVolumeClaimRetentionPolicy } from './StatefulSetPersistentVolumeClaimRetentionPolicy.ts';
+import { StatefulSetUpdateStrategy } from './StatefulSetUpdateStrategy.ts';
+import { PersistentVolumeClaim } from '../../../core/v1/PersistentVolumeClaim.ts';
+import { PodTemplateSpec } from '../../../core/v1/types/PodTemplateSpec.ts';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * A StatefulSetSpec is the specification of a StatefulSet.

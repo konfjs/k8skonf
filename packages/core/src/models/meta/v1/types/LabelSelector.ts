@@ -1,4 +1,4 @@
-import { LabelSelectorRequirement } from './LabelSelectorRequirement';
+import { LabelSelectorRequirement } from './LabelSelectorRequirement.ts';
 
 /**
  * A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.

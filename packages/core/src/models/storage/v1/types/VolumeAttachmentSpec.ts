@@ -1,4 +1,4 @@
-import { VolumeAttachmentSource } from './VolumeAttachmentSource';
+import { VolumeAttachmentSource } from './VolumeAttachmentSource.ts';
 
 /**
  * VolumeAttachmentSpec is the specification of a VolumeAttachment request.

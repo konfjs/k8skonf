@@ -1,1 +1,1 @@
-export * from './v1alpha1/VolumeAttributesClass';
+export * from './v1alpha1/VolumeAttributesClass.ts';

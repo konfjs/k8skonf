@@ -1,5 +1,5 @@
-import { MatchResources } from './MatchResources';
-import { ParamRef } from './ParamRef';
+import { MatchResources } from './MatchResources.ts';
+import { ParamRef } from './ParamRef.ts';
 
 /**
  * ValidatingAdmissionPolicyBindingSpec is the specification of the ValidatingAdmissionPolicyBinding.

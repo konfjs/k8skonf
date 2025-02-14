@@ -1,6 +1,6 @@
-import { PersistentVolumeClaimSpec } from './types/PersistentVolumeClaimSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { PersistentVolumeClaimSpec } from './types/PersistentVolumeClaimSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface PersistentVolumeClaimArgs {
   readonly metadata?: NamespacedObjectMeta;

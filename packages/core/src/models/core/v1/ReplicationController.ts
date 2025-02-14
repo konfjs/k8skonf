@@ -1,6 +1,6 @@
-import { ReplicationControllerSpec } from './types/ReplicationControllerSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { ReplicationControllerSpec } from './types/ReplicationControllerSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface ReplicationControllerArgs {
   readonly metadata?: NamespacedObjectMeta;

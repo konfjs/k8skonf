@@ -1,4 +1,4 @@
-import { NodeSelectorRequirement } from './NodeSelectorRequirement';
+import { NodeSelectorRequirement } from './NodeSelectorRequirement.ts';
 
 /**
  * A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.

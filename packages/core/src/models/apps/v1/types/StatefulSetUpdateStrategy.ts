@@ -1,4 +1,4 @@
-import { RollingUpdateStatefulSetStrategy } from './RollingUpdateStatefulSetStrategy';
+import { RollingUpdateStatefulSetStrategy } from './RollingUpdateStatefulSetStrategy.ts';
 
 /**
  * StatefulSetUpdateStrategy indicates the strategy that the StatefulSet controller will use to perform updates. It includes any additional parameters necessary to perform the update for the indicated strategy.

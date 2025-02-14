@@ -1,4 +1,4 @@
-import { OpaqueDeviceConfiguration } from './OpaqueDeviceConfiguration';
+import { OpaqueDeviceConfiguration } from './OpaqueDeviceConfiguration.ts';
 
 /**
  * DeviceClaimConfiguration is used for configuration parameters in DeviceClaim.

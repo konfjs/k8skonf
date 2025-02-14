@@ -1,6 +1,6 @@
-import { NetworkPolicySpec } from './types/NetworkPolicySpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { NetworkPolicySpec } from './types/NetworkPolicySpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface NetworkPolicyArgs {
   readonly metadata?: NamespacedObjectMeta;

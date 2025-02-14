@@ -1,4 +1,4 @@
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * PodDisruptionBudgetSpec is a description of a PodDisruptionBudget.

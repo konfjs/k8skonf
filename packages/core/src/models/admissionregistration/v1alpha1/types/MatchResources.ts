@@ -1,5 +1,5 @@
-import { NamedRuleWithOperations } from './NamedRuleWithOperations';
-import { LabelSelector } from '../../../meta/v1/types/LabelSelector';
+import { NamedRuleWithOperations } from './NamedRuleWithOperations.ts';
+import { LabelSelector } from '../../../meta/v1/types/LabelSelector.ts';
 
 /**
  * MatchResources decides whether to run the admission control policy on an object based on whether it meets the match criteria. The exclude rules take precedence over include rules (if a resource matches both, it is excluded)

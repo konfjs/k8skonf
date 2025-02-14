@@ -1,1 +1,1 @@
-export * from './v1/CertificateSigningRequest';
+export * from './v1/CertificateSigningRequest.ts';

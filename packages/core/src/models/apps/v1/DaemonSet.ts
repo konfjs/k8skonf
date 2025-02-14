@@ -1,6 +1,6 @@
-import { DaemonSetSpec } from './types/DaemonSetSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { DaemonSetSpec } from './types/DaemonSetSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface DaemonSetArgs {
   readonly metadata?: NamespacedObjectMeta;

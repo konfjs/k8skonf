@@ -1,13 +1,13 @@
-import { ContainerPort } from './ContainerPort';
-import { ContainerResizePolicy } from './ContainerResizePolicy';
-import { EnvFromSource } from './EnvFromSource';
-import { EnvVar } from './EnvVar';
-import { Lifecycle } from './Lifecycle';
-import { Probe } from './Probe';
-import { ResourceRequirements } from './ResourceRequirements';
-import { SecurityContext } from './SecurityContext';
-import { VolumeDevice } from './VolumeDevice';
-import { VolumeMount } from './VolumeMount';
+import { ContainerPort } from './ContainerPort.ts';
+import { ContainerResizePolicy } from './ContainerResizePolicy.ts';
+import { EnvFromSource } from './EnvFromSource.ts';
+import { EnvVar } from './EnvVar.ts';
+import { Lifecycle } from './Lifecycle.ts';
+import { Probe } from './Probe.ts';
+import { ResourceRequirements } from './ResourceRequirements.ts';
+import { SecurityContext } from './SecurityContext.ts';
+import { VolumeDevice } from './VolumeDevice.ts';
+import { VolumeMount } from './VolumeMount.ts';
 
 /**
  * An EphemeralContainer is a temporary container that you may add to an existing Pod for user-initiated activities such as debugging. Ephemeral containers have no resource or scheduling guarantees, and they will not be restarted when they exit or when a Pod is removed or restarted. The kubelet may evict a Pod if an ephemeral container causes the Pod to exceed its resource allocation.  To add an ephemeral container, use the ephemeralcontainers subresource of an existing Pod. Ephemeral containers may not be removed or restarted.

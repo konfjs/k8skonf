@@ -1,6 +1,6 @@
-import { NodeAffinity } from './NodeAffinity';
-import { PodAffinity } from './PodAffinity';
-import { PodAntiAffinity } from './PodAntiAffinity';
+import { NodeAffinity } from './NodeAffinity.ts';
+import { PodAffinity } from './PodAffinity.ts';
+import { PodAntiAffinity } from './PodAntiAffinity.ts';
 
 /**
  * Affinity is a group of affinity scheduling rules.

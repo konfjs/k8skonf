@@ -1,6 +1,6 @@
-import { HorizontalPodAutoscalerSpec } from './types/HorizontalPodAutoscalerSpec';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { HorizontalPodAutoscalerSpec } from './types/HorizontalPodAutoscalerSpec.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface HorizontalPodAutoscalerArgs {
   readonly metadata?: NamespacedObjectMeta;

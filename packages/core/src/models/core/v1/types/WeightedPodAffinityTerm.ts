@@ -1,4 +1,4 @@
-import { PodAffinityTerm } from './PodAffinityTerm';
+import { PodAffinityTerm } from './PodAffinityTerm.ts';
 
 /**
  * The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)

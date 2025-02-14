@@ -1,5 +1,5 @@
-import { PersistentVolumeClaimSpec } from './PersistentVolumeClaimSpec';
-import { ObjectMeta } from '../../../meta/v1/types/ObjectMeta';
+import { PersistentVolumeClaimSpec } from './PersistentVolumeClaimSpec.ts';
+import { ObjectMeta } from '../../../meta/v1/types/ObjectMeta.ts';
 
 /**
  * PersistentVolumeClaimTemplate is used to produce PersistentVolumeClaim objects as part of an EphemeralVolumeSource.

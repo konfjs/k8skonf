@@ -1,1 +1,1 @@
-export * from './v2/HorizontalPodAutoscaler';
+export * from './v2/HorizontalPodAutoscaler.ts';

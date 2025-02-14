@@ -1,7 +1,7 @@
-import { RoleRef } from './types/RoleRef';
-import { Subject } from './types/Subject';
-import { K8sApp } from '../../../K8sApp';
-import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject';
+import { RoleRef } from './types/RoleRef.ts';
+import { Subject } from './types/Subject.ts';
+import { K8sApp } from '../../../K8sApp.ts';
+import { NamespacedObjectMeta, NamespacedApiObject } from '../../../ApiObject.ts';
 
 export interface RoleBindingArgs {
   readonly metadata?: NamespacedObjectMeta;

@@ -1,2 +1,2 @@
-export * from './v1beta1/ValidatingAdmissionPolicy';
-export * from './v1beta1/ValidatingAdmissionPolicyBinding';
+export * from './v1beta1/ValidatingAdmissionPolicy.ts';
+export * from './v1beta1/ValidatingAdmissionPolicyBinding.ts';
