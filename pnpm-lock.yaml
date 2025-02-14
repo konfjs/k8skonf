@@ -26,9 +26,6 @@ importers:
       '@k8skonf/core':
         specifier: workspace:*
         version: link:../packages/core
-      tsx:
-        specifier: 4.19.2
-        version: 4.19.2
 
   packages/cli:
     dependencies:
@@ -79,8 +76,8 @@ importers:
 
 packages:
 
-  '@apidevtools/json-schema-ref-parser@11.9.0':
-    resolution: {integrity: sha512-8Q/r5mXLa8Rfyh6r4SgEEFJgISVN5cDNFlcfSWLgFn3odzQhTfHAqzI3hMGdcROViL+8NrDNVVFQtEUrYOksDg==}
+  '@apidevtools/json-schema-ref-parser@11.9.1':
+    resolution: {integrity: sha512-OvyhwtYaWSTfo8NfibmFlgl+pIMaBOmN0OwZ3CPaGscEK3B8FCVDuQ7zgxY8seU/1kfSvNWnyB0DtKJyNLxX7g==}
     engines: {node: '>= 16'}
 
   '@babel/runtime@7.26.7':
@@ -808,8 +805,8 @@ packages:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
     engines: {node: '>=12'}
 
-  prettier@3.4.2:
-    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
+  prettier@3.5.1:
+    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -887,8 +884,8 @@ packages:
     resolution: {integrity: sha512-HehCEsotFqbPW9sJ8WVYB6UbmIMv7kUUORIF2Nncq4VQvBfNBLibW9YZR5dlYCSUhwcD628pRllm7n+E+YTzJw==}
     engines: {node: '>= 14'}
 
-  socks@2.8.3:
-    resolution: {integrity: sha512-l5x7VUUWbjVFbafGLxPWkYsHIhEvmF85tbIeFZWc8ZPtoMyybuEhL7Jye/ooC4/d48FgOjSJXgsF/AJPYCW8Zw==}
+  socks@2.8.4:
+    resolution: {integrity: sha512-D3YaD0aRxR3mEcqnidIs7ReYJFVzWdd6fXJYUM8ixcQcJRGTka/b3saV0KflYhyVJXKhb947GndU35SxYNResQ==}
     engines: {node: '>= 10.0.0', npm: '>= 3.0.0'}
 
   source-map@0.6.1:
@@ -1015,7 +1012,7 @@ packages:
 
 snapshots:
 
-  '@apidevtools/json-schema-ref-parser@11.9.0':
+  '@apidevtools/json-schema-ref-parser@11.9.1':
     dependencies:
       '@jsdevtools/ono': 7.1.3
       '@types/json-schema': 7.0.15
@@ -1563,14 +1560,14 @@ snapshots:
 
   json-schema-to-typescript@15.0.4:
     dependencies:
-      '@apidevtools/json-schema-ref-parser': 11.9.0
+      '@apidevtools/json-schema-ref-parser': 11.9.1
       '@types/json-schema': 7.0.15
       '@types/lodash': 4.17.15
       is-glob: 4.0.3
       js-yaml: 4.1.0
       lodash: 4.17.21
       minimist: 1.2.8
-      prettier: 3.4.2
+      prettier: 3.5.1
       tinyglobby: 0.2.10
 
   jsonfile@6.1.0:
@@ -1680,7 +1677,7 @@ snapshots:
 
   picomatch@4.0.2: {}
 
-  prettier@3.4.2: {}
+  prettier@3.5.1: {}
 
   proxy-agent@6.5.0:
     dependencies:
@@ -1752,11 +1749,11 @@ snapshots:
     dependencies:
       agent-base: 7.1.3
       debug: 4.4.0
-      socks: 2.8.3
+      socks: 2.8.4
     transitivePeerDependencies:
       - supports-color
 
-  socks@2.8.3:
+  socks@2.8.4:
     dependencies:
       ip-address: 9.0.5
       smart-buffer: 4.2.0

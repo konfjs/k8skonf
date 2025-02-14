@@ -8,7 +8,6 @@
   },
   "devDependencies": {
     "@k8skonf/cli": "workspace:*",
-    "@k8skonf/core": "workspace:*",
-    "tsx": "4.19.2"
+    "@k8skonf/core": "workspace:*"
   }
 }
