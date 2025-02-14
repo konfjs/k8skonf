@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "build-cli": "cd ../packages/cli && pnpm build",
-    "crds": "pnpm build-cli && npx @k8skonf/cli"
+    "crds": "pnpm build-cli && npx @k8skonf/cli",
+    "lint": "biome lint && tsc --noEmit"
   },
   "devDependencies": {
     "@k8skonf/cli": "workspace:*",

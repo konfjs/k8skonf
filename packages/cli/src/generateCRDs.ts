@@ -164,18 +164,19 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
                     sourceFile.addImportDeclaration({
                         moduleSpecifier: '@k8skonf/core',
                         namedImports: ['K8sApp'],
+                        isTypeOnly: true,
                     });
                     if (isNamespaced) {
                         metadata?.setType('NamespacedObjectMeta');
                         sourceFile.addImportDeclaration({
                             moduleSpecifier: '@k8skonf/core',
-                            namedImports: ['NamespacedApiObject', 'NamespacedObjectMeta'],
+                            namedImports: ['NamespacedApiObject', 'type NamespacedObjectMeta'],
                         });
                     } else {
                         metadata?.setType('ObjectMeta');
                         sourceFile.addImportDeclaration({
                             moduleSpecifier: '@k8skonf/core',
-                            namedImports: ['ApiObject', 'ObjectMeta'],
+                            namedImports: ['ApiObject', 'type ObjectMeta'],
                         });
                     }
 
@@ -248,14 +249,14 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
         for (const apiVersionDir of fs.readdirSync(path.join(outDir, crdDir))) {
             let apiVersionFileContent = '';
             for (const file of fs.readdirSync(path.join(outDir, crdDir, apiVersionDir))) {
-                apiVersionFileContent += `export * from './${apiVersionDir}/${path.basename(file, '.ts')}';\n`;
+                apiVersionFileContent += `export * from './${apiVersionDir}/${file}';\n`;
             }
             fs.writeFileSync(
                 path.join(outDir, crdDir, `${apiVersionDir}.ts`),
                 apiVersionFileContent,
                 'utf-8',
             );
-            indexFileContent += `export * as ${apiVersionDir} from './${apiVersionDir}';\n`;
+            indexFileContent += `export * as ${apiVersionDir} from './${apiVersionDir}.ts';\n`;
         }
         fs.writeFileSync(path.join(outDir, crdDir, 'index.ts'), indexFileContent, 'utf-8');
     }
