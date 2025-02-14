@@ -117,7 +117,7 @@ export class Helm {
             }
 
             if (tmpValuesDir) {
-                fs.rmdirSync(tmpValuesDir, { recursive: true });
+                fs.rmSync(tmpValuesDir, { recursive: true });
             }
         }
     }
