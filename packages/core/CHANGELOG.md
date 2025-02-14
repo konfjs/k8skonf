@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.32.13](https://github.com/konfjs/k8skonf/compare/core-v1.32.12...core-v1.32.13) (2025-02-14)
+
+
+### Bug Fixes
+
+* deprecated rmdirSync usage ([1e97983](https://github.com/konfjs/k8skonf/commit/1e979838f8fbd312739e1a5ee3b456a18ec4457a))
+* enable verbatimModuleSyntax, support NodeJS' native TypeScript loader ([#108](https://github.com/konfjs/k8skonf/issues/108)) ([3861fdf](https://github.com/konfjs/k8skonf/commit/3861fdfb07ff60b207b8bdc871dee45c1ee46cdd))
+* use .ts for all relative imports ([c636fc4](https://github.com/konfjs/k8skonf/commit/c636fc47bdd0ceb46f40db9e949bdbf2b55c1f9b))
+* use import extensions for all files to fix ESM usage ([#105](https://github.com/konfjs/k8skonf/issues/105)) ([6fdcea0](https://github.com/konfjs/k8skonf/commit/6fdcea07088b1fddd98b5094a36c747d5f96dd69))
+
 ## [1.32.12](https://github.com/konfjs/k8skonf/compare/core-v1.32.11...core-v1.32.12) (2025-02-10)
 
 
