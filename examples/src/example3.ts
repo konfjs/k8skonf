@@ -1,7 +1,7 @@
 import { K8sApp } from '@k8skonf/core';
-import { Application } from './crds/argocd/v1alpha1/Application';
-import { v1alpha1 } from './crds/argocd';
-import { AppProject } from './crds/argocd/v1alpha1';
+import { Application } from './crds/argocd/v1alpha1/Application.ts';
+import { v1alpha1 } from './crds/argocd/index.ts';
+import { AppProject } from './crds/argocd/v1alpha1.ts';
 
 import * as k8s from '@k8skonf/core';
 import { core } from '@k8skonf/core';

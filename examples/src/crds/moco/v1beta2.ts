@@ -1,1 +1,1 @@
-export * from './v1beta2/MySQLCluster';
+export * from './v1beta2/MySQLCluster.ts';
