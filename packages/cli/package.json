@@ -55,7 +55,7 @@
   "devDependencies": {
     "@k8skonf/core": "workspace:*",
     "@openapitools/openapi-generator-cli": "2.16.3",
-    "tsx": "4.19.2",
+    "tsx": "4.19.3",
     "typescript": "5.7.3"
   },
   "dependencies": {
