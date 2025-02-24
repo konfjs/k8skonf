@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.4](https://github.com/konfjs/k8skonf/compare/cli-v0.6.3...cli-v0.6.4) (2025-02-24)
+
+
+### Dependencies
+
+* **dev:** bump tsx from 4.19.2 to 4.19.3 ([#111](https://github.com/konfjs/k8skonf/issues/111)) ([2763b1d](https://github.com/konfjs/k8skonf/commit/2763b1de8a051bbaa5efe36c8b126e04c1f452a6))
+
 ## [0.6.3](https://github.com/konfjs/k8skonf/compare/cli-v0.6.2...cli-v0.6.3) (2025-02-14)
 
 
