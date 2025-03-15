@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.14](https://github.com/konfjs/k8skonf/compare/core-v1.32.13...core-v1.32.14) (2025-03-15)
+
+
+### Dependencies
+
+* **dev:** bump typescript from 5.7.3 to 5.8.2 ([#116](https://github.com/konfjs/k8skonf/issues/116)) ([19dafee](https://github.com/konfjs/k8skonf/commit/19dafee2fba8ede1632006ba09f88e1588805716))
+
 ## [1.32.13](https://github.com/konfjs/k8skonf/compare/core-v1.32.12...core-v1.32.13) (2025-02-14)
 
 
