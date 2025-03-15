@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.6.4](https://github.com/konfjs/k8skonf/compare/cli-v0.6.3...cli-v0.6.4) (2025-03-15)
+
+
+### Dependencies
+
+* **dev:** bump @openapitools/openapi-generator-cli ([#115](https://github.com/konfjs/k8skonf/issues/115)) ([079a6d4](https://github.com/konfjs/k8skonf/commit/079a6d49a2ad740c251a219f64d8bccb13676ce5))
+* **dev:** bump @openapitools/openapi-generator-cli in /packages/cli ([#124](https://github.com/konfjs/k8skonf/issues/124)) ([3faad74](https://github.com/konfjs/k8skonf/commit/3faad74756c6d0fb44446aa9ef859ad714c3ca53))
+* **dev:** bump tsx from 4.19.2 to 4.19.3 ([#111](https://github.com/konfjs/k8skonf/issues/111)) ([2763b1d](https://github.com/konfjs/k8skonf/commit/2763b1de8a051bbaa5efe36c8b126e04c1f452a6))
+* **dev:** bump typescript from 5.7.3 to 5.8.2 ([#116](https://github.com/konfjs/k8skonf/issues/116)) ([19dafee](https://github.com/konfjs/k8skonf/commit/19dafee2fba8ede1632006ba09f88e1588805716))
+
 ## [0.6.3](https://github.com/konfjs/k8skonf/compare/cli-v0.6.2...cli-v0.6.3) (2025-02-14)
 
 
