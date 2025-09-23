@@ -64,6 +64,6 @@
     "picocolors": "^1.1.1",
     "resolve-pkg": "^2.0.0",
     "ts-morph": "^27.0.0",
-    "yaml": "^2.7.0"
+    "yaml": "^2.8.1"
   }
 }
