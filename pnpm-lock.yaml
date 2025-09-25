@@ -12,8 +12,8 @@ importers:
         specifier: 1.9.4
         version: 1.9.4
       '@types/node':
-        specifier: 24.3.1
-        version: 24.3.1
+        specifier: 24.5.2
+        version: 24.5.2
       typescript:
         specifier: 5.8.2
         version: 5.8.2
@@ -53,7 +53,7 @@ importers:
         version: link:../core
       '@openapitools/openapi-generator-cli':
         specifier: 2.23.4
-        version: 2.23.4(@types/node@24.3.1)
+        version: 2.23.4(@types/node@24.5.2)
       tsx:
         specifier: 4.20.5
         version: 4.20.5
@@ -392,8 +392,8 @@ packages:
   '@types/lodash@4.17.15':
     resolution: {integrity: sha512-w/P33JFeySuhN6JLkysYUK2gEmy9kHHFN7E8ro0tkfmlDOgxBDzWEZ/J8cWA+fHqFevpswDTFZnDx+R9lbL6xw==}
 
-  '@types/node@24.3.1':
-    resolution: {integrity: sha512-3vXmQDXy+woz+gnrTvuvNrPzekOi+Ds0ReMxw0LzBiK3a+1k0kQn9f2NWk+lgD4rJehFUmYy2gMhJ2ZI+7YP9g==}
+  '@types/node@24.5.2':
+    resolution: {integrity: sha512-FYxk1I7wPv3K2XBaoyH2cTnocQEu8AOZ60hPbsyukMPLv5/5qr7V1i8PLHdl6Zf87I+xZXFvPCXYjiTFq+YSDQ==}
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -1061,8 +1061,8 @@ packages:
     resolution: {integrity: sha512-rvKSBiC5zqCCiDZ9kAOszZcDvdAHwwIKJG33Ykj43OKcWsnmcBRL09YTU4nOeHZ8Y2a7l1MgTd08SBe9A8Qj6A==}
     engines: {node: '>=18'}
 
-  undici-types@7.10.0:
-    resolution: {integrity: sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag==}
+  undici-types@7.12.0:
+    resolution: {integrity: sha512-goOacqME2GYyOZZfb5Lgtu+1IDmAlAEu5xnD3+xTzS10hT0vzpf0SPjkXwAw9Jm+4n/mQGDP3LO8CPbYROeBfQ==}
 
   universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
@@ -1237,12 +1237,12 @@ snapshots:
   '@esbuild/win32-x64@0.25.10':
     optional: true
 
-  '@inquirer/external-editor@1.0.2(@types/node@24.3.1)':
+  '@inquirer/external-editor@1.0.2(@types/node@24.5.2)':
     dependencies:
       chardet: 2.1.0
       iconv-lite: 0.7.0
     optionalDependencies:
-      '@types/node': 24.3.1
+      '@types/node': 24.5.2
 
   '@isaacs/balanced-match@4.0.1': {}
 
@@ -1305,7 +1305,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@openapitools/openapi-generator-cli@2.23.4(@types/node@24.3.1)':
+  '@openapitools/openapi-generator-cli@2.23.4(@types/node@24.5.2)':
     dependencies:
       '@nestjs/axios': 4.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(axios@1.12.2)(rxjs@7.8.2)
       '@nestjs/common': 11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -1319,7 +1319,7 @@ snapshots:
       console.table: 0.10.0
       fs-extra: 11.3.2
       glob: 11.0.3
-      inquirer: 8.2.7(@types/node@24.3.1)
+      inquirer: 8.2.7(@types/node@24.5.2)
       proxy-agent: 6.5.0
       reflect-metadata: 0.2.2
       rxjs: 7.8.2
@@ -1357,9 +1357,9 @@ snapshots:
 
   '@types/lodash@4.17.15': {}
 
-  '@types/node@24.3.1':
+  '@types/node@24.5.2':
     dependencies:
-      undici-types: 7.10.0
+      undici-types: 7.12.0
 
   agent-base@7.1.4: {}
 
@@ -1703,9 +1703,9 @@ snapshots:
 
   inherits@2.0.4: {}
 
-  inquirer@8.2.7(@types/node@24.3.1):
+  inquirer@8.2.7(@types/node@24.5.2):
     dependencies:
-      '@inquirer/external-editor': 1.0.2(@types/node@24.3.1)
+      '@inquirer/external-editor': 1.0.2(@types/node@24.5.2)
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       cli-cursor: 3.1.0
@@ -2023,7 +2023,7 @@ snapshots:
 
   uint8array-extras@1.5.0: {}
 
-  undici-types@7.10.0: {}
+  undici-types@7.12.0: {}
 
   universalify@2.0.1: {}
 
