@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.32.14](https://github.com/konfjs/k8skonf/compare/core-v1.32.13...core-v1.32.14) (2025-09-27)
+
+
+### Dependencies
+
+* bump yaml from 2.7.0 to 2.8.1 ([#200](https://github.com/konfjs/k8skonf/issues/200)) ([c48b4b3](https://github.com/konfjs/k8skonf/commit/c48b4b3b34cf262fa60908b0947475e0fab9452e))
+* **dev:** bump typescript from 5.7.3 to 5.8.2 ([#116](https://github.com/konfjs/k8skonf/issues/116)) ([19dafee](https://github.com/konfjs/k8skonf/commit/19dafee2fba8ede1632006ba09f88e1588805716))
+* **dev:** bump typescript from 5.8.2 to 5.9.2 ([#194](https://github.com/konfjs/k8skonf/issues/194)) ([5ae1792](https://github.com/konfjs/k8skonf/commit/5ae179233a34c9ed0a31b1311ea3b621b58514ae))
+
 ## [1.32.13](https://github.com/konfjs/k8skonf/compare/core-v1.32.12...core-v1.32.13) (2025-02-14)
 
 
