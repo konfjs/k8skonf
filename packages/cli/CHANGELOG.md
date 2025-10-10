@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.6.4](https://github.com/konfjs/k8skonf/compare/cli-v0.6.3...cli-v0.6.4) (2025-10-10)
+
+
+### Dependencies
+
+* bump commander from 13.1.0 to 14.0.1 in /packages/cli ([#205](https://github.com/konfjs/k8skonf/issues/205)) ([72cb2ee](https://github.com/konfjs/k8skonf/commit/72cb2ee5fc84c5f8992f1a3616bc85b27999ea07))
+* bump ts-morph from 25.0.1 to 27.0.0 ([#193](https://github.com/konfjs/k8skonf/issues/193)) ([d6530e3](https://github.com/konfjs/k8skonf/commit/d6530e3128b58689c261ae7800fd860b7d5ff9b2))
+* bump yaml from 2.7.0 to 2.8.1 in /packages/cli ([#202](https://github.com/konfjs/k8skonf/issues/202)) ([6ec54bd](https://github.com/konfjs/k8skonf/commit/6ec54bda97f625a1e69471dd14db37d98a95cc2e))
+* **dev:** bump @openapitools/openapi-generator-cli ([#115](https://github.com/konfjs/k8skonf/issues/115)) ([079a6d4](https://github.com/konfjs/k8skonf/commit/079a6d49a2ad740c251a219f64d8bccb13676ce5))
+* **dev:** bump @openapitools/openapi-generator-cli ([#191](https://github.com/konfjs/k8skonf/issues/191)) ([a11b412](https://github.com/konfjs/k8skonf/commit/a11b412bfc3b0542c2aec494a5092f11fd46ad6e))
+* **dev:** bump @openapitools/openapi-generator-cli ([#201](https://github.com/konfjs/k8skonf/issues/201)) ([965edc2](https://github.com/konfjs/k8skonf/commit/965edc279d0659b97209290e6a0840cedae591be))
+* **dev:** bump @openapitools/openapi-generator-cli ([#208](https://github.com/konfjs/k8skonf/issues/208)) ([21b2761](https://github.com/konfjs/k8skonf/commit/21b2761668b168f986cf813615e25ba5374272f4))
+* **dev:** bump @openapitools/openapi-generator-cli in /packages/cli ([#124](https://github.com/konfjs/k8skonf/issues/124)) ([3faad74](https://github.com/konfjs/k8skonf/commit/3faad74756c6d0fb44446aa9ef859ad714c3ca53))
+* **dev:** bump tsx from 4.19.2 to 4.19.3 ([#111](https://github.com/konfjs/k8skonf/issues/111)) ([2763b1d](https://github.com/konfjs/k8skonf/commit/2763b1de8a051bbaa5efe36c8b126e04c1f452a6))
+* **dev:** bump tsx from 4.19.3 to 4.20.5 in /packages/cli ([#198](https://github.com/konfjs/k8skonf/issues/198)) ([14a149c](https://github.com/konfjs/k8skonf/commit/14a149c96408a332e783d95dd69992385b3d67d2))
+* **dev:** bump tsx from 4.20.5 to 4.20.6 ([#207](https://github.com/konfjs/k8skonf/issues/207)) ([9e1c748](https://github.com/konfjs/k8skonf/commit/9e1c748c1faf0c48d37fe74cb37a3e6243a65e67))
+* **dev:** bump typescript from 5.7.3 to 5.8.2 ([#116](https://github.com/konfjs/k8skonf/issues/116)) ([19dafee](https://github.com/konfjs/k8skonf/commit/19dafee2fba8ede1632006ba09f88e1588805716))
+* **dev:** bump typescript from 5.8.2 to 5.9.2 in /packages/cli ([#195](https://github.com/konfjs/k8skonf/issues/195)) ([c11fcf3](https://github.com/konfjs/k8skonf/commit/c11fcf321ffdd9b8ada18f0bfc511f4e1f284956))
+* **dev:** bump typescript from 5.9.2 to 5.9.3 ([#212](https://github.com/konfjs/k8skonf/issues/212)) ([6939bc2](https://github.com/konfjs/k8skonf/commit/6939bc28a8392ee8d765ca9fdcb7b55dfc077772))
+
 ## [0.6.3](https://github.com/konfjs/k8skonf/compare/cli-v0.6.2...cli-v0.6.3) (2025-02-14)
 
 
