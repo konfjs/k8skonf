@@ -18,20 +18,15 @@
     {
       "type": "chore",
       "hidden": false,
-      "section": "Chores"
+      "section": "Maintenance"
     },
     {
       "type": "ci",
       "hidden": false,
-      "section": "Chores"
+      "section": "Maintenance"
     },
     {
       "type": "deps",
-      "hidden": false,
-      "section": "Dependencies"
-    },
-    {
-      "type": "deps-dev",
       "hidden": false,
       "section": "Dependencies"
     }
