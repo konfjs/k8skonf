@@ -52,8 +52,8 @@ importers:
         specifier: workspace:*
         version: link:../core
       '@openapitools/openapi-generator-cli':
-        specifier: 2.24.0
-        version: 2.24.0(@types/node@24.7.2)
+        specifier: 2.25.0
+        version: 2.25.0(@types/node@24.7.2)
       tsx:
         specifier: 4.20.6
         version: 4.20.6
@@ -368,8 +368,8 @@ packages:
     engines: {node: '>=8.0.0', npm: '>=5.0.0'}
     hasBin: true
 
-  '@openapitools/openapi-generator-cli@2.24.0':
-    resolution: {integrity: sha512-VS0sfW46oe/hQq7g1YZU1cJJebAQIwKhKqjsDY1/QFmcJMXYfe339yjMDTv02kMbsx621cSH46HIdvmW+i+7mg==}
+  '@openapitools/openapi-generator-cli@2.25.0':
+    resolution: {integrity: sha512-u/3VAbF8c68AXBgm8nBAdDPLPW/KgrtHz28yemf92zNB0iDZFGdRUX2W80Lzf177g6ctYLz0GIPHCOU0LTJegQ==}
     engines: {node: '>=16'}
     hasBin: true
 
@@ -1305,7 +1305,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@openapitools/openapi-generator-cli@2.24.0(@types/node@24.7.2)':
+  '@openapitools/openapi-generator-cli@2.25.0(@types/node@24.7.2)':
     dependencies:
       '@nestjs/axios': 4.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(axios@1.12.2)(rxjs@7.8.2)
       '@nestjs/common': 11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2)
