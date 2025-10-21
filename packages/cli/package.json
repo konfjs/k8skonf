@@ -25,6 +25,9 @@
   ],
   "publishConfig": {
     "access": "public",
+    "bin": {
+      "@k8skonf/cli": "./dist/index.js"
+    },
     "exports": {
       ".": {
         "import": "./dist/index.js",
@@ -40,7 +43,7 @@
     }
   },
   "bin": {
-    "@k8skonf/cli": "./dist/index.js"
+    "@k8skonf/cli": "./src/index.ts"
   },
   "scripts": {
     "lint": "biome lint",
