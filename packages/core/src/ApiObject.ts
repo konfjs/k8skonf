@@ -36,5 +36,5 @@ export abstract class ApiObject {
  * objects that are scoped to a namespace.
  */
 export abstract class NamespacedApiObject extends ApiObject {
-    abstract readonly metadata: NamespacedObjectMeta;
+    abstract override readonly metadata: NamespacedObjectMeta;
 }
