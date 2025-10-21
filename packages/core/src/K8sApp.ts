@@ -16,7 +16,7 @@ interface K8sAppArgs {
  * So we know where to save the resources.
  */
 export class K8sApp {
-    private readonly resources: ApiObject[] | NamespacedApiObject[] = [];
+    private readonly resources: Array<ApiObject | NamespacedApiObject> = [];
     readonly namespace?: string;
     readonly outputName: string;
     private readonly args?: K8sAppArgs;
@@ -34,7 +34,7 @@ export class K8sApp {
         this.resources.push(resource);
     }
 
-    getResources() {
+    getResources(): Array<ApiObject | NamespacedApiObject> {
         return this.resources;
     }
 
