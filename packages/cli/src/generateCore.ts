@@ -183,7 +183,7 @@ function main() {
                         return aIndex - bIndex;
                     });
 
-                    c.statements = new Array<StatementStructures>();
+                    c.statements = [];
                     c.statements.push('super(args.metadata?.name || name);');
                     for (const [i, prop] of orderedProps.entries()) {
                         prop.setIsReadonly(true);

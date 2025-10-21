@@ -69,7 +69,9 @@ function parseCRDs(crds: CRD[], data: string) {
     yaml.parseAllDocuments(data).forEach((c) => {
         const json = c.toJS();
         if (isK8sList(json)) {
-            json.items.forEach((subC) => crds.push(subC));
+            json.items.forEach((subC) => {
+                crds.push(subC);
+            });
         } else crds.push(json);
     });
 }
@@ -104,7 +106,7 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
         try {
             const url = new URL(crdPathOrUrl);
             await fetchAndParseCRDs(output[''], url.toString(), cacheHome);
-        } catch (e) {
+        } catch (_e) {
             log(`Reading CRDs from ${pc.yellowBright(crdPathOrUrl)}`);
             parseCRDs(output[''], fs.readFileSync(crdPathOrUrl, 'utf-8'));
         }
@@ -117,7 +119,7 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
                 try {
                     new URL(url);
                     await fetchAndParseCRDs(output[pkg], url, cacheDir);
-                } catch (e) {
+                } catch (_e) {
                     log(`Reading CRDs from ${pc.yellowBright(url)} (local)`);
                     parseCRDs(output[pkg], fs.readFileSync(url, 'utf-8'));
                 }
