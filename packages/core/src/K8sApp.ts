@@ -3,7 +3,7 @@ import * as path from 'node:path';
 import pc from 'picocolors';
 import { type ApiObject, NamespacedApiObject } from './ApiObject.ts';
 
-interface K8sAppArgs {
+export interface K8sAppArgs {
     readonly namespace?: string;
     /**
      * @default 'filePerResource'
