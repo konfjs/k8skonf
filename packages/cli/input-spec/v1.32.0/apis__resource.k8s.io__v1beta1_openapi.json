@@ -86,7 +86,7 @@
         "type": "object",
         "x-kubernetes-map-type": "atomic"
       },
-      "io.k8s.api.resource.v1alpha3.AllocatedDeviceStatus": {
+      "io.k8s.api.resource.v1beta1.AllocatedDeviceStatus": {
         "description": "AllocatedDeviceStatus contains the status of an allocated device, if the driver chooses to report it. This may include driver-specific information.",
         "properties": {
           "conditions": {
@@ -126,7 +126,7 @@
           "networkData": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.NetworkDeviceData"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.NetworkDeviceData"
               }
             ],
             "description": "NetworkData contains network-related information specific to the device."
@@ -144,13 +144,13 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.AllocationResult": {
+      "io.k8s.api.resource.v1beta1.AllocationResult": {
         "description": "AllocationResult contains attributes of an allocated resource.",
         "properties": {
           "devices": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceAllocationResult"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceAllocationResult"
               }
             ],
             "default": {},
@@ -167,14 +167,14 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.BasicDevice": {
+      "io.k8s.api.resource.v1beta1.BasicDevice": {
         "description": "BasicDevice defines one device instance.",
         "properties": {
           "attributes": {
             "additionalProperties": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceAttribute"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceAttribute"
                 }
               ],
               "default": {}
@@ -184,7 +184,12 @@
           },
           "capacity": {
             "additionalProperties": {
-              "$ref": "#/components/schemas/io.k8s.apimachinery.pkg.api.resource.Quantity"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceCapacity"
+                }
+              ],
+              "default": {}
             },
             "description": "Capacity defines the set of capacities for this device. The name of each capacity must be unique in that set.\n\nThe maximum number of attributes and capacities combined is 32.",
             "type": "object"
@@ -192,7 +197,7 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.CELDeviceSelector": {
+      "io.k8s.api.resource.v1beta1.CELDeviceSelector": {
         "description": "CELDeviceSelector contains a CEL expression for selecting a device.",
         "properties": {
           "expression": {
@@ -206,13 +211,13 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.Device": {
+      "io.k8s.api.resource.v1beta1.Device": {
         "description": "Device represents one individual hardware instance that can be selected based on its attributes. Besides the name, exactly one field must be set.",
         "properties": {
           "basic": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.BasicDevice"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.BasicDevice"
               }
             ],
             "description": "Basic defines one device instance."
@@ -228,13 +233,13 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceAllocationConfiguration": {
+      "io.k8s.api.resource.v1beta1.DeviceAllocationConfiguration": {
         "description": "DeviceAllocationConfiguration gets embedded in an AllocationResult.",
         "properties": {
           "opaque": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.OpaqueDeviceConfiguration"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration"
               }
             ],
             "description": "Opaque provides driver-specific configuration parameters."
@@ -259,7 +264,7 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceAllocationResult": {
+      "io.k8s.api.resource.v1beta1.DeviceAllocationResult": {
         "description": "DeviceAllocationResult is the result of allocating devices.",
         "properties": {
           "config": {
@@ -267,7 +272,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceAllocationConfiguration"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceAllocationConfiguration"
                 }
               ],
               "default": {}
@@ -280,7 +285,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceRequestAllocationResult"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceRequestAllocationResult"
                 }
               ],
               "default": {}
@@ -291,7 +296,7 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceAttribute": {
+      "io.k8s.api.resource.v1beta1.DeviceAttribute": {
         "description": "DeviceAttribute must have exactly one field set.",
         "properties": {
           "bool": {
@@ -314,7 +319,24 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceClaim": {
+      "io.k8s.api.resource.v1beta1.DeviceCapacity": {
+        "description": "DeviceCapacity describes a quantity associated with a device.",
+        "properties": {
+          "value": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/io.k8s.apimachinery.pkg.api.resource.Quantity"
+              }
+            ],
+            "description": "Value defines how much of a certain device capacity is available."
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "type": "object"
+      },
+      "io.k8s.api.resource.v1beta1.DeviceClaim": {
         "description": "DeviceClaim defines how to request devices with a ResourceClaim.",
         "properties": {
           "config": {
@@ -322,7 +344,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClaimConfiguration"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClaimConfiguration"
                 }
               ],
               "default": {}
@@ -335,7 +357,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceConstraint"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceConstraint"
                 }
               ],
               "default": {}
@@ -348,7 +370,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceRequest"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceRequest"
                 }
               ],
               "default": {}
@@ -359,13 +381,13 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceClaimConfiguration": {
+      "io.k8s.api.resource.v1beta1.DeviceClaimConfiguration": {
         "description": "DeviceClaimConfiguration is used for configuration parameters in DeviceClaim.",
         "properties": {
           "opaque": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.OpaqueDeviceConfiguration"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration"
               }
             ],
             "description": "Opaque provides driver-specific configuration parameters."
@@ -382,7 +404,7 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceClass": {
+      "io.k8s.api.resource.v1beta1.DeviceClass": {
         "description": "DeviceClass is a vendor- or admin-provided resource that contains device configuration and selectors. It can be referenced in the device requests of a claim to apply these presets. Cluster scoped.\n\nThis is an alpha type and requires enabling the DynamicResourceAllocation feature gate.",
         "properties": {
           "apiVersion": {
@@ -405,7 +427,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClassSpec"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClassSpec"
               }
             ],
             "default": {},
@@ -420,17 +442,17 @@
           {
             "group": "resource.k8s.io",
             "kind": "DeviceClass",
-            "version": "v1alpha3"
+            "version": "v1beta1"
           }
         ]
       },
-      "io.k8s.api.resource.v1alpha3.DeviceClassConfiguration": {
+      "io.k8s.api.resource.v1beta1.DeviceClassConfiguration": {
         "description": "DeviceClassConfiguration is used in DeviceClass.",
         "properties": {
           "opaque": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.OpaqueDeviceConfiguration"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration"
               }
             ],
             "description": "Opaque provides driver-specific configuration parameters."
@@ -438,7 +460,7 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceClassList": {
+      "io.k8s.api.resource.v1beta1.DeviceClassList": {
         "description": "DeviceClassList is a collection of classes.",
         "properties": {
           "apiVersion": {
@@ -450,7 +472,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               ],
               "default": {}
@@ -479,11 +501,11 @@
           {
             "group": "resource.k8s.io",
             "kind": "DeviceClassList",
-            "version": "v1alpha3"
+            "version": "v1beta1"
           }
         ]
       },
-      "io.k8s.api.resource.v1alpha3.DeviceClassSpec": {
+      "io.k8s.api.resource.v1beta1.DeviceClassSpec": {
         "description": "DeviceClassSpec is used in a [DeviceClass] to define what can be allocated and how to configure it.",
         "properties": {
           "config": {
@@ -491,7 +513,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClassConfiguration"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClassConfiguration"
                 }
               ],
               "default": {}
@@ -504,7 +526,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceSelector"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceSelector"
                 }
               ],
               "default": {}
@@ -515,7 +537,7 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceConstraint": {
+      "io.k8s.api.resource.v1beta1.DeviceConstraint": {
         "description": "DeviceConstraint must have exactly one field set besides Requests.",
         "properties": {
           "matchAttribute": {
@@ -534,7 +556,7 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceRequest": {
+      "io.k8s.api.resource.v1beta1.DeviceRequest": {
         "description": "DeviceRequest is a request for devices required for a claim. This is typically a request for a single resource like a device, but can also ask for several identical devices.\n\nA DeviceClassName is currently required. Clients must check that it is indeed set. It's absence indicates that something changed in a way that is not supported by the client yet, in which case it must refuse to handle the request.",
         "properties": {
           "adminAccess": {
@@ -565,7 +587,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceSelector"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceSelector"
                 }
               ],
               "default": {}
@@ -580,7 +602,7 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceRequestAllocationResult": {
+      "io.k8s.api.resource.v1beta1.DeviceRequestAllocationResult": {
         "description": "DeviceRequestAllocationResult contains the allocation result for one request.",
         "properties": {
           "adminAccess": {
@@ -616,13 +638,13 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.DeviceSelector": {
+      "io.k8s.api.resource.v1beta1.DeviceSelector": {
         "description": "DeviceSelector must have exactly one field set.",
         "properties": {
           "cel": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.CELDeviceSelector"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.CELDeviceSelector"
               }
             ],
             "description": "CEL contains a CEL expression for selecting a device."
@@ -630,7 +652,7 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.NetworkDeviceData": {
+      "io.k8s.api.resource.v1beta1.NetworkDeviceData": {
         "description": "NetworkDeviceData provides network-related details for the allocated device. This information may be filled by drivers or other components to configure or identify the device within a network context.",
         "properties": {
           "hardwareAddress": {
@@ -653,7 +675,7 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.OpaqueDeviceConfiguration": {
+      "io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration": {
         "description": "OpaqueDeviceConfiguration contains configuration parameters for a driver in a format defined by the driver vendor.",
         "properties": {
           "driver": {
@@ -676,7 +698,7 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.ResourceClaim": {
+      "io.k8s.api.resource.v1beta1.ResourceClaim": {
         "description": "ResourceClaim describes a request for access to resources in the cluster, for use by workloads. For example, if a workload needs an accelerator device with specific properties, this is how that request is expressed. The status stanza tracks whether this claim has been satisfied and what specific resources have been allocated.\n\nThis is an alpha type and requires enabling the DynamicResourceAllocation feature gate.",
         "properties": {
           "apiVersion": {
@@ -699,7 +721,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimSpec"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimSpec"
               }
             ],
             "default": {},
@@ -708,7 +730,7 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimStatus"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimStatus"
               }
             ],
             "default": {},
@@ -723,11 +745,11 @@
           {
             "group": "resource.k8s.io",
             "kind": "ResourceClaim",
-            "version": "v1alpha3"
+            "version": "v1beta1"
           }
         ]
       },
-      "io.k8s.api.resource.v1alpha3.ResourceClaimConsumerReference": {
+      "io.k8s.api.resource.v1beta1.ResourceClaimConsumerReference": {
         "description": "ResourceClaimConsumerReference contains enough information to let you locate the consumer of a ResourceClaim. The user must be a resource in the same namespace as the ResourceClaim.",
         "properties": {
           "apiGroup": {
@@ -757,7 +779,7 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.ResourceClaimList": {
+      "io.k8s.api.resource.v1beta1.ResourceClaimList": {
         "description": "ResourceClaimList is a collection of claims.",
         "properties": {
           "apiVersion": {
@@ -769,7 +791,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               ],
               "default": {}
@@ -798,17 +820,17 @@
           {
             "group": "resource.k8s.io",
             "kind": "ResourceClaimList",
-            "version": "v1alpha3"
+            "version": "v1beta1"
           }
         ]
       },
-      "io.k8s.api.resource.v1alpha3.ResourceClaimSpec": {
+      "io.k8s.api.resource.v1beta1.ResourceClaimSpec": {
         "description": "ResourceClaimSpec defines what is being requested in a ResourceClaim and how to configure it.",
         "properties": {
           "devices": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClaim"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClaim"
               }
             ],
             "default": {},
@@ -817,13 +839,13 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.ResourceClaimStatus": {
+      "io.k8s.api.resource.v1beta1.ResourceClaimStatus": {
         "description": "ResourceClaimStatus tracks whether the resource has been allocated and what the result of that was.",
         "properties": {
           "allocation": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.AllocationResult"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.AllocationResult"
               }
             ],
             "description": "Allocation is set once the claim has been allocated successfully."
@@ -833,7 +855,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.AllocatedDeviceStatus"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.AllocatedDeviceStatus"
                 }
               ],
               "default": {}
@@ -847,11 +869,11 @@
             "x-kubernetes-list-type": "map"
           },
           "reservedFor": {
-            "description": "ReservedFor indicates which entities are currently allowed to use the claim. A Pod which references a ResourceClaim which is not reserved for that Pod will not be started. A claim that is in use or might be in use because it has been reserved must not get deallocated.\n\nIn a cluster with multiple scheduler instances, two pods might get scheduled concurrently by different schedulers. When they reference the same ResourceClaim which already has reached its maximum number of consumers, only one pod can be scheduled.\n\nBoth schedulers try to add their pod to the claim.status.reservedFor field, but only the update that reaches the API server first gets stored. The other one fails with an error and the scheduler which issued it knows that it must put the pod back into the queue, waiting for the ResourceClaim to become usable again.\n\nThere can be at most 256 such reservations. This may get increased in the future, but not reduced.",
+            "description": "ReservedFor indicates which entities are currently allowed to use the claim. A Pod which references a ResourceClaim which is not reserved for that Pod will not be started. A claim that is in use or might be in use because it has been reserved must not get deallocated.\n\nIn a cluster with multiple scheduler instances, two pods might get scheduled concurrently by different schedulers. When they reference the same ResourceClaim which already has reached its maximum number of consumers, only one pod can be scheduled.\n\nBoth schedulers try to add their pod to the claim.status.reservedFor field, but only the update that reaches the API server first gets stored. The other one fails with an error and the scheduler which issued it knows that it must put the pod back into the queue, waiting for the ResourceClaim to become usable again.\n\nThere can be at most 32 such reservations. This may get increased in the future, but not reduced.",
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimConsumerReference"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimConsumerReference"
                 }
               ],
               "default": {}
@@ -867,7 +889,7 @@
         },
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.ResourceClaimTemplate": {
+      "io.k8s.api.resource.v1beta1.ResourceClaimTemplate": {
         "description": "ResourceClaimTemplate is used to produce ResourceClaim objects.\n\nThis is an alpha type and requires enabling the DynamicResourceAllocation feature gate.",
         "properties": {
           "apiVersion": {
@@ -890,7 +912,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateSpec"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateSpec"
               }
             ],
             "default": {},
@@ -905,11 +927,11 @@
           {
             "group": "resource.k8s.io",
             "kind": "ResourceClaimTemplate",
-            "version": "v1alpha3"
+            "version": "v1beta1"
           }
         ]
       },
-      "io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList": {
+      "io.k8s.api.resource.v1beta1.ResourceClaimTemplateList": {
         "description": "ResourceClaimTemplateList is a collection of claim templates.",
         "properties": {
           "apiVersion": {
@@ -921,7 +943,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               ],
               "default": {}
@@ -950,11 +972,11 @@
           {
             "group": "resource.k8s.io",
             "kind": "ResourceClaimTemplateList",
-            "version": "v1alpha3"
+            "version": "v1beta1"
           }
         ]
       },
-      "io.k8s.api.resource.v1alpha3.ResourceClaimTemplateSpec": {
+      "io.k8s.api.resource.v1beta1.ResourceClaimTemplateSpec": {
         "description": "ResourceClaimTemplateSpec contains the metadata and fields for a ResourceClaim.",
         "properties": {
           "metadata": {
@@ -969,7 +991,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimSpec"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimSpec"
               }
             ],
             "default": {},
@@ -981,7 +1003,7 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.ResourcePool": {
+      "io.k8s.api.resource.v1beta1.ResourcePool": {
         "description": "ResourcePool describes the pool that ResourceSlices belong to.",
         "properties": {
           "generation": {
@@ -1009,7 +1031,7 @@
         ],
         "type": "object"
       },
-      "io.k8s.api.resource.v1alpha3.ResourceSlice": {
+      "io.k8s.api.resource.v1beta1.ResourceSlice": {
         "description": "ResourceSlice represents one or more resources in a pool of similar resources, managed by a common driver. A pool may span more than one ResourceSlice, and exactly how many ResourceSlices comprise a pool is determined by the driver.\n\nAt the moment, the only supported resources are devices with attributes and capacities. Each device in a given pool, regardless of how many ResourceSlices, must have a unique name. The ResourceSlice in which a device gets published may change over time. The unique identifier for a device is the tuple <driver name>, <pool name>, <device name>.\n\nWhenever a driver needs to update a pool, it increments the pool.Spec.Pool.Generation number and updates all ResourceSlices with that new number and new resource definitions. A consumer must only use ResourceSlices with the highest generation number and ignore all others.\n\nWhen allocating all resources in a pool matching certain criteria or when looking for the best solution among several different alternatives, a consumer should check the number of ResourceSlices in a pool (included in each ResourceSlice) to determine whether its view of a pool is complete and if not, should wait until the driver has completed updating the pool.\n\nFor resources that are not local to a node, the node name is not set. Instead, the driver may use a node selector to specify where the devices are available.\n\nThis is an alpha type and requires enabling the DynamicResourceAllocation feature gate.",
         "properties": {
           "apiVersion": {
@@ -1032,7 +1054,7 @@
           "spec": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSliceSpec"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSliceSpec"
               }
             ],
             "default": {},
@@ -1047,11 +1069,11 @@
           {
             "group": "resource.k8s.io",
             "kind": "ResourceSlice",
-            "version": "v1alpha3"
+            "version": "v1beta1"
           }
         ]
       },
-      "io.k8s.api.resource.v1alpha3.ResourceSliceList": {
+      "io.k8s.api.resource.v1beta1.ResourceSliceList": {
         "description": "ResourceSliceList is a collection of ResourceSlices.",
         "properties": {
           "apiVersion": {
@@ -1063,7 +1085,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               ],
               "default": {}
@@ -1092,11 +1114,11 @@
           {
             "group": "resource.k8s.io",
             "kind": "ResourceSliceList",
-            "version": "v1alpha3"
+            "version": "v1beta1"
           }
         ]
       },
-      "io.k8s.api.resource.v1alpha3.ResourceSliceSpec": {
+      "io.k8s.api.resource.v1beta1.ResourceSliceSpec": {
         "description": "ResourceSliceSpec contains the information published by the driver in one ResourceSlice.",
         "properties": {
           "allNodes": {
@@ -1108,7 +1130,7 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.Device"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.Device"
                 }
               ],
               "default": {}
@@ -1136,7 +1158,7 @@
           "pool": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourcePool"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourcePool"
               }
             ],
             "default": {},
@@ -2384,10 +2406,10 @@
   },
   "openapi": "3.0.0",
   "paths": {
-    "/apis/resource.k8s.io/v1alpha3/": {
+    "/apis/resource.k8s.io/v1beta1/": {
       "get": {
         "description": "get available resources",
-        "operationId": "getResourceV1alpha3APIResources",
+        "operationId": "getResourceV1beta1APIResources",
         "responses": {
           "200": {
             "content": {
@@ -2419,14 +2441,14 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ]
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/deviceclasses": {
+    "/apis/resource.k8s.io/v1beta1/deviceclasses": {
       "delete": {
         "description": "delete collection of DeviceClass",
-        "operationId": "deleteResourceV1alpha3CollectionDeviceClass",
+        "operationId": "deleteResourceV1beta1CollectionDeviceClass",
         "parameters": [
           {
             "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
@@ -2586,18 +2608,18 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "deletecollection",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "DeviceClass",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "get": {
         "description": "list or watch objects of kind DeviceClass",
-        "operationId": "listResourceV1alpha3DeviceClass",
+        "operationId": "listResourceV1beta1DeviceClass",
         "parameters": [
           {
             "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
@@ -2695,37 +2717,37 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClassList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClassList"
                 }
               },
               "application/cbor-seq": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClassList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClassList"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClassList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClassList"
                 }
               },
               "application/json;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClassList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClassList"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClassList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClassList"
                 }
               },
               "application/vnd.kubernetes.protobuf;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClassList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClassList"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClassList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClassList"
                 }
               }
             },
@@ -2736,13 +2758,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "DeviceClass",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -2758,7 +2780,7 @@
       ],
       "post": {
         "description": "create a DeviceClass",
-        "operationId": "createResourceV1alpha3DeviceClass",
+        "operationId": "createResourceV1beta1DeviceClass",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -2792,7 +2814,7 @@
           "content": {
             "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
               }
             }
           },
@@ -2803,22 +2825,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -2828,22 +2850,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -2853,22 +2875,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -2879,20 +2901,20 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "post",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "DeviceClass",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/deviceclasses/{name}": {
+    "/apis/resource.k8s.io/v1beta1/deviceclasses/{name}": {
       "delete": {
         "description": "delete a DeviceClass",
-        "operationId": "deleteResourceV1alpha3DeviceClass",
+        "operationId": "deleteResourceV1beta1DeviceClass",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -2954,22 +2976,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -2979,22 +3001,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -3005,39 +3027,39 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "delete",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "DeviceClass",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "get": {
         "description": "read the specified DeviceClass",
-        "operationId": "readResourceV1alpha3DeviceClass",
+        "operationId": "readResourceV1beta1DeviceClass",
         "responses": {
           "200": {
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -3048,13 +3070,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "get",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "DeviceClass",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -3080,7 +3102,7 @@
       ],
       "patch": {
         "description": "partially update the specified DeviceClass",
-        "operationId": "patchResourceV1alpha3DeviceClass",
+        "operationId": "patchResourceV1beta1DeviceClass",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -3154,22 +3176,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -3179,22 +3201,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -3205,18 +3227,18 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "patch",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "DeviceClass",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "put": {
         "description": "replace the specified DeviceClass",
-        "operationId": "replaceResourceV1alpha3DeviceClass",
+        "operationId": "replaceResourceV1beta1DeviceClass",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -3250,7 +3272,7 @@
           "content": {
             "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
               }
             }
           },
@@ -3261,22 +3283,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -3286,22 +3308,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.DeviceClass"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.DeviceClass"
                 }
               }
             },
@@ -3312,20 +3334,20 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "put",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "DeviceClass",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/namespaces/{namespace}/resourceclaims": {
+    "/apis/resource.k8s.io/v1beta1/namespaces/{namespace}/resourceclaims": {
       "delete": {
         "description": "delete collection of ResourceClaim",
-        "operationId": "deleteResourceV1alpha3CollectionNamespacedResourceClaim",
+        "operationId": "deleteResourceV1beta1CollectionNamespacedResourceClaim",
         "parameters": [
           {
             "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
@@ -3485,18 +3507,18 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "deletecollection",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "get": {
         "description": "list or watch objects of kind ResourceClaim",
-        "operationId": "listResourceV1alpha3NamespacedResourceClaim",
+        "operationId": "listResourceV1beta1NamespacedResourceClaim",
         "parameters": [
           {
             "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
@@ -3594,37 +3616,37 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/cbor-seq": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/json;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/vnd.kubernetes.protobuf;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               }
             },
@@ -3635,13 +3657,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -3667,7 +3689,7 @@
       ],
       "post": {
         "description": "create a ResourceClaim",
-        "operationId": "createResourceV1alpha3NamespacedResourceClaim",
+        "operationId": "createResourceV1beta1NamespacedResourceClaim",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -3701,7 +3723,7 @@
           "content": {
             "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
               }
             }
           },
@@ -3712,22 +3734,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -3737,22 +3759,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -3762,22 +3784,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -3788,20 +3810,20 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "post",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/namespaces/{namespace}/resourceclaims/{name}": {
+    "/apis/resource.k8s.io/v1beta1/namespaces/{namespace}/resourceclaims/{name}": {
       "delete": {
         "description": "delete a ResourceClaim",
-        "operationId": "deleteResourceV1alpha3NamespacedResourceClaim",
+        "operationId": "deleteResourceV1beta1NamespacedResourceClaim",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -3863,22 +3885,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -3888,22 +3910,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -3914,39 +3936,39 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "delete",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "get": {
         "description": "read the specified ResourceClaim",
-        "operationId": "readResourceV1alpha3NamespacedResourceClaim",
+        "operationId": "readResourceV1beta1NamespacedResourceClaim",
         "responses": {
           "200": {
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -3957,13 +3979,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "get",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -3999,7 +4021,7 @@
       ],
       "patch": {
         "description": "partially update the specified ResourceClaim",
-        "operationId": "patchResourceV1alpha3NamespacedResourceClaim",
+        "operationId": "patchResourceV1beta1NamespacedResourceClaim",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -4073,22 +4095,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -4098,22 +4120,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -4124,18 +4146,18 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "patch",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "put": {
         "description": "replace the specified ResourceClaim",
-        "operationId": "replaceResourceV1alpha3NamespacedResourceClaim",
+        "operationId": "replaceResourceV1beta1NamespacedResourceClaim",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -4169,7 +4191,7 @@
           "content": {
             "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
               }
             }
           },
@@ -4180,22 +4202,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -4205,22 +4227,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -4231,41 +4253,41 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "put",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/namespaces/{namespace}/resourceclaims/{name}/status": {
+    "/apis/resource.k8s.io/v1beta1/namespaces/{namespace}/resourceclaims/{name}/status": {
       "get": {
         "description": "read status of the specified ResourceClaim",
-        "operationId": "readResourceV1alpha3NamespacedResourceClaimStatus",
+        "operationId": "readResourceV1beta1NamespacedResourceClaimStatus",
         "responses": {
           "200": {
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -4276,13 +4298,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "get",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -4318,7 +4340,7 @@
       ],
       "patch": {
         "description": "partially update status of the specified ResourceClaim",
-        "operationId": "patchResourceV1alpha3NamespacedResourceClaimStatus",
+        "operationId": "patchResourceV1beta1NamespacedResourceClaimStatus",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -4392,22 +4414,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -4417,22 +4439,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -4443,18 +4465,18 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "patch",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "put": {
         "description": "replace status of the specified ResourceClaim",
-        "operationId": "replaceResourceV1alpha3NamespacedResourceClaimStatus",
+        "operationId": "replaceResourceV1beta1NamespacedResourceClaimStatus",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -4488,7 +4510,7 @@
           "content": {
             "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
               }
             }
           },
@@ -4499,22 +4521,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -4524,22 +4546,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaim"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaim"
                 }
               }
             },
@@ -4550,20 +4572,20 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "put",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/namespaces/{namespace}/resourceclaimtemplates": {
+    "/apis/resource.k8s.io/v1beta1/namespaces/{namespace}/resourceclaimtemplates": {
       "delete": {
         "description": "delete collection of ResourceClaimTemplate",
-        "operationId": "deleteResourceV1alpha3CollectionNamespacedResourceClaimTemplate",
+        "operationId": "deleteResourceV1beta1CollectionNamespacedResourceClaimTemplate",
         "parameters": [
           {
             "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
@@ -4723,18 +4745,18 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "deletecollection",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "get": {
         "description": "list or watch objects of kind ResourceClaimTemplate",
-        "operationId": "listResourceV1alpha3NamespacedResourceClaimTemplate",
+        "operationId": "listResourceV1beta1NamespacedResourceClaimTemplate",
         "parameters": [
           {
             "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
@@ -4832,37 +4854,37 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/cbor-seq": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/json;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/vnd.kubernetes.protobuf;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               }
             },
@@ -4873,13 +4895,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -4905,7 +4927,7 @@
       ],
       "post": {
         "description": "create a ResourceClaimTemplate",
-        "operationId": "createResourceV1alpha3NamespacedResourceClaimTemplate",
+        "operationId": "createResourceV1beta1NamespacedResourceClaimTemplate",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -4939,7 +4961,7 @@
           "content": {
             "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
               }
             }
           },
@@ -4950,22 +4972,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -4975,22 +4997,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -5000,22 +5022,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -5026,20 +5048,20 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "post",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/namespaces/{namespace}/resourceclaimtemplates/{name}": {
+    "/apis/resource.k8s.io/v1beta1/namespaces/{namespace}/resourceclaimtemplates/{name}": {
       "delete": {
         "description": "delete a ResourceClaimTemplate",
-        "operationId": "deleteResourceV1alpha3NamespacedResourceClaimTemplate",
+        "operationId": "deleteResourceV1beta1NamespacedResourceClaimTemplate",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -5101,22 +5123,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -5126,22 +5148,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -5152,39 +5174,39 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "delete",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "get": {
         "description": "read the specified ResourceClaimTemplate",
-        "operationId": "readResourceV1alpha3NamespacedResourceClaimTemplate",
+        "operationId": "readResourceV1beta1NamespacedResourceClaimTemplate",
         "responses": {
           "200": {
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -5195,13 +5217,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "get",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -5237,7 +5259,7 @@
       ],
       "patch": {
         "description": "partially update the specified ResourceClaimTemplate",
-        "operationId": "patchResourceV1alpha3NamespacedResourceClaimTemplate",
+        "operationId": "patchResourceV1beta1NamespacedResourceClaimTemplate",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -5311,22 +5333,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -5336,22 +5358,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -5362,18 +5384,18 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "patch",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "put": {
         "description": "replace the specified ResourceClaimTemplate",
-        "operationId": "replaceResourceV1alpha3NamespacedResourceClaimTemplate",
+        "operationId": "replaceResourceV1beta1NamespacedResourceClaimTemplate",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -5407,7 +5429,7 @@
           "content": {
             "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
               }
             }
           },
@@ -5418,22 +5440,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -5443,22 +5465,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplate"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplate"
                 }
               }
             },
@@ -5469,56 +5491,56 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "put",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/resourceclaims": {
+    "/apis/resource.k8s.io/v1beta1/resourceclaims": {
       "get": {
         "description": "list or watch objects of kind ResourceClaim",
-        "operationId": "listResourceV1alpha3ResourceClaimForAllNamespaces",
+        "operationId": "listResourceV1beta1ResourceClaimForAllNamespaces",
         "responses": {
           "200": {
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/cbor-seq": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/json;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/vnd.kubernetes.protobuf;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimList"
                 }
               }
             },
@@ -5529,13 +5551,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -5640,46 +5662,46 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/resourceclaimtemplates": {
+    "/apis/resource.k8s.io/v1beta1/resourceclaimtemplates": {
       "get": {
         "description": "list or watch objects of kind ResourceClaimTemplate",
-        "operationId": "listResourceV1alpha3ResourceClaimTemplateForAllNamespaces",
+        "operationId": "listResourceV1beta1ResourceClaimTemplateForAllNamespaces",
         "responses": {
           "200": {
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/cbor-seq": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/json;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/vnd.kubernetes.protobuf;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceClaimTemplateList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceClaimTemplateList"
                 }
               }
             },
@@ -5690,13 +5712,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -5801,10 +5823,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/resourceslices": {
+    "/apis/resource.k8s.io/v1beta1/resourceslices": {
       "delete": {
         "description": "delete collection of ResourceSlice",
-        "operationId": "deleteResourceV1alpha3CollectionResourceSlice",
+        "operationId": "deleteResourceV1beta1CollectionResourceSlice",
         "parameters": [
           {
             "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
@@ -5964,18 +5986,18 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "deletecollection",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceSlice",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "get": {
         "description": "list or watch objects of kind ResourceSlice",
-        "operationId": "listResourceV1alpha3ResourceSlice",
+        "operationId": "listResourceV1beta1ResourceSlice",
         "parameters": [
           {
             "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
@@ -6073,37 +6095,37 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSliceList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSliceList"
                 }
               },
               "application/cbor-seq": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSliceList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSliceList"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSliceList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSliceList"
                 }
               },
               "application/json;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSliceList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSliceList"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSliceList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSliceList"
                 }
               },
               "application/vnd.kubernetes.protobuf;stream=watch": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSliceList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSliceList"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSliceList"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSliceList"
                 }
               }
             },
@@ -6114,13 +6136,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceSlice",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -6136,7 +6158,7 @@
       ],
       "post": {
         "description": "create a ResourceSlice",
-        "operationId": "createResourceV1alpha3ResourceSlice",
+        "operationId": "createResourceV1beta1ResourceSlice",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -6170,7 +6192,7 @@
           "content": {
             "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
               }
             }
           },
@@ -6181,22 +6203,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6206,22 +6228,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6231,22 +6253,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6257,20 +6279,20 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "post",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceSlice",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/resourceslices/{name}": {
+    "/apis/resource.k8s.io/v1beta1/resourceslices/{name}": {
       "delete": {
         "description": "delete a ResourceSlice",
-        "operationId": "deleteResourceV1alpha3ResourceSlice",
+        "operationId": "deleteResourceV1beta1ResourceSlice",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -6332,22 +6354,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6357,22 +6379,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6383,39 +6405,39 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "delete",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceSlice",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "get": {
         "description": "read the specified ResourceSlice",
-        "operationId": "readResourceV1alpha3ResourceSlice",
+        "operationId": "readResourceV1beta1ResourceSlice",
         "responses": {
           "200": {
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6426,13 +6448,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "get",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceSlice",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -6458,7 +6480,7 @@
       ],
       "patch": {
         "description": "partially update the specified ResourceSlice",
-        "operationId": "patchResourceV1alpha3ResourceSlice",
+        "operationId": "patchResourceV1beta1ResourceSlice",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -6532,22 +6554,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6557,22 +6579,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6583,18 +6605,18 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "patch",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceSlice",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "put": {
         "description": "replace the specified ResourceSlice",
-        "operationId": "replaceResourceV1alpha3ResourceSlice",
+        "operationId": "replaceResourceV1beta1ResourceSlice",
         "parameters": [
           {
             "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
@@ -6628,7 +6650,7 @@
           "content": {
             "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
               }
             }
           },
@@ -6639,22 +6661,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6664,22 +6686,22 @@
             "content": {
               "application/cbor": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/vnd.kubernetes.protobuf": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               },
               "application/yaml": {
                 "schema": {
-                  "$ref": "#/components/schemas/io.k8s.api.resource.v1alpha3.ResourceSlice"
+                  "$ref": "#/components/schemas/io.k8s.api.resource.v1beta1.ResourceSlice"
                 }
               }
             },
@@ -6690,20 +6712,20 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "put",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceSlice",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       }
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/deviceclasses": {
+    "/apis/resource.k8s.io/v1beta1/watch/deviceclasses": {
       "get": {
         "description": "watch individual changes to a list of DeviceClass. deprecated: use the 'watch' parameter with a list operation instead.",
-        "operationId": "watchResourceV1alpha3DeviceClassList",
+        "operationId": "watchResourceV1beta1DeviceClassList",
         "responses": {
           "200": {
             "content": {
@@ -6750,13 +6772,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "DeviceClass",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -6861,10 +6883,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/deviceclasses/{name}": {
+    "/apis/resource.k8s.io/v1beta1/watch/deviceclasses/{name}": {
       "get": {
         "description": "watch changes to an object of kind DeviceClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
-        "operationId": "watchResourceV1alpha3DeviceClass",
+        "operationId": "watchResourceV1beta1DeviceClass",
         "responses": {
           "200": {
             "content": {
@@ -6911,13 +6933,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watch",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "DeviceClass",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -7032,10 +7054,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/namespaces/{namespace}/resourceclaims": {
+    "/apis/resource.k8s.io/v1beta1/watch/namespaces/{namespace}/resourceclaims": {
       "get": {
         "description": "watch individual changes to a list of ResourceClaim. deprecated: use the 'watch' parameter with a list operation instead.",
-        "operationId": "watchResourceV1alpha3NamespacedResourceClaimList",
+        "operationId": "watchResourceV1beta1NamespacedResourceClaimList",
         "responses": {
           "200": {
             "content": {
@@ -7082,13 +7104,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -7203,10 +7225,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/namespaces/{namespace}/resourceclaims/{name}": {
+    "/apis/resource.k8s.io/v1beta1/watch/namespaces/{namespace}/resourceclaims/{name}": {
       "get": {
         "description": "watch changes to an object of kind ResourceClaim. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
-        "operationId": "watchResourceV1alpha3NamespacedResourceClaim",
+        "operationId": "watchResourceV1beta1NamespacedResourceClaim",
         "responses": {
           "200": {
             "content": {
@@ -7253,13 +7275,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watch",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -7384,10 +7406,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/namespaces/{namespace}/resourceclaimtemplates": {
+    "/apis/resource.k8s.io/v1beta1/watch/namespaces/{namespace}/resourceclaimtemplates": {
       "get": {
         "description": "watch individual changes to a list of ResourceClaimTemplate. deprecated: use the 'watch' parameter with a list operation instead.",
-        "operationId": "watchResourceV1alpha3NamespacedResourceClaimTemplateList",
+        "operationId": "watchResourceV1beta1NamespacedResourceClaimTemplateList",
         "responses": {
           "200": {
             "content": {
@@ -7434,13 +7456,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -7555,10 +7577,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/namespaces/{namespace}/resourceclaimtemplates/{name}": {
+    "/apis/resource.k8s.io/v1beta1/watch/namespaces/{namespace}/resourceclaimtemplates/{name}": {
       "get": {
         "description": "watch changes to an object of kind ResourceClaimTemplate. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
-        "operationId": "watchResourceV1alpha3NamespacedResourceClaimTemplate",
+        "operationId": "watchResourceV1beta1NamespacedResourceClaimTemplate",
         "responses": {
           "200": {
             "content": {
@@ -7605,13 +7627,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watch",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -7736,10 +7758,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/resourceclaims": {
+    "/apis/resource.k8s.io/v1beta1/watch/resourceclaims": {
       "get": {
         "description": "watch individual changes to a list of ResourceClaim. deprecated: use the 'watch' parameter with a list operation instead.",
-        "operationId": "watchResourceV1alpha3ResourceClaimListForAllNamespaces",
+        "operationId": "watchResourceV1beta1ResourceClaimListForAllNamespaces",
         "responses": {
           "200": {
             "content": {
@@ -7786,13 +7808,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaim",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -7897,10 +7919,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/resourceclaimtemplates": {
+    "/apis/resource.k8s.io/v1beta1/watch/resourceclaimtemplates": {
       "get": {
         "description": "watch individual changes to a list of ResourceClaimTemplate. deprecated: use the 'watch' parameter with a list operation instead.",
-        "operationId": "watchResourceV1alpha3ResourceClaimTemplateListForAllNamespaces",
+        "operationId": "watchResourceV1beta1ResourceClaimTemplateListForAllNamespaces",
         "responses": {
           "200": {
             "content": {
@@ -7947,13 +7969,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceClaimTemplate",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -8058,10 +8080,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/resourceslices": {
+    "/apis/resource.k8s.io/v1beta1/watch/resourceslices": {
       "get": {
         "description": "watch individual changes to a list of ResourceSlice. deprecated: use the 'watch' parameter with a list operation instead.",
-        "operationId": "watchResourceV1alpha3ResourceSliceList",
+        "operationId": "watchResourceV1beta1ResourceSliceList",
         "responses": {
           "200": {
             "content": {
@@ -8108,13 +8130,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceSlice",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
@@ -8219,10 +8241,10 @@
         }
       ]
     },
-    "/apis/resource.k8s.io/v1alpha3/watch/resourceslices/{name}": {
+    "/apis/resource.k8s.io/v1beta1/watch/resourceslices/{name}": {
       "get": {
         "description": "watch changes to an object of kind ResourceSlice. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
-        "operationId": "watchResourceV1alpha3ResourceSlice",
+        "operationId": "watchResourceV1beta1ResourceSlice",
         "responses": {
           "200": {
             "content": {
@@ -8269,13 +8291,13 @@
           }
         },
         "tags": [
-          "resource_v1alpha3"
+          "resource_v1beta1"
         ],
         "x-kubernetes-action": "watch",
         "x-kubernetes-group-version-kind": {
           "group": "resource.k8s.io",
           "kind": "ResourceSlice",
-          "version": "v1alpha3"
+          "version": "v1beta1"
         }
       },
       "parameters": [
