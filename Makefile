@@ -10,16 +10,16 @@ k8sUnusedOpenApiFiles := \
 	"version_openapi.json"
 
 
-# Download Kubernetes OpenAPI schemas to packages/cli/input-spec/$(k8sVersion)/*.json
+# Download Kubernetes OpenAPI schemas to packages/cli/openapi-spec/$(k8sVersion)/*.json
 .PHONY: download-schema
 download-schema:
 	@echo "Downloading Kubernetes schema version $(k8sVersion)"
 	@git clone --depth 1 --branch $(k8sVersion) --filter=blob:none --sparse https://github.com/kubernetes/kubernetes.git temp-k8s && \
 		cd temp-k8s && \
 		git sparse-checkout set --no-cone /api/openapi-spec/v3
-	@rsync -a --delete temp-k8s/api/openapi-spec/v3/ packages/cli/input-spec/$(k8sVersion)/
+	@rsync -a --delete temp-k8s/api/openapi-spec/v3/ packages/cli/openapi-spec/$(k8sVersion)/
 	@rm -rf temp-k8s
-	@cd packages/cli/input-spec/$(k8sVersion)/ && rm -f $(k8sUnusedOpenApiFiles)
+	@cd packages/cli/openapi-spec/$(k8sVersion)/ && rm -f $(k8sUnusedOpenApiFiles)
 
 
 # Generate schemas.json

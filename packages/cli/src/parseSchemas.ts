@@ -199,7 +199,7 @@ function saveSchemas(schemas: Schemas, outputPath: string) {
 }
 
 function main() {
-    const v3Path = path.join(import.meta.dirname, '../input-spec');
+    const v3Path = path.join(import.meta.dirname, '../openapi-spec');
     const skipList = [
         '.well-known__openid-configuration_openapi.json',
         'openid__v1__jwks_openapi.json',

@@ -7,7 +7,7 @@
       "!**/node_modules/**/*",
       "!**/dist/**/*",
       "!**/packages/cli/gen/**/*",
-      "!**/packages/cli/input-spec/**/*",
+      "!**/packages/cli/openapi-spec/**/*",
       "!**/package.json"
     ],
     "maxSize": 100000000
