@@ -63,7 +63,6 @@
     "commander": "^14.0.1",
     "json-schema-to-typescript": "^15.0.4",
     "picocolors": "^1.1.1",
-    "resolve-pkg": "^2.0.0",
     "ts-morph": "^27.0.2",
     "yaml": "^2.8.1"
   }

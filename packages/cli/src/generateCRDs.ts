@@ -7,7 +7,6 @@ import { compile } from 'json-schema-to-typescript';
 import pc from 'picocolors';
 import { type ClassDeclarationStructure, Project, StructureKind } from 'ts-morph';
 import * as yaml from 'yaml';
-import { formatCode } from './utils.ts';
 
 interface CRD {
     apiVersion: string;
@@ -262,5 +261,4 @@ export async function generateCRDs(crdPathOrUrl?: string, config?: K8sKonfig) {
         }
         fs.writeFileSync(path.join(outDir, crdDir, 'index.ts'), indexFileContent, 'utf-8');
     }
-    formatCode(outDir);
 }

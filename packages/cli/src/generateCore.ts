@@ -11,12 +11,11 @@ import {
     type PropertySignatureStructure,
     QuoteKind,
     type SourceFile,
-    type StatementStructures,
     StructureKind,
     SyntaxKind,
 } from 'ts-morph';
 import type { Schemas } from './parseSchemas.ts';
-import { formatCode, removeUnusedFiles } from './utils.ts';
+import { removeUnusedFiles } from './utils.ts';
 
 function removeUnusedThings(
     sourceFile: SourceFile,
@@ -86,11 +85,6 @@ function main() {
     const corePath = path.join(import.meta.dirname, '../../core');
     const modelsPath = path.join(corePath, 'src/models');
     removeUnusedFiles(modelsPath);
-    /**
-     * Format code to get rid of the quotes around the keys
-     * so it's easier to work with ts-morph.
-     */
-    formatCode(modelsPath);
 
     const project = new Project({
         tsConfigFilePath: path.join(corePath, 'tsconfig.json'),
@@ -293,7 +287,6 @@ function main() {
     }
 
     project.saveSync();
-    formatCode(modelsPath);
 }
 
 main();
