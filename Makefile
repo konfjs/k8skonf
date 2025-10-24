@@ -25,8 +25,7 @@ download-schema:
 # Generate schemas.json
 .PHONY: parse-schema
 parse-schema:
-	@cd packages/cli && \
-		npx tsx src/parseSchemas.ts
+	@cd packages/cli && node src/parseSchemas.ts
 
 
 # Generate packages/cli/gen/models/*.ts files
@@ -46,7 +45,7 @@ copy-models:
 .PHONY: core
 core: copy-models
 	@echo "Generating @k8skonf/core package"
-	@cd packages/cli && npx tsx src/generateCore.ts
+	@cd packages/cli && node src/generateCore.ts
 
 
 # Note: It seems I need to run this multiple times to remove all the unused interfaces.
@@ -54,26 +53,26 @@ core: copy-models
 # but it also could leave some interfaces orphaned.
 .PHONY: remove-unused
 remove-unused:
-	@cd packages/cli && npx tsx src/removeUnused.ts
+	@cd packages/cli && node src/removeUnused.ts
 
 
 .PHONY: move-core
 move-core:
 	@echo "Moving models to subdirs"
-	@cd packages/cli && npx tsx src/moveCore.ts
+	@cd packages/cli && node src/moveCore.ts
 
 
 .PHONY: add-exports
 add-exports:
 	@echo "Adding model exports"
-	@cd packages/cli && npx tsx src/addExports.ts
+	@cd packages/cli && node src/addExports.ts
 
 
 # Workaround until https://github.com/dsherret/ts-morph/issues/1612 is fixed.
 .PHONY: fix-imports
 fix-imports:
 	@echo "Fixing import extensions"
-	@cd packages/cli && npx tsx src/fixImports.ts
+	@cd packages/cli && node src/fixImports.ts
 
 
 .PHONY: lint

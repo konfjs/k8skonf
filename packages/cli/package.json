@@ -48,8 +48,7 @@
   "scripts": {
     "lint": "biome lint",
     "gen": "rm -rf ./gen && openapi-generator-cli generate",
-    "add_shebang": "perl -i -pe 's,#!/usr/bin/env tsx,#!/usr/bin/env node,g' dist/index.js",
-    "build": "rm -rf dist && tsc && pnpm run add_shebang && chmod +x dist/index.js",
+    "build": "rm -rf dist && tsc && chmod +x dist/index.js",
     "prepack": "pnpm run build"
   },
   "files": [
@@ -58,7 +57,6 @@
   "devDependencies": {
     "@k8skonf/core": "workspace:*",
     "@openapitools/openapi-generator-cli": "2.25.0",
-    "tsx": "4.20.6",
     "typescript": "5.9.3"
   },
   "dependencies": {

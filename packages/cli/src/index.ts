@@ -1,7 +1,7 @@
-#!/usr/bin/env tsx
-import { Command } from 'commander';
+#!/usr/bin/env node
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { Command } from 'commander';
 import { generateCRDs, readConfig } from './generateCRDs.ts';
 
 async function main() {
