@@ -37,28 +37,28 @@ function main() {
              *
              * Following the same logic, "core" is used in the classes, but it's empty in the interfaces.
              */
-            const group = schema.group === '' ? 'core' : schema.group;
-            let destDir = path.join(
-                modelsPath,
-                group
-                    .replace('.k8s.io', '')
-                    .replace('flowcontrol.apiserver', 'flowcontrol')
-                    .replace('rbac.authorization', 'rbac'),
-                schema.version,
-            );
-
-            if (interfaceSchema) {
-                destDir = path.join(destDir, 'types');
-            }
-
-            if (!fs.existsSync(destDir)) {
-                log(`Creating directory ${pc.blueBright(destDir)}`);
-                fs.mkdirSync(destDir, { recursive: true });
-            }
-
-            const destFile = path.join(destDir, `${schema.kind}.ts`);
-
             if (schema) {
+                const group = schema.group === '' ? 'core' : schema.group;
+                let destDir = path.join(
+                    modelsPath,
+                    group
+                        .replace('.k8s.io', '')
+                        .replace('flowcontrol.apiserver', 'flowcontrol')
+                        .replace('rbac.authorization', 'rbac'),
+                    schema.version,
+                );
+
+                if (interfaceSchema) {
+                    destDir = path.join(destDir, 'types');
+                }
+
+                if (!fs.existsSync(destDir)) {
+                    log(`Creating directory ${pc.blueBright(destDir)}`);
+                    fs.mkdirSync(destDir, { recursive: true });
+                }
+
+                const destFile = path.join(destDir, `${schema.kind}.ts`);
+
                 log(`Moving ${pc.gray(`${fileName}.ts`)} to ${pc.cyan(destFile)}`);
                 sourceFile.move(destFile);
             }
