@@ -179,8 +179,9 @@ function main() {
                         kindProperty.setHasQuestionToken(false);
                     }
                     sourceFile.addImportDeclaration({
-                        moduleSpecifier: '../K8sApp.ts',
+                        isTypeOnly: true,
                         namedImports: ['K8sApp'],
+                        moduleSpecifier: '../K8sApp.ts',
                     });
 
                     const interfaceProps: PropertySignatureStructure[] = [];
@@ -251,7 +252,7 @@ function main() {
                                 interfaceProp.type = 'NamespacedObjectMeta';
                                 sourceFile
                                     .getImportDeclaration(
-                                        '../models/IoK8sApimachineryPkgApisMetaV1ObjectMeta.ts',
+                                        './IoK8sApimachineryPkgApisMetaV1ObjectMeta.ts',
                                     )
                                     ?.remove();
                             } else {
