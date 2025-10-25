@@ -247,7 +247,10 @@ function main() {
                                 prop.setType('NamespacedObjectMeta');
                                 sourceFile.addImportDeclaration({
                                     moduleSpecifier: '../ApiObject.ts',
-                                    namedImports: ['NamespacedObjectMeta', 'NamespacedApiObject'],
+                                    namedImports: [
+                                        'type NamespacedObjectMeta',
+                                        'NamespacedApiObject',
+                                    ],
                                 });
                                 interfaceProp.type = 'NamespacedObjectMeta';
                                 sourceFile
