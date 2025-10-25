@@ -22,29 +22,49 @@ download-schema:
 	@cd packages/cli/openapi-spec/$(k8sVersion)/ && rm -f $(k8sUnusedOpenApiFiles)
 
 
-# Generate schemas.json
-.PHONY: parse-schema
-parse-schema:
-	@cd packages/cli && node src/parseSchemas.ts
-
-
-# Generate packages/cli/gen/models/*.ts files
+# Requires java to run openapi-generator
+# Reads packages/cli/openapi-spec/$(k8sVersion)/*.json files
+# Generates packages/cli/gen/$(k8sVersion)/models/*.ts files
+# For each schema JSON file, every entry in components.schemas.<key> is generated as a separate
+# TypeScript class in its own file (no interfaces).
+# However, the number of schemas does not exactly match the number of generated .ts files,
+# because some schemas do not have any properties and therefore do not have a corresponding TypeScript class generated.
 .PHONY: models
 models:
 	@echo "Generating Kubernetes models"
 	@cd packages/cli && pnpm gen
 
 
+# Copy generated models to packages/core/src/models/
+# We will later process these files to create proper classes and interfaces,
+# and organize them into subdirectories based on their group, version, and kind.
 .PHONY: copy-models
 copy-models:
 	@echo "Copying Kubernetes models"
-	@rsync -a --delete packages/cli/gen/models/ packages/core/src/models/
+	@rsync -a --delete packages/cli/gen/$(k8sVersion)/models/ packages/core/src/models/
 
 
-# Update packages/core/src/models/*.ts files
-.PHONY: core
-core: copy-models
-	@echo "Generating @k8skonf/core package"
+# Generates "schemas.json"
+# Analyzes packages/cli/openapi-spec/$(k8sVersion)/*.json files
+# and, for each schema, determines:
+# - Resource or property
+# - Group, version, kind
+# - Cluster or namespaced scope
+.PHONY: parse-schema
+parse-schema:
+	@cd packages/cli && node src/parseSchemas.ts
+
+
+# Requires "schemas.json"
+# Updates packages/core/src/models/*.ts files.
+# - Remove unused files. E.g: List, Status, State etc.
+# - Replace IoK8sApimachineryPkgApiResourceQuantity, IoK8sApimachineryPkgUtilIntstrIntOrString with `number | string`
+# - Remove unused imports and clean up the class.
+# - Based on the schema info, convert classes to interfaces where applicable.
+# No new files are created here.
+.PHONY: k8s
+k8s: copy-models
+	@echo "Generating @k8skonf/provider-k8s package"
 	@cd packages/cli && node src/generateCore.ts
 
 
@@ -56,6 +76,7 @@ remove-unused:
 	@cd packages/cli && node src/removeUnused.ts
 
 
+# Requires "schemas.json"
 .PHONY: move-core
 move-core:
 	@echo "Moving models to subdirs"
