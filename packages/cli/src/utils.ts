@@ -1,5 +1,7 @@
+import { log } from 'node:console';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import pc from 'picocolors';
 
 export function upperCaseFirstLetter(val: string) {
     return val.charAt(0).toUpperCase() + val.slice(1);
@@ -9,11 +11,6 @@ export function lowerCaseFirstLetter(val: string) {
     return val.charAt(0).toLowerCase() + val.slice(1);
 }
 
-/**
- * Remove some obvious unused files.
- * They're mostly intended to be used programmatically.
- * Note: Is there a better way to do this?
- */
 export function removeUnusedFiles(modelsPath: string) {
     const unusedFiles = new Set([
         'IoK8sApiAutoscalingV1Scale.ts',
@@ -89,9 +86,15 @@ export function removeUnusedFiles(modelsPath: string) {
         'IoK8sApiAuthenticationV1TokenReview.ts',
         'IoK8sApiAuthenticationV1TokenReviewSpec.ts',
     ]);
-    fs.readdirSync(modelsPath).forEach((file) => {
-        if (file.endsWith('Status.ts') || file.endsWith('List.ts') || unusedFiles.has(file)) {
-            fs.rmSync(path.join(modelsPath, file));
+    let counter = 0;
+    for (const filename of fs.readdirSync(modelsPath)) {
+        if (
+            filename.endsWith('Status.ts') ||
+            filename.endsWith('List.ts') ||
+            unusedFiles.has(filename)
+        ) {
+            log(`Removing unused file ${++counter}: ${pc.gray(filename)}`);
+            fs.rmSync(path.join(modelsPath, filename));
         }
-    });
+    }
 }

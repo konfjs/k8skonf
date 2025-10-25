@@ -7,7 +7,7 @@
       "v3.0": {
         "generatorName": "typescript",
         "glob": "openapi-spec/v1.32.0/*.json",
-        "output": "gen",
+        "output": "gen/v1.32.0",
         "additionalProperties": {
           "importFileExtension": ".ts",
           "modelPropertyNaming": "original",

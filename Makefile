@@ -2,7 +2,7 @@ SHELL := /bin/bash
 .SHELLFLAGS += -euo pipefail
 
 
-k8sVersion := v1.34.0
+k8sVersion := v1.32.0
 k8sUnusedOpenApiFiles := \
 	".well-known__openid-configuration_openapi.json" \
 	"openid__v1__jwks_openapi.json" \

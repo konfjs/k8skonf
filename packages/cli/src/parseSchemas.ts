@@ -50,23 +50,30 @@ export interface K8sOpenApiSpec {
 
 interface Schema {
     /**
+     * Schema name appears in the OpenAPI spec's components.schemas
      * @example "io.k8s.api.apps.v1.Deployment"
      */
     schemaName: string;
     /**
-     * Files this schema used
+     * Files this schema appears in.
+     * A schema can appear in multiple files.
      * @example ["apis__apps__v1_openapi.json"]
      */
     files: string[];
     /**
+     * API group this schema belongs to.
      * @example "apps"
      */
     group: string;
     /**
+     * If the schema is not a Kubernetes API object,
+     * it represents the interface name.
      * @example "Deployment"
+     * @example "DeploymentSpec"
      */
     kind: string;
     /**
+     * API version this schema belongs to.
      * @example "v1"
      */
     version: string;
@@ -199,7 +206,7 @@ function saveSchemas(schemas: Schemas, outputPath: string) {
 }
 
 function main() {
-    const v3Path = path.join(import.meta.dirname, '../openapi-spec');
+    const v3Path = path.join(import.meta.dirname, '../openapi-spec/v1.32.0');
     const skipList = [
         '.well-known__openid-configuration_openapi.json',
         'openid__v1__jwks_openapi.json',
