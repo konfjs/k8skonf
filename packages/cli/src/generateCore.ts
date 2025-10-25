@@ -37,10 +37,14 @@ function cleanupDefaultClass(
     }
 
     if (className === 'IoK8sApimachineryPkgApisMetaV1ObjectMeta') {
+        sourceFile
+            .getImportDeclaration(`./IoK8sApimachineryPkgApisMetaV1ManagedFieldsEntry.ts`)
+            ?.remove();
         classDeclaration.getProperty("'creationTimestamp'")?.remove();
         classDeclaration.getProperty("'deletionGracePeriodSeconds'")?.remove();
         classDeclaration.getProperty("'deletionTimestamp'")?.remove();
         classDeclaration.getProperty("'generation'")?.remove();
+        classDeclaration.getProperty("'managedFields'")?.remove();
         classDeclaration.getProperty("'resourceVersion'")?.remove();
         classDeclaration.getProperty("'selfLink'")?.remove();
         classDeclaration.getProperty("'uid'")?.remove();

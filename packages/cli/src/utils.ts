@@ -46,6 +46,7 @@ export function removeUnusedFiles(modelsPath: string) {
         'IoK8sApimachineryPkgApisMetaV1DeleteOptions.ts',
         'IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery.ts',
         'IoK8sApimachineryPkgApisMetaV1ListMeta.ts',
+        'IoK8sApimachineryPkgApisMetaV1ManagedFieldsEntry.ts',
         'IoK8sApimachineryPkgApisMetaV1ServerAddressByClientCIDR.ts',
         'IoK8sApimachineryPkgApisMetaV1StatusCause.ts',
         'IoK8sApimachineryPkgApisMetaV1StatusDetails.ts',
