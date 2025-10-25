@@ -147,7 +147,7 @@ function main() {
                     }
 
                     sourceFile.addImportDeclaration({
-                        moduleSpecifier: '../K8sApp.js',
+                        moduleSpecifier: '../K8sApp.ts',
                         namedImports: ['K8sApp'],
                     });
 
@@ -214,19 +214,19 @@ function main() {
                                 classDeclaration.setExtends('NamespacedApiObject');
                                 prop.setType('NamespacedObjectMeta');
                                 sourceFile.addImportDeclaration({
-                                    moduleSpecifier: '../ApiObject.js',
+                                    moduleSpecifier: '../ApiObject.ts',
                                     namedImports: ['NamespacedObjectMeta', 'NamespacedApiObject'],
                                 });
                                 interfaceProp.type = 'NamespacedObjectMeta';
                                 sourceFile
                                     .getImportDeclaration(
-                                        '../models/IoK8sApimachineryPkgApisMetaV1ObjectMeta.js',
+                                        '../models/IoK8sApimachineryPkgApisMetaV1ObjectMeta.ts',
                                     )
                                     ?.remove();
                             } else {
                                 classDeclaration.setExtends('ApiObject');
                                 sourceFile.addImportDeclaration({
-                                    moduleSpecifier: '../ApiObject.js',
+                                    moduleSpecifier: '../ApiObject.ts',
                                     namedImports: ['ApiObject'],
                                 });
                                 interfaceProp.type = 'ObjectMeta';
