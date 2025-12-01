@@ -64,6 +64,6 @@
     "json-schema-to-typescript": "^15.0.4",
     "picocolors": "^1.1.1",
     "ts-morph": "^27.0.2",
-    "yaml": "^2.8.1"
+    "yaml": "^2.8.2"
   }
 }
