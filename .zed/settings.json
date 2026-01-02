@@ -14,6 +14,19 @@
         },
       ],
     },
+    "TypeScript": {
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt",
+          },
+        },
+        {
+          "code_action": "source.fixAll.oxc",
+        },
+      ],
+    },
   },
   "lsp": {
     "oxlint": {
