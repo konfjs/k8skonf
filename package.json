@@ -2,24 +2,20 @@
   "name": "@k8skonf/monorepo",
   "private": true,
   "type": "module",
+  "scripts": {
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
+  },
   "devDependencies": {
-    "@biomejs/biome": "2.2.7",
-    "@types/node": "24.9.1",
+    "@types/node": "24.10.4",
+    "oxfmt": "0.21.0",
+    "oxlint": "1.36.0",
     "typescript": "5.9.3"
   },
-  "packageManager": "pnpm@10.19.0",
   "engines": {
-    "node": ">=20.18",
-    "pnpm": ">=10"
+    "node": ">=22.21.1"
   },
-  "pnpm": {
-    "ignoredBuiltDependencies": [
-      "@nestjs/core"
-    ],
-    "onlyBuiltDependencies": [
-      "@biomejs/biome",
-      "@openapitools/openapi-generator-cli",
-      "esbuild"
-    ]
-  }
+  "packageManager": "pnpm@10.27.0"
 }
