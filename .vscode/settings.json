@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.oxc": "explicit"
+    }
+  },
+  "oxc.disableNestedConfig": false,
+  "oxc.fixKind": "safe_fix",
+  "oxc.lint.run": "onType",
+  "oxc.typeAware": true,
+  "oxc.unusedDisableDirectives": "deny",
+}
