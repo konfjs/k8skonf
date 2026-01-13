@@ -9,7 +9,7 @@
     "format:check": "oxfmt --check"
   },
   "devDependencies": {
-    "@types/node": "24.10.4",
+    "@types/node": "24.10.6",
     "oxfmt": "0.21.0",
     "oxlint": "1.36.0",
     "oxlint-tsgolint": "0.10.1",
