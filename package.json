@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@types/node": "24.10.6",
-    "oxfmt": "0.21.0",
+    "oxfmt": "0.23.0",
     "oxlint": "1.38.0",
     "oxlint-tsgolint": "0.10.1",
     "typescript": "5.9.3"
