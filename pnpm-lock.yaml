@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@types/node':
-        specifier: 24.10.9
-        version: 24.10.9
+        specifier: 24.10.11
+        version: 24.10.11
       oxfmt:
         specifier: 0.27.0
         version: 0.27.0
@@ -56,7 +56,7 @@ importers:
         version: link:../core
       '@openapitools/openapi-generator-cli':
         specifier: 2.28.0
-        version: 2.28.0(@types/node@24.10.9)
+        version: 2.28.0(@types/node@24.10.11)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -305,8 +305,8 @@ packages:
   '@types/lodash@4.17.21':
     resolution: {integrity: sha512-FOvQ0YPD5NOfPgMzJihoT+Za5pdkDJWcbpuj1DjaKZIr/gxodQjY/uWEFlTNqW2ugXHUiL8lRQgw63dzKHZdeQ==}
 
-  '@types/node@24.10.9':
-    resolution: {integrity: sha512-ne4A0IpG3+2ETuREInjPNhUGis1SFjv1d5asp8MzEAGtOZeTeHVDOYqOgqfhvseqg/iXty2hjBf1zAOb7RNiNw==}
+  '@types/node@24.10.11':
+    resolution: {integrity: sha512-/Af7O8r1frCVgOz0I62jWUtMohJ0/ZQU/ZoketltOJPZpnb17yoNc9BSoVuV9qlaIXJiPNOpsfq4ByFajSArNQ==}
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -948,12 +948,12 @@ snapshots:
 
   '@borewit/text-codec@0.2.1': {}
 
-  '@inquirer/external-editor@1.0.3(@types/node@24.10.9)':
+  '@inquirer/external-editor@1.0.3(@types/node@24.10.11)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.2
     optionalDependencies:
-      '@types/node': 24.10.9
+      '@types/node': 24.10.11
 
   '@isaacs/balanced-match@4.0.1': {}
 
@@ -1007,7 +1007,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@openapitools/openapi-generator-cli@2.28.0(@types/node@24.10.9)':
+  '@openapitools/openapi-generator-cli@2.28.0(@types/node@24.10.11)':
     dependencies:
       '@nestjs/axios': 4.0.1(@nestjs/common@11.1.12(reflect-metadata@0.2.2)(rxjs@7.8.2))(axios@1.13.2)(rxjs@7.8.2)
       '@nestjs/common': 11.1.12(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -1021,7 +1021,7 @@ snapshots:
       console.table: 0.10.0
       fs-extra: 11.3.3
       glob: 13.0.0
-      inquirer: 8.2.7(@types/node@24.10.9)
+      inquirer: 8.2.7(@types/node@24.10.11)
       proxy-agent: 6.5.0
       reflect-metadata: 0.2.2
       rxjs: 7.8.2
@@ -1124,7 +1124,7 @@ snapshots:
 
   '@types/lodash@4.17.21': {}
 
-  '@types/node@24.10.9':
+  '@types/node@24.10.11':
     dependencies:
       undici-types: 7.16.0
 
@@ -1406,9 +1406,9 @@ snapshots:
 
   inherits@2.0.4: {}
 
-  inquirer@8.2.7(@types/node@24.10.9):
+  inquirer@8.2.7(@types/node@24.10.11):
     dependencies:
-      '@inquirer/external-editor': 1.0.3(@types/node@24.10.9)
+      '@inquirer/external-editor': 1.0.3(@types/node@24.10.11)
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       cli-cursor: 3.1.0
