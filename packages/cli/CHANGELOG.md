@@ -1,5 +1,57 @@
 # Changelog
 
+## [0.6.4](https://github.com/konfjs/k8skonf/compare/cli-v0.6.3...cli-v0.6.4) (2026-02-17)
+
+
+### Bug Fixes
+
+* **cli:** fix linter errors ([2635c39](https://github.com/konfjs/k8skonf/commit/2635c399a9ebaa11ea6211fd768d3c0ac28ceb25))
+* **cli:** handle quoted property keys ([b1a2cf7](https://github.com/konfjs/k8skonf/commit/b1a2cf7cc917df999e152d8def383f09dceaaa17))
+* **cli:** make K8sApp type import, remove unused IoK8sApimachineryPkgApisMetaV1ObjectMeta import ([eb50c14](https://github.com/konfjs/k8skonf/commit/eb50c14a75ee466cedaf1d45bcd08a7bff4765af))
+* **cli:** make NamespacedObjectMeta type import ([aa8b75e](https://github.com/konfjs/k8skonf/commit/aa8b75edaf11f3bbcb9e7bb8e026e22bf9a50b62))
+* **cli:** remove managedFields from object metadata ([03b1a90](https://github.com/konfjs/k8skonf/commit/03b1a905772ec2cf5c2e50408d46988ea6fed94d))
+* **cli:** use correct bin folder locally ([900ef5a](https://github.com/konfjs/k8skonf/commit/900ef5a1d55b3f6bdd98d7c58c83b4285d342684))
+
+
+### Maintenance
+
+* **cli:** add k8s 1.25.0 to 1.34.0 open api schemas ([5310943](https://github.com/konfjs/k8skonf/commit/5310943f88405e6b8b1dd88fa3484d94f2e3a93b))
+* **cli:** download k8s open schema into versioned dir ([ab2cedd](https://github.com/konfjs/k8skonf/commit/ab2ceddeca8c58e9e37ed46948877addf2a4ae68))
+* **cli:** fix linter warnings ([760361f](https://github.com/konfjs/k8skonf/commit/760361f79159ed9e5684baf3c31aa7082b89d267))
+* **cli:** fix ts error ([5cb814a](https://github.com/konfjs/k8skonf/commit/5cb814a2d6c25966750ef5ecd1ded764e3a66b87))
+* **cli:** remove external formatter usage ([26cd594](https://github.com/konfjs/k8skonf/commit/26cd59484d3c55486ffd759473af5465f7b4fc80))
+* **cli:** remove IoK8sApimachineryPkgApiResourceQuantity, IoK8sApimachineryPkgUtilIntstrIntOrString imports ([a3dd83a](https://github.com/konfjs/k8skonf/commit/a3dd83aa18948d73cedccc63c28ef123c9170bfb))
+* **cli:** remove tsx ([ce1d7ba](https://github.com/konfjs/k8skonf/commit/ce1d7ba7e6772f5587b3bdf7337aafade65f8298))
+* **cli:** rename input-spec to openapi-spec ([60b7ac2](https://github.com/konfjs/k8skonf/commit/60b7ac2ded50b5ad6f0b10c08ab37691c86f4b1f))
+* **cli:** rename input-spec to openapi-spec, part 2 ([1f2349f](https://github.com/konfjs/k8skonf/commit/1f2349f315c2ae57b603eaa3054b76b78cb09319))
+* **cli:** reorganize clean up class logic ([58db738](https://github.com/konfjs/k8skonf/commit/58db738c98d79a4697e632f730283959ca1d5303))
+* **cli:** use consistent .ts extension ([db3a98f](https://github.com/konfjs/k8skonf/commit/db3a98fc07faaa55a4308d066b38099e26f34c19))
+* **cli:** use openapi-generator@7.16.0 ([2456651](https://github.com/konfjs/k8skonf/commit/2456651dd61a9936f68095401723b91b8ecf9ed7))
+
+
+### Dependencies
+
+* bump commander from 13.1.0 to 14.0.1 in /packages/cli ([#205](https://github.com/konfjs/k8skonf/issues/205)) ([72cb2ee](https://github.com/konfjs/k8skonf/commit/72cb2ee5fc84c5f8992f1a3616bc85b27999ea07))
+* bump commander from 14.0.2 to 14.0.3 ([#263](https://github.com/konfjs/k8skonf/issues/263)) ([c142b55](https://github.com/konfjs/k8skonf/commit/c142b5590805e5a3a1e11bf52d8c35d13668e3f9))
+* bump ts-morph from 25.0.1 to 27.0.0 ([#193](https://github.com/konfjs/k8skonf/issues/193)) ([d6530e3](https://github.com/konfjs/k8skonf/commit/d6530e3128b58689c261ae7800fd860b7d5ff9b2))
+* bump ts-morph from 27.0.0 to 27.0.2 ([#221](https://github.com/konfjs/k8skonf/issues/221)) ([81b3bae](https://github.com/konfjs/k8skonf/commit/81b3baef35eaa0a6ee75a8d5a874ebadc10bfc4f))
+* bump yaml from 2.7.0 to 2.8.1 in /packages/cli ([#202](https://github.com/konfjs/k8skonf/issues/202)) ([6ec54bd](https://github.com/konfjs/k8skonf/commit/6ec54bda97f625a1e69471dd14db37d98a95cc2e))
+* **dev:** bump @openapitools/openapi-generator-cli ([#115](https://github.com/konfjs/k8skonf/issues/115)) ([079a6d4](https://github.com/konfjs/k8skonf/commit/079a6d49a2ad740c251a219f64d8bccb13676ce5))
+* **dev:** bump @openapitools/openapi-generator-cli ([#191](https://github.com/konfjs/k8skonf/issues/191)) ([a11b412](https://github.com/konfjs/k8skonf/commit/a11b412bfc3b0542c2aec494a5092f11fd46ad6e))
+* **dev:** bump @openapitools/openapi-generator-cli ([#201](https://github.com/konfjs/k8skonf/issues/201)) ([965edc2](https://github.com/konfjs/k8skonf/commit/965edc279d0659b97209290e6a0840cedae591be))
+* **dev:** bump @openapitools/openapi-generator-cli ([#208](https://github.com/konfjs/k8skonf/issues/208)) ([21b2761](https://github.com/konfjs/k8skonf/commit/21b2761668b168f986cf813615e25ba5374272f4))
+* **dev:** bump @openapitools/openapi-generator-cli ([#220](https://github.com/konfjs/k8skonf/issues/220)) ([02cd305](https://github.com/konfjs/k8skonf/commit/02cd305bb5532aa5181970b7730d1d8e0029e46e))
+* **dev:** bump @openapitools/openapi-generator-cli ([#258](https://github.com/konfjs/k8skonf/issues/258)) ([2f859b3](https://github.com/konfjs/k8skonf/commit/2f859b345b033093603353152221a0dea77c59da))
+* **dev:** bump @openapitools/openapi-generator-cli ([#267](https://github.com/konfjs/k8skonf/issues/267)) ([7c91a79](https://github.com/konfjs/k8skonf/commit/7c91a7941d6c9ed9372f6329cd6c27b47e1225c7))
+* **dev:** bump @openapitools/openapi-generator-cli ([#274](https://github.com/konfjs/k8skonf/issues/274)) ([47eed2d](https://github.com/konfjs/k8skonf/commit/47eed2d8bac954ad32a323cbf3eeada1326ee9f1))
+* **dev:** bump @openapitools/openapi-generator-cli in /packages/cli ([#124](https://github.com/konfjs/k8skonf/issues/124)) ([3faad74](https://github.com/konfjs/k8skonf/commit/3faad74756c6d0fb44446aa9ef859ad714c3ca53))
+* **dev:** bump tsx from 4.19.2 to 4.19.3 ([#111](https://github.com/konfjs/k8skonf/issues/111)) ([2763b1d](https://github.com/konfjs/k8skonf/commit/2763b1de8a051bbaa5efe36c8b126e04c1f452a6))
+* **dev:** bump tsx from 4.19.3 to 4.20.5 in /packages/cli ([#198](https://github.com/konfjs/k8skonf/issues/198)) ([14a149c](https://github.com/konfjs/k8skonf/commit/14a149c96408a332e783d95dd69992385b3d67d2))
+* **dev:** bump tsx from 4.20.5 to 4.20.6 ([#207](https://github.com/konfjs/k8skonf/issues/207)) ([9e1c748](https://github.com/konfjs/k8skonf/commit/9e1c748c1faf0c48d37fe74cb37a3e6243a65e67))
+* **dev:** bump typescript from 5.7.3 to 5.8.2 ([#116](https://github.com/konfjs/k8skonf/issues/116)) ([19dafee](https://github.com/konfjs/k8skonf/commit/19dafee2fba8ede1632006ba09f88e1588805716))
+* **dev:** bump typescript from 5.8.2 to 5.9.2 in /packages/cli ([#195](https://github.com/konfjs/k8skonf/issues/195)) ([c11fcf3](https://github.com/konfjs/k8skonf/commit/c11fcf321ffdd9b8ada18f0bfc511f4e1f284956))
+* **dev:** bump typescript from 5.9.2 to 5.9.3 ([#212](https://github.com/konfjs/k8skonf/issues/212)) ([6939bc2](https://github.com/konfjs/k8skonf/commit/6939bc28a8392ee8d765ca9fdcb7b55dfc077772))
+
 ## [0.6.3](https://github.com/konfjs/k8skonf/compare/cli-v0.6.2...cli-v0.6.3) (2025-02-14)
 
 
