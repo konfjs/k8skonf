@@ -12,7 +12,7 @@
     "@types/node": "24.10.13",
     "oxfmt": "0.28.0",
     "oxlint": "1.43.0",
-    "oxlint-tsgolint": "0.11.5",
+    "oxlint-tsgolint": "0.12.0",
     "typescript": "5.9.3"
   },
   "engines": {
