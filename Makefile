@@ -64,7 +64,7 @@ parse-schema:
 # No new files are created here.
 .PHONY: k8s
 k8s: copy-models
-	@echo "Generating @k8skonf/provider-k8s package"
+	@echo "Generating @k8skonf/k8s package"
 	@cd packages/cli && node src/generateCore.ts
 
 
