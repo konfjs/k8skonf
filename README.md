@@ -5,7 +5,7 @@ Write Kubernetes manifests in TypeScript.
 Packages
 
 - `@k8skonf/core` - Minimal core library that provides basic building blocks for organizing your K8sKonf applications.
-- `@k8skonf/provider-k8s` - Ready to use Kubernetes core schema in TypeScript.
+- `@k8skonf/k8s` - Ready to use Kubernetes core schema in TypeScript.
 - `@k8skonf/cli` - CLI tool to generate TypeScript code for Kubernetes core schema and Custom Resource Definitions (CRDs).
 
 ## Usage
@@ -14,9 +14,9 @@ Packages
 
 ```ts
 import { K8sApp } from '@k8skonf/core';
-import { Deployment } from '@k8skonf/provider-k8s/apps/v1';
+import { Deployment } from '@k8skonf/k8s/apps/v1';
 // Or you can import like this:
-// import { apps } from '@k8skonf/provider-k8s';
+// import { apps } from '@k8skonf/k8s';
 // and then
 // new apps.v1.Deployment();
 

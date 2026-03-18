@@ -1,5 +1,5 @@
 {
-  "name": "@k8skonf/provider-k8s",
+  "name": "@k8skonf/k8s",
   "version": "1.25.0",
   "author": {
     "name": "konfjs",
@@ -10,7 +10,7 @@
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/konfjs/k8skonf.git",
-    "directory": "packages/provider-k8s"
+    "directory": "packages/k8s"
   },
   "bugs": {
     "url": "https://github.com/konfjs/k8skonf/issues"
