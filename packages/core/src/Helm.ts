@@ -3,9 +3,9 @@ import * as fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
 import * as yaml from 'yaml';
-import { ApiObject } from './ApiObject.ts';
 import type { K8sApp } from './K8sApp.ts';
-import type { ObjectMeta } from './models/meta/v1/types/ObjectMeta.ts';
+import type { ObjectMeta } from './resource/ObjectMeta.ts';
+import { Resource } from './resource/Resource.ts';
 
 interface HelmObjectArgs {
     readonly apiVersion: string;
@@ -15,7 +15,7 @@ interface HelmObjectArgs {
     readonly [key: string]: any;
 }
 
-class HelmObject extends ApiObject {
+class HelmObject extends Resource {
     readonly apiVersion: string;
     readonly kind: string;
     readonly metadata: ObjectMeta;

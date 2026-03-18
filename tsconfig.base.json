@@ -2,6 +2,7 @@
   "compilerOptions": {
     "lib": ["ES2023"],
     "target": "ES2023",
+    "types": ["node"],
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "moduleDetection": "force",

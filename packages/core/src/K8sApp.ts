@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import pc from 'picocolors';
-import { type ApiObject, NamespacedApiObject } from './ApiObject.ts';
+import { type Resource, NamespacedResource } from './resource/Resource.ts';
 
 export interface K8sAppArgs {
     readonly namespace?: string;
@@ -16,7 +16,7 @@ export interface K8sAppArgs {
  * So we know where to save the resources.
  */
 export class K8sApp {
-    private readonly resources: Array<ApiObject | NamespacedApiObject> = [];
+    readonly resources: Resource[] = [];
     readonly namespace?: string;
     readonly outputName: string;
     private readonly args?: K8sAppArgs;
@@ -27,15 +27,11 @@ export class K8sApp {
         this.args = args;
     }
 
-    addResource(resource: ApiObject | NamespacedApiObject) {
-        if (resource instanceof NamespacedApiObject && !resource.metadata.namespace) {
+    addResource(resource: Resource) {
+        if (resource instanceof NamespacedResource && !resource.metadata.namespace) {
             resource.metadata.namespace = this.namespace;
         }
         this.resources.push(resource);
-    }
-
-    getResources(): Array<ApiObject | NamespacedApiObject> {
-        return this.resources;
     }
 
     toYaml() {
