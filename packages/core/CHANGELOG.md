@@ -1,5 +1,34 @@
 # Changelog
 
+## [2.0.0](https://github.com/konfjs/k8skonf/compare/core-v1.32.13...core-v2.0.0) (2026-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename ApiObject, NamespacedApiObject to ClusterResource, ClusterResource ([#293](https://github.com/konfjs/k8skonf/issues/293))
+* remove models, base k8s models are moved to @k8skonf/k8s package ([#292](https://github.com/konfjs/k8skonf/issues/292))
+
+### Bug Fixes
+
+* **core:** correct type annotation for api resources array ([ad237f2](https://github.com/konfjs/k8skonf/commit/ad237f2dfcaa10b89d49693bde5b9979c13a7d3c))
+* set tsconfig rootDir for ts6 ([74f5d5f](https://github.com/konfjs/k8skonf/commit/74f5d5f2fe5d6fddf5abf575d8e0f8d001b2026c))
+
+
+### Maintenance
+
+* **core:** export K8sAppArgs interface ([a6fdbf6](https://github.com/konfjs/k8skonf/commit/a6fdbf6c9c9832df38b50eaa17f188fad2c3211f))
+* remove models, base k8s models are moved to @k8skonf/k8s package ([#292](https://github.com/konfjs/k8skonf/issues/292)) ([242ef5e](https://github.com/konfjs/k8skonf/commit/242ef5e1773a28a565cb6f225e5e911cd2851ae5))
+* rename ApiObject, NamespacedApiObject to ClusterResource, ClusterResource ([#293](https://github.com/konfjs/k8skonf/issues/293)) ([26e0bd0](https://github.com/konfjs/k8skonf/commit/26e0bd06b8436b2d36bde059793529316880497e))
+* use the most strict tsconfig ([2c7720d](https://github.com/konfjs/k8skonf/commit/2c7720db6013c53c7bf56689b84d37b302135028))
+
+
+### Dependencies
+
+* bump yaml from 2.7.0 to 2.8.1 ([#200](https://github.com/konfjs/k8skonf/issues/200)) ([c48b4b3](https://github.com/konfjs/k8skonf/commit/c48b4b3b34cf262fa60908b0947475e0fab9452e))
+* **dev:** bump typescript from 5.7.3 to 5.8.2 ([#116](https://github.com/konfjs/k8skonf/issues/116)) ([19dafee](https://github.com/konfjs/k8skonf/commit/19dafee2fba8ede1632006ba09f88e1588805716))
+* **dev:** bump typescript from 5.8.2 to 5.9.2 ([#194](https://github.com/konfjs/k8skonf/issues/194)) ([5ae1792](https://github.com/konfjs/k8skonf/commit/5ae179233a34c9ed0a31b1311ea3b621b58514ae))
+* **dev:** bump typescript from 5.9.2 to 5.9.3 ([#212](https://github.com/konfjs/k8skonf/issues/212)) ([6939bc2](https://github.com/konfjs/k8skonf/commit/6939bc28a8392ee8d765ca9fdcb7b55dfc077772))
+
 ## [1.32.13](https://github.com/konfjs/k8skonf/compare/core-v1.32.12...core-v1.32.13) (2025-02-14)
 
 
