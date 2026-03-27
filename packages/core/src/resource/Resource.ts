@@ -1,5 +1,6 @@
 import * as yaml from 'yaml';
 import type { ObjectMeta } from './ObjectMeta.ts';
+import type { K8sApp } from '../K8sApp.ts';
 
 export interface NamespacedResourceMeta extends ObjectMeta {
     /**
@@ -12,23 +13,53 @@ export interface NamespacedResourceMeta extends ObjectMeta {
     namespace?: string;
 }
 
-export type ClusterResourceMeta = ObjectMeta;
+// `type ClusterResourceMeta = ObjectMeta` cannot be used here because
+// typescript was using `ObjectMeta` as a type identifier instead of `ClusterResourceMeta`
+// which makes code completion, error messages look confusing.
+export interface ClusterResourceMeta extends ObjectMeta {}
+
+export interface ResourceArgs {
+    readonly apiVersion: string;
+    readonly kind: string;
+    readonly metadata?: ClusterResourceMeta | NamespacedResourceMeta;
+    readonly spec?: any;
+    readonly [key: string]: any;
+}
+
+export interface ClusterResourceArgs extends ResourceArgs {
+    readonly metadata?: ClusterResourceMeta;
+}
+
+export interface NamespacedResourceArgs extends ResourceArgs {
+    readonly metadata?: NamespacedResourceMeta;
+}
 
 /**
  * Resource is the base class for all Kubernetes API resources.
- * It can be either a ClusterResource or a NamespacedResource, depending on the scope of the resource.
+ * Kubernetes resources can be either a ClusterResource or a NamespacedResource,
+ * depending on the scope of the resource.
  */
-export abstract class Resource {
-    abstract readonly apiVersion: string;
-    abstract readonly kind: string;
+export class Resource {
+    readonly apiVersion: string;
+    readonly kind: string;
     /**
      * The `metadata.name` of the resource.
      */
     readonly name: string;
-    abstract readonly metadata: ClusterResourceMeta | NamespacedResourceMeta;
+    readonly metadata: ClusterResourceMeta | NamespacedResourceMeta;
+    readonly spec?: any;
 
-    constructor(name: string) {
-        this.name = name;
+    constructor(app: K8sApp, name: string, args: ResourceArgs) {
+        const { apiVersion, kind, metadata, spec, ...rest } = args;
+        this.apiVersion = apiVersion;
+        this.kind = kind;
+        this.metadata = {
+            ...metadata,
+            name: metadata?.name || name,
+        };
+        this.name = this.metadata.name;
+        this.spec = spec;
+        Object.assign(this, rest);
     }
 
     toYaml(): string {
@@ -41,14 +72,29 @@ export abstract class Resource {
  * ClusterResource is the base class for all Kubernetes API
  * resources that are cluster-scoped.
  */
-export abstract class ClusterResource extends Resource {
-    abstract override readonly metadata: ClusterResourceMeta;
+export class ClusterResource extends Resource {
+    override readonly metadata: ClusterResourceMeta;
+    constructor(app: K8sApp, name: string, args: ClusterResourceArgs) {
+        super(app, name, args);
+        this.metadata = {
+            ...args.metadata,
+            name: args.metadata?.name || name,
+        };
+    }
 }
 
 /**
  * NamespacedResource is the base class for all Kubernetes API
  * resources that are namespace-scoped.
  */
-export abstract class NamespacedResource extends Resource {
-    abstract override readonly metadata: NamespacedResourceMeta;
+export class NamespacedResource extends Resource {
+    override readonly metadata: NamespacedResourceMeta;
+    constructor(app: K8sApp, name: string, args: NamespacedResourceArgs) {
+        super(app, name, args);
+        this.metadata = {
+            ...args.metadata,
+            name: args.metadata?.name || name,
+            namespace: args.metadata?.namespace ?? app.namespace,
+        };
+    }
 }
